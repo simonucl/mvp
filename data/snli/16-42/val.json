@@ -1,0 +1,64 @@
+{"premise":"A girl in a purple sweater and a shoulder bag is looking to the side with a lot of people behind her.","hypothesis":"a girl has on a sweater","label":0}
+{"premise":"A old woman is holding shopping bags on a busy city street.","hypothesis":"A woman on a busy street holds some shopping bags","label":0}
+{"premise":"This is the image of two Asian men squatting near a mop-pad.","hypothesis":"This picture is of two Asian men.","label":0}
+{"premise":"A child is jumping off a platform into a pool.","hypothesis":"The child is swimming.","label":0}
+{"premise":"A woman is sitting outside while holding two cats.","hypothesis":"A person is sitting and holding cats.","label":0}
+{"premise":"Chevrolet car on display at a convention","hypothesis":"At a convention there is a Chevrolet car on display.","label":0}
+{"premise":"A little boy in a blue shirt holding a toy.","hypothesis":"Boy dressed in blue holds a toy.","label":0}
+{"premise":"Two black dogs on a snow covered ground, the ground appears blue in the background, one dog is jumping with feet off the ground.","hypothesis":"The dogs are black.","label":0}
+{"premise":"A cement truck pours cement on the street.","hypothesis":"The truck is outside","label":0}
+{"premise":"A guy in a laundromat getting his things together.","hypothesis":"A guy is in the laundromat","label":0}
+{"premise":"A man smiles while he holds a newborn in a church pew.","hypothesis":"Someone holding their baby is smiling while sitting down.","label":0}
+{"premise":"Two kids are standing in the ocean hugging each other.","hypothesis":"Two kids are outdoors.","label":0}
+{"premise":"A skater performs a stunt off a cement wall covered in graffiti.","hypothesis":"A skateboarder displaying their skills.","label":0}
+{"premise":"A man wearing a top-hat, blue plaid pajama pants, a white shirt, and gold embroidered vest stands in front of an American Flag under a colorfully painted street-front, and speaks to a crowd from a microphone.","hypothesis":"A man has on a top hat","label":0}
+{"premise":"A girl wearing a red shirt and jeans is sitting in a rocking chair at a cluttered desk, while another girl wearing a black t-shirt and jogging pants is sitting on the floor writing on a piece of paper with other papers arranged around her.","hypothesis":"two girls in a room","label":0}
+{"premise":"A man in red pants skiing down a slope.","hypothesis":"A man outside.","label":0}
+{"premise":"Several smiling people of varying ages sitting around a table with glasses of beer in front of them.","hypothesis":"Several people are celebrating their company going public.","label":1}
+{"premise":"A cowboy struggling to maintain control on a horse at a rodeo.","hypothesis":"the horse is wild","label":1}
+{"premise":"A large man in white dances in the middle of a crowd holding a beverage in his hand.","hypothesis":"A man is enjoying himself dancing.","label":1}
+{"premise":"A youth is kicking a soccer ball in an empty brick area.","hypothesis":"A funny human kicking.","label":1}
+{"premise":"Male nun smoking a cigarette.","hypothesis":"Male nun is addicted to nicotine.","label":1}
+{"premise":"Person with a black helmet and vest, with a white undershirt, riding on a motorcycle on the street.","hypothesis":"A woman rides her motorcycle to the market.","label":1}
+{"premise":"Two men are trying to kick each other.","hypothesis":"Two men are fighting.","label":1}
+{"premise":"Two women are posing with the Naked Cowboy in Times Square, New York City.","hypothesis":"Two women are touring New York City.","label":1}
+{"premise":"Two basketball players in black and white outfits are standing on a basketball court, talking.","hypothesis":"The two basketball players are talking about an upcoming strategy.","label":1}
+{"premise":"An audience cheers at a concert.","hypothesis":"An audience making noise at a Weezer concert.","label":1}
+{"premise":"A crowd watching a soccer match.","hypothesis":"A crowd cheers on their favorite team.","label":1}
+{"premise":"A clerk at a store is idling a waiting for next customer.","hypothesis":"Clerk waits in checkout line at Walmart.","label":1}
+{"premise":"A little boy in a blue shirt holding a toy.","hypothesis":"Boy dressed in blue carrying toy to a toybox.","label":1}
+{"premise":"A man in a staff shirt break-dancing.","hypothesis":"A man is impressing other employees with his dancing.","label":1}
+{"premise":"A woman sits on the beach while talking on her cellphone.","hypothesis":"Justin bieber is on the phone with her","label":1}
+{"premise":"A nun uses her camera to take a photo of an interesting site.","hypothesis":"A nun taking photos of a interesting site outside.","label":1}
+{"premise":"A waitress with a pink shirt and black pants walking through a restaurant carrying bowls of soup.","hypothesis":"Nobody has pants","label":2}
+{"premise":"A farmer gives a tour of his farm to local families","hypothesis":"A dog jumping through hoops.","label":2}
+{"premise":"Three men look on as two other men carve up a freshly barbecued hog in the backyard.","hypothesis":"Other look while a man carves beef","label":2}
+{"premise":"Young barefoot girl begins to lose balance.","hypothesis":"The girl is sitting on the floor.","label":2}
+{"premise":"A man and woman sit on a park bench with a set of newlyweds behind.","hypothesis":"A pack of ninja turtles fighting crime.","label":2}
+{"premise":"Male and female performers stand on stage holding microphones up to their lips and raising their hands in the sky.","hypothesis":"Male and female performers sit on stage.","label":2}
+{"premise":"The band prepares for the next song.","hypothesis":"There is only one person present.","label":2}
+{"premise":"A small girl is unwrapping a green present with toys strewn around.","hypothesis":"The girl is climbing a mountain","label":2}
+{"premise":"Very young boy standing in front of a bride and groom, wearing a suit and holding a ring-bearer's pillow.","hypothesis":"A funny standing","label":2}
+{"premise":"A white-haired man with a mustache and glasses in a business suit stands outside at a podium marked with the seal of the US House of Representatives, surrounded by many people, with a columned building behind him.","hypothesis":"The man is sitting in a chair inside.","label":2}
+{"premise":"Two men are trying to kick each other.","hypothesis":"Two ladies are kicking each other.","label":2}
+{"premise":"Two doctors perform surgery on patient.","hypothesis":"Two surgeons are having lunch.","label":2}
+{"premise":"A girl in a red dress and white sneakers bouncing a tennis ball with a tennis racket.","hypothesis":"A boy is playing tennis.","label":2}
+{"premise":"Two people one in a brown shirt wearing a backpack and the other wearing a pick sweater and bike helmet are kneeling at a bicycle tire.","hypothesis":"Nobody has a shirt on","label":2}
+{"premise":"An older gentleman enjoys a scenic stroll through the countryside.","hypothesis":"A pirate boards the spaceship.","label":2}
+{"premise":"A silhouette at the bottom of an escalator.","hypothesis":"The group of people are running in a race.","label":2}
+{"premise":"The older man in a dark blue shirt is using tools to make glass before putting them into a heated kiln.","hypothesis":"A man is creating pottery.","label":-1}
+{"premise":"A roofer is patching up a hut in a village.","hypothesis":"Maintenance man is replacing a roof in a home.","label":-1}
+{"premise":"a little girl sitting in a seat.","hypothesis":"She is sitting nicely.","label":-1}
+{"premise":"A curly-haired redhead is wearing a blue checkered hat, a black long-sleeve shirt, and blue jeans while holding a red jacket as she speaks to her friends standing behind her.","hypothesis":"A redhead is sitting by herself, calling her friends on the phone to see where they are.","label":-1}
+{"premise":"A child walking towards a bridge waving a flag.","hypothesis":"a kid walks to school","label":-1}
+{"premise":"A man in a business suit crosses the street.","hypothesis":"A guy is outside walking.","label":-1}
+{"premise":"A woman holds her child out of a red window, next to a Color TV sign.","hypothesis":"The woman is extending her arms.","label":-1}
+{"premise":"A squatting couple outdoors, engaged with a kneeling street performer or vendor reading from a book of manga.","hypothesis":"A couple looks down at something someone sitting by the street has.","label":-1}
+{"premise":"Man and a woman in a red dress dancing on stage in front of other dancers and a metro PCS sign.","hypothesis":"A woman wearing a red dress is on a date at the dance theather.","label":-1}
+{"premise":"Two girls riding on an amusement part ride.","hypothesis":"The girls are riding a roller coaster.","label":-1}
+{"premise":"A young boy wearing crocs tries to hit yellow golf balls into a large lawn overlooking a town.","hypothesis":"The kid was hitting balls near town.","label":-1}
+{"premise":"A person with a dark yellow baseball cap and a gray sweatshirt is in the air over an outdoor fountain in front of a cityscape.","hypothesis":"The person is sitting by the fountain talking on the cellphone.","label":-1}
+{"premise":"A bunch of people are watching a man with his left arm wrapped around the legs of his downed, struggling wrestling opponent on a blue mat.","hypothesis":"The two people are wrestling in front of an empty crowd.","label":-1}
+{"premise":"This is a heated hockey match at the goal line.","hypothesis":"They are contesting the goal right near the post.","label":-1}
+{"premise":"A large group of people stand outside on a road while people on a higher level look on at them.","hypothesis":"One group of people look at another from behind a wall.","label":-1}
+{"premise":"A smiling policewoman holding a blue axe and wearing St. Patrick's Day memorabilia walking in front of assembled onlookers.","hypothesis":"A policewoman is celebrating Christmas by wearing blue and red.","label":-1}

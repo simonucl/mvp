@@ -90,7 +90,7 @@ class TextFoolerCustom(AttackRecipe):
         constraints.append(input_column_modification)
         constraints.append(boolq_constraint)        
 
-        constraints.append(MaxWordsPerturbed(max_percent=0.3)) #new
+        # constraints.append(MaxWordsPerturbed(max_percent=0.3)) #new
         # Minimum word embedding cosine similarity of 0.5.
         # (The paper claims 0.7, but analysis of the released code and some empirical
         # results show that it's 0.5.)

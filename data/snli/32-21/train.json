@@ -1,0 +1,128 @@
+{"premise":"Racing dog with yellow number 8 vest","hypothesis":"A dog in a race","label":0}
+{"premise":"a snowboarder wearing red is descending a snow covered mountain.","hypothesis":"a snowboarder is outside","label":0}
+{"premise":"A young boy in swimming trunks holds a blue pail and a bright green shovel on a sandy beach.","hypothesis":"there is a young boy on a beach","label":0}
+{"premise":"A tired woman rests her head on her friend's shoulder in an auditorium.","hypothesis":"An old lady fell asleep on her friend while watching the play.","label":0}
+{"premise":"Two men on the street at night, one smoking.","hypothesis":"Two people on the street are smoking.","label":0}
+{"premise":"One young blond female on an old ATV by a pond.","hypothesis":"The vehicle is being ridden by a young person with light hair.","label":0}
+{"premise":"Jockey riding a racehorse on a racetrack.","hypothesis":"Jocky riding a racehorse.","label":0}
+{"premise":"A woman at graduation without a cap on.","hypothesis":"the woman doesnt have a cap","label":0}
+{"premise":"A group of people congregate outside while a man in a black shirt and glasses walks toward the camera.","hypothesis":"There are people surrounding a camera.","label":0}
+{"premise":"About 20 dark complected men standing with their backs towards us raising both hands in the air.","hypothesis":"A group of man are facing away with raised arms.","label":0}
+{"premise":"A young woman, wearing a black coat and sitting with a book in her lap, is reading a map, in a laundry mat.","hypothesis":"A woman in a black coat reading.","label":0}
+{"premise":"On the left side of a woman that's holding a blue innertube, there's a woman wearing a white jacket who is reaching the trashcan.","hypothesis":"The innertube is in the woman's hands.","label":0}
+{"premise":"An Asian barber with a towel over his arm stands behind an empty barber shop chair.","hypothesis":"The barber is Asian.","label":0}
+{"premise":"A person wearing a green and white shirt with a white hood is sitting outside on the steps of a large building while another person is lying down a few steps higher.","hypothesis":"A person wearing a green and white shirt with a white hood is sitting outside on the steps of a large building.","label":0}
+{"premise":"boy and his grandmother laugh together.","hypothesis":"A boy and older woman laugh.","label":0}
+{"premise":"A woman in a white coat and a man in a gray coat are walking on a sidewalk past the window of a store that sells jewelry.","hypothesis":"People are walking by together.","label":0}
+{"premise":"Lady in a black T-shirt, standing with others.","hypothesis":"A group is standing around.","label":0}
+{"premise":"A worker in a checkered shirt weighs out produce behind a stand that offers exotic foods.","hypothesis":"There is a person working.","label":0}
+{"premise":"A pitcher with a red shirt is throwing a ball and his teammate is waiting to catch near a base.","hypothesis":"a pitcher throws a ball","label":0}
+{"premise":"A man in a black hat talks to a woman outside.","hypothesis":"Two people are having a conversation.","label":0}
+{"premise":"Two young men are having good time.","hypothesis":"Two men are doing something.","label":0}
+{"premise":"Two women are busy cooking while a family member looks on.","hypothesis":"Two women are cooking in front of people.","label":0}
+{"premise":"An African American family picking vegetables from the garden, while mom holds the baby and supervises.","hypothesis":"A person picking veggies","label":0}
+{"premise":"He is in the bathroom with a drink in his hand.","hypothesis":"He even drinks in bathroom.","label":0}
+{"premise":"A group of people race across a grass field.","hypothesis":"A group of people are speeding through a field","label":0}
+{"premise":"A small child in pajamas is holding onto a mop in a bucket.","hypothesis":"A mop and bucket being held by a small kid in night clothes","label":0}
+{"premise":"A woman stands behind a pink table where a cake is displayed.","hypothesis":"a woman is standing","label":0}
+{"premise":"People inside of a building with arcade machines.","hypothesis":"The building has games inside.","label":0}
+{"premise":"A woman is using a mirror to show a young girl what her painted face looks like while a crowd looks on.","hypothesis":"A girl is wearing face paint.","label":0}
+{"premise":"Two people, one dressed as a nun and the other in a roger smith t-shirt, running in a foot race past onlookers in a wooded area.","hypothesis":"The two people are running.","label":0}
+{"premise":"A street vendor selling food to a customer.","hypothesis":"a vendor sells food to people","label":0}
+{"premise":"A SCUBA diver is swimming away from the camera while a school of bright yellow and turquoise fish swim by to the right.","hypothesis":"A scuba diver swims with fish.","label":0}
+{"premise":"A woman in a pink shirt cleaning a wooden table.","hypothesis":"There is a women cleaning a table outside","label":1}
+{"premise":"A man with sunglasses walking in a park.","hypothesis":"A blind man walks through the park.","label":1}
+{"premise":"The bird is bathing in the puddle that is surrounded by rocks.","hypothesis":"a bird finally found a puddle","label":1}
+{"premise":"A man dressed in black dances with a woman in a red dress outside.","hypothesis":"a man and woman are at a concert in the park.","label":1}
+{"premise":"The players are on the height of their energies both aiming to win on a beach volleyball game.","hypothesis":"The beach volleyball players compete in the Olympic trials.","label":1}
+{"premise":"A woman sits next to a slow-flowing river.","hypothesis":"The woman saw fish in the river.","label":1}
+{"premise":"A young person with a red headband having words in red painted on her face.","hypothesis":"A young girl is rooting for her favorite team.","label":1}
+{"premise":"Two greyhounds race.","hypothesis":"the greyhounds are gray","label":1}
+{"premise":"A skier catches air over the snow.","hypothesis":"The skier is going fast.","label":1}
+{"premise":"man shoveling dirt into a pile","hypothesis":"man shoveling dirt fast","label":1}
+{"premise":"Three dogs in different shades of brown are playing in the water.","hypothesis":"Three pets splash each other at the beach.","label":1}
+{"premise":"An amorous couple with water in front of them, an old building with ornate pillars in the background.","hypothesis":"A couple is happily in love as they stand outdoors.","label":1}
+{"premise":"A person in a black jacket and a red hat stands on top of a mountain with more mountains and clouds in the distance.","hypothesis":"a person stands on top of a mountain thinking about how hungry they are","label":1}
+{"premise":"A small girl is sitting on stairs drinking water and eating a snack.","hypothesis":"The small girl did not drink all the water before finishing the snakck.","label":1}
+{"premise":"In the middle of a shopping center, there are two statues of men on bicycles with skeletons by them.","hypothesis":"There are two statues of men on bicyles in a shopping center doing tricks","label":1}
+{"premise":"Woman being given a palm reading by a female psychic while two other women wait inside of a small shop.","hypothesis":"A woman is scared of the psychic.","label":1}
+{"premise":"A man in a striped shirt and blue jeans asleep on a stoop.","hypothesis":"A tall person in a shirt","label":1}
+{"premise":"A little boy is eating pie without utensils.","hypothesis":"A kid eats a cherry pie.","label":1}
+{"premise":"Two men stand on a balcony in front of an open window while shielding their eyes and pointing at the sky.","hypothesis":"The men are looking at something in the sky.","label":1}
+{"premise":"A man wearing a denim jacket is painting a sign.","hypothesis":"A man wearing a jacket is graffiting a sign.","label":1}
+{"premise":"Two men, one wearing white trunks and the other wearing red boxing.","hypothesis":"Two men spar in the middleweight championship.","label":1}
+{"premise":"a man doing tricks on a bmx bike","hypothesis":"A man is in a bmx competition.","label":1}
+{"premise":"Two men in white and orange jumpsuits skydiving.","hypothesis":"The two men in white and orange jumpsuits skydived during snowy weather.","label":1}
+{"premise":"A balding, white man is standing outside with his hand in the air.","hypothesis":"A man stands in a park.","label":1}
+{"premise":"Two men entering a building.","hypothesis":"Some people are going in.","label":1}
+{"premise":"A snowboarder in midair","hypothesis":"A snowboarder in a red coat is in the middle of a back flip.","label":1}
+{"premise":"Girl in a blue sweater painting while looking at a bird in a book.","hypothesis":"The girl is painting birds.","label":1}
+{"premise":"A crowd of people, some standing by a river, some in the river with old buildings in the background.","hypothesis":"People are relaxing in the cool water.","label":1}
+{"premise":"This little girl is riding her bike.","hypothesis":"A young girl rides her bike in the grass.","label":1}
+{"premise":"A nice brick and stone building outside with a woman seen walking a baby carriage.","hypothesis":"A woman is taking her baby to the park.","label":1}
+{"premise":"A person in a white shirt, wearing a tie, singing with a band.","hypothesis":"The fancy person sings Opera","label":1}
+{"premise":"One boy tucks his shirt in but the others do not.","hypothesis":"One of several boys was asked to tuck in his shirt.","label":1}
+{"premise":"A small black child is holding up a poster among many other children.","hypothesis":"The small asian child is holding up the rug.","label":2}
+{"premise":"Folks are in line for tickets at an amusement park.","hypothesis":"The people are in line for tickets at the movie theater.","label":2}
+{"premise":"An ATV rider, speeds around a corner, while sliding and kicking up dirt-still focused on the trail ahead.","hypothesis":"A ATV rider just fell of their ATV into a river.","label":2}
+{"premise":"person on snowboard in air","hypothesis":"The person is stuck in the snow.","label":2}
+{"premise":"An older woman is laying in the grass.","hypothesis":"A young woman runs in the park.","label":2}
+{"premise":"The man is performing a trick with an orange bicycle.","hypothesis":"A bicycle is chained to a fence.","label":2}
+{"premise":"A girl with brown hair is swimming underwater while holding her nose.","hypothesis":"A brown haired girl is holding her breath underwater","label":2}
+{"premise":"Dancers dressed in similar outfits pose on a wooden stage.","hypothesis":"The dancers are practicing a dance routine outside","label":2}
+{"premise":"A female wearing a shirt that has the word Green is balancing on one foot, while an adult male and another female walk away.","hypothesis":"The girl is balancing on her hands.","label":2}
+{"premise":"A skateboarder midair with his skateboard.","hypothesis":"A skateboarder is sleeping with his skateboard.","label":2}
+{"premise":"Two people are riding motorcycle in a race.","hypothesis":"Two people standing on a roof.","label":2}
+{"premise":"Three men fish at the edge of a concrete barrier constructed along the shore.","hypothesis":"a few men  going over paperwork from work","label":2}
+{"premise":"Number 3 at a soccer game is looking to see where to put the ball back into play from the sideline.","hypothesis":"The basketball player takes a shot.","label":2}
+{"premise":"A man with a tattoo wearing a sleeveless tailcoat is balancing a unicycle on his chin in front of a building.","hypothesis":"A man who is afraid of needles falling down a flight of stairs.","label":2}
+{"premise":"A woman is using her cellphone while a group of people with guitars stands behind her.","hypothesis":"A woman is playing the guitar while a group of people are trying to use their cellphones.","label":2}
+{"premise":"A man in khakis pants is lying on concrete and looking into the sky.","hypothesis":"The man is wearing blue jeans.","label":2}
+{"premise":"The brown and white great Dane plays with two yellow dogs in the grass.","hypothesis":"The great Dane chases the two yellow dogs around the kitchen table.","label":2}
+{"premise":"A man trying to stay on the bucking bronco.","hypothesis":"A woman is picking up trash.","label":2}
+{"premise":"A young lady in a striped shirt is waiting for the young lady with blond-hair who is writing.","hypothesis":"There is a group of people hanging out at work.","label":2}
+{"premise":"Black dog lays on grass","hypothesis":"the dog is green","label":2}
+{"premise":"Young girl in blue dress stepping over a soccer ball.","hypothesis":"A girl plays with a doll.","label":2}
+{"premise":"A mom has fallen asleep holding her son inside a boat.","hypothesis":"a woman and a boy are awake","label":2}
+{"premise":"A group of men are standing and looking into a makeshift structure, along side a group of men in yellow and orange construction safety vests.","hypothesis":"the men are dancing on a bush","label":2}
+{"premise":"An asian girl holding flowers under Korean symbols.","hypothesis":"French words are behind a boy.","label":2}
+{"premise":"As the sun sets 3 people are on a small boat enjoying the view","hypothesis":"A group of people are dancing otuside a nightclub.","label":2}
+{"premise":"Children playing in an outdoor pool as a woman watches from the side.","hypothesis":"The children are playing unsupervised.","label":2}
+{"premise":"Three people walk on a snow covered wasteland.","hypothesis":"Three people are bundled up next to the fire in the cabin drinking cocoa.","label":2}
+{"premise":"Two women buying baked goods from a man at a market.","hypothesis":"The man was selling fish at the docks.","label":2}
+{"premise":"Bikers ride down a busy rural street.","hypothesis":"One man is riding a scooter in the country side.","label":2}
+{"premise":"Four Buddhist monks walk down a street... and no, this is n't the beginning of a joke.","hypothesis":"Four children are playing.","label":2}
+{"premise":"A group of children are sitting close together and laughing while a boy in a white shirt is jumping over them.","hypothesis":"cat looks at dog","label":2}
+{"premise":"A Police Officer riding his bicycle.","hypothesis":"A burglar grabs a bike.","label":2}
+{"premise":"Holding a bullhorn, a red-haired female demands attention as she speaks her message atop a bridge.","hypothesis":"A red haired drill instructor speaks into a bullhorn.","label":-1}
+{"premise":"A man with glasses, a gray button-up shirt and black pants is standing next to a stage used for presentations and is using a power tool to grind an object next to a sawhorse, emitting many sparks downward.","hypothesis":"The man is making a demonstration.","label":-1}
+{"premise":"A woman is walking on the street in front of a yellow car with the driver's side window open.","hypothesis":"A women waiting for a cab.","label":-1}
+{"premise":"Someone enjoying taking a picture of a midway at a permanent entertainment venue.","hypothesis":"Someone is at a movie theater.","label":-1}
+{"premise":"Four girls are posing for a picture in an elderly home.","hypothesis":"Four girls pose for a picture at a senior living home during their community service project.","label":-1}
+{"premise":"A group of children are riding a children's ride with a clown and a lot of ballons on it.","hypothesis":"The group of children are at the carnival.","label":-1}
+{"premise":"An automobile is submerged in water, almost to the door handles.","hypothesis":"The automobile is floating.","label":-1}
+{"premise":"A group of people carrying something wrapped in an american flag.","hypothesis":"The people are sitting on a couch.","label":-1}
+{"premise":"A black man in a white shirt tucked in to blue jeans is the center of attention of a medium sized crowd.","hypothesis":"The man is ready but no one came to hear him.","label":-1}
+{"premise":"A group of people gathered in front of a doorway.","hypothesis":"They are outside.","label":-1}
+{"premise":"A man in a white jacket standing in front of an older woman in a white jacket playing crochet.","hypothesis":"The man was playing crochet with the two women.","label":-1}
+{"premise":"A little girl in the foreground and an older boy also in the foreground in front of a mobile home with a few adults in the background.","hypothesis":"The adults convene outside","label":-1}
+{"premise":"In an aisle at a warehouse style store, a man moves a long thin box with his foot on a cart while a woman with papers watches.","hypothesis":"A man loads a box on the shopping cart with his foot in the frozen sectioni of a warehouse store","label":-1}
+{"premise":"A woman in plaid boots holds a red umbrella as she leaps in the air.","hypothesis":"a woman with an umbrella jumped over the puddle.","label":-1}
+{"premise":"Two men wearing reflective clothing working in a tunnel.","hypothesis":"There are men outdoors working","label":-1}
+{"premise":"A old man in a green shirt sits on the curb holding a camera.","hypothesis":"An old man holds a digital camera and sits on the curb.","label":-1}
+{"premise":"A girl is in the air face up performing some sort of calisthenics or perhaps diving into a pool.","hypothesis":"Someone is outside posing.","label":-1}
+{"premise":"A man is using spray paint to paint a picture on a wall.","hypothesis":"The man is making graffiti.","label":-1}
+{"premise":"A woman in a blue dress and rain boots mops the cobblestone street.","hypothesis":"The street is wet.","label":-1}
+{"premise":"A young mother is letting her child lick a wooden cooking spoon clean.","hypothesis":"The child is licking the spoon","label":-1}
+{"premise":"An old man is sitting on a stoop while people walk towards him with groceries.","hypothesis":"A man sits enjoying the weather, as shoppers stroll by with groceries.","label":-1}
+{"premise":"One man in a leather jacket, holding his head in his hands, wearing blue jeans, with a giant yellow bag, sitting on a white bench, next to an older male wearing reading glasses and reading a book.","hypothesis":"A stranger tries to ignore a crying  biker who's wife just left him","label":-1}
+{"premise":"A father and son at the checkout in a supermarket.","hypothesis":"A father and a son are standing behind a shopping cart at the checkout in a supermarket.","label":-1}
+{"premise":"A person sleeping under a small pink cover with white and yellow circles on it.","hypothesis":"There is a person asleep with a blanket.","label":-1}
+{"premise":"People are walking on the street and 2 people are riding 2 wheeled transportation.","hypothesis":"People are on the street.","label":-1}
+{"premise":"A brown dog is running through an obstacle course.","hypothesis":"The brown dog is navigating the course with grace.","label":-1}
+{"premise":"A woman in pink and a man wearing an apron watch a food covered grill.","hypothesis":"a woman and man are watching how to prepare the food","label":-1}
+{"premise":"Two dogs play together in the yard.","hypothesis":"Animals are having fun.","label":-1}
+{"premise":"A young woman enjoying the day.","hypothesis":"The woman is happy.","label":-1}
+{"premise":"A man in black is applauding a runner wearing a red jersey and the number 281.","hypothesis":"The man is running","label":-1}
+{"premise":"Shark attack waiting to happen to little girl with floaties.","hypothesis":"A shark approaches a young girl in the water.","label":-1}
+{"premise":"A group of people are watching acrobatic performers on a beach.","hypothesis":"The performers are watching the people do acrobatics.","label":-1}

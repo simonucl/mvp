@@ -1,0 +1,64 @@
+{"premise":"A woman with sneakers and a skirt is sweeping out a storage building.","hypothesis":"Casually dressed woman cleans out storage building.","label":0}
+{"premise":"Two older men speak into microphones on a stage, while a projector screen displays a vintage photo of a young man behind them.","hypothesis":"Two men are speaking on a stage with a picture being displayed on a screen behind them.","label":0}
+{"premise":"A girl wearing a maroon shirt leaps into the air while in the woods.","hypothesis":"A girl is outdoors.","label":0}
+{"premise":"A woman sitting on a bright blue bench looks up from her book.","hypothesis":"A woman is sitting.","label":0}
+{"premise":"A man in an orange vest is on the sidewalk playing a guitar and singing while others are walking down the sidewalk.","hypothesis":"A man is playing a guitar on the sidewalk and singing.","label":0}
+{"premise":"A girl in black is sitting on the ledge of a balcony, and she is speaking with a group of chefs.","hypothesis":"A group of professionals are speaking with a girl on a balcony.","label":0}
+{"premise":"Three girls in street clothes and sneakers perform act out a synchronized performance or dance while on a stage.","hypothesis":"The girls are doing a performance act on a stage.","label":0}
+{"premise":"A man in his own world of him and his music just entertaining on the street corner.","hypothesis":"A man is on a street corner.","label":0}
+{"premise":"A young girl performing the nutcracker.","hypothesis":"a child was there","label":0}
+{"premise":"A young indian boy sitting down thinking about his future.","hypothesis":"A boy thinks.","label":0}
+{"premise":"A balding man is getting his shoes cleaned on a street corner.","hypothesis":"A man outside.","label":0}
+{"premise":"The streets are busy and people contemplate their futures.","hypothesis":"People are thinking about futures.","label":0}
+{"premise":"Seven people ride motorbikes through a sand course.","hypothesis":"Seven people are riding motorbikes.","label":0}
+{"premise":"Young man running towards a tennis court while another is waiting in the other side of the net.","hypothesis":"A young man is running.","label":0}
+{"premise":"A boy is outside jumping over a flower bush on a skateboard.","hypothesis":"a boy on his skateboard","label":0}
+{"premise":"Kids are on a amusement ride.","hypothesis":"Kids ride an amusement ride.","label":0}
+{"premise":"A drummer plays the drums, while wearing a black dress shirt, and black and gray striped tie.","hypothesis":"A band plays loud rock music with a heavy drum solo.","label":1}
+{"premise":"A lady is looking at ice cream in a refrigerator.","hypothesis":"A lady indoors.","label":1}
+{"premise":"A man is performing an aerial skateboard trick on a ramp with several other people behind him.","hypothesis":"A man with a blue cap on is performing a skateboard trick in front of a crowd of people.","label":1}
+{"premise":"A young girl sits on a blue bench drinking out of a straw.","hypothesis":"A girl is drinking through a straw on a humid day.","label":1}
+{"premise":"Two dogs play with tennis ball in field.","hypothesis":"Dogs race each other to the ball.","label":1}
+{"premise":"a skateboarder is performing stunt on a graffiti covered skateboard ramp.","hypothesis":"A skateboard is performing in front of his friends.","label":1}
+{"premise":"A man is on the ground taking his shirt off as a crowd watches.","hypothesis":"A male stripper performs for a bachelorette party.","label":1}
+{"premise":"man wearing a harmonica playing the guitar and singing","hypothesis":"A great man making music.","label":1}
+{"premise":"A guitarist performs on stage.","hypothesis":"The stage is high.","label":1}
+{"premise":"A mountain biker rides up a hill on a red bicycle.","hypothesis":"The biker rode up the hill towards his friend.","label":1}
+{"premise":"A man in a black shirt holding cloth next to a wooded structure as people walk around it.","hypothesis":"A man is holding something near some trees as people pass by.","label":1}
+{"premise":"Two children standing in the grass being sprayed by a hose.","hypothesis":"Two children are playing with water in the yard","label":1}
+{"premise":"An extremely wet woman is wading in front of a waterfall.","hypothesis":"A dripping wet woman walks in front of a waterfall after swimming.","label":1}
+{"premise":"A man is walking in the same direction that a model airplane is flying in dried grassland.","hypothesis":"A man is following a remote control airplane.","label":1}
+{"premise":"A group of men are searching for something.","hypothesis":"A group of men are using flashlights to find something.","label":1}
+{"premise":"Three people are standing on the dock of a boat looking at something off-camera.","hypothesis":"A shark is out of the frame.","label":1}
+{"premise":"Two tanned men wearing shorts are pulling a fishing net along a beach shore.","hypothesis":"The men are standing on a mountain top.","label":2}
+{"premise":"The woman in the black shirt attempts to find her bike in the midst of the crowded street.","hypothesis":"A woman is skydiving.","label":2}
+{"premise":"A medium sized brown dog jumping","hypothesis":"A small dog crouches under a porch.","label":2}
+{"premise":"A girl is playing the keyboard with her band.","hypothesis":"A woman is watching a concert.","label":2}
+{"premise":"A woman in a blue jacket is drinking tea from a cup.","hypothesis":"A woman is eating a donut.","label":2}
+{"premise":"A group of power workers at the site of a car crash.","hypothesis":"A group of power workers at the site of a plane crash.","label":2}
+{"premise":"A person with dark hair is standing on the sidewalk in front of an orange and white truck.","hypothesis":"The man is standing on some grass.","label":2}
+{"premise":"A race car speeds away while a man covers his ears.","hypothesis":"There are no cars","label":2}
+{"premise":"Two Asian women talking and having drinks at a small round table.","hypothesis":"Two ladies are sitting at the bar.","label":2}
+{"premise":"A young boy wearing crocs tries to hit yellow golf balls into a large lawn overlooking a town.","hypothesis":"The adult was running in the mountains.","label":2}
+{"premise":"Soccer players dressed in bright blue and white uniforms are jumping in the air.","hypothesis":"Soccer players are running down the field.","label":2}
+{"premise":"Two monks are visiting a big city.","hypothesis":"The monks are running down the dirt trail.","label":2}
+{"premise":"Two boys, one wearing green, the other in yellow, are playing with sidewalk chalk, drawing pictures on the ground.","hypothesis":"Two boys lay dead on the sidewalk.","label":2}
+{"premise":"Boy jumps in desert while others watch and take photo.","hypothesis":"A group of people without cameras are watching a boy.","label":2}
+{"premise":"A man with an orange hat in a yellow canoe paddles along a river in a wooded, mountainous area.","hypothesis":"The man is watching tv","label":2}
+{"premise":"Man in a black suit, white shirt and black bowtie playing an instrument with the rest of his symphony surrounding him.","hypothesis":"Nobody has a suit","label":2}
+{"premise":"A peloton is riding bikes through cobblestone.","hypothesis":"People are being athletic.","label":-1}
+{"premise":"The elaborate Jesus shrine is being carried in a parade.","hypothesis":"A group of people are carefully handling the new shrine on the way to its location.","label":-1}
+{"premise":"A man in a bear suit, holding the head of the costume in his hand, stands at the back of a crowd.","hypothesis":"man performs for kids","label":-1}
+{"premise":"Two indian men are dancing in suits with an indian woman in a colorful dress behind them by a brick wall.","hypothesis":"Two couples are dancing outside.","label":-1}
+{"premise":"A man wearing glasses is vacuuming an architects model.","hypothesis":"There is a man vacuumming the carpet near the model","label":-1}
+{"premise":"A man jumps over another man doing a back flip.","hypothesis":"Two men are jumping.","label":-1}
+{"premise":"A thrill seeker uses her arms for balance while crossing a beam suspended high above craggy rocks.","hypothesis":"An athletic woman is suspended in midair.","label":-1}
+{"premise":"Boy on a skateboard in midair at a skate park","hypothesis":"A boy participating in the X-Games","label":-1}
+{"premise":"A man and a girl sit inside a floating tube in the water.","hypothesis":"A girl sits on top of a floating tube.","label":-1}
+{"premise":"This photo includes a statue of a man and a woman walking with a blue shirt walking behind it.","hypothesis":"There is a statue of two people.","label":-1}
+{"premise":"Two little girls on a hot summer day playing in a swimming pool.","hypothesis":"The girl is near the water.","label":-1}
+{"premise":"Two people with bags next to a street at night.","hypothesis":"There are two people","label":-1}
+{"premise":"A butterfly has lit on the head of this sleeping toddler.","hypothesis":"A butterfly is confused by a sleeping toddler.","label":-1}
+{"premise":"A white-haired man with a mustache and glasses in a business suit stands outside at a podium marked with the seal of the US House of Representatives, surrounded by many people, with a columned building behind him.","hypothesis":"There are people outside.","label":-1}
+{"premise":"A woman holds her child out of a red window, next to a Color TV sign.","hypothesis":"The woman is extending her arms.","label":-1}
+{"premise":"A small girl wearing a pink jacket is riding on a carousel.","hypothesis":"The girl is sitting on a carved horse made of wood.","label":-1}

@@ -16,7 +16,7 @@ def parse_args():
     parser.add_argument("--dataset", help="Select dataset name", type=str, default = "imdb", choices = ["ag_news", "boolq", "sst2"])
     parser.add_argument("--train_size", help = "fraction of training examples to use", type = float, default = 0.95)
     parser.add_argument("--val_size", help = "fraction of val examples to use", type = float, default = 0.05)
-    parser.add_argument("--model", help="Model Architecture", type=str, default = "bert-base-uncased", choices = ["bert-base-uncased" ,"roberta-base", "gpt2"])
+    parser.add_argument("--model", help="Model Architecture", type=str, default = "bert-base-uncased")
 
     parser.add_argument("--model_id", help = "For Saving", type = str, default = '0')
     parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense]", type = str, default = 'mvp')
@@ -40,7 +40,7 @@ def parse_args():
     
     #TEST
     parser.add_argument("--path", help = "Path for test model load", type = str, default = "None")
-    parser.add_argument("--attack_name", help = "Attack Name", type = str, default = "textfooler", choices = ["none", "textfooler", "textbugger"])
+    parser.add_argument("--attack_name", help = "Attack Name", type = str, default = "textfooler", choices = ["none", "textfooler", "textbugger", "bae"])
     parser.add_argument("--num_examples", help = "number of test examples", type = int, default = 1000)
     parser.add_argument("--query_budget", help = "Query Budget per example (-1 for no budget)", type = int, default = -1)
     parser.add_argument("--split", help = "split to attack on", type = str, default = "test", choices = ["train", "validation", "test"])
@@ -53,6 +53,8 @@ def parse_args():
     parser.add_argument("--norm", help = "norm to use for adversarial augmentation", type = str, default = "l2", choices = ["l2","linf"])
     parser.add_argument("--adv_augment", help = "Use adversarial training or not", type = int, default = 0, choices = [0,1])
 
+    # Few Shot Params
+    parser.add_argument("--dataset_path", help = "Path for dataset", type = str, default = None)
     return parser
 
 def add_config(args):

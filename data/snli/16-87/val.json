@@ -1,0 +1,64 @@
+{"premise":"Woman in a dress standing in front of a line of a clothing line, with clothes hanging on the line.","hypothesis":"A woman in a dress is standing in front of a line.","label":0}
+{"premise":"A group of youths, one wearing a t-shirt labeled \"L.A. City Lounge South\", are working on a craft project that involves the use of flour.","hypothesis":" A group of youths are working on a craft project that involves the use of flour.","label":0}
+{"premise":"The girls in the red shirts are doing flips in the air.","hypothesis":"There are girls wearing red.","label":0}
+{"premise":"A baby at the end of a slip and slide at a party","hypothesis":"There is a party","label":0}
+{"premise":"Street vendors sell various wards, including pineapples and soccer balls.","hypothesis":"Street vendors are selling items.","label":0}
+{"premise":"Three Indian boys in shorts play with one another.","hypothesis":"Three boys.","label":0}
+{"premise":"A man wearing a blue hat and a blue shirt selling bananas from his wheel cart on the street.","hypothesis":"A vendor selling bananas.","label":0}
+{"premise":"A man running a marathon talks to his friend.","hypothesis":"There is a man running.","label":0}
+{"premise":"A group is gathered outside holding flowers.","hypothesis":"Their hands are holding something","label":0}
+{"premise":"Guy in a dark suit, with a cigarette in his right hand while talking on the phone.","hypothesis":"The guy has on a suit smoking a cig and talking on the phone.","label":0}
+{"premise":"Boy with white powder and blue writing on his face","hypothesis":"A boy with a painted face.","label":0}
+{"premise":"There are five white individuals on a stage in a line, the outer four are looking inward toward the middle individual who has a beard.","hypothesis":"A man with a beard is surrounded by people on a stage.","label":0}
+{"premise":"A biker gets high in the air against a skyline.","hypothesis":"The biker is a human.","label":0}
+{"premise":"Two girls wading through hip deep mud.","hypothesis":"The two people are in deep muddy water.","label":0}
+{"premise":"A woman holding a red cup with a straw in it sits in front of a man and a woman looking at a book.","hypothesis":"A woman sits.","label":0}
+{"premise":"Uniformed schoolgirls are walking together on the street.","hypothesis":"The girls attend school.","label":0}
+{"premise":"Here we have a guy using a pressure washer on the sidewalk.","hypothesis":"A guy is washing bird poop off of the sidewalk.","label":1}
+{"premise":"Man brushes image in the sand.","hypothesis":"An artist finishes his first sand artwork.","label":1}
+{"premise":"A white cat sits on a wall.","hypothesis":"The wall is a part of the cats home.","label":1}
+{"premise":"A young boy swinging on a swing.","hypothesis":"A boy swings on a tire swing.","label":1}
+{"premise":"A man jumps on another man while a crowd looks on.","hypothesis":"a man fights another man while a crowd watches","label":1}
+{"premise":"Bald man in white and black shorts, punching man with black hair, and red, orange and blue shorts.","hypothesis":"The men are fighting over a girl.","label":1}
+{"premise":"A man wearing a white and blue shirt cooking corn on the cob while a different man buys a piece of corn.","hypothesis":"The farmer is selling some of his stock to a customer.","label":1}
+{"premise":"A clerk at a store is idling a waiting for next customer.","hypothesis":"Clerk waits in checkout line at Walmart.","label":1}
+{"premise":"A young boy riding on the shoulders of a man outdoors.","hypothesis":"A man and his son are outside at the park.","label":1}
+{"premise":"A man is singing on stage with his fingers in a stuffed bear's nose.","hypothesis":"A man on stage singing accompanied by a stuffed bear is a ventriloquist.","label":1}
+{"premise":"A girl dressed in a pink shirt, jeans, and flip-flops sitting down playing with a lollipop machine.","hypothesis":"A funny person in a shirt","label":1}
+{"premise":"A happy boy is jumping in front OD city fountain.","hypothesis":"The boy is playing with his friends.","label":1}
+{"premise":"A young girl in her school uniform dances in a water sculpture in the middle of a crowded public square.","hypothesis":"The crowd is watching the girl.","label":1}
+{"premise":"A middle-aged man's shaving his beard in a room with white walls which does n't look like a bathroom.","hypothesis":"a man is getting ready for work","label":1}
+{"premise":"Long-haired man in blue jeans carrying red bass drum above his head while talking on the phone.","hypothesis":"A man is carrying a drum while talking on the phone about his upcoming performance.","label":1}
+{"premise":"An older man sitting on a stool on the sidewalk playing a violin.","hypothesis":"An old man plays his violin for tips on the sidewalk.","label":1}
+{"premise":"Groups of people are sitting on a curb and the others are walking, a young woman is pretending to be a stone statue of an angel and a woman has a little boy on her shoulders.","hypothesis":"groups of people are standing around","label":2}
+{"premise":"A girl in a pink shirt is teaching a young man in a striped sweater how to knit.","hypothesis":"The girl is wearing a yellow shirt.","label":2}
+{"premise":"A flock of birds disturbed and in flight in front of a wall that has a mural of three women and a man.","hypothesis":"The mural depicts only more birds","label":2}
+{"premise":"An old ban with a black hat and tie walks down a city street.","hypothesis":"The cat is enjoying its newspaper.","label":2}
+{"premise":"Blurry people walking in the city at night.","hypothesis":"Seven people dancing in a nightclub.","label":2}
+{"premise":"Construction workers walking through a construction zone, it looks to be raining.","hypothesis":"Everybody here works as a professional artist.","label":2}
+{"premise":"3 people having coffee outside of a museum.","hypothesis":"3 people are eating ice cream outside of a mall.","label":2}
+{"premise":"A blond-hair boy holding a toy airplane is in front of what looks like a colorful toy monster.","hypothesis":"People hike through a California desert with towering cactus, wild cats and spiny lizards.","label":2}
+{"premise":"Two fencers dressed in the sport's traditional white suit and protective mask, practice their dueling.","hypothesis":"two women play water polo","label":2}
+{"premise":"a large group of people standing behind a podium on the stairs of a congress building.","hypothesis":"A group of people sleep outside a building.","label":2}
+{"premise":"Two people in winter clothing sliding down a snow-covered hill.","hypothesis":"Kids are playing in the swimming pool.","label":2}
+{"premise":"two women walking in an area of destitution.","hypothesis":"The two woman and digging in the garden, preparing it for the tomato plants.","label":2}
+{"premise":"A little brown-haired girl up in a tree.","hypothesis":"The boy jumped from the tree.","label":2}
+{"premise":"A young dark-haired woman crouches on the banks of a river while washing dishes.","hypothesis":"A man cuts his hair.","label":2}
+{"premise":"Two young adult passengers of a vehicle are sleeping.","hypothesis":"Two people are talking while driving a vehicle.","label":2}
+{"premise":"A woman in a blue jacket is drinking tea from a cup.","hypothesis":"A woman is eating a donut.","label":2}
+{"premise":"A man wearing a horned hat poses for a picture.","hypothesis":"A man wearing a horned hat is unwittingly photographed","label":-1}
+{"premise":"several kids wait in line in front of an ice cream truck at night","hypothesis":"A group of kids waiting to buy ice cream.","label":-1}
+{"premise":"A dog runs along the ocean surf.","hypothesis":"A stray dog is running on the seaside.","label":-1}
+{"premise":"Two cars parked on the side of a street with seven people doing different tasks on the sidewalk.","hypothesis":"people are working on the side of the street next to some cars.","label":-1}
+{"premise":"A man in black is crossing the road.","hypothesis":"The road is clear.","label":-1}
+{"premise":"A young woman in a green \"Aeropostale\" shirt and a green bracelet with a black purse, looking down with pursed lips.","hypothesis":"The shirt has a picture on it.","label":-1}
+{"premise":"A distant person is climbing up a very sheer mountain.","hypothesis":"There are many people climbing.","label":-1}
+{"premise":"A woman in a blue dress is leaning on a wall with graffiti painted on it.","hypothesis":"The woman is outside","label":-1}
+{"premise":"A man in a bear suit, holding the head of the costume in his hand, stands at the back of a crowd.","hypothesis":"man performs for kids","label":-1}
+{"premise":"A girl carries large sacks across a backdrop of foliage.","hypothesis":"a girl carrying sacks of body parts","label":-1}
+{"premise":"A brown dog opens his mouth to catch a piece of food.","hypothesis":"A dog is playing","label":-1}
+{"premise":"A baseball player is sliding into home behind the catcher with the ball.","hypothesis":"The player slides towards the goal.","label":-1}
+{"premise":"A group of people sit on benches at a park outside a building.","hypothesis":"A women sits on a bench by herself.","label":-1}
+{"premise":"Three men excavating what appears to be a mountainside.","hypothesis":"Three men working hand and hand to climb up a mountain side.","label":-1}
+{"premise":"A woman has just completed her release in a game of bowling.","hypothesis":"A woman is bowling at a bowling alley indoors.","label":-1}
+{"premise":"two people in a rowboat in a river.","hypothesis":"Two children in the bathtub play with a plastic rowboat.","label":-1}

@@ -53,6 +53,23 @@ def do_lower(example):
             example[key] = example[key].lower()
     return example
 
+def prepare_fewshot_dataset(args):
+    from datasets import load_dataset
+    dataset_path = args.dataset_path
+    dataset = load_dataset('json', data_files={"train": os.path.join(dataset_path, 'train.json'), "validation": os.path.join(dataset_path, 'val.json'), "test": os.path.join(dataset_path, 'test.json')})
+    dataset = dataset.map(do_lower)
+    from transformers import AutoTokenizer
+    tokenizer = AutoTokenizer.from_pretrained(args.model, do_lower_case = True, model_max_length = args.max_length)
+    tokenizer.model_max_length = args.max_length
+    #does not work. some bug https://github.com/huggingface/transformers/issues/17675
+    tokenizer.do_lower_case = True
+    # #Padding
+    if 'gpt' in args.model:
+        tokenizer.add_special_tokens({'pad_token': '<|pad]|>', 'mask_token':'<|mask|>'})
+    data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+        
+    return dataset, tokenizer, data_collator
+
 def prepare_huggingface_dataset(args):
     from datasets import load_dataset
     #ipdb.set_trace()
@@ -63,7 +80,7 @@ def prepare_huggingface_dataset(args):
     if args.dataset == "sst2":
         # test datset has no labels, so use val set as test for sst2
         my_dataset["test"] = my_dataset["validation"]
-        assert args.val_size + args.train_size <= 1
+        assert args.val_size + args.train_size <= 1, f"val_size + train_size should be less than 1. Got {args.val_size + args.train_size}"
         train_dataset, validation_dataset= my_dataset["train"].train_test_split(test_size=args.val_size, train_size = args.train_size, seed = 0).values()
         my_dataset["train"] = train_dataset
         my_dataset["validation"] = validation_dataset

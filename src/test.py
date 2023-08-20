@@ -9,6 +9,7 @@ from src.utils.funcs import *
 from src.models import get_model
 from textattack import AttackArgs
 from textattack.datasets import HuggingFaceDataset
+from textattack.attack_recipes import BAEGarg2019
 
 import tensorflow as tf
 gpus = tf.config.list_physical_devices('GPU')
@@ -70,6 +71,7 @@ def attacker(args):
         model.mode = "attack"
         attack_name_mapper = {"textfooler":TextFoolerCustom, 
                             "textbugger":TextBuggerCustom,
+                            "bae": BAEGarg2019
                             }
                             
         attack_class = attack_name_mapper[attack_name]

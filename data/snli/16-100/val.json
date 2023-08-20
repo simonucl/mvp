@@ -1,0 +1,64 @@
+{"premise":"Bikers talking in the road.","hypothesis":"People talking outside.","label":0}
+{"premise":"People walking through dirt.","hypothesis":"People are outside.","label":0}
+{"premise":"A bridal party is posing for a picture outdoors.","hypothesis":"A bridal party is outside.","label":0}
+{"premise":"Two girls bump into each other while they are rollerskating.","hypothesis":"two girls bumped while rollerskating","label":0}
+{"premise":"A young man in jogging slacks is checking information on his mobile devise while listening to something on a crowded commuter rail car.","hypothesis":"a man in jogging pants checks his device","label":0}
+{"premise":"Several black children sit at a table with colorful laptops in front of them.","hypothesis":"A group black children sit at a table with their new colorful laptops.","label":0}
+{"premise":"An infant is in a crib and crying.","hypothesis":"A baby is unhappy.","label":0}
+{"premise":"The elaborate Jesus shrine is being carried in a parade.","hypothesis":"A Jesus shrine is in the parade.","label":0}
+{"premise":"A bald man in a red shirt and khaki shorts buys something from a woman wearing a visor in a store.","hypothesis":"A man is making a purchase in a store.","label":0}
+{"premise":"a group of people riding bikes in a marathon as people line the street.","hypothesis":"There are people riding bikes in a marathon.","label":0}
+{"premise":"A black dog runs along the green grass carrying a toy in its mouth.","hypothesis":"A black dog runs through the grass carrying its toy.","label":0}
+{"premise":"A man standing in the road wearing a black jacket, red shirt and jeans on a cold, snowy day.","hypothesis":"A man is standing in the road wearing a black jacket.","label":0}
+{"premise":"One football player wearing an orange jersey and one wearing a white jersey are set at the starting line.","hypothesis":"Two football players wearing jerseys.","label":0}
+{"premise":"Kids are on a amusement ride.","hypothesis":"Kids ride an amusement ride.","label":0}
+{"premise":"A woman sits on the beach while talking on her cellphone.","hypothesis":"A woman is talking on her cellphone at the beach","label":0}
+{"premise":"Man in green vest directing traffic in snowy conditions, pedestrians standing on the sidelines.","hypothesis":"A man is directing traffic","label":0}
+{"premise":"A man and woman are pictured from behind sitting close together on a couch while they play Nintendo DS","hypothesis":"A husband and wife play video games together on a couch.","label":1}
+{"premise":"Soccer players dressed in bright blue and white uniforms are jumping in the air.","hypothesis":"Soccer players are jumping in the air after their big win.","label":1}
+{"premise":"Boys on a field playing flag football with one boy wearing the red flag clutching the football while a boy with a yellow flag dives to get his red flag.","hypothesis":"A boy dives to get the flag to end the game of flag football","label":1}
+{"premise":"A man wearing a suit with a name tag stands reading in front of a microphone as a screen behind him displays a presentation.","hypothesis":"a man gives a presentation to a big crowd","label":1}
+{"premise":"A large man in white dances in the middle of a crowd holding a beverage in his hand.","hypothesis":"A man dances at a wedding.","label":1}
+{"premise":"a body boarder is being dumped on the beach by a wave whilst other surfers are standing around in the water.","hypothesis":"The surfers are pros.","label":1}
+{"premise":"A single runner, clothed in appropriate attire, jogging on a sidewalk next to a body of water, with buildings in the backdrop on the other side of the water.","hypothesis":"A jogger jogs around a lake.","label":1}
+{"premise":"A black dog running through the forest.","hypothesis":"A dog playing fetch outside.","label":1}
+{"premise":"A small group of children are standing in a classroom and one of them has a foot in a trashcan, which also has a rope leading out of it.","hypothesis":"Some kids in a classroom play a game with a trashcan.","label":1}
+{"premise":"A little girl plays in the ocean on the beach.","hypothesis":"The girl is afraid of the sand.","label":1}
+{"premise":"The motorcyclist race on the course.","hypothesis":"The man on the motorcycle road across the course.","label":1}
+{"premise":"Man with short hair moves wooden structure.","hypothesis":"The man moves the wooden post.","label":1}
+{"premise":"A woman is looking at a pamphlet talking to someone, while a guy takes photos in the background.","hypothesis":"Photo shoot preparation.","label":1}
+{"premise":"A white dog with long hair jumps to catch a red and green toy.","hypothesis":"A white chihuahua mix with long curly hair is jumping to catch a red and green toy bone.","label":1}
+{"premise":"A woman with sneakers and a skirt is sweeping out a storage building.","hypothesis":"Woman sweeps storage building, cleaning it out to get ready for business.","label":1}
+{"premise":"A band performing on the corner of the street.","hypothesis":"A bluegrass band plays for the passerby.","label":1}
+{"premise":"A male child with blond-hair, green eyes, and a sticky looking mouth wearing a multicolored t-shirt has his hand wrapped around a popsicle stick and is chewing and has it inserted into his mouth where you can see 4 bright white teeth on the bottom row.","hypothesis":"The male child is eating an apple.","label":2}
+{"premise":"There is not an image here.","hypothesis":"There is an image here.","label":2}
+{"premise":"A cowboy clown wearing a shirt with Tax on it, red suspenders, and a white cowboy hat talks into a wireless microphone.","hypothesis":"A cowboy clown in a bowler hat is talking into a wireless microphone.","label":2}
+{"premise":"Dinner and decisions, with the crew.","hypothesis":"the crew all ate lunch alone","label":2}
+{"premise":"A young child is looking at a commuter train station from the train seat.","hypothesis":"The child is playing baseball at home.","label":2}
+{"premise":"A girl in a white dress dancing in a field.","hypothesis":"The girl is swimming in water.","label":2}
+{"premise":"A young girl with long brown hair is brushing her teeth.","hypothesis":"A girl has short blonde hair.","label":2}
+{"premise":"Thick clouds masked the sky for the Braun sponsored event as the crowd looked up at the raised platform while a small group of bike stunt riders watched one rider land on his feet while his bike was still in the air.","hypothesis":"There are a group of people standing by ATV's, waiting for a race to start.","label":2}
+{"premise":"Man in a black suit, white shirt and black bowtie playing an instrument with the rest of his symphony surrounding him.","hypothesis":"Nobody has a suit","label":2}
+{"premise":"One man dressed in a martial arts uniform kicks another man dressed the same way in the groin while an umpire and audience looks on.","hypothesis":"The man kicks the umpire.","label":2}
+{"premise":"A man doing a trick in the air on his bike.","hypothesis":"The woman is doing bike tricks.","label":2}
+{"premise":"The man in black has a condom on his head.","hypothesis":"The man is wearing the condom on his foot.","label":2}
+{"premise":"A man with dark hair and brown skin is in a dark room with his hands on some equipment.","hypothesis":"A man with no hair is in a street show.","label":2}
+{"premise":"A crowd is watching 2 shirtless men, one in yellow pants and one in black shorts perfom.","hypothesis":"A crowd watches two men dressed in suits play guitars.","label":2}
+{"premise":"An older gentleman speaking at a podium.","hypothesis":"A little girl in a spelling bee","label":2}
+{"premise":"A brown dog leaps into water from a rock.","hypothesis":"A dog is sleeping under the porch.","label":2}
+{"premise":"Four men wearing orange jackets and red hats, walking near a wavy trimmed bush.","hypothesis":"The guys in jackets and hats are cutting trees.","label":-1}
+{"premise":"A child in red is guided by an adult.","hypothesis":"The child is guiding the adult in red.","label":-1}
+{"premise":"An old woman is haggling over goods at the local market.","hypothesis":"woman selling goods in the local market","label":-1}
+{"premise":"Two indian men are dancing in suits with an indian woman in a colorful dress behind them by a brick wall.","hypothesis":"Two couples are dancing outside.","label":-1}
+{"premise":"A man wearing a brown shirt and green pans is pulling a rickshaw down a street","hypothesis":"The taxi driver was wearing a brown shirt and green pants.","label":-1}
+{"premise":"There are five white individuals on a stage in a line, the outer four are looking inward toward the middle individual who has a beard.","hypothesis":"Many people are standing in line.","label":-1}
+{"premise":"Racers are just beginning a race in an international competition.","hypothesis":"racers are driving cars.","label":-1}
+{"premise":"a little girl sitting in a seat.","hypothesis":"She is sitting nicely.","label":-1}
+{"premise":"A baseball player is sliding into home behind the catcher with the ball.","hypothesis":"The player slides towards the goal.","label":-1}
+{"premise":"A young woman in a green \"Aeropostale\" shirt and a green bracelet with a black purse, looking down with pursed lips.","hypothesis":"The shirt has a picture on it.","label":-1}
+{"premise":"A surfer wearing a red shirt takes on a huge blue wave.","hypothesis":"Surfer on beach watching waves.","label":-1}
+{"premise":"A group of men are standing in a field with papers.","hypothesis":"Men are working.","label":-1}
+{"premise":"A man in a green Celtics hat and a woman wearing a black sweater display identical tattoos on their right wrists.","hypothesis":"A boyfriend and girlfriend display identical tattoos","label":-1}
+{"premise":"A man in a bear suit, holding the head of the costume in his hand, stands at the back of a crowd.","hypothesis":"man performs for kids","label":-1}
+{"premise":"Several children are standing with plates full of food under a shelter, watching a man in a purple shirt serving good.","hypothesis":"The children are about to get food.","label":-1}
+{"premise":"A man with a blue shirt and a woman with a red shirt, the woman smiles.","hypothesis":"Two people wearing shirts, both of them smiling.","label":-1}

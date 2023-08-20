@@ -2,7 +2,7 @@
 
 from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer, AutoModelForMaskedLM, AutoModelForCausalLM, default_data_collator
 from src.models import get_model
-from src.utils import prepare_huggingface_dataset, tokenize_function, get_prompts, CustomTrainer, accuracy_metric, custom_eval
+from src.utils import prepare_huggingface_dataset, tokenize_function, get_prompts, CustomTrainer, accuracy_metric, custom_eval, prepare_fewshot_dataset
 from tqdm import tqdm
 import yaml
 from transformers import EarlyStoppingCallback
@@ -15,7 +15,11 @@ import torch
 def trainer(args):
     file = open(f"{args.model_dir}/tr_logs.txt", "a")  
     def myprint(a): print(a); file.write(a); file.write("\n"); file.flush()
-    my_dataset, tokenizer, data_collator = prepare_huggingface_dataset(args)
+    
+    if args.dataset_path is not None:
+        my_dataset, tokenizer, data_collator = prepare_fewshot_dataset(args)
+    else:
+        my_dataset, tokenizer, data_collator = prepare_huggingface_dataset(args)
     
     #Preprocess Function
     tokenized_dataset = my_dataset.map(tokenize_function(args, tokenizer), batched=True)
