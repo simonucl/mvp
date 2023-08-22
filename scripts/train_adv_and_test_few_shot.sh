@@ -28,16 +28,18 @@ echo $PWD
 
 for SEED in 13;
 do
-    for shot in 16 32 64;
+    for SHOT in 16 32;
     do 
         for MODEL in bert-base-uncased bert-large-uncased;
         do
             echo $SEED
             EXTRA_NAMES=mvp_seed_${SEED}
 
-            MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${shot}
+            MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${SHOT}
             
             MODELPATH=./checkpoints/${DATASET}/${MODEL}/model_${MODEL_ID}/
+
+            DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
 
             mkdir -p ${MODELPATH}
 
@@ -92,7 +94,7 @@ do
             EXTRA_NAMES=mvp_adv_${SEED}
 
             DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
-            MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${shot}
+            MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${SHOT}
             MODELPATH=./checkpoints/${DATASET}/${MODEL}/model_${MODEL_ID}/
 
             mkdir -p ${MODELPATH}
