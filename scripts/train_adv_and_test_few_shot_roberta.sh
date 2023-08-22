@@ -32,7 +32,8 @@ do
     do 
         for MODEL in roberta-base roberta-large;
         do
-            echo $SEED
+            echo $SEED+${SHOT}+${MODEL}+"mvp"
+
             EXTRA_NAMES=mvp_seed_${SEED}
             DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
 
@@ -97,6 +98,8 @@ do
             MODELPATH=./checkpoints/${DATASET}/${MODEL}/model_${MODEL_ID}/
 
             mkdir -p ${MODELPATH}
+            echo $SEED+${SHOT}+${MODEL}+"mvp_adv"
+            
             nohup python3 main.py  --mode $MODE \
                             --dataset $DATASET \
                             --model_type $MODEL_TYPE \

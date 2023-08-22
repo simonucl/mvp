@@ -32,7 +32,7 @@ do
     do 
         for MODEL in bert-base-uncased bert-large-uncased;
         do
-            echo $SEED
+            echo $SEED+${SHOT}+${MODEL}+"mvp"
             EXTRA_NAMES=mvp_seed_${SEED}
 
             MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${SHOT}
@@ -98,6 +98,7 @@ do
             MODELPATH=./checkpoints/${DATASET}/${MODEL}/model_${MODEL_ID}/
 
             mkdir -p ${MODELPATH}
+            echo $SEED+${SHOT}+${MODEL}+"mvp_adv"
             nohup python3 main.py  --mode $MODE \
                             --dataset $DATASET \
                             --model_type $MODEL_TYPE \
