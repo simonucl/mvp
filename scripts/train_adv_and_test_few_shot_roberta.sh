@@ -24,7 +24,7 @@ SHOT=${23}
 
 source ~/.bashrc
 echo $PWD
-
+conda activate jh_multi
 
 for SEED in 13;
 do

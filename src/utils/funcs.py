@@ -30,7 +30,8 @@ def tokenize_function(args, tokenizer):
                     "emotion":"text",
                     "emotion2":"text",
                     "movie_rationales":"review",
-                    "sst2":"sentence"}
+                    "sst2":"sentence",
+                    "sst-5":"sentence"}
     
     def ret_func(examples):
         if args.dataset in text_datasets.keys():
