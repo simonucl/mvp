@@ -13,7 +13,7 @@ def parse_args():
     ## Basics
     parser.add_argument("--config_file", help="Configuration file containing parameters", type=str)
     parser.add_argument("--mode", help="Train/Attack", type=str, default = "train", choices = ["train","attack","eval"])
-    parser.add_argument("--dataset", help="Select dataset name", type=str, default = "imdb", choices = ["ag_news", "boolq", "sst2"])
+    parser.add_argument("--dataset", help="Select dataset name", type=str, default = "imdb", choices = ["ag_news", "boolq", "sst2", "sst-5"])
     parser.add_argument("--train_size", help = "fraction of training examples to use", type = float, default = 0.95)
     parser.add_argument("--val_size", help = "fraction of val examples to use", type = float, default = 0.05)
     parser.add_argument("--model", help="Model Architecture", type=str, default = "bert-base-uncased")
