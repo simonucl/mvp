@@ -5,6 +5,7 @@ sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
 from TextFoolerCustom import TextFoolerCustom
 from TextBuggerCustom import TextBuggerCustom
+from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018
 from src.utils.funcs import *
 from src.models import get_model
 from textattack import AttackArgs
@@ -49,7 +50,7 @@ def attacker(args):
     chkpt_name = os.path.basename(args.path)
     #train dataset is needed to get the right vocabulary for the problem
     my_dataset, tokenizer, data_collator = prepare_huggingface_dataset(args)
-    verbalizer, templates = get_prompts(args) 
+    verbalizer, templates = get_prompts(args)
     model = get_model(args, my_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
     
     split = args.split 
@@ -69,8 +70,8 @@ def attacker(args):
     
     else:
         model.mode = "attack"
-        attack_name_mapper = {"textfooler":TextFoolerCustom, 
-                            "textbugger":TextBuggerCustom,
+        attack_name_mapper = {"textfooler":TextFoolerJin2019, 
+                            "textbugger":TextBuggerLi2018,
                             "bae": BAEGarg2019
                             }
                             
@@ -94,7 +95,7 @@ def attacker(args):
         #set batch size of goal function
         attacker.attack.goal_function.batch_size = args.batch_size
         #set max words pertubed constraint
-        max_percent_words = 0.1 if (args.dataset == "imdb" or args.dataset == "boolq" or args.dataset == "sst2" or args.dataset == "snli") else 0.3
+        # max_percent_words = 0.1 if (args.dataset == "imdb" or args.dataset == "boolq" or args.dataset == "sst2" or args.dataset == "snli") else 0.3
         #flag = 0
         
         for i,constraint in enumerate(attacker.attack.constraints):

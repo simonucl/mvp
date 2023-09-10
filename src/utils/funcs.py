@@ -73,7 +73,12 @@ def prepare_fewshot_dataset(args):
 def prepare_huggingface_dataset(args):
     from datasets import load_dataset
     #ipdb.set_trace()
-    name = "emotion" if args.dataset == "emotion2" else args.dataset
+    if args.dataset == "emotion2":
+        name = "emotion"
+    elif args.dataset == "sst-5":
+        name = "SetFit/sst5"
+    else:
+        name = args.dataset
     my_dataset = load_dataset(name) if name!="sst2" else load_dataset("glue",name)
     my_dataset = my_dataset.map(do_lower)
     
@@ -114,6 +119,12 @@ def prepare_huggingface_dataset(args):
             example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
             new_mapping = {False:0, True:1}
             example['label'] = new_mapping[example['label']]
+            return example
+        my_dataset = my_dataset.map(map_labels)
+    if args.dataset == "sst-5":
+        def map_labels(example):
+            key_map_dict = {'text':'sentence','label':'label'}
+            example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
             return example
         my_dataset = my_dataset.map(map_labels)
     if args.dataset == "emotion2":
