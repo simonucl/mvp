@@ -52,6 +52,7 @@ def trainer(args):
         load_best_model_at_end=True,
         seed = args.seed,
         save_total_limit = 3,
+        
     )
     #training_args.device = torch.device("cpu")
     print(templates)

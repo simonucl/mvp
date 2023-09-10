@@ -33,7 +33,7 @@ if __name__ == "__main__":
     args.num_labels = num_labels_map[args.dataset]
     set_seeds(args.seed)
 
-
+    print(torch.cuda.device_count())
     print(args)
 
     # Model Saving and Logging Directory
