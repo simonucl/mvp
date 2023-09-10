@@ -30,7 +30,8 @@ for SEED in 13;
 do
     for SHOT in 16 32;
     do 
-        for MODEL in roberta-base roberta-large;
+        # for MODEL in roberta-base roberta-large;
+        for MODEL in roberta-large;
         do
             echo $SEED+${SHOT}+${MODEL}+"mvp"
 
