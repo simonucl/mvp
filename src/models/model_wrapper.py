@@ -86,10 +86,13 @@ class ModelWrapper(torch.nn.Module):
         if 'label' in kwargs.keys(): 
             #for gpt2 model
             kwargs['labels'] = kwargs['label']
+        import copy
+        raw_input = copy.deepcopy(input_ids)
         input_ids, attention_mask  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
         input_ids, attention_mask = input_ids.to(self.model.device), attention_mask.to(self.model.device)
         
         if self.args.adv_augment and self.mode=="train":
+            # This part is to attack it (generate adversarial examples)
             embedding_outs = pgd_attack(self, input_ids, attention_mask, kwargs['labels'], self.args, norm = self.args.norm)
             adv_inputs = {}
             adv_inputs['inputs_embeds'] = embedding_outs
@@ -99,7 +102,10 @@ class ModelWrapper(torch.nn.Module):
         else:
             outputs = self.model(input_ids=input_ids, attention_mask = attention_mask, output_hidden_states = True, output_attentions = True)
         
-        logits = self.outs_to_logits(input_ids, outputs)
+        if (self.args.model_type == "mvp_knn") and (self.args.mode == "attack"):
+            logits = self.outs_to_logits(input_ids, outputs, raw_input)
+        else:
+            logits = self.outs_to_logits(input_ids, outputs)
 
         if 'labels' in kwargs.keys() and self.mode in ["train", "eval"]:
             loss = F.cross_entropy(logits, kwargs['labels'])

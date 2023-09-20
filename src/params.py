@@ -19,7 +19,7 @@ def parse_args():
     parser.add_argument("--model", help="Model Architecture", type=str, default = "bert-base-uncased")
 
     parser.add_argument("--model_id", help = "For Saving", type = str, default = '0')
-    parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense]", type = str, default = 'mvp')
+    parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense, mvp_knn]", type = str, default = 'mvp')
     parser.add_argument("--seed", help = "Seed", type = int, default = 0)
     parser.add_argument("--checkpoint_interval", help = "Save model after every N steps", type = int, default = 1000)
     
@@ -55,6 +55,20 @@ def parse_args():
 
     # Few Shot Params
     parser.add_argument("--dataset_path", help = "Path for dataset", type = str, default = None)
+
+    # KNN Params
+    parser.add_argument('--ensemble_num', type=int, default=1)
+    parser.add_argument('--sampled_num', type=int, default=1)
+    parser.add_argument('--prompt_num', type=int, default=2)
+    parser.add_argument('--knn_k', type=int, default=8)
+    parser.add_argument('--knn_T', type=int, default=5)
+    parser.add_argument('--tindex', type=int, default=0)
+    parser.add_argument('--knn_model', type=str, default='bert-base-uncased')
+    parser.add_argument('--num_labels', type=int, default=2)
+    parser.add_argument('--data_dir', type=str, default='../data')
+    parser.add_argument('--train_epoch', type=int, default=30)
+    parser.add_argument('--shot', type=int, default=16)
+    parser.add_argument('--alpha', type=float, default=0.5)
     return parser
 
 def add_config(args):

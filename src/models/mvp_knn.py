@@ -1,5 +1,6 @@
 from random import triangular
 from ..utils.model_utils import *
+from ..utils.knn import HuggingFaceSentimentAnalysisPipelineWrapper
 import os, pickle, copy
 from torch_scatter import scatter_max, scatter_mean
 import torch
@@ -8,7 +9,7 @@ from .model_wrapper import ModelWrapper
 
 
 
-class MVP(ModelWrapper):
+class MVP_KNN(ModelWrapper):
     def __init__(self, args, model, tokenizer, data_collator, verbalizer = None, template=None):  
         '''
         args: args object from argparse
@@ -25,6 +26,16 @@ class MVP(ModelWrapper):
         self.verbalizer = verbalizer
         self.tokenizer = tokenizer
         num_tokens = 1 if 'gpt' in args.model else 3 # bert tokenizes into cls, word, sep. we want the word to be a single token
+        hidden_size = 768 if 'large' in args.knn_model else 1024
+        self.knn_model = HuggingFaceSentimentAnalysisPipelineWrapper(tokenizer=tokenizer, model=model, model_dir=args.knn_model, 
+                                                          ensemble_num=args.ensemble_num, sampled_num=args.sampled_num,
+                                                            dataset=args.dataset, task=args.task, num_labels=args.num_labels,
+                                                            batch_size=args.batch_size, tindex=args.tindex,
+                                                            task=args.dataset, data_dir=args.data_dir,
+                                                            hidden_size=hidden_size, train_epoch=args.train_epoch, shot=args.shot
+                                                          )
+        # import sys
+        # sys.exit(1)
 
         # only keep those words that are tokenized into a single token
         for k,v in self.verbalizer.items():
@@ -52,12 +63,13 @@ class MVP(ModelWrapper):
             if used_prompt.split(" ")[0] == "[SEP]":
                 used_prompt = " ".join(used_prompt.split(" ")[1:])
             self.len_templates.append(1+len(tokenizer(used_prompt)["input_ids"][1:-1]))
-        super(MVP, self).__init__(args, model, tokenizer, data_collator, verbalizer = verbalizer, template=template)
+        super(MVP_KNN, self).__init__(args, model, tokenizer, data_collator, verbalizer = verbalizer, template=template)
 
-    def outs_to_logits(self, input_ids, outputs):
+    def outs_to_logits(self, input_ids, outputs, raw_inputs):
         '''
         input_ids: torch tensor of shape (batch_size, seq_len)
         outputs: output of the model
+        raw_inputs: torch tensor of shape (batch_size, seq_len)
 
         returns logits of shape (batch_size, num_classes)
         '''
@@ -84,4 +96,8 @@ class MVP(ModelWrapper):
         elif self.args.pool_templates == "max":
             label_words_logits = scatter_max(label_words_logits, y, dim=0)[0]  # (batch_size, num_classes)
 
-        return label_words_logits
+        knn_logits = self.knn_model.outs_to_logits(raw_inputs)
+
+        final_logits = self.args.alpha * label_words_logits + (1-self.args.alpha) * knn_logits
+
+        return final_logits

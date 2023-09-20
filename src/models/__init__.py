@@ -2,6 +2,7 @@ from .clsprompt import CLSPrompt
 from .lpft import LPFT
 from .mlp_ft import MLP_FT
 from .mvp import MVP
+from .mvp_knn import MVP_KNN
 from .project_cls import ProjectCLS
 from transformers import AutoModelForSequenceClassification, AutoModelForMaskedLM, AutoModelForCausalLM, T5ForConditionalGeneration
 import os
@@ -33,7 +34,11 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
                 new_weights[new_key] = weights[key]
                 del new_weights[key]
             torch.save(new_weights, f"{location}pytorch_model.bin")
-        
+    if args.model_type == 'mvp_knn':
+        mvp_model = model_class.from_pretrained(location, return_dict = True)
+        base_model = model_class.from_pretrained()
+
+
     if args.model_type == 'mvp' or (args.model_type == "untrained_mvp" and regime=="test") or (args.model_type=="untrained_mvp" and args.path!="None"):
         base_model = model_class.from_pretrained(location, return_dict = True)
         model = MVP(args, base_model, tokenizer, data_collator, verbalizer = verbalizer, template = template)

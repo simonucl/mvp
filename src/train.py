@@ -26,9 +26,8 @@ def trainer(args):
 
     verbalizer, templates = get_prompts(args)
     
-    
     model = get_model(args, tokenized_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
-    interval = args.checkpoint_interval 
+    interval = args.checkpoint_interval
     if "mvp" in args.model_type:
         interval *= len(templates)
     interval = interval//torch.cuda.device_count()
