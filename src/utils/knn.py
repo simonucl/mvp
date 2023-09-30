@@ -110,6 +110,7 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
             MASK_TOKEN = "[MASK]"
             SEP_TOEKN = "[SEP]"
 
+        
         self.device = device
         self.mask_token = MASK_TOKEN
         self.sep_token = SEP_TOEKN
@@ -118,8 +119,8 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
         self.model_dir = model_dir
         self.ensemble_num = ensemble_num
         self.sampled_num = sampled_num
-        self.dataset = dataset
-        self.task = task
+        self.dataset = dataset if dataset != 'sst-2' else 'sst2'
+        self.task = task if task != 'sst2' else 'sst-2'
         self.data_dir = data_dir
         self.num_labels = num_labels
         self.hidden_size = hidden_size
@@ -150,7 +151,10 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
         self.get_vec_fun = get_vec_fun
         self.label_word_ids = label_word_ids 
         self.demon_sample = demon_sample
-
+        
+    def outs_to_logits(self, text_inputs):
+        return self.test(text_inputs, self.compactLayer, self.train_ds_inputs, self.valid_ds_inputs, self.get_vec_fun, self.label_word_ids, self.demon_sample)
+    
     def __call__(self, text_inputs, attack=True):
         # batch of testing inputs, convert into required demon format
         # build datastore based on them
@@ -206,13 +210,18 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
 
     def get_results_with_prompt(self, sents, model, tokenizer, max_length, label_word_ids):
         with torch.no_grad():
+            print(sents)
+            print('Max length: ', max_length)
             inputs = tokenizer(sents, return_tensors="pt", padding=True, truncation=True, max_length=max_length)
-            inputs['input_ids'] = inputs['input_ids'].to(self.device) # 
+            inputs['input_ids'] = inputs['input_ids'].to(self.device) # shape: (sentence_num, sequence_length)
             # inputs['token_type_ids'] = inputs['token_type_ids'].to(DEVICE)
             inputs['attention_mask'] = inputs['attention_mask'].to(self.device)
             inputs = {k: v for k, v in inputs.items() if k in ['input_ids', 'attention_mask']}
+            
+            print(inputs['input_ids'].shape)
 
             results = model(**inputs, output_hidden_states=True) # shape: (sentence_num, sequence_length, hidden_size)
+
             hidden_states = results.hidden_states[-1] # last layer hidden state shape: (sentence_num, sequence_length, hidden_size)
             # if label_word_ids is not None:
             logits = results.logits
@@ -231,6 +240,7 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
             return output_hidden_state, torch.softmax(output_logits, dim=-1) if label_word_ids is not None else None
 
     def build_datastore(self, data_inputs, data_labels, batch_size, hidden_size, func_get_vec, label_word_ids=None):
+        
         total_len = len(data_labels)
         datastore_keys = np.zeros([total_len, hidden_size], dtype=np.float32)
         datastore_vals = np.zeros([total_len], dtype=np.int64)
@@ -239,6 +249,7 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
 
         for start in range(0, total_len, batch_size):
             end = min(total_len, start + batch_size)
+            print('Building datastore', start, end)
             vecs, probs = func_get_vec(data_inputs[start:end], label_word_ids)
             datastore_keys[start:end] = vecs.cpu().numpy()
             datastore_vals[start:end] = data_labels[start:end]
@@ -490,6 +501,7 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
         # load pre-trained model
         # tokenizer = RobertaTokenizerFast.from_pretrained(model_dir)
         model = base_model
+        print(base_model)
         # tokenizer = BertTokenizerFast.from_pretrained(args.model_dir)
         # model = BertModel.from_pretrained(args.model_dir).to(DEVICE)
 
@@ -531,6 +543,10 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
         # load the verbalizers
         label_word_ids = get_verbalizers_ids(self.task, self.tindex, tokenizer)
 
+        print('Train size: ', len(train_inputs))
+        print('Label size: ', len(label_word_ids))
+        print(label_word_ids)
+
         # TODO: Toggle the train seed!
         train_seed = 1
         np.random.seed(train_seed)
@@ -545,18 +561,19 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
         train_ds_inputs = self.load_datastore(save_path, train_inputs, train_labels, \
             self.batch_size, self.hidden_size, get_vec_fun, label_word_ids=label_word_ids, reuse=False)
 
+        print('Train datastore size: ', len(train_ds_inputs[0]))
+
         save_path = '{0}.shot{1}.seed{2}.tindex{3}.valid.s{4}'.format(self.dataset, self.shot, seed, self.tindex, self.ensemble_num)
         save_path = os.path.join(self.data_dir, 'knn_datastore', save_path)
         valid_ds_inputs = self.load_datastore(save_path, valid_inputs, valid_labels, \
                 self.batch_size, self.hidden_size, get_vec_fun, label_word_ids=label_word_ids, reuse=False)
 
-        # import sys
-        # sys.exit(1)
-
+        print('Valid datastore size: ', len(valid_ds_inputs[0]))
         # model training
         compactLayer, valid_acc_fm = self.model_training(train_ds_inputs, train_labels, valid_ds_inputs, valid_labels,
                 self.hidden_size, self.map_size, self.batch_size, self.train_epoch, self.knn_T, self.knn_k, self.num_labels,
                 self.sampled_num, self.ensemble_num, 0)
+        print('Train finished!')
         compactLayer.eval()
         valid_std_fm[task_index] = valid_acc_fm
 
@@ -596,7 +613,7 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
 def get_prompt_str(input_str, label_index, task, tindex, verbalizers, mask_token='<mask>', sep_token='</s>'):
     output_str = ''
 
-    if task in ['mr', 'cr', 'SST-2', 'sst-5', 'sst-2']:
+    if task in ['mr', 'cr', 'SST-2', 'sst-5', 'sst-2', 'sst2']:
         if tindex == 0:
             output_str = '{0}. A{1} one.'.format(input_str, verbalizers[label_index]) 
             # output_str = '{0} Sentiment of the statement is{1}'.format(input_str, verbalizers[label_index])
@@ -688,7 +705,7 @@ def get_verbalizers_ids(task, tindex, tokenizer):
 
 # For RoBERTa/BART/T5, tokenization also considers space, so we use space+word as label words.
 def get_verbalizers_str(task, tindex):
-    if task in ['mr', 'cr', 'SST-2', 'sst-2']:
+    if task in ['mr', 'cr', 'SST-2', 'sst-2', 'sst2']:
         word_list = [" terrible", " great"]
         if tindex > 3:
             word_list = [" negative", " positive"]

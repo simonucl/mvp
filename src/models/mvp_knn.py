@@ -10,7 +10,7 @@ from .model_wrapper import ModelWrapper
 
 
 class MVP_KNN(ModelWrapper):
-    def __init__(self, args, model, tokenizer, data_collator, verbalizer = None, template=None):  
+    def __init__(self, args, base_model, mvp_model, tokenizer, data_collator, verbalizer = None, template=None):  
         '''
         args: args object from argparse
         model: huggingface model
@@ -26,10 +26,11 @@ class MVP_KNN(ModelWrapper):
         self.verbalizer = verbalizer
         self.tokenizer = tokenizer
         num_tokens = 1 if 'gpt' in args.model else 3 # bert tokenizes into cls, word, sep. we want the word to be a single token
-        hidden_size = 768 if 'large' in args.knn_model else 1024
-        self.knn_model = HuggingFaceSentimentAnalysisPipelineWrapper(tokenizer=tokenizer, model=model, model_dir=args.knn_model, 
+        hidden_size = 1024 if 'large' in args.knn_model else 768
+        base_model = base_model.to('cuda')
+        self.knn_model = HuggingFaceSentimentAnalysisPipelineWrapper(tokenizer=tokenizer, model=base_model, model_dir=args.knn_model, 
                                                           ensemble_num=args.ensemble_num, sampled_num=args.sampled_num,
-                                                            dataset=args.dataset, task=args.task, num_labels=args.num_labels,
+                                                            dataset=args.dataset, num_labels=args.num_labels,
                                                             batch_size=args.batch_size, tindex=args.tindex,
                                                             task=args.dataset, data_dir=args.data_dir,
                                                             hidden_size=hidden_size, train_epoch=args.train_epoch, shot=args.shot
@@ -63,7 +64,7 @@ class MVP_KNN(ModelWrapper):
             if used_prompt.split(" ")[0] == "[SEP]":
                 used_prompt = " ".join(used_prompt.split(" ")[1:])
             self.len_templates.append(1+len(tokenizer(used_prompt)["input_ids"][1:-1]))
-        super(MVP_KNN, self).__init__(args, model, tokenizer, data_collator, verbalizer = verbalizer, template=template)
+        super(MVP_KNN, self).__init__(args, mvp_model, tokenizer, data_collator, verbalizer = verbalizer, template=template)
 
     def outs_to_logits(self, input_ids, outputs, raw_inputs):
         '''
@@ -80,7 +81,9 @@ class MVP_KNN(ModelWrapper):
             indices = indices -1
 
         mask_logits = logits[batchid, indices,:]         # (batch_size * num_templates, vocab_size)
+        # print('Mask logits shape: ', mask_logits.shape)
         label_words_logits = mask_logits[:, self.label_word_ids]    # (batch_size * num_templates, num_candidates)
+        # print('Label words logits shape: ', label_words_logits.shape)
         self.label_set = self.label_set.to(input_ids.device)
         if self.args.pool_label_words == "max":
             label_words_logits = scatter_max(label_words_logits, self.label_set)[0] # (batch_size * num_templates, num_classes)
@@ -96,8 +99,14 @@ class MVP_KNN(ModelWrapper):
         elif self.args.pool_templates == "max":
             label_words_logits = scatter_max(label_words_logits, y, dim=0)[0]  # (batch_size, num_classes)
 
-        knn_logits = self.knn_model.outs_to_logits(raw_inputs)
+        # knn_logits = self.knn_model.outs_to_logits(raw_inputs)
 
-        final_logits = self.args.alpha * label_words_logits + (1-self.args.alpha) * knn_logits
+        # label_words_logits = torch.softmax(label_words_logits, dim=-1)
+        # knn_logits = torch.softmax(knn_logits, dim=-1)
 
-        return final_logits
+        # # TODO Probably have to do a softmax here
+        # final_logits = self.args.beta * label_words_logits + (1-self.args.beta) * knn_logits
+
+        # return final_logits
+        print('Finished MVP_KNN outs_to_logits')
+        return label_words_logits

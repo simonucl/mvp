@@ -70,7 +70,7 @@ class ModelWrapper(torch.nn.Module):
             input_ids, attention_mask = self.text_to_ids(text_input_list)
 
 
-        if self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp":
+        if self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn":
             input_ids, attention_mask = insert_tokenized_prompts(self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train")
         return input_ids, attention_mask
     

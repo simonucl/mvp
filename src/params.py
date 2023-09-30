@@ -1,7 +1,7 @@
 #params.py
 import argparse
 from distutils import util
-import yaml
+# import yaml
 import sys
 
 def parse_args():
@@ -65,13 +65,16 @@ def parse_args():
     parser.add_argument('--tindex', type=int, default=0)
     parser.add_argument('--knn_model', type=str, default='bert-base-uncased')
     parser.add_argument('--num_labels', type=int, default=2)
-    parser.add_argument('--data_dir', type=str, default='../data')
+    parser.add_argument('--data_dir', type=str, default='./data')
     parser.add_argument('--train_epoch', type=int, default=30)
     parser.add_argument('--shot', type=int, default=16)
-    parser.add_argument('--alpha', type=float, default=0.5)
+    parser.add_argument('--beta', type=float, default=0.5)
     return parser
 
 def add_config(args):
+    import sys
+    sys.exit(1)
+
     data = yaml.load(open(args.config_file,'r'))
     args_dict = args.__dict__
     for key, value in data.items():

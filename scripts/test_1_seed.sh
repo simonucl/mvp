@@ -17,8 +17,8 @@ NUM_TEMPLATE=${16}
 TRAIN_SIZE=${17} 
 VAL_SIZE=${18}
 
-source ~/.bashrc
-echo $PWD
+# source ~/.bashrc
+# echo $PWD
 
 for SEED in 13;
 do
@@ -27,26 +27,37 @@ do
     
     MODELPATH=./checkpoints/${DATASET}/${MODEL}/model_${MODEL_ID}/
 
-    
+    MODEL_TYPE=mvp_knn
 
-    nohup nice -n10 python main.py --mode attack \
+    python3 main.py --mode attack \
                                 --path ${MODELPATH}/final_model/ \
                                 --attack_name textfooler \
-                                --num_examples -1 --dataset ${DATASET} \
+                                --num_examples 1000 --dataset ${DATASET} \
                                 --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                 --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
                                 --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
-                                --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED > ${MODELPATH}/logs_textfooler.txt
+                                --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED
+
+    
+
+    # nohup nice -n10 python main.py --mode attack \
+    #                             --path ${MODELPATH}/final_model/ \
+    #                             --attack_name textfooler \
+    #                             --num_examples -1 --dataset ${DATASET} \
+    #                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+    #                             --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
+    #                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+    #                             --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED > ${MODELPATH}/logs_textfooler.txt
 
 
-    nohup nice -n10 python main.py --mode attack \
-                            --path ${MODELPATH}/final_model/ \
-                            --attack_name textbugger \
-                            --num_examples -1 --dataset ${DATASET} \
-                            --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-                            --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
-                            --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE}  \
-                            --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED > ${MODELPATH}/logs_textbugger.txt
+    # nohup nice -n10 python main.py --mode attack \
+    #                         --path ${MODELPATH}/final_model/ \
+    #                         --attack_name textbugger \
+    #                         --num_examples -1 --dataset ${DATASET} \
+    #                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+    #                         --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
+    #                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE}  \
+    #                         --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED > ${MODELPATH}/logs_textbugger.txt
 
 
 

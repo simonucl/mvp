@@ -7,6 +7,7 @@ from .project_cls import ProjectCLS
 from transformers import AutoModelForSequenceClassification, AutoModelForMaskedLM, AutoModelForCausalLM, T5ForConditionalGeneration
 import os
 import torch
+import copy
 
 def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, template = None):
     if args.path != "None": 
@@ -34,12 +35,12 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
                 new_weights[new_key] = weights[key]
                 del new_weights[key]
             torch.save(new_weights, f"{location}pytorch_model.bin")
+
     if args.model_type == 'mvp_knn':
         mvp_model = model_class.from_pretrained(location, return_dict = True)
-        base_model = model_class.from_pretrained()
-
-
-    if args.model_type == 'mvp' or (args.model_type == "untrained_mvp" and regime=="test") or (args.model_type=="untrained_mvp" and args.path!="None"):
+        base_model = model_class.from_pretrained(args.knn_model)
+        model = MVP_KNN(args, base_model, mvp_model, tokenizer, data_collator, verbalizer = verbalizer, template = template)
+    elif args.model_type == 'mvp' or (args.model_type == "untrained_mvp" and regime=="test") or (args.model_type=="untrained_mvp" and args.path!="None"):
         base_model = model_class.from_pretrained(location, return_dict = True)
         model = MVP(args, base_model, tokenizer, data_collator, verbalizer = verbalizer, template = template)
     elif args.model_type == 'clsprompt' or (args.model_type == "untrained_clsprompt" and regime=="test") or (args.model_type=="untrained_clsprompt" and args.path!="None"):
