@@ -142,6 +142,7 @@ class KNN_CLI(ModelWrapper):
                 with torch.no_grad():
                     outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
 
+        print('Mask Token ID:', self.tokenizer.mask_token_id)
         logits = outputs.logits                             # (B * num_templates, seq_len, vocab_size)
         batchid, indices = torch.where(input_ids == self.tokenizer.mask_token_id) # See how the word is inserted
         if 'gpt' in self.args.model:
