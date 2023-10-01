@@ -149,6 +149,7 @@ class KNN_CLI(ModelWrapper):
             indices = indices -1
 
         mask_logits = logits[batchid, indices,:]         # (B * num_templates, vocab_size)
+        print('Mask logits shape: ', mask_logits.shape)
         label_words_logits = mask_logits
         # print('Mask logits shape: ', mask_logits.shape)
         # label_words_logits = mask_logits[:, self.label_word_ids]    # (B * num_templates, num_candidates)
