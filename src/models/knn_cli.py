@@ -9,6 +9,7 @@ from .model_wrapper import ModelWrapper
 from ..utils.anchor import AnchorStore
 from ..utils.dataset import *
 from tqdm import tqdm
+from ..utils.augmentations import *
 
 SST2_LABELS2ID = {'0': 0, '1': 1}
 
@@ -79,19 +80,24 @@ class KNN_CLI(ModelWrapper):
 
         print("Loading anchor store")
         anchor_store = AnchorStore(
-                                K=len(anchor_subsample),
+                                K=len(anchor_subsample) if not args.adv_augment else len(anchor_subsample)* 2,
                                dim=model.config.vocab_size,
                                knn=args.knn_k,
                                knn_T = args.knn_T,
-                               n_class=args.num_labels)
+                               n_class=args.num_labels
+                               )
         self.anchor_store = anchor_store
 
         print('Input sample example', anchor_subsample[0]['sentence'])
 
         for ins in tqdm(anchor_subsample, total=len(anchor_subsample)):
             labels = ins['label']
-            gen_logits = self.get_logits([ins['sentence']]).detach().cpu()
+            gen_logits = self.get_logits([ins['sentence']], labels).detach().cpu()
             self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
+
+            if args.adv_augment:
+                adv_gen_logits = self.get_logits([ins['sentence']], labels, adv=True).detach().cpu()
+                self.anchor_store.enqueue(torch.softmax(adv_gen_logits, dim=-1), torch.tensor(labels))
 
         print("Finished loading anchor store")
 
@@ -115,7 +121,7 @@ class KNN_CLI(ModelWrapper):
             icl_example[self.verbalizer[label.item()][0]] = label_data[shot]['sentence']
         return new_anchor_data, icl_example
     
-    def get_logits(self, input_ids, attention_mask=None, outputs=None):
+    def get_logits(self, input_ids, labels, attention_mask=None, outputs=None, adv=False):
         '''
         input_ids: torch tensor of shape (1, seq_len)
         attention_mask: torch tensor of shape (1, seq_len)
@@ -126,8 +132,15 @@ class KNN_CLI(ModelWrapper):
             input_ids = input_ids.to('cuda')
             attention_mask = attention_mask.to('cuda')
 
-            with torch.no_grad():
-                outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
+            if adv:
+                embedding_outs = pgd_attack(self, input_ids, attention_mask, labels, self.args, norm = self.args.norm)
+                embedding_outs = embedding_outs.to('cuda')
+                with torch.no_grad():
+                    outputs = self.model(inputs_embeds=embedding_outs, attention_mask=attention_mask)
+            else:
+                with torch.no_grad():
+                    outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
+
         logits = outputs.logits                             # (B * num_templates, seq_len, vocab_size)
         batchid, indices = torch.where(input_ids == self.tokenizer.mask_token_id) # See how the word is inserted
         if 'gpt' in self.args.model:

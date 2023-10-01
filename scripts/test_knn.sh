@@ -35,7 +35,7 @@ do
     for SHOT in 16;
     do 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
-        EXTRA_NAMES=mvp_knn_cli_${SEED}
+        EXTRA_NAMES=mvp_knn_adv_${SEED}
 
         MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${SHOT}
         
@@ -53,7 +53,8 @@ do
                                     --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                     --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
                                     --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
-                                    --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED --knn_model ${MODEL} > ${MODELPATH}/logs_textfooler_beta_${BETA}.txt
+                                    --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} \
+                                    --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM --adv_augment 1 > ${MODELPATH}/logs_textfooler_beta_${BETA}.txt
 
         # nohup nice -n10 python3 main.py --mode attack \
         #                             --path ${MODELPATH}/final_model/ \
@@ -65,21 +66,21 @@ do
         #                             --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED > ${MODELPATH}/logs_textfooler.txt
 
 
-        nohup python3 main.py --mode attack \
-                                --attack_name bae \
-                                --num_examples 1000 --dataset ${DATASET} \
-                                --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-                                --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
-                                --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE}  \
-                                --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED --knn_model ${MODEL} --beta ${BETA} > ${MODELPATH}/logs_bae_beta_${BETA}.txt
+        # nohup python3 main.py --mode attack \
+        #                         --attack_name bae \
+        #                         --num_examples 1000 --dataset ${DATASET} \
+        #                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+        #                         --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
+        #                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE}  \
+        #                         --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED --knn_model ${MODEL} --beta ${BETA} > ${MODELPATH}/logs_bae_beta_${BETA}.txt
 
-        nohup python3 main.py --mode attack \
-                                --attack_name textbugger \
-                                --num_examples 1000 --dataset ${DATASET} \
-                                --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-                                --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
-                                --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE}  \
-                                --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED --knn_model ${MODEL} --beta ${BETA} > ${MODELPATH}/logs_textbugger_beta_${BETA}.txt
+        # nohup python3 main.py --mode attack \
+        #                         --attack_name textbugger \
+        #                         --num_examples 1000 --dataset ${DATASET} \
+        #                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+        #                         --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
+        #                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE}  \
+        #                         --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED --knn_model ${MODEL} --beta ${BETA} > ${MODELPATH}/logs_textbugger_beta_${BETA}.txt
 
     done
 done
