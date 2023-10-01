@@ -121,7 +121,7 @@ class KNN_CLI(ModelWrapper):
             icl_example[self.verbalizer[label.item()][0]] = label_data[shot]['sentence']
         return new_anchor_data, icl_example
     
-    def get_logits(self, input_ids, labels, attention_mask=None, outputs=None, adv=False):
+    def get_logits(self, input_ids, labels=None, attention_mask=None, outputs=None, adv=False):
         '''
         input_ids: torch tensor of shape (1, seq_len)
         attention_mask: torch tensor of shape (1, seq_len)
@@ -133,6 +133,7 @@ class KNN_CLI(ModelWrapper):
             attention_mask = attention_mask.to('cuda')
 
             if adv:
+                assert labels is not None
                 embedding_outs = pgd_attack(self, input_ids, attention_mask, labels, self.args, norm = self.args.norm)
                 embedding_outs = embedding_outs.to('cuda')
                 with torch.no_grad():
