@@ -8,6 +8,7 @@ def criterion_CE(combined_model, perturbed, attention_mask, original, input_ids,
     adv_inputs['inputs_embeds'] = perturbed
     adv_inputs['attention_mask'] = attention_mask
     adv_inputs['output_attentions'] = True
+    print('Input ids shape: ', input_ids.shape)
     outputs = combined_model.model(**adv_inputs)
     # logits = combined_model.outs_to_logits(input_ids, outputs)
     logits = combined_model.get_logits(input_ids, outputs)
@@ -26,6 +27,7 @@ def pgd_attack(combined_model, input_ids, attention_mask, y, params, norm="linf"
     
     word_embedding_layer = model.get_input_embeddings()
     X = word_embedding_layer(input_ids).detach()
+    print('X:', X.shape)
     assert(X.requires_grad == False)
 
     epsilon = params.epsilon
