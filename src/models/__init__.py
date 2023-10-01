@@ -4,6 +4,7 @@ from .mlp_ft import MLP_FT
 from .mvp import MVP
 from .mvp_knn import MVP_KNN
 from .project_cls import ProjectCLS
+from .knn_cli import KNN_CLI
 from transformers import AutoModelForSequenceClassification, AutoModelForMaskedLM, AutoModelForCausalLM, T5ForConditionalGeneration
 import os
 import torch
@@ -40,6 +41,9 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
         mvp_model = model_class.from_pretrained(location, return_dict = True)
         base_model = model_class.from_pretrained(args.knn_model)
         model = MVP_KNN(args, base_model, mvp_model, tokenizer, data_collator, verbalizer = verbalizer, template = template)
+    elif args.model_type == 'knn_cli' or args.model_type == 'knn_icl':
+        model = model_class.from_pretrained(location, return_dict = True)
+        model = KNN_CLI(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
     elif args.model_type == 'mvp' or (args.model_type == "untrained_mvp" and regime=="test") or (args.model_type=="untrained_mvp" and args.path!="None"):
         base_model = model_class.from_pretrained(location, return_dict = True)
         model = MVP(args, base_model, tokenizer, data_collator, verbalizer = verbalizer, template = template)

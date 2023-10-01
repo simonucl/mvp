@@ -99,14 +99,13 @@ class MVP_KNN(ModelWrapper):
         elif self.args.pool_templates == "max":
             label_words_logits = scatter_max(label_words_logits, y, dim=0)[0]  # (batch_size, num_classes)
 
-        # knn_logits = self.knn_model.outs_to_logits(raw_inputs)
+        knn_logits = self.knn_model.outs_to_logits(raw_inputs)
 
-        # label_words_logits = torch.softmax(label_words_logits, dim=-1)
-        # knn_logits = torch.softmax(knn_logits, dim=-1)
+        label_words_logits = torch.softmax(label_words_logits, dim=-1)
+        knn_logits = torch.softmax(knn_logits, dim=-1)
 
-        # # TODO Probably have to do a softmax here
-        # final_logits = self.args.beta * label_words_logits + (1-self.args.beta) * knn_logits
+        final_logits = self.args.beta * label_words_logits + (1-self.args.beta) * knn_logits
 
         # return final_logits
         print('Finished MVP_KNN outs_to_logits')
-        return label_words_logits
+        return final_logits

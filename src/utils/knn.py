@@ -210,16 +210,12 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
 
     def get_results_with_prompt(self, sents, model, tokenizer, max_length, label_word_ids):
         with torch.no_grad():
-            print(sents)
-            print('Max length: ', max_length)
             inputs = tokenizer(sents, return_tensors="pt", padding=True, truncation=True, max_length=max_length)
             inputs['input_ids'] = inputs['input_ids'].to(self.device) # shape: (sentence_num, sequence_length)
             # inputs['token_type_ids'] = inputs['token_type_ids'].to(DEVICE)
             inputs['attention_mask'] = inputs['attention_mask'].to(self.device)
             inputs = {k: v for k, v in inputs.items() if k in ['input_ids', 'attention_mask']}
             
-            print(inputs['input_ids'].shape)
-
             results = model(**inputs, output_hidden_states=True) # shape: (sentence_num, sequence_length, hidden_size)
 
             hidden_states = results.hidden_states[-1] # last layer hidden state shape: (sentence_num, sequence_length, hidden_size)
@@ -249,7 +245,6 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
 
         for start in range(0, total_len, batch_size):
             end = min(total_len, start + batch_size)
-            print('Building datastore', start, end)
             vecs, probs = func_get_vec(data_inputs[start:end], label_word_ids)
             datastore_keys[start:end] = vecs.cpu().numpy()
             datastore_vals[start:end] = data_labels[start:end]
@@ -262,7 +257,10 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
                 num_labels, isTrain=False, isRemoveTop1=False):
         # queries [B, H]
         # keys [L, H]
+        
+        kl_dists = torch.mean(keys.unsqueeze(0) * (keys.unsqueeze(0) - queries.unsqueeze(1)), dim=-1) # [B, L]
         dists = ((keys.unsqueeze(0) - queries.unsqueeze(1)) ** 2).sum(-1) # [B, L]
+        
         scaled_dists = -1.0 / knn_T * dists # [B, L]
         top_dists, top_indices = torch.topk(scaled_dists, (knn_k + 1) if isRemoveTop1 else knn_k) # [B, K+1], [B, K+1]
         new_vals = values.unsqueeze(0).repeat(batch_size, 1) # [B, L]
@@ -421,9 +419,6 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
         class_tag = [1 - train_mode] * num_labels
         searched_index = 0
         query_index = 0
-        print('Num of classes: ', num_labels)
-        print(len(train_ds_probs), len(query_ds_probs))
-        print('Sampled number: ', sampled_num)
         for index in range(train_number):
             cur_index = index * sampled_num
             class_id = train_labels[cur_index]
@@ -543,9 +538,9 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
         # load the verbalizers
         label_word_ids = get_verbalizers_ids(self.task, self.tindex, tokenizer)
 
-        print('Train size: ', len(train_inputs))
-        print('Label size: ', len(label_word_ids))
-        print(label_word_ids)
+        # print('Train size: ', len(train_inputs))
+        # print('Label size: ', len(label_word_ids))
+        # print(label_word_ids)
 
         # TODO: Toggle the train seed!
         train_seed = 1
@@ -561,14 +556,14 @@ class HuggingFaceSentimentAnalysisPipelineWrapper(ModelWrapper):
         train_ds_inputs = self.load_datastore(save_path, train_inputs, train_labels, \
             self.batch_size, self.hidden_size, get_vec_fun, label_word_ids=label_word_ids, reuse=False)
 
-        print('Train datastore size: ', len(train_ds_inputs[0]))
+        # print('Train datastore size: ', len(train_ds_inputs[0]))
 
         save_path = '{0}.shot{1}.seed{2}.tindex{3}.valid.s{4}'.format(self.dataset, self.shot, seed, self.tindex, self.ensemble_num)
         save_path = os.path.join(self.data_dir, 'knn_datastore', save_path)
         valid_ds_inputs = self.load_datastore(save_path, valid_inputs, valid_labels, \
                 self.batch_size, self.hidden_size, get_vec_fun, label_word_ids=label_word_ids, reuse=False)
 
-        print('Valid datastore size: ', len(valid_ds_inputs[0]))
+        # print('Valid datastore size: ', len(valid_ds_inputs[0]))
         # model training
         compactLayer, valid_acc_fm = self.model_training(train_ds_inputs, train_labels, valid_ds_inputs, valid_labels,
                 self.hidden_size, self.map_size, self.batch_size, self.train_epoch, self.knn_T, self.knn_k, self.num_labels,

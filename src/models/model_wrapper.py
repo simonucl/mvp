@@ -25,6 +25,7 @@ class ModelWrapper(torch.nn.Module):
         self.args = args
         self.verbalizer = verbalizer
         self.template = template
+        self.icl_examples = None
         if 'gpt' in self.args.model:
             self.model.config.pad_token_id = self.tokenizer.pad_token_id
             self.model.config.mask_token_id = self.tokenizer.mask_token_id
@@ -70,8 +71,8 @@ class ModelWrapper(torch.nn.Module):
             input_ids, attention_mask = self.text_to_ids(text_input_list)
 
 
-        if self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn":
-            input_ids, attention_mask = insert_tokenized_prompts(self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train")
+        if self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn" or self.args.model_type == "knn_cli" or self.args.model_type == "knn_icl":
+            input_ids, attention_mask = insert_tokenized_prompts(self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
         return input_ids, attention_mask
     
 
