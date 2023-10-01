@@ -96,7 +96,7 @@ class KNN_CLI(ModelWrapper):
             self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
 
             if args.adv_augment:
-                adv_gen_logits = self.get_logits([ins['sentence']], labels, adv=True).detach().cpu()
+                adv_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
                 self.anchor_store.enqueue(torch.softmax(adv_gen_logits, dim=-1), torch.tensor(labels))
 
         print("Finished loading anchor store")
