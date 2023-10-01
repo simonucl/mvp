@@ -45,11 +45,12 @@ class AnchorStore(nn.Module):
 
         # print('Queue anchor: ', self.queue_anchor)
         # print('Logits: ', logits)
+        self.queue_anchor = self.queue_anchor.to(logits.device)
         dists = torch.mean(self.queue_anchor[:, None, :] * (self.queue_anchor[:, None, :].log() - logits.log()), dim=2).transpose(1, 0)
         # dists = ((self.queue_anchor.unsqueeze(0) - logits.unsqueeze(1)) ** 2).sum(dim=-1)
         # print('L2 dists: ', l2_dists)
         scaled_dists = -1.0 / self.knn_T * dists
-
+        
         # print('Scaled dists: ', scaled_dists)
         top_dists, top_indices = torch.topk(scaled_dists, self.knn) # [B, K+1], [B, K+1]
         values = torch.tensor(self.queue_label, dtype=torch.int64, device=logits.device)
