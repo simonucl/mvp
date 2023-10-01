@@ -23,11 +23,11 @@ DATASET_PATH=${22}
 SHOT=${23}
 
 
-source ~/.bashrc
-echo $PWD
-conda activate /home/co-huan1/rds/rds-qakg-2iBGk7DbOVc/jie/conda/multi
+# source ~/.bashrc
+# echo $PWD
+# conda activate /home/co-huan1/rds/rds-qakg-2iBGk7DbOVc/jie/conda/multi
 
-export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
+# export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 MODEL=roberta-large
 
 for SEED in 13;

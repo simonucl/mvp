@@ -88,7 +88,7 @@ def attacker(args):
                                 log_to_csv=log_to_csv, \
                                 checkpoint_interval=100, 
                                 checkpoint_dir=args.model_dir, 
-                                disable_stdout=True,
+                                disable_stdout=False,
                                 query_budget = args.query_budget,parallel=False)
         attacker = Attacker(attack, dataset, attack_args)
 
