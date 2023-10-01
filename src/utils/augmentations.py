@@ -9,7 +9,8 @@ def criterion_CE(combined_model, perturbed, attention_mask, original, input_ids,
     adv_inputs['attention_mask'] = attention_mask
     adv_inputs['output_attentions'] = True
     outputs = combined_model.model(**adv_inputs)
-    logits = combined_model.outs_to_logits(input_ids, outputs)
+    # logits = combined_model.outs_to_logits(input_ids, outputs)
+    logits = combined_model.get_logits(input_ids, outputs)
     labels = labels.to(logits.device)
     return nn.CrossEntropyLoss()(logits, labels)
 
