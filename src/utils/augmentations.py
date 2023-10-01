@@ -12,6 +12,7 @@ def criterion_CE(combined_model, perturbed, attention_mask, original, input_ids,
     print('Perturbed shape: ', perturbed.shape)
     outputs = combined_model.model(**adv_inputs)
     # logits = combined_model.outs_to_logits(input_ids, outputs)
+    print('Outputs logits shape: ', outputs.logits.shape)
     logits = combined_model.get_logits(input_ids, outputs)
     labels = labels.to(logits.device)
     print('Logits shape: ', logits.shape)
