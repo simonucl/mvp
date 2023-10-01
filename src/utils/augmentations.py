@@ -5,6 +5,7 @@ import torch.nn as nn
 
 def criterion_CE(combined_model, perturbed, attention_mask, original, input_ids, labels):
     adv_inputs = {}
+    print(perturbed)
     adv_inputs['inputs_embeds'] = perturbed
     adv_inputs['attention_mask'] = attention_mask
     adv_inputs['output_attentions'] = True
