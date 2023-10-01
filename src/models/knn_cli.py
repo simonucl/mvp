@@ -69,7 +69,6 @@ class KNN_CLI(ModelWrapper):
 
         anchor_data = dataset['train']
         anchor_subsample, icl_examples = self.subsamplebyshot(anchor_data, args.seed, args.shot)
-        print('ICL examples', icl_examples)
 
         if self.args.model_type == "knn_cli":
             self.icl_examples = None
@@ -167,7 +166,6 @@ class KNN_CLI(ModelWrapper):
 
         returns logits of shape (batch_size, num_classes)
         '''
-        print('Test sample example', input_ids[0])
 
         query_logits = self.get_logits(input_ids, outputs=outputs) # (batch_size, vocab_size)
         query_logits = torch.softmax(query_logits, dim=-1) # (batch_size, vocab_size)
@@ -189,7 +187,6 @@ class KNN_CLI(ModelWrapper):
         prob = self.anchor_store.knn_calibrate(query_logits) # [B, V]
 
         # softmax the last dimension
-        print(prob)
         prob = torch.softmax(prob, dim=-1)
 
         return prob
