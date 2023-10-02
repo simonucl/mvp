@@ -121,7 +121,7 @@ class KNN_CLI(ModelWrapper):
             icl_example[self.verbalizer[label.item()][0]] = label_data[shot]['sentence']
         return new_anchor_data, icl_example
     
-    def get_logits(self, input_ids, outputs=None, labels=None, attention_mask=None, adv=False, reduce_to_candidates=False):
+    def get_logits(self, input_ids, labels=None, attention_mask=None, adv=False, outputs=None, reduce_to_candidates=False):
         '''
         input_ids: torch tensor of shape (1, seq_len)
         attention_mask: torch tensor of shape (1, seq_len)
