@@ -43,7 +43,8 @@ do
             else
                 EXTRA_NAMES=mvp_seed_${SEED}
             fi
-
+            echo $EXTRA_NAMES
+            
             MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${SHOT}
             
             MODELPATH=./checkpoints/${DATASET}/${MODEL}/model_${MODEL_ID}/
