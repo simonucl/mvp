@@ -89,6 +89,7 @@ def attacker(args):
                                 checkpoint_interval=100, 
                                 checkpoint_dir=args.model_dir, 
                                 disable_stdout=True,
+                                enable_advance_metrics=True,
                                 query_budget = args.query_budget,parallel=False)
         attacker = Attacker(attack, dataset, attack_args)
 
