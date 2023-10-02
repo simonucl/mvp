@@ -9,18 +9,10 @@ def criterion_CE(combined_model, perturbed, attention_mask, original, input_ids,
     adv_inputs['inputs_embeds'] = perturbed
     adv_inputs['attention_mask'] = attention_mask
     adv_inputs['output_attentions'] = True
-    print('Input ids shape: ', input_ids.shape)
-    print('Perturbed shape: ', perturbed.shape)
     outputs = combined_model.model(**adv_inputs)
     # logits = combined_model.outs_to_logits(input_ids, outputs)
-    print('Outputs logits shape: ', outputs.logits.shape)
-    # print the decoded list of tokens
-    print('Decoded input_ids:', combined_model.tokenizer.decode(input_ids[0]))
-    print('Original input_ids:', input_ids)
     logits = combined_model.get_logits(input_ids, outputs=outputs, reduce_to_candidates=True)
     labels = labels.to(logits.device)
-    print('Logits shape: ', logits.shape)
-    print('Labels shape: ', labels.shape)
     return nn.CrossEntropyLoss()(logits, labels)
 
 

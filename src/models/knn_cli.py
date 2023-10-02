@@ -142,19 +142,15 @@ class KNN_CLI(ModelWrapper):
                 with torch.no_grad():
                     outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
 
-        print('Mask Token ID:', self.tokenizer.mask_token_id)
         logits = outputs.logits                             # (B * num_templates, seq_len, vocab_size)
         batchid, indices = torch.where(input_ids == self.tokenizer.mask_token_id) # See how the word is inserted
         if 'gpt' in self.args.model:
             # it predicts next word
             indices = indices -1
 
-        print(batchid, indices)
         mask_logits = logits[batchid, indices,:]         # (B * num_templates, vocab_size)
-        print('Mask logits shape: ', mask_logits.shape)
         label_words_logits = mask_logits
         if reduce_to_candidates:
-            print('Mask logits shape: ', mask_logits.shape)
             label_words_logits = mask_logits[:, self.label_word_ids]    # (B * num_templates, num_candidates)
 
             self.label_set = self.label_set.to(input_ids.device)
