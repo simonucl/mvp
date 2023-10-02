@@ -105,6 +105,21 @@ def insert_tokenized_template_back_with_examples(tokenizer, model_type, input_id
         first_pad_index = pad_indices[0].item() - 1
     else:
         first_pad_index = input_id.shape[0] - 1
+
+    # TODO add the masking for input ids
+    # added_length = len(added_ids) 
+    # if self.mask_inference: 
+    #     if random.random() > self.args.mask_prob:
+    #         # mask_ratio = random.uniform(self.args.min_mask_ratio, 1.0) 
+    #         mask_idx = random.sample(range(added_length), int(added_length * self.args.replace_ratio))
+    #         choices_input_ids[choice_id] += [random.choice(range(len(self.tokenizer))) if _idx in mask_idx else added_ids[_idx] for _idx in range(added_length)]
+    #         choices_attention_mask[choice_id] += [1] * added_length 
+    #     else:
+    #         mask_idx = random.sample(range(added_length), int(added_length * self.args.mask_ratio))
+    #         choices_input_ids[choice_id] += added_ids
+    #         choices_attention_mask[choice_id] += [0 if _idx in mask_idx else 1 for _idx in range(added_length)]
+
+
     if(first_pad_index + len(template_id) + 1 + demon_length < tokenizer.model_max_length):
         new_input_id[:demon_length] = demon_examples[:demon_length]
         new_input_id[demon_length:demon_length+first_pad_index] = input_id[:first_pad_index]

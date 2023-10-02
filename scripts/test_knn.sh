@@ -29,14 +29,13 @@ ADV=${24}
 # conda activate /home/co-huan1/rds/rds-qakg-2iBGk7DbOVc/jie/conda/multi
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
-MODEL=roberta-large
 
 for SEED in 13;
 do
     for SHOT in 16;
     do 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
-        if $ADV ; then
+        if [[$ADV -eq 1]]; then
             EXTRA_NAMES=mvp_adv_seed_${SEED}
         else
             EXTRA_NAMES=mvp_seed_${SEED}
