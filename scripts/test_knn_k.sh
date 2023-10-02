@@ -35,7 +35,7 @@ for SEED in 13;
 do
     for SHOT in 16;
     do 
-        for KNN in 4 8 16 32;
+        for KNN in 4 8 12 16 24 32;
         do
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             if $ADV ; then
@@ -54,6 +54,7 @@ do
 
             # MODEL_TYPE=knn_icl
 
+            
             nohup python3 main.py --mode attack \
                                         --attack_name textfooler \
                                         --num_examples 1000 --dataset ${DATASET} \
