@@ -16,6 +16,7 @@ def criterion_CE(combined_model, perturbed, attention_mask, original, input_ids,
     print('Outputs logits shape: ', outputs.logits.shape)
     # print the decoded list of tokens
     print('Decoded input_ids:', combined_model.tokenizer.decode(input_ids[0]))
+    print('Original input_ids:', input_ids)
     logits = combined_model.get_logits(input_ids, outputs)
     labels = labels.to(logits.device)
     print('Logits shape: ', logits.shape)
