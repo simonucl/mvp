@@ -121,7 +121,7 @@ class KNN_CLI(ModelWrapper):
             icl_example[self.verbalizer[label.item()][0]] = label_data[shot]['sentence']
         return new_anchor_data, icl_example
     
-    def get_logits(self, input_ids, labels=None, attention_mask=None, outputs=None, adv=False):
+    def get_logits(self, input_ids, outputs=None, labels=None, attention_mask=None, adv=False, reduce_to_candidates=False):
         '''
         input_ids: torch tensor of shape (1, seq_len)
         attention_mask: torch tensor of shape (1, seq_len)
@@ -153,14 +153,15 @@ class KNN_CLI(ModelWrapper):
         mask_logits = logits[batchid, indices,:]         # (B * num_templates, vocab_size)
         print('Mask logits shape: ', mask_logits.shape)
         label_words_logits = mask_logits
-        # print('Mask logits shape: ', mask_logits.shape)
-        # label_words_logits = mask_logits[:, self.label_word_ids]    # (B * num_templates, num_candidates)
+        if reduce_to_candidates:
+            print('Mask logits shape: ', mask_logits.shape)
+            label_words_logits = mask_logits[:, self.label_word_ids]    # (B * num_templates, num_candidates)
 
-        # self.label_set = self.label_set.to(input_ids.device)
-        # if self.args.pool_label_words == "max":
-        #     label_words_logits = scatter_max(label_words_logits, self.label_set)[0] # (B * num_templates, num_classes)
-        # elif self.args.pool_label_words == "mean":
-        #     label_words_logits = scatter_mean(label_words_logits, self.label_set)   # (B * num_templates, num_classes)
+            self.label_set = self.label_set.to(input_ids.device)
+            if self.args.pool_label_words == "max":
+                label_words_logits = scatter_max(label_words_logits, self.label_set)[0] # (B * num_templates, num_classes)
+            elif self.args.pool_label_words == "mean":
+                label_words_logits = scatter_mean(label_words_logits, self.label_set)   # (B * num_templates, num_classes)
 
         # All vocab or only the target words
         num_templates = 1 if (self.args.num_template == -2 and self.mode == "train") else len(self.template)
