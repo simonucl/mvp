@@ -55,7 +55,7 @@ do
                                     --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                     --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} \
                                     --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM \
-                                    --adv_augment 0 > ${MODELPATH}/logs_textfooler_beta_${BETA}.txt
+                                    --adv_augment 1 > ${MODELPATH}/logs_textfooler_beta_${BETA}.txt
 
         # nohup nice -n10 python3 main.py --mode attack \
         #                             --path ${MODELPATH}/final_model/ \
