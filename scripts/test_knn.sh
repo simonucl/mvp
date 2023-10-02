@@ -21,6 +21,7 @@ NORM=${20}
 NUM_ITER=${21}
 DATASET_PATH=${22}
 SHOT=${23}
+ADV=${24}
 
 
 # source ~/.bashrc
@@ -35,7 +36,11 @@ do
     for SHOT in 16;
     do 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
-        EXTRA_NAMES=mvp_knn_adv_${SEED}
+        if $ADV ; then
+            EXTRA_NAMES=mvp_adv_seed_${SEED}
+        else
+            EXTRA_NAMES=mvp_seed_${SEED}
+        fi
 
         MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${SHOT}
         
@@ -55,7 +60,7 @@ do
                                     --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                     --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} \
                                     --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM \
-                                    --adv_augment 1 > ${MODELPATH}/logs_textfooler_beta_${BETA}.txt
+                                    --adv_augment $ADV > ${MODELPATH}/logs_textfooler_beta_${BETA}.txt
 
         # nohup nice -n10 python3 main.py --mode attack \
         #                             --path ${MODELPATH}/final_model/ \
