@@ -35,7 +35,7 @@ do
     for SHOT in 16;
     do 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
-        if [[$ADV -eq 1]]; then
+        if [[ $ADV -eq 1 ]]; then
             EXTRA_NAMES=mvp_adv_seed_${SEED}
         else
             EXTRA_NAMES=mvp_seed_${SEED}
