@@ -39,7 +39,8 @@ do
         do
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             echo $ADV
-            if $ADV == 1 ; then
+            # check if adv ==1
+            if [[ $ADV -eq 1 ]]; then
                 EXTRA_NAMES=mvp_adv_seed_${SEED}
             else
                 EXTRA_NAMES=mvp_seed_${SEED}
