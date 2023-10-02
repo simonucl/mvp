@@ -38,12 +38,13 @@ do
         for KNN in 4 8 12 16 24 32;
         do
             echo $SEED+${SHOT}+${MODEL}+"mvp"
-            if $ADV == 1 ; then
+            if $ADV == '1' ; then
                 EXTRA_NAMES=mvp_adv_seed_${SEED}
             else
                 EXTRA_NAMES=mvp_seed_${SEED}
             fi
-
+            echo $EXTRA_NAMES
+            
             MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${SHOT}
             
             MODELPATH=./checkpoints/${DATASET}/${MODEL}/model_${MODEL_ID}/
