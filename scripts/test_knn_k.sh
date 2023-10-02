@@ -38,7 +38,7 @@ do
         for KNN in 4 8 12 16 24 32;
         do
             echo $SEED+${SHOT}+${MODEL}+"mvp"
-            if $ADV == 1 ; then
+            if $ADV == '1' ; then
                 EXTRA_NAMES=mvp_adv_seed_${SEED}
             else
                 EXTRA_NAMES=mvp_seed_${SEED}
