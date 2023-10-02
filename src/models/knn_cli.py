@@ -149,6 +149,7 @@ class KNN_CLI(ModelWrapper):
             # it predicts next word
             indices = indices -1
 
+        print(batchid, indices)
         mask_logits = logits[batchid, indices,:]         # (B * num_templates, vocab_size)
         print('Mask logits shape: ', mask_logits.shape)
         label_words_logits = mask_logits
