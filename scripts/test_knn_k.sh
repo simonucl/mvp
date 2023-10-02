@@ -33,7 +33,13 @@ MODEL=roberta-large
 
 for SEED in 13 42 100;
 do
-    for SHOT in 16 32;
+    if [[ $SEED -eq 13 ]]; then
+        SHOTS=(32)
+    else
+        SHOTS=(16 32)
+    fi
+
+    for SHOT in ${SHOTS[@]};
     do 
         for KNN in 4 8 16 32;
         do
