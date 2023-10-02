@@ -39,17 +39,12 @@ do
         do
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             echo $ADV
-            if $ADV == 1 ; then
+            if $ADV ; then
                 EXTRA_NAMES=mvp_adv_seed_${SEED}
             else
                 EXTRA_NAMES=mvp_seed_${SEED}
             fi
             echo $EXTRA_NAMES
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> 95ce95fa27c2b181e1e3fb04522e28ce9e19e2a2
             MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${SHOT}
             
             MODELPATH=./checkpoints/${DATASET}/${MODEL}/model_${MODEL_ID}/
