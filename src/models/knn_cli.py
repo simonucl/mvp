@@ -143,7 +143,6 @@ class KNN_CLI(ModelWrapper):
                 # fill new_input_ids with self.tokenizer.pad_token_id
                 new_input_ids = new_input_ids.fill_(self.tokenizer.pad_token_id)
                 
-                print('Input ids indices', input_ids_indices)
                 for i, (start, end, template) in enumerate(input_ids_indices):
                     '''
                     start and end are the indices of the input_ids before the template is inserted
@@ -182,7 +181,6 @@ class KNN_CLI(ModelWrapper):
 
         logits = outputs.logits                             # (B * num_templates, seq_len, vocab_size)
         batchid, indices = torch.where(input_ids == self.tokenizer.mask_token_id) # See how the word is inserted
-        print('Batchid and indices', batchid, indices)
 
         if 'gpt' in self.args.model:
             # it predicts next word
@@ -190,7 +188,6 @@ class KNN_CLI(ModelWrapper):
 
         mask_logits = logits[batchid, indices,:]         # (B * num_templates, vocab_size)
         label_words_logits = mask_logits
-        print('Label words logits shape', label_words_logits.shape)
         if reduce_to_candidates:
             label_words_logits = mask_logits[:, self.label_word_ids]    # (B * num_templates, num_candidates)
 
