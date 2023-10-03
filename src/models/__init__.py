@@ -9,6 +9,7 @@ from transformers import AutoModelForSequenceClassification, AutoModelForMaskedL
 import os
 import torch
 import copy
+from ..utils.model_utils import is_causal_model
 
 def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, template = None):
     if args.path != "None": 
@@ -22,7 +23,7 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
     else:
         regime = "test"
     #model_class = AutoModelForCausalLM if "gpt" in args.model elif "t5" in args.model else AutoModelForMaskedLM
-    if "gpt" in args.model:
+    if is_causal_model(args.model):
         model_class = AutoModelForCausalLM
     else:
         model_class = AutoModelForMaskedLM

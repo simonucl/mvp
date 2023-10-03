@@ -16,6 +16,7 @@ from sklearn.linear_model import LogisticRegression
 import os
 from torch.utils.data import DataLoader
 from transformers import AutoModelForSequenceClassification, TrainingArguments
+from model_utils import is_causal_model
 
 counterfitted_glove_embedding = WordEmbedding.counterfitted_GLOVE_embedding()
    
@@ -65,7 +66,7 @@ def prepare_fewshot_dataset(args):
     #does not work. some bug https://github.com/huggingface/transformers/issues/17675
     tokenizer.do_lower_case = True
     # #Padding
-    if 'gpt' in args.model:
+    if is_causal_model(args.model):
         tokenizer.add_special_tokens({'pad_token': '<|pad]|>', 'mask_token':'<|mask|>'})
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
         
@@ -147,7 +148,7 @@ def prepare_huggingface_dataset(args):
     #does not work. some bug https://github.com/huggingface/transformers/issues/17675
     tokenizer.do_lower_case = True
     # #Padding
-    if 'gpt' in args.model:
+    if is_causal_model(args.model):
         tokenizer.add_special_tokens({'pad_token': '<|pad]|>', 'mask_token':'<|mask|>'})
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
         
