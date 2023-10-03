@@ -201,7 +201,7 @@ def insert_tokenized_prompts(tokenizer, model_type, text_input_list, templates, 
             new_attention_masks[num_templates_used*i+j,:] =  new_attention_mask
             new_input_id_indices.append(input_id_indices)
             j=j+1
-    return new_input_ids.long(), new_attention_masks.long(), input_id_indices
+    return new_input_ids.long(), new_attention_masks.long(), new_input_id_indices
 
 
 

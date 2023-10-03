@@ -69,6 +69,12 @@ def parse_args():
     parser.add_argument('--train_epoch', type=int, default=30)
     parser.add_argument('--shot', type=int, default=16)
     parser.add_argument('--beta', type=float, default=0.5)
+
+    # Masking Params
+    parser.add_argument('--mask_augment', action='store_true', default=False)
+    parser.add_argument('--mask_prob', type=float, default=0.15)
+    parser.add_argument('--mask_ratio', type=float, default=0.5)
+    parser.add_argument('--replace_ratio', type=float, default=0.1)
     return parser
 
 def add_config(args):
