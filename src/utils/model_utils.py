@@ -29,7 +29,7 @@ def insert_tokenized_template_front(tokenizer, model_type, input_id, template_id
         new_input_id[-1] = tokenizer.sep_token_id
     new_attention_mask = 1*(new_input_id !=  tokenizer.pad_token_id)
 
-    input_ids_indices = (len(template_id)+1, min(first_pad_index+len(template_id), tokenizer.model_max_length-1))
+    input_ids_indices = (len(template_id)+1, min(first_pad_index+len(template_id), tokenizer.model_max_length-1), -len(template_id)+1)
     return new_input_id, new_attention_mask, input_ids_indices
 
 def insert_tokenized_template_back(tokenizer, model_type, input_id, template_id, len_templates):
@@ -67,7 +67,7 @@ def insert_tokenized_template_back(tokenizer, model_type, input_id, template_id,
         if "gpt" not in model_type:
             new_input_id[-1] = tokenizer.sep_token_id
 
-    input_ids_indices = (0, min(first_pad_index, tokenizer.model_max_length-len(template_id)-1))
+    input_ids_indices = (0, min(first_pad_index, tokenizer.model_max_length-len(template_id)-1), min(first_pad_index+len(template_id), tokenizer.model_max_length-1))
 
     new_attention_mask = 1*(new_input_id !=  tokenizer.pad_token_id)
     return new_input_id, new_attention_mask, input_ids_indices
@@ -127,7 +127,7 @@ def insert_tokenized_template_back_with_examples(tokenizer, model_type, input_id
         new_input_id[:demon_length] = demon_examples[:demon_length]
         new_input_id[demon_length:demon_length+first_pad_index] = input_id[:first_pad_index]
 
-        input_id_indices = (demon_length, demon_length+first_pad_index)
+        input_id_indices = (demon_length, demon_length+first_pad_index, demon_length+first_pad_index+len(template_id))
 
         new_input_id[demon_length+first_pad_index:demon_length+first_pad_index+len(template_id)] = torch.tensor(template_id)
         if "gpt" not in model_type:
@@ -142,12 +142,12 @@ def insert_tokenized_template_back_with_examples(tokenizer, model_type, input_id
             new_input_id[:tokenizer.model_max_length-len(template_id)-1] = input_id[:tokenizer.model_max_length-len(template_id)-1]
             new_input_id[tokenizer.model_max_length-len(template_id)-1:tokenizer.model_max_length-1] = torch.tensor(template_id)
 
-            input_id_indices = (0, tokenizer.model_max_length-len(template_id)-1)
+            input_id_indices = (0, tokenizer.model_max_length-len(template_id)-1, tokenizer.model_max_length-1)
         else:
             new_input_id[:demon_length-exceed_len] = demon_examples[exceed_len:demon_length]
             new_input_id[demon_length-exceed_len:tokenizer.model_max_length-len(template_id)-1] = input_id[:tokenizer.model_max_length-len(template_id)-1]
             new_input_id[tokenizer.model_max_length-len(template_id)-1:tokenizer.model_max_length-1] = torch.tensor(template_id)
-            input_id_indices = (demon_length-exceed_len, tokenizer.model_max_length-len(template_id)-1)
+            input_id_indices = (demon_length-exceed_len, tokenizer.model_max_length-len(template_id)-1, tokenizer.model_max_length-1)
 
         if "gpt" not in model_type:
             new_input_id[-1] = tokenizer.sep_token_id
