@@ -73,7 +73,7 @@ def parse_args():
     # Masking Params
     parser.add_argument('--mask_augment', action='store_true', default=False)
     parser.add_argument('--mask_prob', type=float, default=0.15)
-    parser.add_argument('--mask_ratio', type=float, default=0.5)
+    parser.add_argument('--mask_ratio', type=float, default=0.3)
     parser.add_argument('--replace_ratio', type=float, default=0.1)
     return parser
 
