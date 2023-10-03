@@ -20,7 +20,7 @@ CUDA_VISIBLE_DEVICES=1 bash scripts/test_knn_k.sh 64 sst2 roberta-large knn_icl 
 
 CUDA_VISIBLE_DEVICES=1 nohup bash scripts/test_knn_k.sh 64 sst2 roberta-large knn_cli 20 1e-5 max mean max mean configs/templates_sst2.yaml configs/verbalizer_sst2.yaml mvp_adv textfooler train -1 0.95 0.05 1 l2 1 ./data/sst2/64-13 64 1 > ./logs/run_cuda_1.log 2>&1 &
 
-CUDA_VISIBLE_DEVICES=1 bash scripts/test_knn_k.sh 64 sst2 roberta-large knn_icl 20 1e-5 max mean max mean configs/templates_sst2.yaml configs/verbalizer_sst2.yaml mvp_adv textfooler train -1 0.95 0.05 1 l2 1 ./data/sst2/64-13 64 1
+CUDA_VISIBLE_DEVICES=1 bash scripts/test_knn.sh 64 sst2 roberta-large knn_icl 20 1e-5 max mean max mean configs/templates_sst2.yaml configs/verbalizer_sst2.yaml mvp_adv textfooler train -1 0.95 0.05 1 l2 1 ./data/sst2/64-13 64 1
 
 bash scripts/test_knn.sh 64 sst2 roberta-large knn_cli 20 1e-5 max mean max mean configs/templates_sst2.yaml configs/verbalizer_sst2.yaml mvp_adv textfooler train -1 0.95 0.05 1 l2 1 ./data/sst2/64-13 64 1
 

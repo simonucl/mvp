@@ -80,7 +80,7 @@ class KNN_CLI(ModelWrapper):
 
         print("Loading anchor store")
         anchor_store = AnchorStore(
-                                K=len(anchor_subsample) if not args.adv_augment else len(anchor_subsample)* 2,
+                                K=len(anchor_subsample)* (1 + int(self.args.adv_augment) + int(self.mask_augment)),
                                dim=model.config.vocab_size,
                                knn=args.knn_k,
                                knn_T = args.knn_T,
@@ -98,7 +98,9 @@ class KNN_CLI(ModelWrapper):
             if args.adv_augment:
                 adv_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
                 self.anchor_store.enqueue(torch.softmax(adv_gen_logits, dim=-1), torch.tensor(labels))
-
+            if args.mask_augment:
+                mask_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
+                self.anchor_store.enqueue(torch.softmax(mask_gen_logits, dim=-1), torch.tensor(labels))
         print("Finished loading anchor store")
 
     def subsamplebyshot(self, anchor_data, seed, shot=1):
@@ -121,7 +123,7 @@ class KNN_CLI(ModelWrapper):
             icl_example[self.verbalizer[label.item()][0]] = label_data[shot]['sentence']
         return new_anchor_data, icl_example
     
-    def get_logits(self, input_ids, labels=None, attention_mask=None, adv=False, outputs=None, reduce_to_candidates=False):
+    def get_logits(self, input_ids, labels=None, attention_mask=None, adv=False, mask_augment=False, outputs=None, reduce_to_candidates=False):
         '''
         input_ids: torch tensor of shape (1, seq_len)
         attention_mask: torch tensor of shape (1, seq_len)
@@ -154,6 +156,21 @@ class KNN_CLI(ModelWrapper):
                 embedding_outs = embedding_outs.to('cuda')
                 with torch.no_grad():
                     outputs = self.model(inputs_embeds=embedding_outs, attention_mask=attention_mask)
+            elif mask_augment:
+                for choice_id in range(len(input_ids)):
+                    if random.random() > self.args.mask_prob:
+                        # mask_ratio = random.uniform(self.args.min_mask_ratio, 1.0) 
+                        start, end = input_ids_indices[choice_id]
+                        added_length = end - start - 3
+                        mask_idx = random.sample(range(added_length), int(added_length * self.args.replace_ratio))
+                        mask_idx = [x + start for x in mask_idx]
+                        input_ids[choice_id][start: end - 3] = torch.tensor([random.choice(range(len(self.tokenizer))) if _idx in mask_idx else input_ids[choice_id][_idx] for _idx in range(start, start+added_length)]).to(input_ids.device)
+                    else:
+                        start, end = input_ids_indices[choice_id]
+                        added_length = end - start - 3
+                        mask_idx = random.sample(range(added_length), int(added_length * self.args.replace_ratio))
+                        mask_idx = [x + start for x in mask_idx]
+                        attention_mask[choice_id][start : end - 3] = torch.tensor([0 if _idx in mask_idx else 1 for _idx in range(start, start+added_length)]).to(attention_mask.device)
             else:
                 with torch.no_grad():
                     outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
