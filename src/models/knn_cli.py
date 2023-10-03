@@ -44,7 +44,7 @@ class KNN_CLI(ModelWrapper):
         # only keep those words that are tokenized into a single token
         for k,v in self.verbalizer.items():
             for word in v:
-                if ("roberta" in args.model) or ("opt" in args.model) or ("Llama" in args.model):
+                if is_causal_model(args.model):
                     word = " " + word
                 if(len(self.tokenizer(word)["input_ids"]) == num_tokens):
                     label_set.append(k)
@@ -190,7 +190,7 @@ class KNN_CLI(ModelWrapper):
         logits = outputs.logits                             # (B * num_templates, seq_len, vocab_size)
         batchid, indices = torch.where(input_ids == self.tokenizer.mask_token_id) # See how the word is inserted
 
-        if 'gpt' in self.args.model:
+        if is_causal_model(self.args.model):
             # it predicts next word
             indices = indices -1
 

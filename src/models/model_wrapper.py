@@ -26,7 +26,7 @@ class ModelWrapper(torch.nn.Module):
         self.verbalizer = verbalizer
         self.template = template
         self.icl_examples = None
-        if 'gpt' in self.args.model:
+        if model_utils.is_causal_model(args.model):
             self.model.config.pad_token_id = self.tokenizer.pad_token_id
             self.model.config.mask_token_id = self.tokenizer.mask_token_id
         self.config = self.model.config
