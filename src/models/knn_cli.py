@@ -156,8 +156,8 @@ class KNN_CLI(ModelWrapper):
                 word_embedding_layer = self.model.get_input_embeddings()
                 new_embedding_outs = word_embedding_layer(input_ids)
                 
-                for i, (start, end) in enumerate(input_ids_indices):
-                    new_embedding_outs[i, start:end] = embedding_outs[i, :end-start]
+                for i, (start, end, template) in enumerate(input_ids_indices):
+                    new_embedding_outs[i, start:template] = embedding_outs[i, :template-start]
                 embedding_outs = embedding_outs.to('cuda')
                 with torch.no_grad():
                     outputs = self.model(inputs_embeds=embedding_outs, attention_mask=attention_mask)
