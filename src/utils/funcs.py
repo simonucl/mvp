@@ -16,7 +16,7 @@ from sklearn.linear_model import LogisticRegression
 import os
 from torch.utils.data import DataLoader
 from transformers import AutoModelForSequenceClassification, TrainingArguments
-from model_utils import is_causal_model
+from .model_utils import is_causal_model
 
 counterfitted_glove_embedding = WordEmbedding.counterfitted_GLOVE_embedding()
    
