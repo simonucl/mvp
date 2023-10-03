@@ -29,7 +29,8 @@ def insert_tokenized_template_front(tokenizer, model_type, input_id, template_id
         new_input_id[-1] = tokenizer.sep_token_id
     new_attention_mask = 1*(new_input_id !=  tokenizer.pad_token_id)
 
-    return new_input_id, new_attention_mask
+    input_ids_indices = (len(template_id)+1, min(first_pad_index+len(template_id), tokenizer.model_max_length-1))
+    return new_input_id, new_attention_mask, input_ids_indices
 
 def insert_tokenized_template_back(tokenizer, model_type, input_id, template_id, len_templates):
     '''
@@ -66,8 +67,10 @@ def insert_tokenized_template_back(tokenizer, model_type, input_id, template_id,
         if "gpt" not in model_type:
             new_input_id[-1] = tokenizer.sep_token_id
 
+    input_ids_indices = (0, min(first_pad_index, tokenizer.model_max_length-len(template_id)-1))
+
     new_attention_mask = 1*(new_input_id !=  tokenizer.pad_token_id)
-    return new_input_id, new_attention_mask
+    return new_input_id, new_attention_mask, input_ids_indices
 
 def insert_tokenized_template_back_with_examples(tokenizer, model_type, input_id, template_id, len_templates, examples, len_examples):
     '''
@@ -124,6 +127,8 @@ def insert_tokenized_template_back_with_examples(tokenizer, model_type, input_id
         new_input_id[:demon_length] = demon_examples[:demon_length]
         new_input_id[demon_length:demon_length+first_pad_index] = input_id[:first_pad_index]
 
+        input_id_indices = (demon_length, demon_length+first_pad_index)
+
         new_input_id[demon_length+first_pad_index:demon_length+first_pad_index+len(template_id)] = torch.tensor(template_id)
         if "gpt" not in model_type:
             new_input_id[demon_length+first_pad_index+len(template_id)] = tokenizer.sep_token_id
@@ -134,17 +139,21 @@ def insert_tokenized_template_back_with_examples(tokenizer, model_type, input_id
         exceed_len = demon_length + first_pad_index + len(template_id) + 1 - tokenizer.model_max_length
 
         if exceed_len > demon_length:
-            new_input_id[exceed_len:tokenizer.model_max_length-len(template_id)-1] = input_id[:tokenizer.model_max_length-len(template_id)-1]
+            new_input_id[:tokenizer.model_max_length-len(template_id)-1] = input_id[:tokenizer.model_max_length-len(template_id)-1]
             new_input_id[tokenizer.model_max_length-len(template_id)-1:tokenizer.model_max_length-1] = torch.tensor(template_id)
+
+            input_id_indices = (0, tokenizer.model_max_length-len(template_id)-1)
         else:
             new_input_id[:demon_length-exceed_len] = demon_examples[exceed_len:demon_length]
             new_input_id[demon_length-exceed_len:tokenizer.model_max_length-len(template_id)-1] = input_id[:tokenizer.model_max_length-len(template_id)-1]
             new_input_id[tokenizer.model_max_length-len(template_id)-1:tokenizer.model_max_length-1] = torch.tensor(template_id)
+            input_id_indices = (demon_length-exceed_len, tokenizer.model_max_length-len(template_id)-1)
+
         if "gpt" not in model_type:
             new_input_id[-1] = tokenizer.sep_token_id
 
     new_attention_mask = 1*(new_input_id !=  tokenizer.pad_token_id)
-    return new_input_id, new_attention_mask
+    return new_input_id, new_attention_mask, input_id_indices
 
 def insert_tokenized_prompts(tokenizer, model_type, text_input_list, templates, len_templates, use_all=True, icl_examples=None, len_examples=[0]):
     #input_ids, attention_mask = self.text_to_ids(text_input_list)]
@@ -158,6 +167,7 @@ def insert_tokenized_prompts(tokenizer, model_type, text_input_list, templates, 
     num_templates_used = len(templates) if use_all else 1
     new_input_ids = torch.zeros(input_ids.shape[0]*num_templates_used, min(tokenizer.model_max_length, input_ids.shape[1]+max(len_templates)+(len(icl_examples)*max(len_examples) if icl_examples is not None else 0)))
     new_attention_masks = torch.zeros(input_ids.shape[0]*num_templates_used, min(tokenizer.model_max_length, input_ids.shape[1]+max(len_templates)+(len(icl_examples)*max(len_examples) if icl_examples is not None else 0)))
+    new_input_id_indices = []
     for i in range(input_ids.shape[0]): 
         if use_all:
             templates_new = templates
@@ -177,20 +187,21 @@ def insert_tokenized_prompts(tokenizer, model_type, text_input_list, templates, 
             if template.split(" ")[0] == "[SEP]":
                 template_ids = tokenizer(" ".join(template.split(" ")[1:]))["input_ids"][1:-1] if "gpt" not in model_type else tokenizer(" ".join(template.split(" ")[1:]))["input_ids"]
                 if examples is not None:
-                    new_input_id, new_attention_mask = insert_tokenized_template_back_with_examples(tokenizer, model_type, input_ids[i,:], template_ids, len_templates, examples, len_examples)
+                    new_input_id, new_attention_mask, input_id_indices = insert_tokenized_template_back_with_examples(tokenizer, model_type, input_ids[i,:], template_ids, len_templates, examples, len_examples)
                 else:
-                    new_input_id, new_attention_mask = insert_tokenized_template_back(tokenizer, model_type, input_ids[i,:], template_ids, len_templates)
+                    new_input_id, new_attention_mask, input_id_indices = insert_tokenized_template_back(tokenizer, model_type, input_ids[i,:], template_ids, len_templates)
             else:
                 template_ids = tokenizer(template)["input_ids"][1:-1] if "gpt" not in model_type else tokenizer(template)["input_ids"]
                 if examples is not None:
-                    new_input_id, new_attention_mask = insert_tokenized_template_back_with_examples(tokenizer, model_type, input_ids[i,:], template_ids, len_templates, examples, len_examples)
+                    new_input_id, new_attention_mask, input_id_indices = insert_tokenized_template_back_with_examples(tokenizer, model_type, input_ids[i,:], template_ids, len_templates, examples, len_examples)
                 else:
-                    new_input_id, new_attention_mask = insert_tokenized_template_front(tokenizer, model_type, input_ids[i,:], template_ids, len_templates)
+                    new_input_id, new_attention_mask, input_id_indices = insert_tokenized_template_front(tokenizer, model_type, input_ids[i,:], template_ids, len_templates)
             
             new_input_ids[num_templates_used*i+j,:] =  new_input_id
             new_attention_masks[num_templates_used*i+j,:] =  new_attention_mask
+            new_input_id_indices.append(input_id_indices)
             j=j+1
-    return new_input_ids.long(), new_attention_masks.long()
+    return new_input_ids.long(), new_attention_masks.long(), input_id_indices
 
 
 

@@ -128,13 +128,29 @@ class KNN_CLI(ModelWrapper):
         '''
 
         if outputs is None:
-            input_ids, attention_mask = self.get_updated_input_ids(input_ids, attention_mask)
+            input_ids, attention_mask, input_ids_indices = self.get_updated_input_ids(input_ids, attention_mask)
             input_ids = input_ids.to('cuda')
             attention_mask = attention_mask.to('cuda')
 
             if adv:
                 assert labels is not None
-                embedding_outs = pgd_attack(self, input_ids, attention_mask, labels, self.args, norm = self.args.norm)
+                new_input_ids = torch.zeros(len(input_ids_indices), max([x[1]-x[0] for x in input_ids_indices]), dtype=torch.int64)
+                new_input_ids = new_input_ids.to('cuda')
+                new_attention_mask = torch.zeros(len(input_ids_indices), max([x[1]-x[0] for x in input_ids_indices]), dtype=torch.int64)
+                new_attention_mask = new_attention_mask.to('cuda')
+                # fill new_input_ids with self.tokenizer.pad_token_id
+                new_input_ids = new_input_ids.fill_(self.tokenizer.pad_token_id)
+                
+                for i, (start, end) in enumerate(input_ids_indices):
+                    new_input_ids[i, :end-start] = input_ids[i, start:end]
+                    new_attention_mask[i, :end-start] = attention_mask[i, start:end]
+
+                embedding_outs = pgd_attack(self, new_input_ids, new_attention_mask, labels, self.args, norm = self.args.norm)
+                word_embedding_layer = self.model.get_input_embeddings()
+                new_embedding_outs = word_embedding_layer(input_ids)
+                
+                for i, (start, end) in enumerate(input_ids_indices):
+                    new_embedding_outs[i, start:end] = embedding_outs[i, :end-start]
                 embedding_outs = embedding_outs.to('cuda')
                 with torch.no_grad():
                     outputs = self.model(inputs_embeds=embedding_outs, attention_mask=attention_mask)

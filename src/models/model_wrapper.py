@@ -69,11 +69,12 @@ class ModelWrapper(torch.nn.Module):
                 else:
                     text_input_list.append((t[0]+"</s></s>"+t[1]).lower())
             input_ids, attention_mask = self.text_to_ids(text_input_list)
-
+        
+        input_indices = None
 
         if self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn" or self.args.model_type == "knn_cli" or self.args.model_type == "knn_icl":
-            input_ids, attention_mask = insert_tokenized_prompts(self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
-        return input_ids, attention_mask
+            input_ids, attention_mask, input_indices = insert_tokenized_prompts(self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
+        return input_ids, attention_mask, input_indices
     
 
     def forward(self, input_ids, attention_mask=None, **kwargs):
@@ -89,7 +90,7 @@ class ModelWrapper(torch.nn.Module):
             kwargs['labels'] = kwargs['label']
         import copy
         raw_input = copy.deepcopy(input_ids)
-        input_ids, attention_mask  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+        input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
         input_ids, attention_mask = input_ids.to(self.model.device), attention_mask.to(self.model.device)
         
         if self.args.adv_augment and self.mode=="train":
