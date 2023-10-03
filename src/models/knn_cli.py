@@ -34,17 +34,23 @@ class KNN_CLI(ModelWrapper):
         self.knn_T = args.knn_T
         self.knn_k = args.knn_k
 
-        num_tokens = 1 if 'gpt' in args.model else 3 # bert tokenizes into cls, word, sep. we want the word to be a single token
+        if 'gpt' in args.model:
+            num_tokens = 1
+        elif ('opt' in args.model) or ('Llama' in args.model):
+            num_tokens = 2
+        else:
+            num_tokens = 3
 
         # only keep those words that are tokenized into a single token
         for k,v in self.verbalizer.items():
             for word in v:
-                if "roberta" in args.model:
+                if ("roberta" in args.model) or ("opt" in args.model) or ("Llama" in args.model):
                     word = " " + word
                 if(len(self.tokenizer(word)["input_ids"]) == num_tokens):
                     label_set.append(k)
                     label_words.append(word)
                 else:
+                    assert len(self.tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
                     print(word)
         self.label_set = torch.tensor(label_set)
         toks = self.tokenizer(label_words)["input_ids"]
@@ -175,6 +181,8 @@ class KNN_CLI(ModelWrapper):
                         mask_idx = random.sample(range(added_length), int(added_length * self.args.replace_ratio))
                         mask_idx = [x + start for x in mask_idx]
                         attention_mask[choice_id][start : end] = torch.tensor([0 if _idx in mask_idx else 1 for _idx in range(start, start+added_length)]).to(attention_mask.device)
+                with torch.no_grad():
+                    outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
             else:
                 with torch.no_grad():
                     outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
