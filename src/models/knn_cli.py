@@ -44,14 +44,14 @@ class KNN_CLI(ModelWrapper):
         # only keep those words that are tokenized into a single token
         for k,v in self.verbalizer.items():
             for word in v:
-                if is_causal_model(args.model):
+                if not is_causal_model(args.model):
                     word = " " + word
                 if(len(self.tokenizer(word)["input_ids"]) == num_tokens):
                     label_set.append(k)
                     label_words.append(word)
                 else:
-                    assert len(self.tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
                     print(word)
+                    assert len(self.tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
         self.label_set = torch.tensor(label_set)
         toks = self.tokenizer(label_words)["input_ids"]
 
