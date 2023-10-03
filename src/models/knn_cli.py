@@ -136,20 +136,21 @@ class KNN_CLI(ModelWrapper):
 
             if adv:
                 assert labels is not None
-                new_input_ids = torch.zeros(len(input_ids_indices), max([x[1]-x[0] for x in input_ids_indices]), dtype=torch.int64)
+                new_input_ids = torch.zeros(len(input_ids_indices), max([x[2]-x[0] for x in input_ids_indices]), dtype=torch.int64)
                 new_input_ids = new_input_ids.to('cuda')
-                new_attention_mask = torch.zeros(len(input_ids_indices), max([x[1]-x[0] for x in input_ids_indices]), dtype=torch.int64)
+                new_attention_mask = torch.zeros(len(input_ids_indices), max([x[2]-x[0] for x in input_ids_indices]), dtype=torch.int64)
                 new_attention_mask = new_attention_mask.to('cuda')
                 # fill new_input_ids with self.tokenizer.pad_token_id
                 new_input_ids = new_input_ids.fill_(self.tokenizer.pad_token_id)
                 
                 print('Input ids indices', input_ids_indices)
-                for i, (start, end) in enumerate(input_ids_indices):
-                    new_input_ids[i, :end-start] = input_ids[i, start:end]
-                    new_attention_mask[i, :end-start] = attention_mask[i, start:end]
-                print('New input ids', new_input_ids)
-                print('Equals to input ids?', torch.where(new_input_ids == self.tokenizer.mask_token_id))
-                print('New attention mask', new_attention_mask)
+                for i, (start, end, template) in enumerate(input_ids_indices):
+                    '''
+                    start and end are the indices of the input_ids before the template is inserted
+                    template is pointing to the end of the template
+                    '''
+                    new_input_ids[i, :template-start] = input_ids[i, start:template]
+                    new_attention_mask[i, :template-start] = attention_mask[i, start:template]
 
                 embedding_outs = pgd_attack(self, new_input_ids, new_attention_mask, labels, self.args, norm = self.args.norm)
                 word_embedding_layer = self.model.get_input_embeddings()
@@ -164,17 +165,17 @@ class KNN_CLI(ModelWrapper):
                 for choice_id in range(len(input_ids)):
                     if random.random() > self.args.mask_prob:
                         # mask_ratio = random.uniform(self.args.min_mask_ratio, 1.0) 
-                        start, end = input_ids_indices[choice_id]
-                        added_length = end - start - 3
+                        start, end, _ = input_ids_indices[choice_id]
+                        added_length = end - start
                         mask_idx = random.sample(range(added_length), int(added_length * self.args.replace_ratio))
                         mask_idx = [x + start for x in mask_idx]
-                        input_ids[choice_id][start: end - 3] = torch.tensor([random.choice(range(len(self.tokenizer))) if _idx in mask_idx else input_ids[choice_id][_idx] for _idx in range(start, start+added_length)]).to(input_ids.device)
+                        input_ids[choice_id][start: end] = torch.tensor([random.choice(range(len(self.tokenizer))) if _idx in mask_idx else input_ids[choice_id][_idx] for _idx in range(start, start+added_length)]).to(input_ids.device)
                     else:
-                        start, end = input_ids_indices[choice_id]
-                        added_length = end - start - 3
+                        start, end, _ = input_ids_indices[choice_id]
+                        added_length = end - start
                         mask_idx = random.sample(range(added_length), int(added_length * self.args.replace_ratio))
                         mask_idx = [x + start for x in mask_idx]
-                        attention_mask[choice_id][start : end - 3] = torch.tensor([0 if _idx in mask_idx else 1 for _idx in range(start, start+added_length)]).to(attention_mask.device)
+                        attention_mask[choice_id][start : end] = torch.tensor([0 if _idx in mask_idx else 1 for _idx in range(start, start+added_length)]).to(attention_mask.device)
             else:
                 with torch.no_grad():
                     outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
