@@ -158,9 +158,9 @@ class KNN_CLI(ModelWrapper):
                 
                 for i, (start, end, template) in enumerate(input_ids_indices):
                     new_embedding_outs[i, start:template] = embedding_outs[i, :template-start]
-                embedding_outs = embedding_outs.to('cuda')
+                new_embedding_outs = new_embedding_outs.to('cuda')
                 with torch.no_grad():
-                    outputs = self.model(inputs_embeds=embedding_outs, attention_mask=attention_mask)
+                    outputs = self.model(inputs_embeds=new_embedding_outs, attention_mask=attention_mask)
             elif mask_augment:
                 for choice_id in range(len(input_ids)):
                     if random.random() > self.args.mask_prob:
