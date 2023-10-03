@@ -80,7 +80,7 @@ class KNN_CLI(ModelWrapper):
 
         print("Loading anchor store")
         anchor_store = AnchorStore(
-                                K=len(anchor_subsample)* (1 + int(self.args.adv_augment) + int(self.mask_augment)),
+                                K=len(anchor_subsample)* (1 + int(self.args.adv_augment) + int(self.args.mask_augment)),
                                dim=model.config.vocab_size,
                                knn=args.knn_k,
                                knn_T = args.knn_T,
@@ -99,7 +99,7 @@ class KNN_CLI(ModelWrapper):
                 adv_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
                 self.anchor_store.enqueue(torch.softmax(adv_gen_logits, dim=-1), torch.tensor(labels))
             if args.mask_augment:
-                mask_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
+                mask_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), mask_augment=True).detach().cpu()
                 self.anchor_store.enqueue(torch.softmax(mask_gen_logits, dim=-1), torch.tensor(labels))
         print("Finished loading anchor store")
 
