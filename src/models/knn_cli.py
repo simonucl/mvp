@@ -143,9 +143,13 @@ class KNN_CLI(ModelWrapper):
                 # fill new_input_ids with self.tokenizer.pad_token_id
                 new_input_ids = new_input_ids.fill_(self.tokenizer.pad_token_id)
                 
+                print('Input ids indices', input_ids_indices)
                 for i, (start, end) in enumerate(input_ids_indices):
                     new_input_ids[i, :end-start] = input_ids[i, start:end]
                     new_attention_mask[i, :end-start] = attention_mask[i, start:end]
+                print('New input ids', new_input_ids)
+                print('Equals to input ids?', torch.where(new_input_ids == self.tokenizer.mask_token_id))
+                print('New attention mask', new_attention_mask)
 
                 embedding_outs = pgd_attack(self, new_input_ids, new_attention_mask, labels, self.args, norm = self.args.norm)
                 word_embedding_layer = self.model.get_input_embeddings()
@@ -177,6 +181,8 @@ class KNN_CLI(ModelWrapper):
 
         logits = outputs.logits                             # (B * num_templates, seq_len, vocab_size)
         batchid, indices = torch.where(input_ids == self.tokenizer.mask_token_id) # See how the word is inserted
+        print('Batchid and indices', batchid, indices)
+
         if 'gpt' in self.args.model:
             # it predicts next word
             indices = indices -1
