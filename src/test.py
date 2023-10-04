@@ -11,6 +11,8 @@ from src.models import get_model
 from textattack import AttackArgs
 from textattack.datasets import HuggingFaceDataset
 from textattack.attack_recipes import BAEGarg2019
+from utils.anchor import subsamplebyshot
+from collections import OrderedDict
 
 import tensorflow as tf
 gpus = tf.config.list_physical_devices('GPU')
@@ -41,6 +43,14 @@ def ood_evaluation_loop(args, model):
         json.dump(ood_datasets, fp)
 
 
+def convert_to_icl(data, icl_examples):
+    outputs = OrderedDict()
+    for i in range(len(list(icl_examples.values())[0])):
+        for k, v in icl_examples.items():
+            outputs[f"Example_{i}"] = v[i]
+            outputs[f"Label_{i}"] = k
+    outputs["inference"] = data
+    return outputs
 
 def attacker(args):
     #ipdb.set_trace()
@@ -52,12 +62,32 @@ def attacker(args):
     my_dataset, tokenizer, data_collator = prepare_huggingface_dataset(args)
     verbalizer, templates = get_prompts(args)
     model = get_model(args, my_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
-    
-    split = args.split 
+
+    split = args.split
     print(my_dataset[split].num_rows)
     args.num_examples = min(my_dataset[split].num_rows, args.num_examples )
     dataset = HuggingFaceDataset(my_dataset[split])
-    
+
+    if args.model_type == "icl_attack":
+        if 'gpt' in args.model:
+            num_tokens = 1
+        elif ('opt' in args.model) or ('Llama' in args.model):
+            num_tokens = 2
+        else:
+            num_tokens = 3
+        
+        label_set = []
+        for k,v in verbalizer.items():
+            for word in v:
+                if not is_causal_model(args.model):
+                    word = " " + word
+                if (len(tokenizer(word)["input_ids"]) == num_tokens):
+                    label_set.append(word)
+                else:
+                    print(word)
+                    assert len(tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
+        _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, args.examples_per_label)
+        dataset = dataset.map(lambda x: convert_to_icl(x, icl_examples))
     attack_name = args.attack_name
 
     if attack_name == "none":
