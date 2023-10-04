@@ -6,7 +6,7 @@ from torch_scatter import scatter_max, scatter_mean
 import torch
 from torch import nn
 from .model_wrapper import ModelWrapper
-from ..utils.anchor import AnchorStore
+from ..utils.anchor import AnchorStore, subsamplebyshot
 from ..utils.dataset import *
 from tqdm import tqdm
 from ..utils.augmentations import *
@@ -75,7 +75,7 @@ class KNN_CLI(ModelWrapper):
             self.len_templates.append(1+len(tokenizer(used_prompt)["input_ids"][1:-1]))
 
         anchor_data = dataset['train']
-        anchor_subsample, icl_examples = self.subsamplebyshot(anchor_data, args.seed, args.shot)
+        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot)
 
         if self.args.model_type == "knn_cli":
             self.icl_examples = None
@@ -108,26 +108,6 @@ class KNN_CLI(ModelWrapper):
                 mask_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), mask_augment=True).detach().cpu()
                 self.anchor_store.enqueue(torch.softmax(mask_gen_logits, dim=-1), torch.tensor(labels))
         print("Finished loading anchor store")
-
-    def subsamplebyshot(self, anchor_data, seed, shot=1):
-        '''
-        anchor_data: list of anchor data
-        seed: seed for random
-        shot: number of examples per class
-
-        returns: subsampled anchor data
-        '''
-        random.seed(seed)
-        anchor_data = copy.deepcopy(anchor_data)
-        new_anchor_data = []
-        icl_example = {}
-        for label in self.label_set:
-            label_data = [d for d in anchor_data if d['label'] == label]
-            random.shuffle(label_data)
-            new_anchor_data.extend(label_data[:shot])
-            # how to get the item from tensor? 
-            icl_example[self.verbalizer[label.item()][0]] = label_data[shot]['sentence']
-        return new_anchor_data, icl_example
     
     def get_logits(self, input_ids, labels=None, attention_mask=None, adv=False, mask_augment=False, outputs=None, reduce_to_candidates=False):
         '''
