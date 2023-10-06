@@ -49,9 +49,12 @@ class AnchorStore(nn.Module):
         # print('Queue anchor: ', self.queue_anchor)
         # print('Logits: ', logits)
         self.queue_anchor = self.queue_anchor.to(logits.device)
+        # print('Queue anchor: ', self.queue_anchor)
+        # print('Logits: ', logits.shape)
+
         dists = torch.mean(self.queue_anchor[:, None, :] * (self.queue_anchor[:, None, :].log() - logits.log()), dim=2).transpose(1, 0)
         # dists = ((self.queue_anchor.unsqueeze(0) - logits.unsqueeze(1)) ** 2).sum(dim=-1)
-        # print('L2 dists: ', l2_dists)
+        # print('dists: ', dists)
         scaled_dists = -1.0 / self.knn_T * dists
         
         # print('Scaled dists: ', scaled_dists)
@@ -69,7 +72,7 @@ class AnchorStore(nn.Module):
         knn_prob.scatter_(2, top_values, knn_weight)
         knn_prob = knn_prob.sum(dim=-2) # [B, n_class]
 
-        # print('KNN prob', knn_prob)
+        # print('KNN prob', knn_prob.shape)
         return knn_prob
     
     def knn_infer(self, query):
@@ -109,5 +112,10 @@ def subsamplebyshot(anchor_data, seed, label_set, verbalizer, shot=1, examples_p
         random.shuffle(label_data)
         new_anchor_data.extend(label_data[:shot])
         # how to get the item from tensor? 
-        icl_example[verbalizer[label.item()][0]] = label_data[shot:shot+examples_per_class]
+        # check if label is tensor
+        if torch.is_tensor(label):
+            label = label.item()
+        #     icl_example[verbalizer[label][0]] = label_data[shot:shot+examples_per_class]
+        # else:
+        icl_example[verbalizer[label][0]] = label_data[shot:shot+examples_per_class]
     return new_anchor_data, icl_example

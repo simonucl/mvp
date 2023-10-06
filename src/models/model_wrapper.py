@@ -59,20 +59,39 @@ class ModelWrapper(torch.nn.Module):
         returns: updated input_ids, attention_mask after adding the verbalizer and template in case of mvp
         '''
         ## if we receive tokenized text, untokenize it:
+        is_icl_attack = False
         if type(input_ids) != type(torch.ones(1)):
             text_input_list = []
             for t in input_ids:
                 if type(t) is not tuple:
                     text_input_list.append(t.lower())
+                elif len(t) > 2:
+                    text_input = []
+                    inference_input = t[-1]
+                    # the len(t) must be odd number
+                    assert len(t) % 2 == 1
+                    no_examples = (len(t) - 1) // 2
+                    for i in range(no_examples):
+                        text_input.append((t[2*i], t[2*i+1]))
+                    text_input.append(inference_input)
+                    is_icl_attack = True
+                    text_input_list.append(text_input)
                 elif self.args.dataset == "boolq":
                     text_input_list.append((t[1]+"</s></s>"+t[0]+"?").lower()) 
                 else:
                     text_input_list.append((t[0]+"</s></s>"+t[1]).lower())
-            input_ids, attention_mask = self.text_to_ids(text_input_list)
+        
+            if not is_icl_attack:
+                input_ids, attention_mask = self.text_to_ids(text_input_list)
         
         input_indices = None
 
-        if self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn" or self.args.model_type == "knn_cli" or self.args.model_type == "knn_icl":
+        if is_icl_attack:
+            input_ids, attention_mask, input_indices = craft_tokenized_prompts(self.tokenizer, self.args.model, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
+        elif self.args.model_type in ['icl', 'knn_icl']:
+            input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
+        elif self.args.model_type in ["mvp", "untrained_mvp", "mvp_knn", "knn_cli", "icl_attack"]:
+        # elif self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn" or self.args.model_type == "knn_cli" or self.args.model_type == "knn_icl" or self.args.model_type == "icl_attack" or 
             input_ids, attention_mask, input_indices = insert_tokenized_prompts(self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
         return input_ids, attention_mask, input_indices
     
@@ -91,8 +110,10 @@ class ModelWrapper(torch.nn.Module):
         import copy
         raw_input = copy.deepcopy(input_ids)
         input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+
+        # print('ICL input example', self.tokenizer.decode(input_ids[0]))
+
         input_ids, attention_mask = input_ids.to(self.model.device), attention_mask.to(self.model.device)
-        
         if self.args.adv_augment and self.mode=="train":
             # This part is to attack it (generate adversarial examples)
             embedding_outs = pgd_attack(self, input_ids, attention_mask, kwargs['labels'], self.args, norm = self.args.norm)

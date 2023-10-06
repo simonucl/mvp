@@ -3,8 +3,8 @@
   # 1: "[SEP] [MASK] ",
   # 2: "This is a [MASK] statement ",
   # 3: "[SEP] The statement is [MASK] "
-  0 : "[SEP] It is [MASK] . ",
-  1 : "[SEP] A [MASK] one . ",
-  2 : "[SEP] All in all, it is [MASK] . ",
-  3 : "[SEP] A [MASK] piece . "
+  0 : ". It is [MASK] . ",
+  1 : ". A [MASK] one . ",
+  2 : ". All in all, it is [MASK] . ",
+  3 : ". A [MASK] piece . "
 }

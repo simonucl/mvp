@@ -4,7 +4,7 @@ import os, pickle, copy
 from torch_scatter import scatter_max, scatter_mean
 import torch
 from torch import nn
-from .model_wrapper import ModelWrapper
+from .model_wrapper import ModelWrapper, is_causal_model
 
 
 
@@ -24,7 +24,12 @@ class MVP(ModelWrapper):
         label_set = []
         self.verbalizer = verbalizer
         self.tokenizer = tokenizer
-        num_tokens = 1 if 'gpt' in args.model else 3 # bert tokenizes into cls, word, sep. we want the word to be a single token
+        if 'gpt' in args.model:
+            num_tokens = 1
+        elif ('opt' in args.model) or ('Llama' in args.model) or ('Mistral' in args.model):
+            num_tokens = 2
+        else:
+            num_tokens = 3
 
         # only keep those words that are tokenized into a single token
         for k,v in self.verbalizer.items():
@@ -63,7 +68,7 @@ class MVP(ModelWrapper):
         '''
         logits = outputs.logits                             # (batch_size * num_templates, seq_len, vocab_size)
         batchid, indices = torch.where(input_ids == self.tokenizer.mask_token_id)
-        if 'gpt' in self.args.model:
+        if is_causal_model(self.args.model):
             # it predicts next word
             indices = indices -1
 

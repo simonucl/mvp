@@ -5,13 +5,13 @@ sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
 from TextFoolerCustom import TextFoolerCustom
 from TextBuggerCustom import TextBuggerCustom
-from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018
+from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack
 from src.utils.funcs import *
 from src.models import get_model
 from textattack import AttackArgs
 from textattack.datasets import HuggingFaceDataset
 from textattack.attack_recipes import BAEGarg2019
-from utils.anchor import subsamplebyshot
+from src.utils.anchor import subsamplebyshot
 from collections import OrderedDict
 
 import tensorflow as tf
@@ -45,11 +45,17 @@ def ood_evaluation_loop(args, model):
 
 def convert_to_icl(data, icl_examples):
     outputs = OrderedDict()
-    for i in range(len(list(icl_examples.values())[0])):
+    
+    num_labels = len(icl_examples.keys())
+    num_samples_per_label = len(list(icl_examples.values())[0])
+    for i in range(num_samples_per_label):
+        j = 0
         for k, v in icl_examples.items():
-            outputs[f"Example_{i}"] = v[i]
-            outputs[f"Label_{i}"] = k
-    outputs["inference"] = data
+            outputs[f"Example_{i*num_labels + j}"] = v[i]['sentence']
+            outputs[f"Label_{i*num_labels + j}"] = k
+            j += 1
+    outputs["inference"] = data['sentence']
+    outputs["label"] = data['label']
     return outputs
 
 def attacker(args):
@@ -64,9 +70,7 @@ def attacker(args):
     model = get_model(args, my_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
 
     split = args.split
-    print(my_dataset[split].num_rows)
     args.num_examples = min(my_dataset[split].num_rows, args.num_examples )
-    dataset = HuggingFaceDataset(my_dataset[split])
 
     if args.model_type == "icl_attack":
         if 'gpt' in args.model:
@@ -82,12 +86,22 @@ def attacker(args):
                 if not is_causal_model(args.model):
                     word = " " + word
                 if (len(tokenizer(word)["input_ids"]) == num_tokens):
-                    label_set.append(word)
+                    label_set.append(k)
                 else:
-                    print(word)
                     assert len(tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
         _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, args.examples_per_label)
-        dataset = dataset.map(lambda x: convert_to_icl(x, icl_examples))
+        my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples), batched=False, remove_columns='sentence')
+    else:
+        my_dataset = my_dataset[split]
+    
+    columns_name = my_dataset.column_names
+    if 'label' in columns_name:
+        columns_name.remove('label')
+    if 'idx' in columns_name:
+        columns_name.remove('idx')
+    print(my_dataset[0])
+    dataset = HuggingFaceDataset(my_dataset, dataset_columns=(columns_name, 'label'))
+
     attack_name = args.attack_name
 
     if attack_name == "none":
@@ -102,7 +116,8 @@ def attacker(args):
         model.mode = "attack"
         attack_name_mapper = {"textfooler":TextFoolerJin2019, 
                             "textbugger":TextBuggerLi2018,
-                            "bae": BAEGarg2019
+                            "bae": BAEGarg2019,
+                            "icl_attack": ICLTextAttack,
                             }
                             
         attack_class = attack_name_mapper[attack_name]

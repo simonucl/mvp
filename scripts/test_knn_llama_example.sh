@@ -51,16 +51,22 @@ do
 
         # MODEL_TYPE=knn_icl
         KNN=4
-        nohup python3 main.py --mode attack \
-                                    --attack_name textfooler \
-                                    --num_examples 1000 --dataset ${DATASET} \
-                                    --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-                                    --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
-                                    --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
-                                    --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} \
-                                    --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM \
-                                    --adv_augment $ADV --knn_k $KNN > ${MODELPATH}/logs_textfooler.txt
-        
+
+        for example in 4 1 2;
+        do
+            for beta in 0.0 0.5 1.0;
+            do
+                nohup python3 main.py --mode attack \
+                                            --attack_name textfooler \
+                                            --num_examples 1000 --dataset ${DATASET} \
+                                            --query_budget 50 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+                                            --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
+                                            --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+                                            --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} \
+                                            --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM \
+                                            --adv_augment $ADV --knn_k $KNN --examples_per_label ${example} --beta ${beta} > ${MODELPATH}/logs_textfooler_beta_${beta}_example_${example}.txt
+            done
+        done
         # nohup nice -n10 python3 main.py --mode attack \
         #                             --path ${MODELPATH}/final_model/ \
         #                             --attack_name textfooler \

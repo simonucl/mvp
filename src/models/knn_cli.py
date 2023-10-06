@@ -75,7 +75,9 @@ class KNN_CLI(ModelWrapper):
             self.len_templates.append(1+len(tokenizer(used_prompt)["input_ids"][1:-1]))
 
         anchor_data = dataset['train']
-        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot)
+        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, args.examples_per_label)
+        
+        print('ICL examples', icl_examples)
 
         if self.args.model_type == "knn_cli":
             self.icl_examples = None
@@ -208,7 +210,10 @@ class KNN_CLI(ModelWrapper):
         '''
 
         query_logits = self.get_logits(input_ids, outputs=outputs) # (batch_size, vocab_size)
+        label_words_logits = query_logits[:, self.label_word_ids]    # (batch_size, num_candidates)
         query_logits = torch.softmax(query_logits, dim=-1) # (batch_size, vocab_size)
+        label_words_logits = torch.softmax(label_words_logits, dim=-1) # (batch_size, num_candidates)
+
         # Directly return the logits
         # kl_dists = self.anchor_store.knn_infer(query_logits) # [B, K+1]
         # scaled_dists = -1.0 / self.knn_T * kl_dists
@@ -229,6 +234,7 @@ class KNN_CLI(ModelWrapper):
         # softmax the last dimension
         prob = torch.softmax(prob, dim=-1)
 
+        prob = self.args.beta * prob + (1-self.args.beta) * label_words_logits
         return prob
-    
+
         return label_words_logits

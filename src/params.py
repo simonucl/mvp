@@ -19,7 +19,7 @@ def parse_args():
     parser.add_argument("--model", help="Model Architecture", type=str, default = "bert-base-uncased")
 
     parser.add_argument("--model_id", help = "For Saving", type = str, default = '0')
-    parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense, mvp_knn, knn_cli, knn_icl]", type = str, default = 'mvp')
+    parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense, mvp_knn, knn_cli, knn_icl, icl_attack, icl]", type = str, default = 'mvp')
     parser.add_argument("--seed", help = "Seed", type = int, default = 0)
     parser.add_argument("--checkpoint_interval", help = "Save model after every N steps", type = int, default = 1000)
     
@@ -40,7 +40,7 @@ def parse_args():
     
     #TEST
     parser.add_argument("--path", help = "Path for test model load", type = str, default = "None")
-    parser.add_argument("--attack_name", help = "Attack Name", type = str, default = "textfooler", choices = ["none", "textfooler", "textbugger", "bae"])
+    parser.add_argument("--attack_name", help = "Attack Name", type = str, default = "textfooler", choices = ["none", "textfooler", "textbugger", "bae", "icl_attack"])
     parser.add_argument("--num_examples", help = "number of test examples", type = int, default = 1000)
     parser.add_argument("--query_budget", help = "Query Budget per example (-1 for no budget)", type = int, default = -1)
     parser.add_argument("--split", help = "split to attack on", type = str, default = "test", choices = ["train", "validation", "test"])
@@ -68,8 +68,11 @@ def parse_args():
     parser.add_argument('--data_dir', type=str, default='./data')
     parser.add_argument('--train_epoch', type=int, default=30)
     parser.add_argument('--shot', type=int, default=16)
-    parser.add_argument('--beta', type=float, default=0.5)
+    parser.add_argument('--beta', type=float, default=1.0)
 
+    # ICL Params
+    parser.add_argument('--examples_per_label', type=int, default=1)
+    
     # Masking Params
     parser.add_argument('--mask_augment', action='store_true', default=False)
     parser.add_argument('--mask_prob', type=float, default=0.15)
