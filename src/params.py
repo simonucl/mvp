@@ -19,7 +19,7 @@ def parse_args():
     parser.add_argument("--model", help="Model Architecture", type=str, default = "bert-base-uncased")
 
     parser.add_argument("--model_id", help = "For Saving", type = str, default = '0')
-    parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense, mvp_knn, knn_cli, knn_icl, icl_attack, icl]", type = str, default = 'mvp')
+    parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense, mvp_knn, knn_cli, knn_icl, icl_attack, icl, knn_icl_attack]", type = str, default = 'mvp')
     parser.add_argument("--seed", help = "Seed", type = int, default = 0)
     parser.add_argument("--checkpoint_interval", help = "Save model after every N steps", type = int, default = 1000)
     

@@ -62,20 +62,30 @@ class ModelWrapper(torch.nn.Module):
         is_icl_attack = False
         if type(input_ids) != type(torch.ones(1)):
             text_input_list = []
+            icl_examples = []
             for t in input_ids:
+                examples = {}
                 if type(t) is not tuple:
                     text_input_list.append(t.lower())
                 elif len(t) > 2:
-                    text_input = []
-                    inference_input = t[-1]
+                    # text_input_list = [t[-1]]
                     # the len(t) must be odd number
                     assert len(t) % 2 == 1
                     no_examples = (len(t) - 1) // 2
                     for i in range(no_examples):
-                        text_input.append((t[2*i], t[2*i+1]))
-                    text_input.append(inference_input)
+                        example, label = t[2*i], t[2*i+1]
+                        if label not in examples:
+                            examples[label] = []
+                        examples[label].append({'sentence': example})
+                    inference_input = t[-1]
+                    text_input_list.append(inference_input)
                     is_icl_attack = True
-                    text_input_list.append(text_input)
+                    icl_examples.append(examples)
+                    # for i in range(no_examples):
+                    #     text_input.append((t[2*i], t[2*i+1]))
+                    # text_input.append(inference_input)
+                    # is_icl_attack = True
+                    # text_input_list.append(text_input)
                 elif self.args.dataset == "boolq":
                     text_input_list.append((t[1]+"</s></s>"+t[0]+"?").lower()) 
                 else:
@@ -83,14 +93,18 @@ class ModelWrapper(torch.nn.Module):
         
             if not is_icl_attack:
                 input_ids, attention_mask = self.text_to_ids(text_input_list)
+            else:
+                self.icl_examples = icl_examples
+                input_ids, attention_mask = self.text_to_ids(text_input_list)
         
         input_indices = None
 
         if is_icl_attack:
-            input_ids, attention_mask, input_indices = craft_tokenized_prompts(self.tokenizer, self.args.model, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
-        elif self.args.model_type in ['icl', 'knn_icl']:
+            # input_ids, attention_mask, input_indices = craft_tokenized_prompts(self.tokenizer, self.args.model, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
             input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
-        elif self.args.model_type in ["mvp", "untrained_mvp", "mvp_knn", "knn_cli", "icl_attack"]:
+        elif self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack']:
+            input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
+        elif self.args.model_type in ["mvp", "untrained_mvp", "mvp_knn", "knn_cli"]:
         # elif self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn" or self.args.model_type == "knn_cli" or self.args.model_type == "knn_icl" or self.args.model_type == "icl_attack" or 
             input_ids, attention_mask, input_indices = insert_tokenized_prompts(self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
         return input_ids, attention_mask, input_indices

@@ -35,15 +35,15 @@ class ICL(ModelWrapper):
 
         if 'gpt' in args.model:
             num_tokens = 1
-        elif ('opt' in args.model) or ('Llama' in args.model):
+        elif is_causal_model(args.model):
             num_tokens = 2
         else:
             num_tokens = 3
 
         # only keep those words that are tokenized into a single token
-        for k,v in self.verbalizer.items():
+        for k,v in list(self.verbalizer.items()):
             for word in v:
-                if 'Llama' not in args.model:
+                if (not is_causal_model(args.model)) or ('gpt' in args.model):
                     word = " " + word
                 if(len(self.tokenizer(word)["input_ids"]) == num_tokens):
                     label_set.append(k)
@@ -67,11 +67,6 @@ class ICL(ModelWrapper):
             self.label_word_ids = torch.tensor(new_toks)[:,0]
         self.template_ids = []
         self.len_templates = []
-        # for prompt in template:
-        #     used_prompt = prompt.replace("[MASK]", tokenizer.mask_token)
-        #     if used_prompt.split(" ")[0] == "[SEP]":
-        #         used_prompt = " ".join(used_prompt.split(" ")[1:])
-        #     self.len_templates.append(1+len(tokenizer(used_prompt)["input_ids"][1:-1]))
 
         anchor_data = dataset['train']
         anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, args.examples_per_label)
@@ -84,6 +79,31 @@ class ICL(ModelWrapper):
 
         model = model.to('cuda')
 
+        if self.args.model_type in ["knn_icl", "knn_icl_attack"]:
+            print("Loading anchor store")
+            anchor_store = AnchorStore(
+                                    K=len(anchor_subsample)* (1 + int(self.args.adv_augment) + int(self.args.mask_augment)),
+                                dim=model.config.vocab_size,
+                                knn=args.knn_k,
+                                knn_T = args.knn_T,
+                                n_class=args.num_labels
+                                )
+            self.anchor_store = anchor_store
+
+            print('Input sample example', anchor_subsample[0]['sentence'])
+
+            for ins in tqdm(anchor_subsample, total=len(anchor_subsample)):
+                labels = ins['label']
+                gen_logits = self.get_logits([ins['sentence']], labels).detach().cpu()
+                self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
+
+                if args.adv_augment:
+                    adv_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
+                    self.anchor_store.enqueue(torch.softmax(adv_gen_logits, dim=-1), torch.tensor(labels))
+                if args.mask_augment:
+                    mask_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), mask_augment=True).detach().cpu()
+                    self.anchor_store.enqueue(torch.softmax(mask_gen_logits, dim=-1), torch.tensor(labels))
+            print("Finished loading anchor store")
 
     def get_logits(self, input_ids, labels=None, attention_mask=None, adv=False, mask_augment=False, outputs=None, reduce_to_candidates=False):
         '''
@@ -105,16 +125,20 @@ class ICL(ModelWrapper):
         #     # it predicts next word
         #     indices = indices -1
 
-        mask_logits = logits[:, -1,:]         # (B * num_templates, vocab_size)
+        last_nonpad_indices = torch.ne(input_ids, self.tokenizer.pad_token_id).sum(dim=-1) - 1 # (B * num_templates)
+
+        mask_logits = logits[torch.arange(logits.shape[0]), last_nonpad_indices, :] # (B * num_templates, vocab_size)
         label_words_logits = mask_logits
         # get the word output for each label_words_logits
-        pred = torch.argmax(logits, dim=-1) # (B * num_templates, seq_len)
-        pred = pred.cpu().numpy()
-        pred = self.tokenizer.batch_decode(pred)
-
+        # pred = torch.argmax(logits, dim=-1) # (B * num_templates, seq_len)
+        # pred = pred.cpu().numpy()
+        # pred = self.tokenizer.batch_decode(pred)
+        
+        
         if reduce_to_candidates:
             label_words_logits = mask_logits[:, self.label_word_ids]    # (B * num_templates, num_candidates)
 
+            # This applicable when there's multiple label words
             self.label_set = self.label_set.to(input_ids.device)
             if self.args.pool_label_words == "max":
                 label_words_logits = scatter_max(label_words_logits, self.label_set)[0] # (B * num_templates, num_classes)
@@ -143,12 +167,17 @@ class ICL(ModelWrapper):
         returns logits of shape (batch_size, num_classes)
         '''
 
-        query_logits = self.get_logits(input_ids, outputs=outputs, reduce_to_candidates=True)
+        query_logits = self.get_logits(input_ids, outputs=outputs)
+        # print('Decoded output', self.tokenizer.batch_decode(torch.argmax(query_logits, dim=-1)))
 
-        # softmax the last dimension
-        prob = torch.softmax(query_logits, dim=-1)
+        label_words_logits = query_logits[:, self.label_word_ids]    # (B, num_candidates)
 
-        print('ICL prob', prob)
-        return prob
+        label_words_logits = torch.softmax(label_words_logits, dim=-1)
+        if (self.args.model_type in ['knn_icl', 'knn_icl_attack']) and (self.args.beta > 0):
+            query_logits = torch.softmax(query_logits, dim=-1)
+            prob = self.anchor_store.knn_calibrate(query_logits)
 
+            label_words_logits = self.args.beta * prob + (1 - self.args.beta) * label_words_logits
+
+        # print('ICL prob', label_words_logits)
         return label_words_logits

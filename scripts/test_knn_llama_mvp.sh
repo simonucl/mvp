@@ -50,25 +50,25 @@ do
 
         MODE=train
 
-        nohup python3 main.py  --mode $MODE \
-        --dataset $DATASET \
-        --model_type $MODEL_TYPE \
-        --model_id $MODEL_ID \
-        --batch_size $BATCH_SIZE \
-        --model $MODEL \
-        --num_epochs $EPOCHS \
-        --lr $LR  \
-        --pool_label_words $POOL_LABELS \
-        --pool_templates $POOL_TEMPLATES \
-        --verbalizer_file $VERBALIZER_FILE \
-        --template_file $TEMPLATE_FILE \
-        --num_template $NUM_TEMPLATE \
-        --train_size $TRAIN_SIZE \
-        --path None \
-        --seed $SEED \
-        --patience 10 \
-        --val_size $VAL_SIZE \
-        --dataset_path $DATASET_PATH > ${MODELPATH}/logs_trainer.txt
+        # nohup python3 main.py  --mode $MODE \
+        # --dataset $DATASET \
+        # --model_type $MODEL_TYPE \
+        # --model_id $MODEL_ID \
+        # --batch_size $BATCH_SIZE \
+        # --model $MODEL \
+        # --num_epochs $EPOCHS \
+        # --lr $LR  \
+        # --pool_label_words $POOL_LABELS \
+        # --pool_templates $POOL_TEMPLATES \
+        # --verbalizer_file $VERBALIZER_FILE \
+        # --template_file $TEMPLATE_FILE \
+        # --num_template $NUM_TEMPLATE \
+        # --train_size $TRAIN_SIZE \
+        # --path None \
+        # --seed $SEED \
+        # --patience 10 \
+        # --val_size $VAL_SIZE \
+        # --dataset_path $DATASET_PATH > ${MODELPATH}/logs_trainer.txt
 
         nohup python3 main.py --mode attack \
                                     --path ${MODELPATH}/final_model/ \

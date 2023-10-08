@@ -30,10 +30,10 @@ ADV=${24}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for SEED in 13 42 100;
+for SEED in 42;
 do
-    for SHOT in 16 32;
-    do 
+    for SHOT in 16;
+    do
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         EXTRA_NAMES=mvp_icl_attack_seed_${SEED}
 
@@ -44,11 +44,9 @@ do
         DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
         
        
-
         mkdir -p ${MODELPATH}
 
         # MODEL_TYPE=knn_icl
-        m=2
         for M in 1 2 4;
         do
             echo $MODELPATH+/m_${M}
@@ -62,31 +60,33 @@ do
                                         --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM \
                                         --adv_augment $ADV --knn_k 4 --examples_per_label $M > ${MODELPATH}/logs_textfooler_mask_m_${M}.txt
         done
-        # nohup nice -n10 python3 main.py --mode attack \
-        #                             --path ${MODELPATH}/final_model/ \
-        #                             --attack_name textfooler \
-        #                             --num_examples 1000 --dataset ${DATASET} \
-        #                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-        #                             --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
-        #                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
-        #                             --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED > ${MODELPATH}/logs_textfooler.txt
 
+        MODEL_TYPE=knn_icl_attack
 
-        # nohup python3 main.py --mode attack \
-        #                         --attack_name bae \
-        #                         --num_examples 1000 --dataset ${DATASET} \
-        #                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-        #                         --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
-        #                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE}  \
-        #                         --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED --knn_model ${MODEL} --beta ${BETA} > ${MODELPATH}/logs_bae_beta_${BETA}.txt
+        echo $SEED+${SHOT}+${MODEL}+"mvp"
+        EXTRA_NAMES=mvp_icl_attack_seed_${SEED}
 
-        # nohup python3 main.py --mode attack \
-        #                         --attack_name textbugger \
-        #                         --num_examples 1000 --dataset ${DATASET} \
-        #                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-        #                         --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
-        #                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE}  \
-        #                         --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} --seed $SEED --knn_model ${MODEL} --beta ${BETA} > ${MODELPATH}/logs_textbugger_beta_${BETA}.txt
+        MODEL_ID=${MODEL_TYPE}_${SEED}_${EXTRA_NAMES}_${SHOT}
+        
+        MODELPATH=./checkpoints/${DATASET}/${MODEL}/model_${MODEL_ID}/
 
+        DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
+        
+       
+        mkdir -p ${MODELPATH}
+
+        for M in 1 2 4;
+        do
+            echo $MODELPATH+/m_${M}
+            nohup python3 main.py --mode attack \
+                                        --attack_name icl_attack \
+                                        --num_examples 1000 --dataset ${DATASET} \
+                                        --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+                                        --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
+                                        --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+                                        --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} \
+                                        --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM \
+                                        --adv_augment $ADV --knn_k 4 --beta 0.5 --examples_per_label $M > ${MODELPATH}/logs_textfooler_mask_m_${M}.txt
+        done
     done
 done

@@ -44,13 +44,13 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
         mvp_model = model_class.from_pretrained(location, return_dict = True)
         base_model = model_class.from_pretrained(args.knn_model)
         model = MVP_KNN(args, base_model, mvp_model, tokenizer, data_collator, verbalizer = verbalizer, template = template)
-    elif args.model_type == 'knn_icl':
-        model = model_class.from_pretrained(location, return_dict = True)
-        model = KNN_ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
-    elif args.model_type == 'icl':
+    # elif args.model_type == 'knn_icl':
+    #     model = model_class.from_pretrained(location, return_dict = True)
+    #     model = KNN_ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
+    elif args.model_type in ['knn_icl', 'icl', 'icl_attack', 'knn_icl_attack']:
         model = model_class.from_pretrained(location, return_dict = True)
         model = ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
-    elif args.model_type in ['knn_cli', 'knn_adv', 'icl_attack']:
+    elif args.model_type in ['knn_cli', 'knn_adv']:
         model = model_class.from_pretrained(location, return_dict = True)
         model = KNN_CLI(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
     elif args.model_type == 'mvp' or (args.model_type == "untrained_mvp" and regime=="test") or (args.model_type=="untrained_mvp" and args.path!="None"):

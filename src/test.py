@@ -72,7 +72,7 @@ def attacker(args):
     split = args.split
     args.num_examples = min(my_dataset[split].num_rows, args.num_examples )
 
-    if args.model_type == "icl_attack":
+    if args.model_type in ["icl_attack", "knn_icl_attack"]:
         if 'gpt' in args.model:
             num_tokens = 1
         elif ('opt' in args.model) or ('Llama' in args.model):
@@ -142,11 +142,11 @@ def attacker(args):
         attacker.attack.goal_function.batch_size = args.batch_size
         #set max words pertubed constraint
         # max_percent_words = 0.1 if (args.dataset == "imdb" or args.dataset == "boolq" or args.dataset == "sst2" or args.dataset == "snli") else 0.3
-        #flag = 0
+        # #flag = 0
         
-        for i,constraint in enumerate(attacker.attack.constraints):
-            if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
-                attacker.attack.constraints[i].max_percent = max_percent_words
+        # for i,constraint in enumerate(attacker.attack.constraints):
+        #     if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
+        #         attacker.attack.constraints[i].max_percent = max_percent_words
             
         print(attacker)
        
