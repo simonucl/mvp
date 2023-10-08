@@ -52,9 +52,11 @@ do
         # MODEL_TYPE=knn_icl
         KNN=4
 
+        echo ${MODELPATH}/logs_textfooler.txt
+        
         for example in 4 1 2;
         do
-            for beta in 0.0 0.5 1.0;
+            for beta in 1.0;
             do
                 nohup python3 main.py --mode attack \
                                             --attack_name textfooler \

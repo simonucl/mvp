@@ -30,7 +30,7 @@ ADV=${24}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for SEED in 13 42;
+for SEED in 13;
 do
     for SHOT in 16 32;
     do 
@@ -49,9 +49,9 @@ do
 
         mkdir -p ${MODELPATH}
 
-        for M in 1 2;
+        for M in 4 1 2;
         do
-            for BETA in 0.0 0.1 0.3 0.5 0.8 1.0;
+            for BETA in 0.0 0.3 0.5 0.8 1.0;
             do
                 
                 # MODEL_TYPE=knn_icl
@@ -63,7 +63,7 @@ do
                                             --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
                                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                             --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} \
-                                            --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM \
+                                            --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM --shot ${SHOT} \
                                             --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} --beta ${BETA} > ${MODELPATH}/logs_textfooler_example_${M}_beta_${BETA}.txt
 
                 nohup python3 main.py --mode attack \
@@ -73,7 +73,7 @@ do
                                 --pool_label_words ${POOL_LABELS_TEST} --pool_templates ${POOL_TEMPLATES_TEST} \
                                 --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                 --num_template ${NUM_TEMPLATE} --train_size ${TRAIN_SIZE} --val_size ${VAL_SIZE} \
-                                --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM \
+                                --seed $SEED --knn_model ${MODEL} --epsilon $EPSILON --norm $NORM --shot ${SHOT} \
                                 --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} --beta ${BETA} > ${MODELPATH}/logs_textbugger_example_${M}_beta_${BETA}.txt
             done
         done

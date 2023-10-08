@@ -53,10 +53,13 @@ class AnchorStore(nn.Module):
         # print('Logits: ', logits.shape)
 
         dists = torch.mean(self.queue_anchor[:, None, :] * (self.queue_anchor[:, None, :].log() - logits.log()), dim=2).transpose(1, 0)
-        # dists = ((self.queue_anchor.unsqueeze(0) - logits.unsqueeze(1)) ** 2).sum(dim=-1)
-        # print('dists: ', dists)
+        l2_dists = ((self.queue_anchor.unsqueeze(0) - logits.unsqueeze(1)) ** 2).sum(dim=-1)
+
         scaled_dists = -1.0 / self.knn_T * dists
         
+        # print sorted scaled dists
+        # print('Sorted scaled dists: ', torch.sort(scaled_dists, dim=-1))
+              
         # print('Scaled dists: ', scaled_dists)
         top_dists, top_indices = torch.topk(scaled_dists, self.knn) # [B, K+1], [B, K+1]
         values = torch.tensor(self.queue_label, dtype=torch.int64, device=logits.device)
