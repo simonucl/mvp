@@ -43,17 +43,24 @@ def ood_evaluation_loop(args, model):
         json.dump(ood_datasets, fp)
 
 
-def convert_to_icl(data, icl_examples):
+def convert_to_icl(data, icl_examples, verbalizer):
     outputs = OrderedDict()
     
-    num_labels = len(icl_examples.keys())
-    num_samples_per_label = len(list(icl_examples.values())[0])
-    for i in range(num_samples_per_label):
-        j = 0
-        for k, v in icl_examples.items():
-            outputs[f"Example_{i*num_labels + j}"] = v[i]['sentence']
-            outputs[f"Label_{i*num_labels + j}"] = k
-            j += 1
+    if type(icl_examples) == list:
+        idx = data['idx']
+        icl_example = icl_examples[idx]
+        for i, e in enumerate(icl_example):
+            outputs[f"Example_{i}"] = e['sentence']
+            outputs[f"Label_{i}"] = verbalizer[e['label']][0]
+    else:            
+        num_labels = len(icl_examples.keys())
+        num_samples_per_label = len(list(icl_examples.values())[0])
+        for i in range(num_samples_per_label):
+            j = 0
+            for k, v in icl_examples.items():
+                outputs[f"Example_{i*num_labels + j}"] = v[i]['sentence']
+                outputs[f"Label_{i*num_labels + j}"] = k
+                j += 1
     outputs["inference"] = data['sentence']
     outputs["label"] = data['label']
     return outputs
@@ -72,7 +79,7 @@ def attacker(args):
     split = args.split
     args.num_examples = min(my_dataset[split].num_rows, args.num_examples )
 
-    if args.model_type in ["icl_attack", "knn_icl_attack"]:
+    if args.model_type in ["icl_attack", "knn_icl_attack", "retrieval_icl_attack"]:
         if 'gpt' in args.model:
             num_tokens = 1
         elif ('opt' in args.model) or ('Llama' in args.model):
@@ -89,8 +96,12 @@ def attacker(args):
                     label_set.append(k)
                 else:
                     assert len(tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
-        _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, args.examples_per_label)
-        my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples), batched=False, remove_columns='sentence')
+        if args.model_type in ["retrieval_icl_attack"]:
+            icl_examples = model.indexEmbedder.subsamplebyretrieval(model.anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
+        else:
+            _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, args.examples_per_label)
+            
+        my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, model.verbalizer), batched=False, remove_columns='sentence')
     else:
         my_dataset = my_dataset[split]
     

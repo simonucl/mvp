@@ -5,7 +5,7 @@ from .mvp import MVP
 from .mvp_knn import MVP_KNN
 from .project_cls import ProjectCLS
 from .knn_cli import KNN_CLI
-from .knn_icl import KNN_ICL
+from .retrieve_icl import RETRIEVAL_ICL
 from .icl import ICL
 from transformers import AutoModelForSequenceClassification, AutoModelForMaskedLM, AutoModelForCausalLM, T5ForConditionalGeneration, LlamaForCausalLM
 import os
@@ -44,10 +44,13 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
         mvp_model = model_class.from_pretrained(location, return_dict = True)
         base_model = model_class.from_pretrained(args.knn_model)
         model = MVP_KNN(args, base_model, mvp_model, tokenizer, data_collator, verbalizer = verbalizer, template = template)
+    # elif args.model_type in ['retrieval_icl']:
+    #     model = model_class.from_pretrained(location, return_dict = True)
+    #     model = RETRIEVAL_ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
     # elif args.model_type == 'knn_icl':
     #     model = model_class.from_pretrained(location, return_dict = True)
     #     model = KNN_ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
-    elif args.model_type in ['knn_icl', 'icl', 'icl_attack', 'knn_icl_attack']:
+    elif args.model_type in ['knn_icl', 'icl', 'icl_attack', 'knn_icl_attack', 'retrieval_icl', 'retrieval_icl_attack']:
         model = model_class.from_pretrained(location, return_dict = True)
         model = ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
     elif args.model_type in ['knn_cli', 'knn_adv']:

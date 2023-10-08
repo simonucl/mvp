@@ -265,26 +265,31 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
         examples = []
         for template in templates_new:
             if icl_examples is not None:
-                if type(icl_examples) is list:
+                if (type(icl_examples) is list) and (type(icl_examples[0]) is list):
                     icl_example = icl_examples[i]
+                    for e in icl_example:
+                        examples.append(template.format(e['sentence'], model.verbalizer[int(e['label'])][0]))
                 else:
-                    icl_example = icl_examples
-                num_examples_per_label = len(list(icl_example.values())[0])
-                for idx in range(num_examples_per_label):
-                    for label, example in icl_example.items():
-                        example = example[idx]['sentence']
-                        examples.append(template.format(example, label))
+                    if type(icl_examples) is list:
+                        icl_example = icl_examples[i]
+                    else:
+                        icl_example = icl_examples
+                    num_examples_per_label = len(list(icl_example.values())[0])
+                    for idx in range(num_examples_per_label):
+                        for label, example in icl_example.items():
+                            example = example[idx]['sentence']
+                            examples.append(template.format(example, label))
 
             prompt = "\n".join(examples)
 
-            prompt_title = "Classify the sentiment of {} and {}.\n".format(model.verbalizer[1][0], model.verbalizer[0][0])            
+            prompt_title = "Classify the sentiment of {} and {}.\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
             input = tokenizer.decode(input_ids[i,:], skip_special_tokens=True)
             inference_sample = "\n" + template.format(input, "").strip()
             
             prompt = prompt_title + prompt + inference_sample
             prompts.append(prompt)
     
-    # if model.args.model_type == "icl_attack":
+    # if model.args.model_type in ["icl_attack", "retrieval_icl"]:
     #     print(len(prompts), prompts[-1])
 
     inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")

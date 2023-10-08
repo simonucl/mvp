@@ -95,6 +95,8 @@ class AnchorStore(nn.Module):
                 knn_cnt[:, i] = (self.queue_label[indices] == i).sum(dim=1)
             return knn_cnt.argmax(dim=1).tolist()
 
+
+
 def subsamplebyshot(anchor_data, seed, label_set, verbalizer, shot=1, examples_per_class=1):
     '''
     anchor_data: list of anchor data
@@ -107,15 +109,16 @@ def subsamplebyshot(anchor_data, seed, label_set, verbalizer, shot=1, examples_p
     anchor_data = copy.deepcopy(anchor_data)
     new_anchor_data = []
     icl_example = {}
+    assert shot > examples_per_class, "shot must be greater than examples_per_class"
     for label in label_set:
         label_data = [d for d in anchor_data if d['label'] == label]
         random.shuffle(label_data)
-        new_anchor_data.extend(label_data[:shot])
+        new_anchor_data.extend(label_data[:shot-examples_per_class])
         # how to get the item from tensor? 
         # check if label is tensor
         if torch.is_tensor(label):
             label = label.item()
         #     icl_example[verbalizer[label][0]] = label_data[shot:shot+examples_per_class]
         # else:
-        icl_example[verbalizer[label][0]] = label_data[shot:shot+examples_per_class]
+        icl_example[verbalizer[label][0]] = label_data[shot-examples_per_class:shot]
     return new_anchor_data, icl_example

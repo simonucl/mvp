@@ -31,7 +31,9 @@ class ModelWrapper(torch.nn.Module):
             self.model.config.mask_token_id = self.tokenizer.mask_token_id
         self.config = self.model.config
         self.model.resize_token_embeddings(len(tokenizer))
-    
+        self.indexEmbedder = None
+        if self.args.model_type in ["retrieval_icl", "retrieval_icl_attack"]:
+            self.indexEmbedder = IndexEmbedder("sentence-transformers/all-MiniLM-L6-v2")
     
     def text_to_ids(self, text):
         '''
@@ -90,7 +92,11 @@ class ModelWrapper(torch.nn.Module):
                     text_input_list.append((t[1]+"</s></s>"+t[0]+"?").lower()) 
                 else:
                     text_input_list.append((t[0]+"</s></s>"+t[1]).lower())
-        
+
+            if self.args.model_type in ["retrieval_icl"]:
+                icl_examples = self.indexEmbedder.subsamplebyretrieval(self.anchor_subsample, text_input_list, self.args.examples_per_label)
+                self.icl_examples = icl_examples
+
             if not is_icl_attack:
                 input_ids, attention_mask = self.text_to_ids(text_input_list)
             else:
@@ -99,11 +105,11 @@ class ModelWrapper(torch.nn.Module):
         
         input_indices = None
 
-        if is_icl_attack:
+        if is_icl_attack or (self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack', "retrieval_icl", "retrieval_icl_attack"]):
             # input_ids, attention_mask, input_indices = craft_tokenized_prompts(self.tokenizer, self.args.model, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
             input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
-        elif self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack']:
-            input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
+        # elif self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack']:
+            # input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
         elif self.args.model_type in ["mvp", "untrained_mvp", "mvp_knn", "knn_cli"]:
         # elif self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn" or self.args.model_type == "knn_cli" or self.args.model_type == "knn_icl" or self.args.model_type == "icl_attack" or 
             input_ids, attention_mask, input_indices = insert_tokenized_prompts(self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)

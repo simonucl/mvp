@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 SST2_LABELS2ID = {'0': 0, '1': 1}
 
-class KNN_ICL(ModelWrapper):
+class RETRIEVAL_ICL(ModelWrapper):
     def __init__(self, args, model, tokenizer, data_collator, dataset, verbalizer = None, template=None):  
         '''
         args: args object from argparse
@@ -24,7 +24,7 @@ class KNN_ICL(ModelWrapper):
 
         This is the MVP model
         '''
-        super(KNN_ICL, self).__init__(args, model, tokenizer, data_collator, verbalizer = verbalizer, template=template)
+        super(RETRIEVAL_ICL, self).__init__(args, model, tokenizer, data_collator, verbalizer = verbalizer, template=template)
 
         label_words = []
         label_set = []
@@ -72,11 +72,12 @@ class KNN_ICL(ModelWrapper):
         #     if used_prompt.split(" ")[0] == "[SEP]":
         #         used_prompt = " ".join(used_prompt.split(" ")[1:])
         #     self.len_templates.append(1+len(tokenizer(used_prompt)["input_ids"][1:-1]))
+        if self.args.model_type in ["icl", "retrieval_icl"]:
+            args.examples_per_label = 0
 
         anchor_data = dataset['train']
         anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, args.examples_per_label)
         
-
         if self.args.model_type == "knn_cli":
             self.icl_examples = None
         else:
@@ -84,31 +85,7 @@ class KNN_ICL(ModelWrapper):
 
         model = model.to('cuda')
 
-        print("Loading anchor store")
-        anchor_store = AnchorStore(
-                                K=len(anchor_subsample)* (1 + int(self.args.adv_augment) + int(self.args.mask_augment)),
-                               dim=model.config.vocab_size,
-                               knn=args.knn_k,
-                               knn_T = args.knn_T,
-                               n_class=args.num_labels
-                               )
-        self.anchor_store = anchor_store
-
-        print('Input sample example', anchor_subsample[0]['sentence'])
-
-        for ins in tqdm(anchor_subsample, total=len(anchor_subsample)):
-            labels = ins['label']
-            gen_logits = self.get_logits([ins['sentence']], labels).detach().cpu()
-            self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
-
-            if args.adv_augment:
-                adv_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
-                self.anchor_store.enqueue(torch.softmax(adv_gen_logits, dim=-1), torch.tensor(labels))
-            if args.mask_augment:
-                mask_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), mask_augment=True).detach().cpu()
-                self.anchor_store.enqueue(torch.softmax(mask_gen_logits, dim=-1), torch.tensor(labels))
-        print("Finished loading anchor store")
-
+        self.anchor_subsample = anchor_subsample
 
     def get_logits(self, input_ids, labels=None, attention_mask=None, adv=False, mask_augment=False, outputs=None, reduce_to_candidates=False):
         '''
@@ -165,15 +142,10 @@ class KNN_ICL(ModelWrapper):
         returns logits of shape (batch_size, num_classes)
         '''
 
-        query_logits = self.get_logits(input_ids, outputs=outputs)
-        label_words_logits = query_logits[:, self.label_word_ids]    # (B, num_candidates)
+        query_logits = self.get_logits(input_ids, outputs=outputs, reduce_to_candidates=True)
 
         query_logits = torch.softmax(query_logits, dim=-1)
-        label_words_logits = torch.softmax(label_words_logits, dim=-1)
 
-        prob = self.anchor_store.knn_calibrate(query_logits)
-
-        prob = self.args.beta * prob + (1 - self.args.beta) * label_words_logits
-        print('KNN_ICL prob', prob)
+        prob = query_logits
 
         return prob

@@ -69,8 +69,10 @@ class ICL(ModelWrapper):
         self.len_templates = []
 
         anchor_data = dataset['train']
-        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, args.examples_per_label)
+
+        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, args.examples_per_label if (not args.model_type in ["icl", "retrieval_icl", "retrieval_icl_attack"]) else 0)
         
+        print('Length of anchor subsample', len(anchor_subsample))
 
         if self.args.model_type == "knn_cli":
             self.icl_examples = None
@@ -78,11 +80,12 @@ class ICL(ModelWrapper):
             self.icl_examples = icl_examples
 
         model = model.to('cuda')
+        self.anchor_subsample = anchor_subsample
 
         if self.args.model_type in ["knn_icl", "knn_icl_attack"]:
             print("Loading anchor store")
             anchor_store = AnchorStore(
-                                    K=len(anchor_subsample)* (1 + int(self.args.adv_augment) + int(self.args.mask_augment)),
+                                    K=(len(anchor_subsample) - len(icl_examples))* (1 + int(self.args.adv_augment) + int(self.args.mask_augment)),
                                 dim=model.config.vocab_size,
                                 knn=args.knn_k,
                                 knn_T = args.knn_T,

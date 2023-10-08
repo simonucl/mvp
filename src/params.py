@@ -19,7 +19,7 @@ def parse_args():
     parser.add_argument("--model", help="Model Architecture", type=str, default = "bert-base-uncased")
 
     parser.add_argument("--model_id", help = "For Saving", type = str, default = '0')
-    parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense, mvp_knn, knn_cli, knn_icl, icl_attack, icl, knn_icl_attack]", type = str, default = 'mvp')
+    parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense, mvp_knn, knn_cli, knn_icl, icl_attack, icl, knn_icl_attack, retrieval_icl, retrieval_icl_attack]", type = str, default = "mvp")
     parser.add_argument("--seed", help = "Seed", type = int, default = 0)
     parser.add_argument("--checkpoint_interval", help = "Save model after every N steps", type = int, default = 1000)
     
@@ -36,7 +36,7 @@ def parse_args():
     parser.add_argument("--batch_size", help = "Batch Size for Train Set (Default = 8)", type = int, default = 8)
     parser.add_argument("--lr", help = "Learning Rate", type = float, default = 1e-5)
     parser.add_argument("--weight_decay", help = "Weight Decay", type = float, default = 0.01)
-    parser.add_argument("--max_length", help = "Max Sequence Length", type = int, default = 512)
+    parser.add_argument("--max_length", help = "Max Sequence Length", type = int, default = 1024)
     
     #TEST
     parser.add_argument("--path", help = "Path for test model load", type = str, default = "None")
