@@ -6,6 +6,7 @@ from .mvp_knn import MVP_KNN
 from .project_cls import ProjectCLS
 from .knn_cli import KNN_CLI
 from .retrieve_icl import RETRIEVAL_ICL
+from .knn_features import KNNFeatures
 from .icl import ICL
 from transformers import AutoModelForSequenceClassification, AutoModelForMaskedLM, AutoModelForCausalLM, T5ForConditionalGeneration, LlamaForCausalLM
 import os
@@ -44,6 +45,9 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
         mvp_model = model_class.from_pretrained(location, return_dict = True)
         base_model = model_class.from_pretrained(args.knn_model)
         model = MVP_KNN(args, base_model, mvp_model, tokenizer, data_collator, verbalizer = verbalizer, template = template)
+    elif args.model_type in ['knn_features']:
+        model = model_class.from_pretrained(location, return_dict = True)
+        model = KNNFeatures(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
     # elif args.model_type in ['retrieval_icl']:
     #     model = model_class.from_pretrained(location, return_dict = True)
     #     model = RETRIEVAL_ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)

@@ -9,11 +9,10 @@ from .model_wrapper import ModelWrapper
 from ..utils.anchor import AnchorStore, subsamplebyshot
 from ..utils.dataset import *
 from tqdm import tqdm
-from time import time
 
 SST2_LABELS2ID = {'0': 0, '1': 1}
 
-class ICL(ModelWrapper):
+class KNNFeatures(ModelWrapper):
     def __init__(self, args, model, tokenizer, data_collator, dataset, verbalizer = None, template=None):  
         '''
         args: args object from argparse
@@ -25,7 +24,7 @@ class ICL(ModelWrapper):
 
         This is the MVP model
         '''
-        super(ICL, self).__init__(args, model, tokenizer, data_collator, verbalizer = verbalizer, template=template)
+        super(KNNFeatures, self).__init__(args, model, tokenizer, data_collator, verbalizer = verbalizer, template=template)
 
         label_words = []
         label_set = []
@@ -92,7 +91,7 @@ class ICL(ModelWrapper):
         model = model.to('cuda')
         self.anchor_subsample = anchor_subsample
 
-        if self.args.model_type in ["knn_icl", "knn_icl_attack"]:
+        if self.args.model_type in ["knn_icl", "knn_icl_attack", "knn_features"]:
             print("Loading anchor store")
             anchor_store = AnchorStore(
                                     K=(len(anchor_subsample))* (1 + int(self.args.adv_augment) + int(self.args.mask_augment)),
@@ -107,17 +106,15 @@ class ICL(ModelWrapper):
 
             for ins in tqdm(anchor_subsample, total=len(anchor_subsample)):
                 labels = ins['label']
-                # gen_logits = self.get_logits([ins['sentence']], labels).detach().cpu()
                 hidden_states = self.get_logits([ins['sentence']], labels)[1].detach().cpu()
-                # self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
                 self.anchor_store.enqueue(hidden_states, torch.tensor(labels))
 
-                if args.adv_augment:
-                    adv_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
-                    self.anchor_store.enqueue(torch.softmax(adv_gen_logits, dim=-1), torch.tensor(labels))
-                if args.mask_augment:
-                    mask_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), mask_augment=True).detach().cpu()
-                    self.anchor_store.enqueue(torch.softmax(mask_gen_logits, dim=-1), torch.tensor(labels))
+                # if args.adv_augment:
+                #     adv_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
+                #     self.anchor_store.enqueue(torch.softmax(adv_gen_logits, dim=-1), torch.tensor(labels))
+                # if args.mask_augment:
+                #     mask_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), mask_augment=True).detach().cpu()
+                #     self.anchor_store.enqueue(torch.softmax(mask_gen_logits, dim=-1), torch.tensor(labels))
             print("Finished loading anchor store")
 
     def get_logits(self, input_ids, labels=None, attention_mask=None, adv=False, mask_augment=False, outputs=None, reduce_to_candidates=False):
@@ -132,52 +129,51 @@ class ICL(ModelWrapper):
             attention_mask = attention_mask.to('cuda')
             
             with torch.no_grad():
-                outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
+                outputs = self.model(input_ids=input_ids, attention_mask=attention_mask, output_hidden_states=True)
 
         logits = outputs.logits                             # (B * num_templates, seq_len, vocab_size)        
-
+        hidden_state = outputs.hidden_states[-1]            # (B * num_templates, seq_len, hidden_size)
         # if is_causal_model(self.args.model):
         #     # it predicts next word
         #     indices = indices -1
 
-        # start_time = time()
         last_nonpad_indices = torch.ne(input_ids, self.tokenizer.pad_token_id).sum(dim=-1) - 1 # (B * num_templates)
-        last_nonpad_indices = last_nonpad_indices.to(logits.device)
 
         mask_logits = logits[torch.arange(logits.shape[0]), last_nonpad_indices, :] # (B * num_templates, vocab_size)
-        mask_hidden_states = outputs.hidden_states[-1][torch.arange(logits.shape[0]), last_nonpad_indices, :] # (B * num_templates, hidden_size)
+        mask_hidden_state = hidden_state[torch.arange(hidden_state.shape[0]), last_nonpad_indices, :] # (B * num_templates, hidden_size)
         label_words_logits = mask_logits
-        # end_time = time()
-
-        # print('Time taken to get last nonpad indices', end_time - start_time)
-
-        # mask_logits = logits[torch.arange(logits.shape[0]), last_nonpad_indices, :] # (B * num_templates, vocab_size)
-
-        # mask_logits = logits[:, :, self.label_word_ids]    # (B * num_templates, seq_len, num_candidates
+        # get the word output for each label_words_logits
+        # pred = torch.argmax(logits, dim=-1) # (B * num_templates, seq_len)
+        # pred = pred.cpu().numpy()
+        # pred = self.tokenizer.batch_decode(pred)
         
         
         if reduce_to_candidates:
             label_words_logits = mask_logits[:, self.label_word_ids]    # (B * num_templates, num_candidates)
 
             # This applicable when there's multiple label words
-            # self.label_set = self.label_set.to(input_ids.device)
-            # if self.args.pool_label_words == "max":
-            #     label_words_logits = scatter_max(label_words_logits, self.label_set)[0] # (B * num_templates, num_classes)
-            # elif self.args.pool_label_words == "mean":
-            #     label_words_logits = scatter_mean(label_words_logits, self.label_set)   # (B * num_templates, num_classes)
+            self.label_set = self.label_set.to(input_ids.device)
+            if self.args.pool_label_words == "max":
+                label_words_logits = scatter_max(label_words_logits, self.label_set)[0] # (B * num_templates, num_classes)
+            elif self.args.pool_label_words == "mean":
+                label_words_logits = scatter_mean(label_words_logits, self.label_set)   # (B * num_templates, num_classes)
 
         # All vocab or only the target words
-        # num_templates = 1 if (self.args.num_template == -2 and self.mode == "train") else len(self.template)
-        # template_mask = (torch.arange(label_words_logits.shape[0])/(num_templates)).to(torch.long)
-        # y = torch.stack([template_mask]*label_words_logits.shape[1],dim=1)
-        # y = y.to(input_ids.device)
-        
-        # if self.args.pool_templates == "mean":
-        #     label_words_logits = scatter_mean(label_words_logits, y, dim=0)   # (B, vocab_size)
-        # elif self.args.pool_templates == "max":
-        #     label_words_logits = scatter_max(label_words_logits, y, dim=0)[0]  # (B, vocab_size)
+        num_templates = 1 if (self.args.num_template == -2 and self.mode == "train") else len(self.template)
+        template_mask = (torch.arange(label_words_logits.shape[0])/(num_templates)).to(torch.long)
+        y = torch.stack([template_mask]*label_words_logits.shape[1],dim=1)
+        y_features = torch.stack([template_mask]*mask_hidden_state.shape[1],dim=1)
+        y = y.to(input_ids.device)
+        y_features = y_features.to(input_ids.device)
 
-        return label_words_logits, mask_hidden_states
+        if self.args.pool_templates == "mean":
+            label_words_logits = scatter_mean(label_words_logits, y, dim=0)   # (B, vocab_size)
+            label_hidden_states = scatter_mean(mask_hidden_state, y_features, dim=0)   # (B, hidden_size)
+        elif self.args.pool_templates == "max":
+            label_words_logits = scatter_max(label_words_logits, y, dim=0)[0]  # (B, vocab_size)
+            label_hidden_states = scatter_max(mask_hidden_state, y_features, dim=0)[0]
+
+        return label_words_logits, label_hidden_states
     
     def outs_to_logits(self, input_ids, outputs):
         '''
@@ -192,14 +188,15 @@ class ICL(ModelWrapper):
         # print('Decoded output', self.tokenizer.batch_decode(torch.argmax(query_logits, dim=-1)))
 
         label_words_logits = query_logits[:, self.label_word_ids]    # (B, num_candidates)
-        # label_words_logits = query_logits
 
         label_words_logits = torch.softmax(label_words_logits, dim=-1)
         if (self.args.model_type in ['knn_icl', 'knn_icl_attack']) and (self.args.beta > 0):
-            # query_logits = torch.softmax(query_logits, dim=-1)
-            prob = self.anchor_store.knn_calibrate(label_hidden_states, dist_metric='l2')
+            query_logits = torch.softmax(query_logits, dim=-1)
+            prob = self.anchor_store.knn_calibrate(query_logits)
 
             label_words_logits = self.args.beta * prob + (1 - self.args.beta) * label_words_logits
-
+        elif (self.args.model_type in ['knn_features']):
+            prob = self.anchor_store.knn_calibrate(label_hidden_states, dist_metric='l2')
+            label_words_logits = self.args.beta * prob + (1 - self.args.beta) * label_words_logits
         # print('ICL prob', label_words_logits)
         return label_words_logits

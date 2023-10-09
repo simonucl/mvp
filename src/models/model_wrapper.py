@@ -3,6 +3,7 @@ from ..utils import *
 import os, pickle, copy
 import torch
 from torch import nn
+from time import time
 
 class ModelWrapper(torch.nn.Module):
     def __init__(self, args, model, tokenizer, data_collator, verbalizer = None, template=None):  
@@ -129,7 +130,14 @@ class ModelWrapper(torch.nn.Module):
             kwargs['labels'] = kwargs['label']
         import copy
         raw_input = copy.deepcopy(input_ids)
+
+        start_time = time()
+        # Step that consist adding prompt and verbalizer
         input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+
+        end_time = time()
+
+        print('Get updated input ids time', end_time - start_time)
 
         # print('ICL input example', self.tokenizer.decode(input_ids[0]))
 
@@ -143,13 +151,20 @@ class ModelWrapper(torch.nn.Module):
             adv_inputs['output_attentions'] = True
             outputs = self.model(**adv_inputs)
         else:
+            start_time = time()
             outputs = self.model(input_ids=input_ids, attention_mask = attention_mask, output_hidden_states = True, output_attentions = True)
-        
+            end_time = time()
+            print('Model forward time', end_time - start_time)
+
+        start_time = time()
         if (self.args.model_type == "mvp_knn") and (self.args.mode == "attack"):
             logits = self.outs_to_logits(input_ids, outputs, raw_input)
         else:
             logits = self.outs_to_logits(input_ids, outputs)
+        end_time = time()
 
+        print('Outs to logits time', end_time - start_time)
+        
         if 'labels' in kwargs.keys() and self.mode in ["train", "eval"]:
             loss = F.cross_entropy(logits, kwargs['labels'])
             return loss, logits
