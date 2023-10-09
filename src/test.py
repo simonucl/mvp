@@ -97,11 +97,13 @@ def attacker(args):
                 else:
                     assert len(tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
         if args.model_type in ["retrieval_icl_attack"]:
-            icl_examples = model.indexEmbedder.subsamplebyretrieval(model.anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
+            anchor_subsample, _ = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, 0)
+            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
         else:
             _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, args.examples_per_label)
             
         my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, model.verbalizer), batched=False, remove_columns='sentence')
+        print(my_dataset[0])
     else:
         my_dataset = my_dataset[split]
     

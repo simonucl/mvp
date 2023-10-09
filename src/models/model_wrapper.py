@@ -103,6 +103,8 @@ class ModelWrapper(torch.nn.Module):
                 self.icl_examples = icl_examples
                 input_ids, attention_mask = self.text_to_ids(text_input_list)
         
+            print(icl_examples)
+            
         input_indices = None
 
         if is_icl_attack or (self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack', "retrieval_icl", "retrieval_icl_attack"]):
