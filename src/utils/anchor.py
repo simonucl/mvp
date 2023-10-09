@@ -115,12 +115,12 @@ def subsamplebyshot(anchor_data, seed, label_set, verbalizer, shot=1, examples_p
     for label in label_set:
         label_data = [d for d in anchor_data if d['label'] == label]
         random.shuffle(label_data)
-        new_anchor_data.extend(label_data[:examples_per_class])
+        new_anchor_data.extend(label_data[examples_per_class: shot-examples_per_class])
         # how to get the item from tensor? 
         # check if label is tensor
         if torch.is_tensor(label):
             label = label.item()
         #     icl_example[verbalizer[label][0]] = label_data[shot:shot+examples_per_class]
         # else:
-        icl_example[verbalizer[label][0]] = label_data[shot-examples_per_class:shot]
+        icl_example[verbalizer[label][0]] = label_data[:examples_per_class]
     return new_anchor_data, icl_example

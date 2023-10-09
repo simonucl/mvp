@@ -126,10 +126,10 @@ def attacker(args):
     else:
         model.mode = "attack"
         attack_name_mapper = {
-            # "textfooler":TextFoolerJin2019, 
-            # "textbugger":TextBuggerLi2018,
-                            "textfooler": TextFoolerCustom,
-                            "textbugger": TextBuggerCustom,
+            "textfooler":TextFoolerJin2019, 
+            "textbugger":TextBuggerLi2018,
+                            # "textfooler": TextFoolerCustom,
+                            # "textbugger": TextBuggerCustom,
                             "bae": BAEGarg2019,
                             "icl_attack": ICLTextAttack,
                             }
@@ -153,12 +153,12 @@ def attacker(args):
         #set batch size of goal function
         attacker.attack.goal_function.batch_size = args.batch_size
         #set max words pertubed constraint
-        max_percent_words = 0.1 if (args.dataset == "imdb" or args.dataset == "boolq" or args.dataset == "sst2" or args.dataset == "snli") else 0.3
-        #flag = 0
+        # max_percent_words = 0.1 if (args.dataset == "imdb" or args.dataset == "boolq" or args.dataset == "sst2" or args.dataset == "snli") else 0.3
+        # #flag = 0
         
-        for i,constraint in enumerate(attacker.attack.constraints):
-            if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
-                attacker.attack.constraints[i].max_percent = max_percent_words
+        # for i,constraint in enumerate(attacker.attack.constraints):
+        #     if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
+        #         attacker.attack.constraints[i].max_percent = max_percent_words
             
         print(attacker)
        
