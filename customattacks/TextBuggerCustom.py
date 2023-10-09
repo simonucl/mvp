@@ -87,7 +87,7 @@ class TextBuggerCustom(AttackRecipe):
 
         use_constraint = UniversalSentenceEncoder(
             # threshold=0.9,
-            threshold=0.840845057, #original
+            threshold=0.8,
             metric="angular",
             compare_against_original=False,
             window_size=15,

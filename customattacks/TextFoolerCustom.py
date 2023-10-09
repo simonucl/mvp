@@ -95,7 +95,7 @@ class TextFoolerCustom(AttackRecipe):
         # (The paper claims 0.7, but analysis of the released code and some empirical
         # results show that it's 0.5.)
         #
-        constraints.append(WordEmbeddingDistance(min_cos_sim=0.5)) #original
+        constraints.append(WordEmbeddingDistance(min_cos_sim=0.6)) #original
         # constraints.append(WordEmbeddingDistance(min_cos_sim=0.7))
         #
         # Only replace words with the same part of speech (or nouns with verbs)

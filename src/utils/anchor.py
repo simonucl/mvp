@@ -39,7 +39,7 @@ class AnchorStore(nn.Module):
         # self.datastore_vals[ptr:ptr + bs] = labels.cpu().numpy()
         # self.datastore_ptr = ptr + bs
 
-    def knn_calibrate(self, logits):
+    def knn_calibrate(self, logits, dist_metric='kl'):
         '''
         logits: [B, dim]
         '''
@@ -52,8 +52,12 @@ class AnchorStore(nn.Module):
         # print('Queue anchor: ', self.queue_anchor)
         # print('Logits: ', logits.shape)
 
-        dists = torch.mean(self.queue_anchor[:, None, :] * (self.queue_anchor[:, None, :].log() - logits.log()), dim=2).transpose(1, 0)
-        l2_dists = ((self.queue_anchor.unsqueeze(0) - logits.unsqueeze(1)) ** 2).sum(dim=-1)
+        if dist_metric == 'kl':
+            dists = torch.mean(self.queue_anchor[:, None, :] * (self.queue_anchor[:, None, :].log() - logits.log()), dim=2).transpose(1, 0)
+        elif dist_metric == 'l2':
+            dists = ((self.queue_anchor.unsqueeze(0) - logits.unsqueeze(1)) ** 2).sum(dim=-1)
+        else:
+            raise NotImplementedError
 
         # print('KL dists: ', dists)
         # print('L2 dists: ', l2_dists)
@@ -77,6 +81,7 @@ class AnchorStore(nn.Module):
         knn_prob.scatter_(2, top_values, knn_weight)
         knn_prob = knn_prob.sum(dim=-2) # [B, n_class]
 
+        knn_prob = torch.softmax(knn_prob, dim=-1)
         # print('KNN prob', knn_prob.shape)
         return knn_prob
     
