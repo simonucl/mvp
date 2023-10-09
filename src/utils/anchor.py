@@ -55,6 +55,8 @@ class AnchorStore(nn.Module):
         dists = torch.mean(self.queue_anchor[:, None, :] * (self.queue_anchor[:, None, :].log() - logits.log()), dim=2).transpose(1, 0)
         l2_dists = ((self.queue_anchor.unsqueeze(0) - logits.unsqueeze(1)) ** 2).sum(dim=-1)
 
+        # print('KL dists: ', dists)
+        # print('L2 dists: ', l2_dists)
         scaled_dists = -1.0 / self.knn_T * dists
         
         # print sorted scaled dists
