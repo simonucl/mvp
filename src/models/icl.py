@@ -70,7 +70,15 @@ class ICL(ModelWrapper):
 
         anchor_data = dataset['train']
 
-        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, args.examples_per_label if (not args.model_type in ["icl", "retrieval_icl", "retrieval_icl_attack"]) else 0)
+        if args.model_type in ["icl", "icl_attack"]:
+            examples_per_label = args.shot
+        elif args.model_type in ["retrieval_icl", "retrieval_icl_attack"]:
+            examples_per_label = 0
+        else:
+            examples_per_label = args.examples_per_label
+
+
+        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, examples_per_label)
         
         print('Length of anchor subsample', len(anchor_subsample))
 

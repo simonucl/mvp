@@ -112,11 +112,10 @@ def subsamplebyshot(anchor_data, seed, label_set, verbalizer, shot=1, examples_p
     anchor_data = copy.deepcopy(anchor_data)
     new_anchor_data = []
     icl_example = {}
-    assert shot > examples_per_class, "shot must be greater than examples_per_class"
     for label in label_set:
         label_data = [d for d in anchor_data if d['label'] == label]
         random.shuffle(label_data)
-        new_anchor_data.extend(label_data[:shot-examples_per_class])
+        new_anchor_data.extend(label_data[:examples_per_class])
         # how to get the item from tensor? 
         # check if label is tensor
         if torch.is_tensor(label):

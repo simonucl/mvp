@@ -3,8 +3,8 @@ import sys, os
 # sys.path.append("textattack_lib/textattack/.")
 sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
-from TextFoolerCustom import TextFoolerCustom
-from TextBuggerCustom import TextBuggerCustom
+from .attack import TextFoolerCustom, TextBuggerCustom
+# from TextBuggerCustom import TextBuggerCustom
 from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack
 from src.utils.funcs import *
 from src.models import get_model
@@ -125,8 +125,11 @@ def attacker(args):
     
     else:
         model.mode = "attack"
-        attack_name_mapper = {"textfooler":TextFoolerJin2019, 
-                            "textbugger":TextBuggerLi2018,
+        attack_name_mapper = {
+            # "textfooler":TextFoolerJin2019, 
+            # "textbugger":TextBuggerLi2018,
+                            "textfooler": TextFoolerCustom,
+                            "textbugger": TextBuggerCustom,
                             "bae": BAEGarg2019,
                             "icl_attack": ICLTextAttack,
                             }
@@ -141,9 +144,7 @@ def attacker(args):
         
         if args.query_budget < 0: args.query_budget = None 
         attack_args = AttackArgs(num_examples=args.num_examples, 
-                                log_to_csv=log_to_csv, \
-                                checkpoint_interval=100, 
-                                checkpoint_dir=args.model_dir, 
+                                log_to_csv=log_to_csv,
                                 disable_stdout=True,
                                 enable_advance_metrics=True,
                                 query_budget = args.query_budget,parallel=False)
@@ -152,12 +153,12 @@ def attacker(args):
         #set batch size of goal function
         attacker.attack.goal_function.batch_size = args.batch_size
         #set max words pertubed constraint
-        # max_percent_words = 0.1 if (args.dataset == "imdb" or args.dataset == "boolq" or args.dataset == "sst2" or args.dataset == "snli") else 0.3
-        # #flag = 0
+        max_percent_words = 0.1 if (args.dataset == "imdb" or args.dataset == "boolq" or args.dataset == "sst2" or args.dataset == "snli") else 0.3
+        #flag = 0
         
-        # for i,constraint in enumerate(attacker.attack.constraints):
-        #     if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
-        #         attacker.attack.constraints[i].max_percent = max_percent_words
+        for i,constraint in enumerate(attacker.attack.constraints):
+            if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
+                attacker.attack.constraints[i].max_percent = max_percent_words
             
         print(attacker)
        
