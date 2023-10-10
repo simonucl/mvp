@@ -77,7 +77,7 @@ def attacker(args):
     model = get_model(args, my_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
 
     split = args.split
-    args.num_examples = min(my_dataset[split].num_rows, args.num_examples )
+    args.num_examples = min(my_dataset[split].num_rows, args.num_examples)
 
     if args.model_type in ["icl_attack", "knn_icl_attack", "retrieval_icl_attack"]:
         if 'gpt' in args.model:

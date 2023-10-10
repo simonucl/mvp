@@ -96,8 +96,8 @@ class ICL(ModelWrapper):
             print("Loading anchor store")
             anchor_store = AnchorStore(
                                     K=(len(anchor_subsample))* (1 + int(self.args.adv_augment) + int(self.args.mask_augment)),
-                                # dim=model.config.hidden_size,
-                                dim=model.config.vocab_size,
+                                dim=model.config.hidden_size,
+                                # dim=model.config.vocab_size,
                                 knn=args.knn_k,
                                 knn_T = args.knn_T,
                                 n_class=args.num_labels
@@ -108,10 +108,10 @@ class ICL(ModelWrapper):
 
             for ins in tqdm(anchor_subsample, total=len(anchor_subsample)):
                 labels = ins['label']
-                gen_logits = self.get_logits([ins['sentence']], labels)[0].detach().cpu()
-                self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
-                # hidden_states = self.get_logits([ins['sentence']], labels)[1].detach().cpu()
-                # self.anchor_store.enqueue(hidden_states, torch.tensor(labels))
+                # gen_logits = self.get_logits([ins['sentence']], labels)[0].detach().cpu()
+                # self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
+                hidden_states = self.get_logits([ins['sentence']], labels)[1].detach().cpu()
+                self.anchor_store.enqueue(hidden_states, torch.tensor(labels))
 
                 if args.adv_augment:
                     adv_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), adv=True).detach().cpu()
@@ -192,7 +192,7 @@ class ICL(ModelWrapper):
         returns logits of shape (batch_size, num_classes)
         '''
 
-        query_logits, label_hidden_states = self.get_logits(input_ids, outputs=outputs)
+        query_logits, label_hidden_states = self.get_logits(input_ids, outputs=outputs) # (B, num_classes), (B, hidden_size)
         # print('Decoded output', self.tokenizer.batch_decode(torch.argmax(query_logits, dim=-1)))
 
         label_words_logits = query_logits[:, self.label_word_ids]    # (B, num_candidates)
@@ -201,8 +201,8 @@ class ICL(ModelWrapper):
         label_words_logits = torch.softmax(label_words_logits, dim=-1)
         if (self.args.model_type in ['knn_icl', 'knn_icl_attack']) and (self.args.beta > 0):
             # query_logits = torch.softmax(query_logits, dim=-1)
-            # prob = self.anchor_store.knn_calibrate(label_hidden_states, dist_metric='l2')
-            prob = self.anchor_store.knn_calibrate(torch.softmax(query_logits, dim=-1), dist_metric='kl')
+            prob = self.anchor_store.knn_calibrate(label_hidden_states, dist_metric='l2')
+            # prob = self.anchor_store.knn_calibrate(torch.softmax(query_logits, dim=-1), dist_metric='kl')
 
             label_words_logits = self.args.beta * prob + (1 - self.args.beta) * label_words_logits
 

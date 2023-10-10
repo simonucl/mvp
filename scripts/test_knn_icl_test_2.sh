@@ -16,7 +16,7 @@ KNN_T=${9}
 
 for SEED in 1;
 do
-    for SHOT in 16;
+    for SHOT in 64;
     do 
         BETA=1.0
         echo $SEED+${SHOT}+${MODEL}+"mvp"

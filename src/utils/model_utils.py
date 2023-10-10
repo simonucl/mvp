@@ -290,8 +290,8 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
             prompt = prompt_title + prompt + inference_sample
             prompts.append(prompt)
     
+
     # if model.args.model_type in ["icl_attack", "retrieval_icl"]:
-    #     print(len(prompts), prompts[-1])
 
     inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
 

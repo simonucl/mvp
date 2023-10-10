@@ -61,20 +61,29 @@ class AnchorStore(nn.Module):
 
         # print('KL dists: ', dists)
         # print('L2 dists: ', l2_dists)
-        # scaled_dists = -1.0 / self.knn_T * dists
-        scaled_dists = dists
-        
+        scaled_dists = -1.0 / self.knn_T * dists
+        # scaled_dists = dists
+
         # print sorted scaled dists
-        print('Sorted scaled dists: ', torch.sort(scaled_dists, dim=-1))
+        # print('Sorted scaled dists: ', torch.sort(scaled_dists, dim=-1))
               
         # print('Scaled dists: ', scaled_dists)
-        top_dists, top_indices = torch.topk(scaled_dists, self.knn) # [B, K+1], [B, K+1]
+        # top_dists, top_indices = torch.topk(scaled_dists, self.knn, dim=1, largest=False)
+        top_dists, top_indices = torch.topk(scaled_dists, self.knn)
+        
+        # knn_cnt = torch.zeros((logits.shape[0], self.n_class), device=logits.device)
+        # for i in range(self.n_class):
+        #     knn_cnt[:, i] = (self.queue_label[top_indices] == i).sum(dim=1)
+        # knn_cnt = torch.softmax(knn_cnt, dim=-1)
+        # print('KNN cnt: ', knn_cnt)
+        # return knn_cnt
+    
         values = torch.tensor(self.queue_label, dtype=torch.int64, device=logits.device)
         new_vals = values.unsqueeze(0).repeat(logits.shape[0], 1) # [B, L]
         top_values = torch.gather(new_vals, 1, top_indices).unsqueeze(-1)  # [B, K, 1]
         knn_weight = torch.softmax(top_dists, dim=-1).unsqueeze(-1)  # [B, K, 1]
 
-        print('KNN weight: ', knn_weight)
+        # print('KNN weight: ', knn_weight)
         # Check the errors here
 
         # init knn-prob
@@ -82,9 +91,9 @@ class AnchorStore(nn.Module):
         knn_prob.scatter_(2, top_values, knn_weight)
         knn_prob = knn_prob.sum(dim=-2) # [B, n_class]
 
-        knn_prob = torch.softmax(knn_prob, dim=-1)
+        # knn_prob = torch.softmax(knn_prob, dim=-1)
         
-        print('KNN prob', knn_prob)
+        # print('KNN prob', knn_prob)
         return knn_prob
     
     def knn_infer(self, query):
@@ -124,12 +133,12 @@ def subsamplebyshot(anchor_data, seed, label_set, verbalizer, shot=1, examples_p
     for label in label_set:
         label_data = [d for d in anchor_data if d['label'] == label]
         random.shuffle(label_data)
-        new_anchor_data.extend(label_data[examples_per_class: shot-examples_per_class])
+        new_anchor_data.extend(label_data[: shot-examples_per_class])
         # how to get the item from tensor? 
         # check if label is tensor
         if torch.is_tensor(label):
             label = label.item()
         #     icl_example[verbalizer[label][0]] = label_data[shot:shot+examples_per_class]
         # else:
-        icl_example[verbalizer[label][0]] = label_data[:examples_per_class]
+        icl_example[verbalizer[label][0]] = label_data[shot-examples_per_class:shot]
     return new_anchor_data, icl_example
