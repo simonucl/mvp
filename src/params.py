@@ -61,7 +61,7 @@ def parse_args():
     parser.add_argument('--sampled_num', type=int, default=1)
     parser.add_argument('--prompt_num', type=int, default=2)
     parser.add_argument('--knn_k', type=int, default=8)
-    parser.add_argument('--knn_T', type=int, default=5)
+    parser.add_argument('--knn_T', type=float, default=1)
     parser.add_argument('--tindex', type=int, default=0)
     parser.add_argument('--knn_model', type=str, default='bert-base-uncased')
     parser.add_argument('--num_labels', type=int, default=2)

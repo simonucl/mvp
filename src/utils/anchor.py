@@ -61,10 +61,11 @@ class AnchorStore(nn.Module):
 
         # print('KL dists: ', dists)
         # print('L2 dists: ', l2_dists)
-        scaled_dists = -1.0 / self.knn_T * dists
+        # scaled_dists = -1.0 / self.knn_T * dists
+        scaled_dists = dists
         
         # print sorted scaled dists
-        # print('Sorted scaled dists: ', torch.sort(scaled_dists, dim=-1))
+        print('Sorted scaled dists: ', torch.sort(scaled_dists, dim=-1))
               
         # print('Scaled dists: ', scaled_dists)
         top_dists, top_indices = torch.topk(scaled_dists, self.knn) # [B, K+1], [B, K+1]
@@ -73,7 +74,7 @@ class AnchorStore(nn.Module):
         top_values = torch.gather(new_vals, 1, top_indices).unsqueeze(-1)  # [B, K, 1]
         knn_weight = torch.softmax(top_dists, dim=-1).unsqueeze(-1)  # [B, K, 1]
 
-        # print('KNN weight: ', knn_weight)
+        print('KNN weight: ', knn_weight)
         # Check the errors here
 
         # init knn-prob
@@ -82,7 +83,8 @@ class AnchorStore(nn.Module):
         knn_prob = knn_prob.sum(dim=-2) # [B, n_class]
 
         knn_prob = torch.softmax(knn_prob, dim=-1)
-        # print('KNN prob', knn_prob.shape)
+        
+        print('KNN prob', knn_prob)
         return knn_prob
     
     def knn_infer(self, query):

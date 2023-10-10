@@ -275,7 +275,7 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                     else:
                         icl_example = icl_examples
                     num_examples_per_label = len(list(icl_example.values())[0])
-                    print(icl_example)
+                    # print(icl_example)
                     for idx in range(num_examples_per_label):
                         for label, example in icl_example.items():
                             example = example[idx]['sentence']

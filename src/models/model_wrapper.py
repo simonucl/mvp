@@ -104,8 +104,9 @@ class ModelWrapper(torch.nn.Module):
                 self.icl_examples = icl_examples
                 input_ids, attention_mask = self.text_to_ids(text_input_list)
         
-            print(icl_examples)
-            
+
+        # print('ICL examples', self.icl_examples)
+
         input_indices = None
 
         if is_icl_attack or (self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack', "retrieval_icl", "retrieval_icl_attack"]):
@@ -139,7 +140,7 @@ class ModelWrapper(torch.nn.Module):
 
         end_time = time()
 
-        print('Get updated input ids time', end_time - start_time)
+        # print('Get updated input ids time', end_time - start_time)
 
         # print('ICL input example', self.tokenizer.decode(input_ids[0]))
 
@@ -156,7 +157,7 @@ class ModelWrapper(torch.nn.Module):
             start_time = time()
             outputs = self.model(input_ids=input_ids, attention_mask = attention_mask, output_hidden_states = True, output_attentions = True)
             end_time = time()
-            print('Model forward time', end_time - start_time)
+            # print('Model forward time', end_time - start_time)
 
         start_time = time()
         if (self.args.model_type == "mvp_knn") and (self.args.mode == "attack"):
@@ -165,7 +166,7 @@ class ModelWrapper(torch.nn.Module):
             logits = self.outs_to_logits(input_ids, outputs)
         end_time = time()
 
-        print('Outs to logits time', end_time - start_time)
+        # print('Outs to logits time', end_time - start_time)
         
         if 'labels' in kwargs.keys() and self.mode in ["train", "eval"]:
             loss = F.cross_entropy(logits, kwargs['labels'])

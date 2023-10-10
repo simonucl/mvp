@@ -16,9 +16,9 @@ ADV=${8}
 
 for SEED in 42;
 do
-    for SHOT in 4 8;
+    for SHOT in 16;
     do 
-        BETA=0.8
+        BETA=0.5
         echo $SEED+${SHOT}+${MODEL}+"mvp"
 
         MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
@@ -39,7 +39,7 @@ do
             Ks=(4 8)
         elif [[ $SHOT -eq 16 ]]; then
             Ms=(1 2 4)
-            Ks=(4 8 16)
+            Ks=(4)
         elif [[ $SHOT -eq 32 ]]; then
             Ms=(1 2 4)
             Ks=(4 8 16)
@@ -49,7 +49,7 @@ do
         do
             for KNN in ${Ks[@]};
             do
-                ATTACK=textfooler
+                ATTACK=icl_attack
                 mkdir -p ${MODELPATH}/example-k-${K}-m-${M}
                 echo ${MODELPATH}/example-k-${K}-m-${M}+${ATTACK}
                 # MODEL_TYPE=knn_icl
@@ -59,14 +59,15 @@ do
                                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                             --seed $SEED --shot ${SHOT} \
                                             --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} --beta ${BETA} > ${MODELPATH}/example-k-${K}-m-${M}/logs_${ATTACK}.txt
-                ATTACK=textbugger
-                echo ${MODELPATH}/example-k-${K}-m-${M}+${ATTACK}
-                nohup python3 main.py --mode attack \
-                                            --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
-                                            --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-                                            --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
-                                            --seed $SEED --shot ${SHOT} \
-                                            --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} --beta ${BETA} > ${MODELPATH}/example-k-${K}-m-${M}/logs_${ATTACK}.txt
+                # ATTACK=textbugger
+                # echo ${MODELPATH}/example-k-${K}-m-${M}+${ATTACK}
+                # KNN=4
+                # nohup python3 main.py --mode attack \
+                #                             --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+                #                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+                #                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+                #                             --seed $SEED --shot ${SHOT} \
+                #                             --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} --beta ${BETA} > ${MODELPATH}/example-k-${K}-m-${M}/logs_${ATTACK}.txt
             done
         done
 

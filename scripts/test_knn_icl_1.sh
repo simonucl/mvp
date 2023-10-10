@@ -16,7 +16,7 @@ ADV=${8}
 
 for SEED in 42;
 do
-    for SHOT in 4 8;
+    for SHOT in 16;
     do 
         BETA=0.8
         echo $SEED+${SHOT}+${MODEL}+"mvp"

@@ -3,7 +3,7 @@ import sys, os
 # sys.path.append("textattack_lib/textattack/.")
 sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
-from .attack import TextFoolerCustom, TextBuggerCustom
+from customattacks import TextFoolerCustom, TextBuggerCustom
 # from TextBuggerCustom import TextBuggerCustom
 from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack
 from src.utils.funcs import *
@@ -155,12 +155,12 @@ def attacker(args):
         #set batch size of goal function
         attacker.attack.goal_function.batch_size = args.batch_size
         #set max words pertubed constraint
-        max_percent_words = 0.3
-        #flag = 0
+        # max_percent_words = 0.3
+        # #flag = 0
         
-        for i,constraint in enumerate(attacker.attack.constraints):
-            if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
-                attacker.attack.constraints[i].max_percent = max_percent_words
+        # for i,constraint in enumerate(attacker.attack.constraints):
+        #     if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
+        #         attacker.attack.constraints[i].max_percent = max_percent_words
             
         print(attacker)
        

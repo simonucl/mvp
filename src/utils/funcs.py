@@ -143,8 +143,12 @@ def prepare_huggingface_dataset(args):
         my_dataset = my_dataset.map(map_labels)
 
     from transformers import AutoTokenizer
-    tokenizer = AutoTokenizer.from_pretrained(args.model, do_lower_case = True, model_max_length = args.max_length)
-    tokenizer.model_max_length = args.max_length
+    tokenizer = AutoTokenizer.from_pretrained(args.model, do_lower_case = True)
+    tokenizer.padding_side = "left"
+    tokenizer.truncation_side = "left"
+    tokenizer.pad_token_id = tokenizer.eos_token_id
+    tokenizer.pad_token = tokenizer.eos_token
+    
     #does not work. some bug https://github.com/huggingface/transformers/issues/17675
     tokenizer.do_lower_case = True
     # #Padding
