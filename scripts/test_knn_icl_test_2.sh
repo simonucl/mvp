@@ -54,8 +54,8 @@ do
 
         for KNN in ${Ks[@]}; do
         ATTACK=textfooler
-        mkdir -p ${MODELPATH}/example-k-${KNN}-m-${M}
-        echo ${MODELPATH}/example-k-${KNN}-m-${M}+${ATTACK}
+        mkdir -p ${MODELPATH}/example-k-${KNN}
+        echo ${MODELPATH}/example-k-${KNN}+${ATTACK}
         # MODEL_TYPE=knn_icl
         nohup python3 main.py --mode attack \
                                     --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
@@ -66,8 +66,8 @@ do
         done
 
         ATTACK=textbugger
-        mkdir -p ${MODELPATH}/example-k-${KNN}-m-${M}
-        echo ${MODELPATH}/example-k-${KNN}-m-${M}+${ATTACK}
+        mkdir -p ${MODELPATH}/example-k-${KNN}
+        echo ${MODELPATH}/example-k-${KNN}+${ATTACK}
         for KNN in ${Ks[@]}; do
         nohup python3 main.py --mode attack \
                                     --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
