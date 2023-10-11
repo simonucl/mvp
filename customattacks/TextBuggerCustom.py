@@ -13,6 +13,7 @@ from textattack.constraints.pre_transformation import (
     StopwordModification,
     InputColumnModification,
 )
+from textattack.constraints.overlap import MaxWordsPerturbed
 from textattack.constraints.semantics.sentence_encoders import UniversalSentenceEncoder
 from textattack.goal_functions import UntargetedClassification
 from textattack.search_methods import GreedyWordSwapWIR
@@ -73,7 +74,7 @@ class TextBuggerCustom(AttackRecipe):
             ]
         )
 
-        constraints = [RepeatModification(), StopwordModification()]
+        constraints = [RepeatModification(), StopwordModification(), MaxWordsPerturbed(max_percent=0.15)]
         # In our experiment, we first use the Universal Sentence
         # Encoder [7], a model trained on a number of natural language
         # prediction tasks that require modeling the meaning of word

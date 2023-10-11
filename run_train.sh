@@ -38,8 +38,10 @@ CUDA_VISIBLE_DEVICES=0 bash scripts/test_knn_icl_attack.sh 8 sst2 meta-llama/Lla
 
 CUDA_VISIBLE_DEVICES=0 bash scripts/test_knn_icl_test.sh 8 sst2 meta-llama/Llama-2-7b-hf knn_icl configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml textfooler 0 500
 
-CUDA_VISIBLE_DEVICES=0 bash scripts/test_knn_icl_test.sh 8 sst2 meta-llama/Llama-2-7b-hf knn_icl configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml textfooler 0 1000
+CUDA_VISIBLE_DEVICES=0 nohup bash scripts/test_knn_icl_test.sh 8 sst2 meta-llama/Llama-2-7b-hf knn_icl configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml textfooler 0 100 > ./logs/run_knn_icl_test.log 2>&1 &
 
-CUDA_VISIBLE_DEVICES=0 bash scripts/test_knn_icl_test_2.sh 8 sst2 meta-llama/Llama-2-7b-hf knn_icl configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml textfooler 0 2000
+CUDA_VISIBLE_DEVICES=1 nohup bash scripts/test_knn_icl_test_1.sh 8 sst2 meta-llama/Llama-2-7b-hf knn_icl configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml textfooler 0 100 > ./logs/run_knn_icl_test_1.log 2>&1 &
 
-CUDA_VISIBLE_DEVICES=1 bash scripts/test_knn_icl_test_2.sh 8 sst2 meta-llama/Llama-2-7b-hf knn_icl configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml textfooler 0 500
+CUDA_VISIBLE_DEVICES=2 nohup bash scripts/test_knn_icl_test_2.sh 8 sst2 meta-llama/Llama-2-7b-hf knn_icl configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml textfooler 0 100 > ./logs/run_knn_icl_test_2.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=0 bash scripts/test_icl.sh 1 sst2 meta-llama/Llama-2-7b-hf icl_attack configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml icl_attack 0

@@ -76,6 +76,8 @@ def attacker(args):
     verbalizer, templates = get_prompts(args)
     model = get_model(args, my_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
 
+    print('Finished loading model')
+    
     split = args.split
     args.num_examples = min(my_dataset[split].num_rows, args.num_examples)
 
@@ -86,7 +88,14 @@ def attacker(args):
             num_tokens = 2
         else:
             num_tokens = 3
-        
+
+        if args.model_type in ["icl", "icl_attack"]:
+            examples_per_label = args.shot
+        elif args.model_type in ["retrieval_icl", "retrieval_icl_attack"]:
+            examples_per_label = 0
+        else:
+            examples_per_label = args.examples_per_label
+
         label_set = []
         for k,v in verbalizer.items():
             for word in v:
@@ -98,10 +107,12 @@ def attacker(args):
                     assert len(tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
         if args.model_type in ["retrieval_icl_attack"]:
             anchor_subsample, _ = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, 0)
-            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
+            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], examples_per_label)
         else:
-            _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, args.examples_per_label)
+            _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
             
+        print(icl_examples)
+
         my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, model.verbalizer), batched=False, remove_columns='sentence')
         print(my_dataset[0])
     else:
@@ -155,12 +166,12 @@ def attacker(args):
         #set batch size of goal function
         attacker.attack.goal_function.batch_size = args.batch_size
         #set max words pertubed constraint
-        # max_percent_words = 0.3
-        # #flag = 0
+        max_percent_words = 0.15
+        #flag = 0
         
-        # for i,constraint in enumerate(attacker.attack.constraints):
-        #     if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
-        #         attacker.attack.constraints[i].max_percent = max_percent_words
+        for i,constraint in enumerate(attacker.attack.constraints):
+            if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
+                attacker.attack.constraints[i].max_percent = max_percent_words
             
         print(attacker)
        
