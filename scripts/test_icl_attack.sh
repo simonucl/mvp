@@ -16,7 +16,7 @@ ADV=${8}
 
 for SEED in 1;
 do
-    for SHOT in 2 4;
+    for SHOT in 4;
     do 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         # if [[ $ADV -eq 1 ]]; then

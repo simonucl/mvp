@@ -43,7 +43,7 @@ if __name__ == "__main__":
     model_dir = f"{root}/model_{args.model_id}"
     
     if args.mode == "attack":
-        model_dir = f"{args.path}attack_logs/"
+        model_dir = f"{args.path}/attack_logs/"
     args.model_dir = model_dir
     args.cache_dir = args.model_dir + "/cache"
     if(not os.path.exists(model_dir)):

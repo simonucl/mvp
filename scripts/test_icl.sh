@@ -14,9 +14,9 @@ ADV=${8}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for SEED in 42;
+for SEED in 1;
 do
-    for SHOT in 4;
+    for SHOT in 2;
     do 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         # if [[ $ADV -eq 1 ]]; then

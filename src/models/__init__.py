@@ -15,12 +15,13 @@ import copy
 from ..utils.model_utils import is_causal_model
 
 def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, template = None):
-    if args.path != "None": 
-        location = args.path
-    elif args.path == "None":
-        location = args.model
-    else:
-        raise Exception("path not available")
+    # if args.path != "None": 
+    #     location = args.path
+    # elif args.path == "None":
+    #     location = args.model
+    # else:
+    #     raise Exception("path not available")
+    location = args.model
     if args.mode == "train":
         regime = "train"
     else:

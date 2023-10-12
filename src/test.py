@@ -5,7 +5,7 @@ sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
 from customattacks import TextFoolerCustom, TextBuggerCustom
 # from TextBuggerCustom import TextBuggerCustom
-from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack
+from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord
 from src.utils.funcs import *
 from src.models import get_model
 from textattack import AttackArgs
@@ -111,8 +111,6 @@ def attacker(args):
         else:
             _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
             
-        print(icl_examples)
-
         my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, model.verbalizer), batched=False, remove_columns='sentence')
         print(my_dataset[0])
     else:
@@ -145,6 +143,7 @@ def attacker(args):
                             "textbugger": TextBuggerCustom,
                             "bae": BAEGarg2019,
                             "icl_attack": ICLTextAttack,
+                            "icl_attack_word": ICLTextAttackWord,
                             }
                             
         attack_class = attack_name_mapper[attack_name]
@@ -166,7 +165,10 @@ def attacker(args):
         #set batch size of goal function
         attacker.attack.goal_function.batch_size = args.batch_size
         #set max words pertubed constraint
-        max_percent_words = 0.15
+        if attack_name in ["icl_attack", "icl_attack_word"]:
+            max_percent_words = 0.1
+        else:
+            max_percent_words = 0.15
         #flag = 0
         
         for i,constraint in enumerate(attacker.attack.constraints):

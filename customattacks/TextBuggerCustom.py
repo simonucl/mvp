@@ -44,27 +44,27 @@ class TextBuggerCustom(AttackRecipe):
                 # (1) Insert: Insert a space into the word.
                 # Generally, words are segmented by spaces in English. Therefore,
                 # we can deceive classifiers by inserting spaces into words.
-                # WordSwapRandomCharacterInsertion(
-                #     random_one=True,
-                #     letters_to_insert=" ",
-                #     skip_first_char=True,
-                #     skip_last_char=True,
-                # ),
+                WordSwapRandomCharacterInsertion(
+                    random_one=True,
+                    letters_to_insert=" ",
+                    skip_first_char=True,
+                    skip_last_char=True,
+                ),
                 # # (2) Delete: Delete a random character of the word except for the first
                 # # and the last character.
-                # WordSwapRandomCharacterDeletion(
-                #     random_one=True, skip_first_char=True, skip_last_char=True
-                # ),
+                WordSwapRandomCharacterDeletion(
+                    random_one=True, skip_first_char=True, skip_last_char=True
+                ),
                 # # (3) Swap: Swap random two adjacent letters in the word but do not
                 # # alter the first or last letter. This is a common occurrence when
                 # # typing quickly and is easy to implement.
-                # WordSwapNeighboringCharacterSwap(
-                #     random_one=True, skip_first_char=True, skip_last_char=True
-                # ),
+                WordSwapNeighboringCharacterSwap(
+                    random_one=True, skip_first_char=True, skip_last_char=True
+                ),
                 # (4) Substitute-C (Sub-C): Replace characters with visually similar
                 # characters (e.g., replacing “o” with “0”, “l” with “1”, “a” with “@”)
                 # or adjacent characters in the keyboard (e.g., replacing “m” with “n”).
-                # WordSwapHomoglyphSwap(),
+                WordSwapHomoglyphSwap(),
                 # (5) Substitute-W
                 # (Sub-W): Replace a word with its topk nearest neighbors in a
                 # context-aware word vector space. Specifically, we use the pre-trained

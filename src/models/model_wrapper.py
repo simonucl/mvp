@@ -102,7 +102,6 @@ class ModelWrapper(torch.nn.Module):
                 input_ids, attention_mask = self.text_to_ids(text_input_list)
             else:
                 self.icl_examples = icl_examples
-                print(icl_examples)
                 input_ids, attention_mask = self.text_to_ids(text_input_list)
         
 
