@@ -16,8 +16,26 @@ ADV=${8}
 
 for SEED in 1;
 do
-    for SHOT in 4;
+    for SHOT in 1 2 8 16;
     do 
+
+        if [[ SHOT -eq 1 ]]; then
+            BATCH_SIZE=16
+            MAX_PRECENT_WORDS=0.1
+        elif [[ SHOT -eq 2 ]]; then
+            BATCH_SIZE=16
+            MAX_PRECENT_WORDS=0.1
+        elif [[ SHOT -eq 4 ]]; then
+            BATCH_SIZE=8
+            MAX_PRECENT_WORDS=0.1
+        elif [[ SHOT -eq 8 ]]; then
+            BATCH_SIZE=4
+            MAX_PRECENT_WORDS=0.15
+        elif [[ SHOT -eq 16 ]]; then
+            BATCH_SIZE=2
+            MAX_PRECENT_WORDS=0.2
+        fi
+
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         # if [[ $ADV -eq 1 ]]; then
         #     EXTRA_NAMES=adv_seed_${SEED}
@@ -42,7 +60,7 @@ do
                                     --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                     --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                     --seed $SEED --shot ${SHOT} --path ${MODELPATH} \
-                                    --adv_augment $ADV --knn_k $KNN > ${MODELPATH}/logs_${ATTACK}.txt
+                                    --adv_augment $ADV --knn_k $KNN --max_percent_words ${MAX_PRECENT_WORDS} > ${MODELPATH}/logs_${ATTACK}_${MAX_PRECENT_WORDS}.txt
         # ATTACK=textbugger
         # MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
 

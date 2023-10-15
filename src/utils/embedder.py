@@ -24,7 +24,7 @@ class IndexEmbedder(torch.nn.Module):
         # train_data = [x['sentence'] for x in anchor_data]
         retrieved_examples = [[] for _ in range(len(text_input_list))]
         for label, data in label2data.items():
-            train_data_embeddings = self.embedder.encode([x['sentence'] for x in data], convert_to_tensor=True)
+            train_data_embeddings = self.embedder.encode(data, convert_to_tensor=True)
             for i, text in enumerate(text_input_list):
                 query_embedding = self.embedder.encode(text, convert_to_tensor=True) 
                 cos_scores = util.pytorch_cos_sim(query_embedding, train_data_embeddings)[0]

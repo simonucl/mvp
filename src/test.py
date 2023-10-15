@@ -13,6 +13,7 @@ from textattack.datasets import HuggingFaceDataset
 from textattack.attack_recipes import BAEGarg2019
 from src.utils.anchor import subsamplebyshot
 from collections import OrderedDict
+from time import time
 
 import tensorflow as tf
 gpus = tf.config.list_physical_devices('GPU')
@@ -66,6 +67,8 @@ def convert_to_icl(data, icl_examples, verbalizer):
     return outputs
 
 def attacker(args):
+    print(args)
+    
     #ipdb.set_trace()
     if not os.path.exists(args.model_dir): os.makedirs(args.model_dir)
     file = open(f"{args.model_dir}/eval.txt", "a")  
@@ -107,7 +110,7 @@ def attacker(args):
                     assert len(tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
         if args.model_type in ["retrieval_icl_attack"]:
             anchor_subsample, _ = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, 0)
-            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], examples_per_label)
+            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
         else:
             _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
             
@@ -171,10 +174,19 @@ def attacker(args):
             max_percent_words = 0.15
         #flag = 0
         
+        if args.max_percent_words > 0:
+            max_percent_words = args.max_percent_words
+
         for i,constraint in enumerate(attacker.attack.constraints):
             if type(constraint) == textattack.constraints.overlap.max_words_perturbed.MaxWordsPerturbed:
                 attacker.attack.constraints[i].max_percent = max_percent_words
             
         print(attacker)
        
+        attack_start_time = time()
+
         attacker.attack_dataset()
+
+        attack_end_time = time()
+        print(f"Attack time: {attack_end_time - attack_start_time}")
+        myprint(f"Attack time: {attack_end_time - attack_start_time}")
