@@ -18,9 +18,9 @@ for ATTACK in textfooler textbugger;
 do 
     for SEED in 1 13 42;
     do
-        for SHOT in 16 32;
+        for SHOT in 4 8;
         do 
-            BETA=1.0
+            BETA=0.5
             echo $SEED+${SHOT}+${MODEL}+"mvp"
 
             MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
@@ -45,7 +45,7 @@ do
                                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                         --seed $SEED --shot ${SHOT} \
-                                        --adv_augment $ADV --knn_k ${KNN} --examples_per_label 1 --knn_T ${KNN_T} --max_percent_words 0.15 > ${MODELPATH}/final/logs_${ATTACK}.txt
+                                        --adv_augment $ADV --knn_k ${KNN} --examples_per_label 1 --knn_T ${KNN_T} --max_percent_words 0.15 > ${MODELPATH}/final/logs_beta_${BETA}_${ATTACK}.txt
         done
     done
 done
