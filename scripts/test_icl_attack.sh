@@ -16,7 +16,7 @@ ADV=${8}
 
 for SEED in 1;
 do
-    for SHOT in 1 2 8 16;
+    for SHOT in 8 16 32;
     do 
 
         if [[ SHOT -eq 1 ]]; then
@@ -32,6 +32,9 @@ do
             BATCH_SIZE=4
             MAX_PRECENT_WORDS=0.15
         elif [[ SHOT -eq 16 ]]; then
+            BATCH_SIZE=2
+            MAX_PRECENT_WORDS=0.2
+        elif [[ SHOT -eq 32 ]]; then
             BATCH_SIZE=2
             MAX_PRECENT_WORDS=0.2
         fi
