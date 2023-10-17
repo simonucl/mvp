@@ -110,7 +110,7 @@ class ICL(ModelWrapper):
                 labels = ins['label']
                 # gen_logits = self.get_logits([ins['sentence']], labels)[0].detach().cpu()
                 # self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
-                hidden_states = self.get_logits([ins['sentence']], labels)[1].detach().cpu()
+                hidden_states = self.get_logits([ins['sentence']], labels, is_knn=True)[1].detach().cpu()
                 self.anchor_store.enqueue(hidden_states, torch.tensor(labels))
 
                 if args.adv_augment:
@@ -121,14 +121,14 @@ class ICL(ModelWrapper):
                     self.anchor_store.enqueue(torch.softmax(mask_gen_logits, dim=-1), torch.tensor(labels))
             print("Finished loading anchor store")
 
-    def get_logits(self, input_ids, labels=None, attention_mask=None, adv=False, mask_augment=False, outputs=None, reduce_to_candidates=False):
+    def get_logits(self, input_ids, labels=None, attention_mask=None, is_knn=False, adv=False, mask_augment=False, outputs=None, reduce_to_candidates=False):
         '''
         input_ids: torch tensor of shape (1, seq_len)
         attention_mask: torch tensor of shape (1, seq_len)
         '''
 
         if outputs is None:
-            input_ids, attention_mask, input_ids_indices = self.get_updated_input_ids(input_ids, attention_mask)
+            input_ids, attention_mask, input_ids_indices = self.get_updated_input_ids(input_ids, attention_mask, is_knn)
             input_ids = input_ids.to('cuda')
             attention_mask = attention_mask.to('cuda')
             

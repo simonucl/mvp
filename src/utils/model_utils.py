@@ -234,7 +234,7 @@ def insert_tokenized_prompts(tokenizer, model_type, text_input_list, templates, 
             j=j+1
     return new_input_ids.long(), new_attention_masks.long(), new_input_id_indices
 
-def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_templates, use_all=True, icl_examples=None, len_examples=[0]):
+def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_templates, use_all=True, icl_examples=None, len_examples=[0], is_knn=False):
     '''
     '''
     # if icl_examples is not None:
@@ -292,7 +292,10 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                                 examples.append(template.format(e['sentence'], label))
             prompt = "\n\n".join(examples)
 
-            prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
+            if model_type in ["knn_icl"]:
+                prompt_title = ""
+            else:
+                prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
             input = tokenizer.decode(input_ids[i,:], skip_special_tokens=True)
             inference_sample = "\n\n" + template.format(input, "").strip()
             
