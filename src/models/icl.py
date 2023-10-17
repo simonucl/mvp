@@ -62,10 +62,10 @@ class ICL(ModelWrapper):
         
         if 'gpt' not in args.model:
             new_toks = [t for t in toks if len(t) == num_tokens]
-            self.label_word_ids = torch.tensor(new_toks)[:,1]
+            self.label_word_ids = torch.tensor(new_toks)[:,-1]
         else:
             new_toks = [t for t in toks]
-            self.label_word_ids = torch.tensor(new_toks)[:,0]
+            self.label_word_ids = torch.tensor(new_toks)[:,-1]
         self.template_ids = []
         self.len_templates = []
 

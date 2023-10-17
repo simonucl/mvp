@@ -290,11 +290,11 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                         for label, example in icl_example.items():
                             for e in example:
                                 examples.append(template.format(e['sentence'], label))
-            prompt = "\n".join(examples)
+            prompt = "\n\n".join(examples)
 
-            prompt_title = "Classify the sentiment of {} and {}.\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
+            prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
             input = tokenizer.decode(input_ids[i,:], skip_special_tokens=True)
-            inference_sample = "\n" + template.format(input, "").strip()
+            inference_sample = "\n\n" + template.format(input, "").strip()
             
             prompt = prompt_title + prompt + inference_sample
             prompts.append(prompt)
@@ -304,7 +304,8 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
 
     inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
 
-    # print('Decoded prompts', tokenizer.decode(inputs["input_ids"][0,:]))
+    # print('Decoded prompts', tokenizer.decode(inputs["input_ids"][0,:], skip_special_tokens=False))
+    # print('Length of the decoded prompts', len(tokenizer.decode(inputs["input_ids"][0,:], skip_special_tokens=False)))
     
     new_input_ids = inputs["input_ids"]
     new_attention_masks = inputs["attention_mask"]
