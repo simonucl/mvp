@@ -52,4 +52,4 @@ CUDA_VISIBLE_DEVICES=1 nohup bash scripts/test_icl_attack.sh 8 sst2 meta-llama/L
 
 CUDA_VISIBLE_DEVICES=1 nohup bash scripts/test_icl_attack.sh 8 sst2 meta-llama/Llama-2-7b-hf icl_attack configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml icl_attack_word 0 > ./logs/run_icl_attack_word.log 2>&1 &
 
-CUDA_VISIBLE_DEVICES=1 nohup bash scripts/test_ralm.sh 8 sst2 gpt2-xl retrieval_icl_attack configs/templates_sst2_icl.yaml configs/verbalizer_sst2.yaml icl_attack 0 > ./logs/run_ralm_icl_attack.log 2>&1 &
+

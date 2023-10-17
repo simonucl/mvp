@@ -5,7 +5,7 @@ sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
 from customattacks import TextFoolerCustom, TextBuggerCustom
 # from TextBuggerCustom import TextBuggerCustom
-from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord
+from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord, SwapLabel2023
 from src.utils.funcs import *
 from src.models import get_model
 from textattack import AttackArgs
@@ -64,6 +64,7 @@ def convert_to_icl(data, icl_examples, verbalizer):
                 j += 1
     outputs["inference"] = data['sentence']
     outputs["label"] = data['label']
+    print('Outputs', outputs)
     return outputs
 
 def attacker(args):
@@ -84,7 +85,7 @@ def attacker(args):
     split = args.split
     args.num_examples = min(my_dataset[split].num_rows, args.num_examples)
 
-    if args.model_type in ["icl_attack", "knn_icl_attack", "retrieval_icl_attack"]:
+    if args.model_type in ["icl_attack", "knn_icl_attack", "retrieval_icl_attack"] or args.attack_name in ["swap_labels"]:
         if 'gpt' in args.model:
             num_tokens = 1
         elif ('opt' in args.model) or ('Llama' in args.model):
@@ -113,7 +114,8 @@ def attacker(args):
             icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
         else:
             _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
-            
+        print(icl_examples)
+
         my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, model.verbalizer), batched=False, remove_columns='sentence')
         print(my_dataset[0])
     else:
@@ -147,6 +149,7 @@ def attacker(args):
                             "bae": BAEGarg2019,
                             "icl_attack": ICLTextAttack,
                             "icl_attack_word": ICLTextAttackWord,
+                            "swap_labels": SwapLabel2023,
                             }
                             
         attack_class = attack_name_mapper[attack_name]
@@ -170,6 +173,8 @@ def attacker(args):
         #set max words pertubed constraint
         if attack_name in ["icl_attack", "icl_attack_word"]:
             max_percent_words = 0.1
+        elif attack_name in ["swap_labels"]:
+            max_percent_words = 0.7
         else:
             max_percent_words = 0.15
         #flag = 0

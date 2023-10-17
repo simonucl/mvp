@@ -274,13 +274,22 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                         icl_example = icl_examples[i]
                     else:
                         icl_example = icl_examples
-                    num_examples_per_label = len(list(icl_example.values())[0])
-                    # print(icl_example)
-                    for idx in range(num_examples_per_label):
+                    
+                    # assert if any of the label is ''
+                    assert '' not in icl_example.keys(), "Empty label found in icl examples"
+                    
+                    num_examples_per_label_map = [len(v) for k, v in icl_example.items()]
+                    # check if all instance in num_examples_per_label_map are equal
+                    if len(set(num_examples_per_label_map)) == 1:
+                        num_examples_per_label = num_examples_per_label_map[0]
+                        for idx in range(num_examples_per_label):
+                            for label, example in icl_example.items():
+                                example = example[idx]['sentence']
+                                examples.append(template.format(example, label))
+                    else:
                         for label, example in icl_example.items():
-                            example = example[idx]['sentence']
-                            examples.append(template.format(example, label))
-
+                            for e in example:
+                                examples.append(template.format(e['sentence'], label))
             prompt = "\n".join(examples)
 
             prompt_title = "Classify the sentiment of {} and {}.\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
@@ -295,6 +304,8 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
 
     inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
 
+    # print('Decoded prompts', tokenizer.decode(inputs["input_ids"][0,:]))
+    
     new_input_ids = inputs["input_ids"]
     new_attention_masks = inputs["attention_mask"]
 
