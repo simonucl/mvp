@@ -111,7 +111,7 @@ class ModelWrapper(torch.nn.Module):
 
         if is_icl_attack or (self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack', "retrieval_icl", "retrieval_icl_attack"]):
             # input_ids, attention_mask, input_indices = craft_tokenized_prompts(self.tokenizer, self.args.model, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
-            input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
+            input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
         # elif self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack']:
             # input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
         elif self.args.model_type in ["mvp", "untrained_mvp", "mvp_knn", "knn_cli"]:

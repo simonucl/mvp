@@ -18,7 +18,7 @@ for ATTACK in textfooler textbugger;
 do
     for SEED in 1;
     do
-        for SHOT in 32 16 8;
+        for SHOT in 16 8 32;
         do 
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             # if [[ $ADV -eq 1 ]]; then

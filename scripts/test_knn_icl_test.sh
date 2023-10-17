@@ -18,7 +18,7 @@ for ATTACK in textfooler textbugger;
 do 
     for SEED in 1 13 42;
     do
-        for SHOT in 64;
+        for SHOT in 4 8 16 32 64;
         do 
             BETA=1.0
             echo $SEED+${SHOT}+${MODEL}+"mvp"
