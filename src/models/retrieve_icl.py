@@ -76,7 +76,7 @@ class RETRIEVAL_ICL(ModelWrapper):
             args.examples_per_label = 0
 
         anchor_data = dataset['train']
-        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, args.examples_per_label)
+        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, 0)
         
         if self.args.model_type == "knn_cli":
             self.icl_examples = None
