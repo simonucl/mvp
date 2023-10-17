@@ -18,7 +18,7 @@ for ATTACK in textfooler;
 do 
     for SEED in 1;
     do
-        for SHOT in 8 16 32;
+        for SHOT in 4 8 16 32 64;
         do 
             for BETA in 0.2 0.4 0.5 0.6 0.8;
             do

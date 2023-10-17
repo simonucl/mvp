@@ -234,7 +234,7 @@ def insert_tokenized_prompts(tokenizer, model_type, text_input_list, templates, 
             j=j+1
     return new_input_ids.long(), new_attention_masks.long(), new_input_id_indices
 
-def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_templates, use_all=True, icl_examples=None, len_examples=[0], is_knn=False):
+def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_templates, use_all=True, icl_examples=None, len_examples=[0]):
     '''
     '''
     # if icl_examples is not None:
