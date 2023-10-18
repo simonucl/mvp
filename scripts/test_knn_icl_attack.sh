@@ -16,33 +16,37 @@ ADV=${8}
 
 for SEED in 1;
 do
-    for SHOT in 2 4;
+    for SHOT in 4 8 16;
     do 
-        echo $SEED+${SHOT}+${MODEL}+"mvp"
-        # if [[ $ADV -eq 1 ]]; then
-        #     EXTRA_NAMES=adv_seed_${SEED}
-        # else
-        #     EXTRA_NAMES=seed_${SEED}
-        # fi
+        for BETA in 0.2 1.0;
+        do
+            echo $SEED+${SHOT}+${MODEL}+"mvp"
+            # if [[ $ADV -eq 1 ]]; then
+            #     EXTRA_NAMES=adv_seed_${SEED}
+            # else
+            #     EXTRA_NAMES=seed_${SEED}
+            # fi
 
-        MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
-        
-        # ATTACK=textfooler
-        MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
+            MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
+            
+            # ATTACK=textfooler
+            MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
 
-        DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
+            DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
 
-        mkdir -p ${MODELPATH}
-        echo ${MODELPATH}
+            mkdir -p ${MODELPATH}
+            echo ${MODELPATH}
 
-        # MODEL_TYPE=knn_icl
-        KNN=4
-        nohup python3 main.py --mode attack \
-                                    --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
-                                    --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-                                    --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
-                                    --seed $SEED --shot ${SHOT} --path ${MODELPATH} \
-                                    --adv_augment $ADV --knn_k $KNN > ${MODELPATH}/logs_${ATTACK}.txt
+            # MODEL_TYPE=knn_icl
+            KNN=$(( SHOT / 2 - 1 ))
+            
+            nohup python3 main.py --mode attack \
+                                        --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+                                        --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+                                        --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+                                        --seed $SEED --shot ${SHOT} --path ${MODELPATH} \
+                                        --adv_augment $ADV --knn_k $KNN --beta ${BETA} --max_percent_words 0.15 --examples_per_label 1 > ${MODELPATH}/logs_knn_${ATTACK}_${BETA}.txt
+        done
         # ATTACK=textbugger
         # MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
 
@@ -55,6 +59,5 @@ do
         #                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
         #                             --seed $SEED --shot ${SHOT} \
         #                             --adv_augment $ADV --knn_k $KNN > ${MODELPATH}/logs_${ATTACK}.txt
-        
     done
 done

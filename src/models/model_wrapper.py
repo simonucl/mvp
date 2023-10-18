@@ -4,6 +4,8 @@ import os, pickle, copy
 import torch
 from torch import nn
 from time import time
+from functools import lru_cache
+from ..utils.anchor import AnchorStore, subsamplebyshot
 
 class ModelWrapper(torch.nn.Module):
     def __init__(self, args, model, tokenizer, data_collator, verbalizer = None, template=None):  
@@ -52,7 +54,7 @@ class ModelWrapper(torch.nn.Module):
         attention_mask = inputs_dict["attention_mask"].cuda()
         return input_ids, attention_mask
 
-    
+        
     def get_updated_input_ids(self, input_ids, attention_mask, is_knn=False, **kwargs):
         '''
         input_ids: torch tensor of shape (batch_size, seq_len)
@@ -67,7 +69,6 @@ class ModelWrapper(torch.nn.Module):
             text_input_list = []
             icl_examples = []
             for t in input_ids:
-                examples = {}
                 if type(t) is not tuple:
                     text_input_list.append(t.lower())
                 elif len(t) > 2:
@@ -75,15 +76,26 @@ class ModelWrapper(torch.nn.Module):
                     # the len(t) must be odd number
                     assert len(t) % 2 == 1
                     no_examples = (len(t) - 1) // 2
-                    for i in range(no_examples):
-                        example, label = t[2*i], t[2*i+1]
-                        if label not in examples:
-                            examples[label] = []
-                        examples[label].append({'sentence': example})
-                    inference_input = t[-1]
-                    text_input_list.append(inference_input)
-                    is_icl_attack = True
-                    icl_examples.append(examples)
+                    if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack"]:
+                        examples = []
+                        for i in range(no_examples):
+                            example, label = t[2*i], t[2*i+1]
+                            examples.append({'sentence': example, 'label': label})
+                        inference_input = t[-1]
+                        text_input_list.append(inference_input)
+                        is_icl_attack = True
+                        icl_examples.append(examples)
+                    else:
+                        examples = {}
+                        for i in range(no_examples):
+                            example, label = t[2*i], t[2*i+1]
+                            if label not in examples:
+                                examples[label] = []
+                            examples[label].append({'sentence': example})
+                        inference_input = t[-1]
+                        text_input_list.append(inference_input)
+                        is_icl_attack = True
+                        icl_examples.append(examples)
                     # for i in range(no_examples):
                     #     text_input.append((t[2*i], t[2*i+1]))
                     # text_input.append(inference_input)
@@ -94,11 +106,23 @@ class ModelWrapper(torch.nn.Module):
                 else:
                     text_input_list.append((t[0]+"</s></s>"+t[1]).lower())
 
+            if self.args.model_type in ["knn_icl_attack"]:
+                for i, example in enumerate(icl_examples):
+                    for ins in example:
+                        labels = ins['label']
+                        # gen_logits = self.get_logits([ins['sentence']], labels)[0].detach().cpu()
+                        # self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
+                        hidden_states = self.get_knn_logits(ins['sentence'])[1]
+                        self.anchor_store.enqueue(i, hidden_states, torch.tensor(self.inv_verbalizer[labels]))
+
             if self.args.model_type in ["retrieval_icl"]:
                 icl_examples = self.indexEmbedder.subsamplebyretrieval(self.anchor_subsample, text_input_list, self.args.examples_per_label)
                 self.icl_examples = icl_examples
+            elif self.args.model_type in ["retrieval_icl_attack"]:
+                icl_examples = self.indexEmbedder.subsamplebyretrieval(icl_examples, text_input_list, self.args.examples_per_label)
+                self.icl_examples = icl_examples
 
-            if not is_icl_attack:
+            if (not is_icl_attack) or (self.args.model_type in ["knn_icl_attack"]):
                 input_ids, attention_mask = self.text_to_ids(text_input_list)
             else:
                 self.icl_examples = icl_examples

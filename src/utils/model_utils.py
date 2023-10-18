@@ -268,7 +268,11 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                 if (type(icl_examples) is list) and (type(icl_examples[0]) is list):
                     icl_example = icl_examples[i]
                     for e in icl_example:
-                        examples.append(template.format(e['sentence'], model.verbalizer[int(e['label'])][0]))
+                        sentence = e['sentence']
+                        label = e['label']
+                        if type(label) is int:
+                            label = model.verbalizer[label][0]
+                        examples.append(template.format(sentence, label))
                 else:
                     if type(icl_examples) is list:
                         icl_example = icl_examples[i]
@@ -292,7 +296,7 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                                 examples.append(template.format(e['sentence'], label))
             prompt = "\n\n".join(examples)
 
-            if model_type in ["knn_icl"]:
+            if model_type in ["knn_icl", "retrieval_icl", "retrieval_icl_attack"]:
                 prompt_title = ""
             else:
                 prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            

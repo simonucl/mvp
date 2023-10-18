@@ -6,10 +6,11 @@ from torch_scatter import scatter_max, scatter_mean
 import torch
 from torch import nn
 from .model_wrapper import ModelWrapper
-from ..utils.anchor import AnchorStore, subsamplebyshot
+from ..utils.anchor import AnchorStore, subsamplebyshot, AnchorStores
 from ..utils.dataset import *
 from tqdm import tqdm
 from time import time
+from functools import lru_cache
 
 SST2_LABELS2ID = {'0': 0, '1': 1}
 
@@ -30,6 +31,8 @@ class ICL(ModelWrapper):
         label_words = []
         label_set = []
         self.verbalizer = verbalizer
+        self.inv_verbalizer = {v[0]:k for k,v in verbalizer.items()}
+
         self.tokenizer = tokenizer
         self.knn_T = args.knn_T
         self.knn_k = args.knn_k
@@ -71,9 +74,9 @@ class ICL(ModelWrapper):
 
         anchor_data = dataset['train']
 
-        if args.model_type in ["icl", "icl_attack"]:
+        if args.model_type in ["icl", "icl_attack", "retrieval_icl_attack"]:
             examples_per_label = args.shot
-        elif args.model_type in ["retrieval_icl", "retrieval_icl_attack"]:
+        elif args.model_type in ["retrieval_icl", "knn_icl_attack"]:
             examples_per_label = 0
         else:
             examples_per_label = args.examples_per_label
@@ -92,7 +95,7 @@ class ICL(ModelWrapper):
         model = model.to('cuda')
         self.anchor_subsample = anchor_subsample
 
-        if self.args.model_type in ["knn_icl", "knn_icl_attack"]:
+        if self.args.model_type in ["knn_icl"]:
             print("Loading anchor store")
             anchor_store = AnchorStore(
                                     K=(len(anchor_subsample))* (1 + int(self.args.adv_augment) + int(self.args.mask_augment)),
@@ -120,7 +123,45 @@ class ICL(ModelWrapper):
                     mask_gen_logits = self.get_logits([ins['sentence']], torch.tensor([labels]), mask_augment=True).detach().cpu()
                     self.anchor_store.enqueue(torch.softmax(mask_gen_logits, dim=-1), torch.tensor(labels))
             print("Finished loading anchor store")
+        elif self.args.model_type in ["knn_icl_attack"]:
+            examples = []
+            num_examples_per_label_map = [len(v) for k, v in icl_examples.items()]
+            # check if all instance in num_examples_per_label_map are equal
+            if len(set(num_examples_per_label_map)) == 1:
+                num_examples_per_label = num_examples_per_label_map[0]
+                for idx in range(num_examples_per_label):
+                    for label, example in icl_examples.items():
+                        example = example[idx]['sentence']
+                        examples.append(template.format(example, label))
+            else:
+                for label, example in icl_examples.items():
+                    for e in example:
+                        examples.append(template.format(e['sentence'], label))
+            self.prompt = "\n\n".join(examples)
 
+            anchor_store = AnchorStores(
+                                    B=args.batch_size,
+                                    K=(len(anchor_subsample))* (1 + int(self.args.adv_augment) + int(self.args.mask_augment)),
+                                dim=model.config.hidden_size,
+                                # dim=model.config.vocab_size,
+                                knn=args.knn_k,
+                                knn_T = args.knn_T,
+                                n_class=args.num_labels
+                                )
+            self.anchor_store = anchor_store
+
+    @lru_cache(maxsize=1000)
+    def get_knn_logits(self, input_sent):
+        sent = self.prompt + '\n\n' + input_sent
+        input_ids = self.tokenizer(sent, return_tensors='pt', padding=True, truncation=True)['input_ids']
+        input_ids = input_ids.to('cuda')
+        with torch.no_grad():
+            outputs = self.model(input_ids=input_ids, output_hidden_states=True)
+        logits = outputs.logits[:, -1, :].detach().cpu()
+        hidden_states = outputs.hidden_states[-1][:, -1, :].detach().cpu()
+
+        return logits, hidden_states
+    
     def get_logits(self, input_ids, labels=None, attention_mask=None, is_knn=False, adv=False, mask_augment=False, outputs=None, reduce_to_candidates=False):
         '''
         input_ids: torch tensor of shape (1, seq_len)
@@ -200,8 +241,11 @@ class ICL(ModelWrapper):
 
         label_words_logits = torch.softmax(label_words_logits, dim=-1)
         if (self.args.model_type in ['knn_icl', 'knn_icl_attack']) and (self.args.beta > 0):
-            # query_logits = torch.softmax(query_logits, dim=-1)
+            
+            # TODO think to improve the speed here to compute them together
             prob = self.anchor_store.knn_calibrate(label_hidden_states, dist_metric='l2')
+            # check if the anchor store is a list of anchor store
+
             # prob = self.anchor_store.knn_calibrate(torch.softmax(query_logits, dim=-1), dist_metric='kl')
 
             label_words_logits = self.args.beta * prob + (1 - self.args.beta) * label_words_logits

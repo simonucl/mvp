@@ -5,7 +5,7 @@ sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
 from customattacks import TextFoolerCustom, TextBuggerCustom
 # from TextBuggerCustom import TextBuggerCustom
-from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord, SwapLabel2023
+from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord, SwapLabel2023, SwapOrderAttack
 from src.utils.funcs import *
 from src.models import get_model
 from textattack import AttackArgs
@@ -44,7 +44,9 @@ def ood_evaluation_loop(args, model):
         json.dump(ood_datasets, fp)
 
 
-def convert_to_icl(data, icl_examples, verbalizer):
+def convert_to_icl(data, icl_examples, verbalizer=None):
+    if verbalizer is None:
+        verbalizer =  {0:["negative"], 1:["positive"]}
     outputs = OrderedDict()
     
     if type(icl_examples) == list:
@@ -78,6 +80,8 @@ def attacker(args):
     #train dataset is needed to get the right vocabulary for the problem
     my_dataset, tokenizer, data_collator = prepare_huggingface_dataset(args)
     verbalizer, templates = get_prompts(args)
+    model = None
+
     model = get_model(args, my_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
 
     print('Finished loading model')
@@ -93,9 +97,9 @@ def attacker(args):
         else:
             num_tokens = 3
 
-        if args.model_type in ["icl", "icl_attack"]:
+        if args.model_type in ["icl", "icl_attack", "retrieval_icl_attack", "knn_icl_attack"]:
             examples_per_label = args.shot
-        elif args.model_type in ["retrieval_icl", "retrieval_icl_attack"]:
+        elif args.model_type in ["retrieval_icl"]:
             examples_per_label = 0
         else:
             examples_per_label = args.examples_per_label
@@ -109,14 +113,15 @@ def attacker(args):
                     label_set.append(k)
                 else:
                     assert len(tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
-        if args.model_type in ["retrieval_icl_attack"]:
-            anchor_subsample, _ = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, 0)
-            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
-        else:
-            _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
-        print(icl_examples)
+        # if args.model_type in ["retrieval_icl_attack"]:
+        #     anchor_subsample, _ = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, 0)
+        #     icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
+        # else:
+        _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
 
-        my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, model.verbalizer), batched=False, remove_columns='sentence')
+        verbalizer = model.verbalizer if model is not None else None
+        my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False, remove_columns='sentence')
+        print('ICL examples')
         print(my_dataset[0])
     else:
         my_dataset = my_dataset[split]
@@ -150,6 +155,7 @@ def attacker(args):
                             "icl_attack": ICLTextAttack,
                             "icl_attack_word": ICLTextAttackWord,
                             "swap_labels": SwapLabel2023,
+                            "swap_orders": SwapOrderAttack
                             }
                             
         attack_class = attack_name_mapper[attack_name]

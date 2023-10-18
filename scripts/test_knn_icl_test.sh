@@ -16,38 +16,72 @@ KNN_T=${9}
 
 for ATTACK in textfooler;
 do 
-    for SEED in 1;
+    for SEED in 1 13 42;
     do
-        for SHOT in 4 8 16 32 64;
+        for SHOT in 32;
         do 
-            for BETA in 0.2 0.4 0.5 0.6 0.8;
-            do
-                echo $SEED+${SHOT}+${MODEL}+"mvp"
+            BETA=0.2
+            echo $SEED+${SHOT}+${MODEL}+"mvp"
 
-                MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
-                
-                MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
+            MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
+            
+            MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
 
-                DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
+            DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
 
-                mkdir -p ${MODELPATH}
-                echo ${MODELPATH}
+            mkdir -p ${MODELPATH}
+            echo ${MODELPATH}
 
-                M=1
-                # Set KNN as $SHOT // 2 - 1
-                KNN=$(( SHOT / 2 - 1 ))
-                
-                # M=1
-                mkdir -p ${MODELPATH}/ablate
-                echo ${MODELPATH}/ablate+${ATTACK}
-                # MODEL_TYPE=knn_icl
-                nohup python3 main.py --mode attack \
-                                            --attack_name ${ATTACK} --num_examples 400 --dataset ${DATASET} \
-                                            --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-                                            --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
-                                            --seed $SEED --shot ${SHOT} \
-                                            --adv_augment $ADV --knn_k ${KNN} --examples_per_label 1 --knn_T ${KNN_T} --max_percent_words 0.15 --beta ${BETA} > ${MODELPATH}/ablate/logs_beta_${BETA}_${ATTACK}.txt
-            done
+            M=1
+            # Set KNN as $SHOT // 2 - 1
+            KNN=$(( SHOT / 2 - 1 ))
+            
+            # M=1
+            mkdir -p ${MODELPATH}/final
+            echo ${MODELPATH}/final+${ATTACK}
+            # MODEL_TYPE=knn_icl
+            nohup python3 main.py --mode attack \
+                                        --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+                                        --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+                                        --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+                                        --seed $SEED --shot ${SHOT} \
+                                        --adv_augment $ADV --knn_k ${KNN} --examples_per_label 1 --knn_T ${KNN_T} --max_percent_words 0.15 --beta ${BETA} > ${MODELPATH}/final/logs_beta_${BETA}_${ATTACK}.txt
+        done
+    done
+done
+
+for ATTACK in textbugger icl_attack;
+do 
+    for SEED in 1 13 42;
+    do
+        for SHOT in 4 8 16 32;
+        do 
+            BETA=0.2
+            echo $SEED+${SHOT}+${MODEL}+"mvp"
+
+            MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
+            
+            MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
+
+            DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
+
+            mkdir -p ${MODELPATH}
+            echo ${MODELPATH}
+
+            M=1
+            # Set KNN as $SHOT // 2 - 1
+            KNN=$(( SHOT / 2 - 1 ))
+            
+            # M=1
+            mkdir -p ${MODELPATH}/final
+            echo ${MODELPATH}/final+${ATTACK}
+            # MODEL_TYPE=knn_icl
+            nohup python3 main.py --mode attack \
+                                        --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+                                        --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+                                        --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+                                        --seed $SEED --shot ${SHOT} \
+                                        --adv_augment $ADV --knn_k ${KNN} --examples_per_label 1 --knn_T ${KNN_T} --max_percent_words 0.15 --beta ${BETA} > ${MODELPATH}/final/logs_beta_${BETA}_${ATTACK}.txt
         done
     done
 done
