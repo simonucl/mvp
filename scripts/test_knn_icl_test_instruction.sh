@@ -6,7 +6,7 @@ TEMPLATE_FILE=${5}
 VERBALIZER_FILE=${6}
 ATTACK=${7}
 ADV=${8}
-
+KNN_T=${9}
 
 # source ~/.bashrc
 # echo $PWD
@@ -14,22 +14,17 @@ ADV=${8}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for ATTACK in textbugger;
-do
+for ATTACK in textfooler;
+do 
     for SEED in 1;
     do
-        for SHOT in 4 8 16 32;
+        for SHOT in 8;
         do 
+            BETA=1.0
             echo $SEED+${SHOT}+${MODEL}+"mvp"
-            # if [[ $ADV -eq 1 ]]; then
-            #     EXTRA_NAMES=adv_seed_${SEED}
-            # else
-            #     EXTRA_NAMES=seed_${SEED}
-            # fi
 
             MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
             
-            # ATTACK=textfooler
             MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
 
             DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
@@ -37,17 +32,20 @@ do
             mkdir -p ${MODELPATH}
             echo ${MODELPATH}
 
+            M=1
+            # Set KNN as $SHOT // 2 - 1
+            KNN=$(( SHOT / 2 - 1 ))
+            
+            # M=1
+            mkdir -p ${MODELPATH}/ablate
+            echo ${MODELPATH}/ablate+${ATTACK}
             # MODEL_TYPE=knn_icl
-            KNN=4
-            BATCH_SIZE=$(( 64 / SHOT ))
-
             nohup python3 main.py --mode attack \
-                                        --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+                                        --attack_name ${ATTACK} --num_examples 100 --dataset ${DATASET} \
                                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                         --seed $SEED --shot ${SHOT} \
-                                        --adv_augment $ADV --knn_k $KNN --max_percent_words 0.15 > ${MODELPATH}/logs_${ATTACK}.txt
-
+                                        --adv_augment $ADV --knn_k ${KNN} --examples_per_label 1 --knn_T ${KNN_T} --max_percent_words 0.15 > ${MODELPATH}/ablate/logs_${ATTACK}_w_instruction.txt
         done
     done
 done

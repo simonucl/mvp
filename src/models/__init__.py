@@ -56,7 +56,10 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
     #     model = model_class.from_pretrained(location, return_dict = True)
     #     model = KNN_ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
     elif args.model_type in ['knn_icl', 'icl', 'icl_attack', 'knn_icl_attack', 'retrieval_icl', 'retrieval_icl_attack']:
-        model = model_class.from_pretrained(location, return_dict = True, use_flash_attention_2=True, torch_dtype=torch.bfloat16)
+        if ("Llama" in args.model):
+            model = LlamaForCausalLM.from_pretrained(location, return_dict = True, use_flash_attention_2=True, torch_dtype=torch.bfloat16)
+        else:
+            model = model_class.from_pretrained(location, return_dict = True)
         model = ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
     elif args.model_type in ['knn_cli', 'knn_adv']:
         model = model_class.from_pretrained(location, return_dict = True)

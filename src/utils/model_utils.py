@@ -268,24 +268,40 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                 if (type(icl_examples) is list) and (type(icl_examples[0]) is list):
                     icl_example = icl_examples[i]
                     for e in icl_example:
-                        examples.append(template.format(e['sentence'], model.verbalizer[int(e['label'])][0]))
+                        sentence = e['sentence']
+                        label = e['label']
+                        if type(label) is int:
+                            label = model.verbalizer[label][0]
+                        examples.append(template.format(sentence, label))
                 else:
                     if type(icl_examples) is list:
                         icl_example = icl_examples[i]
                     else:
                         icl_example = icl_examples
-                    num_examples_per_label = len(list(icl_example.values())[0])
-                    # print(icl_example)
-                    for idx in range(num_examples_per_label):
+                    
+                    # assert if any of the label is ''
+                    assert '' not in icl_example.keys(), "Empty label found in icl examples"
+                    
+                    num_examples_per_label_map = [len(v) for k, v in icl_example.items()]
+                    # check if all instance in num_examples_per_label_map are equal
+                    if len(set(num_examples_per_label_map)) == 1:
+                        num_examples_per_label = num_examples_per_label_map[0]
+                        for idx in range(num_examples_per_label):
+                            for label, example in icl_example.items():
+                                example = example[idx]['sentence']
+                                examples.append(template.format(example, label))
+                    else:
                         for label, example in icl_example.items():
-                            example = example[idx]['sentence']
-                            examples.append(template.format(example, label))
+                            for e in example:
+                                examples.append(template.format(e['sentence'], label))
+            prompt = "\n\n".join(examples)
 
-            prompt = "\n".join(examples)
-
-            prompt_title = "Classify the sentiment of {} and {}.\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
+            if model_type in ["knn_icl", "retrieval_icl", "retrieval_icl_attack"]:
+                prompt_title = ""
+            else:
+                prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
             input = tokenizer.decode(input_ids[i,:], skip_special_tokens=True)
-            inference_sample = "\n" + template.format(input, "").strip()
+            inference_sample = "\n\n" + template.format(input, "").strip()
             
             prompt = prompt_title + prompt + inference_sample
             prompts.append(prompt)
@@ -295,6 +311,9 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
 
     inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
 
+    # print('Decoded prompts', tokenizer.decode(inputs["input_ids"][0,:], skip_special_tokens=False))
+    # print('Length of the decoded prompts', len(tokenizer.decode(inputs["input_ids"][0,:], skip_special_tokens=False)))
+    
     new_input_ids = inputs["input_ids"]
     new_attention_masks = inputs["attention_mask"]
 
