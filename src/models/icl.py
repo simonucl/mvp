@@ -58,10 +58,10 @@ class ICL(ModelWrapper):
         self.label_set = torch.tensor(label_set)
         toks = self.tokenizer(label_words)["input_ids"]
 
-        if args.dataset == "sst2":
-            self.label2id = SST2_LABELS2ID
-        else:
-            raise NotImplementedError
+        # if args.dataset == "sst2":
+        #     self.label2id = SST2_LABELS2ID
+        # else:
+        #     raise NotImplementedError
         
         if 'gpt' not in args.model:
             new_toks = [t for t in toks if len(t) == num_tokens]

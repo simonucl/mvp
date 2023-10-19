@@ -29,7 +29,23 @@ if __name__ == "__main__":
     args = params.add_config(args) if args.config_file != None else args
 
     
-    num_labels_map = {"imdb":2, "sst2":2, "amazon":5, "snli":3,"ag_news":4,"rotten_tomatoes":2,"emotion":6, "emotion2":2, "boolq":2, "movie_rationales":2, "sst-5":5}
+    num_labels_map = {"imdb":2, 
+                      "sst2":2, 
+                      "amazon":5, 
+                      "snli":3,
+                      "ag_news":4,
+                      "rotten_tomatoes":2,
+                      "emotion":6, 
+                      "emotion2":2, 
+                      "boolq":2, 
+                      "movie_rationales":2, 
+                      "sst-5":5,
+                      "rte": 2,
+                      "cr":2,
+                      "mr":2,
+                      "subj":2,
+                      "trec":6,}
+    
     args.num_labels = num_labels_map[args.dataset]
     set_seeds(args.seed)
 
