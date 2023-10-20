@@ -53,7 +53,11 @@ def convert_to_icl(data, icl_examples, verbalizer=None):
         idx = data['idx']
         icl_example = icl_examples[idx]
         for i, e in enumerate(icl_example):
-            outputs[f"Example_{i}"] = e['sentence']
+            if 'sentence' in e.keys():
+                outputs[f"Example_{i}"] = e['sentence']
+            elif 'premise' in e.keys():
+                outputs[f"Premise_{i}"] = e['premise']
+                outputs[f"Hypothesis_{i}"] = e['hypothesis']
             outputs[f"Label_{i}"] = verbalizer[e['label']][0]
     else:            
         num_labels = len(icl_examples.keys())
@@ -61,10 +65,18 @@ def convert_to_icl(data, icl_examples, verbalizer=None):
         for i in range(num_samples_per_label):
             j = 0
             for k, v in icl_examples.items():
-                outputs[f"Example_{i*num_labels + j}"] = v[i]['sentence']
+                if 'sentence' in v[i].keys():
+                    outputs[f"Example_{i*num_labels + j}"] = v[i]['sentence']
+                elif 'premise' in v[i].keys():
+                    outputs[f"Premise_{i*num_labels + j}"] = v[i]['premise']
+                    outputs[f"Hypothesis_{i*num_labels + j}"] = v[i]['hypothesis']
                 outputs[f"Label_{i*num_labels + j}"] = k
                 j += 1
-    outputs["inference"] = data['sentence']
+    if 'sentence' in data.keys():
+        outputs["inference"] = data['sentence']
+    elif 'premise' in data.keys():
+        outputs["premise"] = data['premise']
+        outputs["hypothesis"] = data['hypothesis']
     outputs["label"] = data['label']
     print('Outputs', outputs)
     return outputs

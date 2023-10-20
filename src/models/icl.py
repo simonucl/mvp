@@ -84,6 +84,9 @@ class ICL(ModelWrapper):
 
         anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, examples_per_label)
         
+        # print('Anchor subsample', anchor_data)
+
+        # print('ICL examples', icl_examples)
         print('Length of anchor subsample', len(anchor_subsample))
         print('Length of icl examples', len(icl_examples))
 
@@ -234,7 +237,7 @@ class ICL(ModelWrapper):
         '''
 
         query_logits, label_hidden_states = self.get_logits(input_ids, outputs=outputs) # (B, num_classes), (B, hidden_size)
-        # print('Decoded output', self.tokenizer.batch_decode(torch.argmax(query_logits, dim=-1)))
+        print('Decoded output', self.tokenizer.batch_decode(torch.argmax(query_logits, dim=-1)))
 
         label_words_logits = query_logits[:, self.label_word_ids]    # (B, num_candidates)
         # label_words_logits = query_logits

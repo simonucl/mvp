@@ -44,7 +44,8 @@ if __name__ == "__main__":
                       "cr":2,
                       "mr":2,
                       "subj":2,
-                      "trec":6,}
+                      "trec":6,
+                      "mnli":3}
     
     args.num_labels = num_labels_map[args.dataset]
     set_seeds(args.seed)

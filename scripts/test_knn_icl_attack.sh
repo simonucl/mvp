@@ -6,7 +6,7 @@ TEMPLATE_FILE=${5}
 VERBALIZER_FILE=${6}
 ATTACK=${7}
 ADV=${8}
-
+KNN_T=${9}
 
 # source ~/.bashrc
 # echo $PWD
@@ -40,6 +40,7 @@ do
             # MODEL_TYPE=knn_icl
             KNN=$(( SHOT / 2 - 1 ))
             
+            BATCH_SIZE=4
             nohup python3 main.py --mode attack \
                                         --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
                                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \

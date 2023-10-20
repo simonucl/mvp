@@ -6,7 +6,7 @@ TEMPLATE_FILE=${5}
 VERBALIZER_FILE=${6}
 ATTACK=${7}
 ADV=${8}
-KNN_T=${9}
+
 
 # source ~/.bashrc
 # echo $PWD
@@ -16,11 +16,10 @@ KNN_T=${9}
 
 for ATTACK in textfooler;
 do
-    for SHOT in 4 16 32 8;
-    do 
-        for SEED in 1 13 42;
-        do
-            BETA=0.2
+    for SHOT in 4 8 16 32;
+    do
+        for SEED in 42;
+        do 
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             # if [[ $ADV -eq 1 ]]; then
             #     EXTRA_NAMES=adv_seed_${SEED}
@@ -39,16 +38,21 @@ do
             echo ${MODELPATH}
 
             # MODEL_TYPE=knn_icl
-            KNN=$(( SHOT / 2 - 1 ))
-            
-            BATCH_SIZE=4
-            nohup python3 main.py --mode attack \
-                                        --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
-                                        --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
-                                        --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
-                                        --seed $SEED --shot ${SHOT} --path ${MODELPATH} \
-                                        --adv_augment $ADV --knn_k $KNN --beta ${BETA} --max_percent_words 0.15 --examples_per_label 1 \
-                                        --num_labels 2 --knn_T $KNN_T > ${MODELPATH}/logs_knn_${ATTACK}_${BETA}.txt
+            KNN=4
+            # Set BATCH_SIZE=8 if SHOT < 16, else BATCH_SIZE=4
+            BATCH_SIZE=$((32 / SHOT))
+
+            for M in $((SHOT/2)) $((SHOT/4));
+            do
+            # M should equal to shot / 2
+
+                nohup python3 main.py --mode attack \
+                                            --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+                                            --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+                                            --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+                                            --seed $SEED --shot ${SHOT} \
+                                            --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} > ${MODELPATH}/logs_${ATTACK}_m_${M}_test.txt
+            done
         done
     done
 done
