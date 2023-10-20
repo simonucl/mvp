@@ -14,9 +14,15 @@ ADV=${8}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for SEED in 1;
+for SHOT in 4 8 16 32;
 do
-    for SHOT in 4 8 16;
+    if [[ SHOT -eq 32 ]]; then
+        SEEDS=(1 13 42)
+    else
+        SEEDS=(13 42)
+    fi
+
+    for SEED in ${SEEDS[@]};
     do 
         for BETA in 0.2 1.0;
         do

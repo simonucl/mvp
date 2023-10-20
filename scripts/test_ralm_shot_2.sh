@@ -49,7 +49,7 @@ do
             # Set BATCH_SIZE=8 if SHOT < 16, else BATCH_SIZE=4
             BATCH_SIZE=$((128 / SHOT))
 
-            for M in $((SHOT/4));
+            for M in $((SHOT/2));
             do
             # M should equal to shot / 2
 

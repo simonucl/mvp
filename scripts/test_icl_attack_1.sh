@@ -14,9 +14,9 @@ ADV=${8}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for SHOT in 4 16 32;
+for SEED in 1 13 42;
 do
-    for SEED in 1 13 42;
+    for SHOT in 32;
     do 
 
         if [[ SHOT -eq 1 ]]; then
@@ -26,16 +26,16 @@ do
             BATCH_SIZE=16
             MAX_PRECENT_WORDS=0.1
         elif [[ SHOT -eq 4 ]]; then
-            BATCH_SIZE=16
+            BATCH_SIZE=8
             MAX_PRECENT_WORDS=0.1
         elif [[ SHOT -eq 8 ]]; then
             BATCH_SIZE=4
             MAX_PRECENT_WORDS=0.15
         elif [[ SHOT -eq 16 ]]; then
-            BATCH_SIZE=4
+            BATCH_SIZE=2
             MAX_PRECENT_WORDS=0.2
         elif [[ SHOT -eq 32 ]]; then
-            BATCH_SIZE=4
+            BATCH_SIZE=2
             MAX_PRECENT_WORDS=0.2
         fi
         MAX_PRECENT_WORDS=0.15
@@ -56,7 +56,7 @@ do
 
         mkdir -p ${MODELPATH}
         echo ${MODELPATH}
-        BATCH_SIZE=$(( 64 / SHOT ))
+
         # MODEL_TYPE=knn_icl
         KNN=4
         nohup python3 main.py --mode attack \
