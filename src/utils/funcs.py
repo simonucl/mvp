@@ -79,14 +79,31 @@ def prepare_huggingface_dataset(args):
         name = "emotion"
     elif args.dataset == "sst-5":
         name = "SetFit/sst5"
+    elif args.dataset == "subj":
+        name = "SetFit/subj"
     else:
         name = args.dataset
-    my_dataset = load_dataset(name) if name!="sst2" else load_dataset("glue",name)
+    if name in ["sst2", "mnli", "rte"]:
+        my_dataset = load_dataset("glue",name)
+    else:
+        my_dataset = load_dataset(name)
     my_dataset = my_dataset.map(do_lower)
     
-    if args.dataset == "sst2":
+    if args.dataset in ["sst2", "rte"]:
         # test datset has no labels, so use val set as test for sst2
         my_dataset["test"] = my_dataset["validation"]
+        assert args.val_size + args.train_size <= 1, f"val_size + train_size should be less than 1. Got {args.val_size + args.train_size}"
+        train_dataset, validation_dataset= my_dataset["train"].train_test_split(test_size=args.val_size, train_size = args.train_size, seed = 0).values()
+        my_dataset["train"] = train_dataset
+        my_dataset["validation"] = validation_dataset
+    elif args.dataset == "mnli":
+        my_dataset["test"] = my_dataset["validation_matched"]
+        assert args.val_size + args.train_size <= 1, f"val_size + train_size should be less than 1. Got {args.val_size + args.train_size}"
+        train_dataset, validation_dataset= my_dataset["train"].train_test_split(test_size=args.val_size, train_size = args.train_size, seed = 0).values()
+        my_dataset["train"] = train_dataset
+        my_dataset["validation"] = validation_dataset
+    elif args.dataset == "subj":
+        my_dataset["test"] = my_dataset["test"]
         assert args.val_size + args.train_size <= 1, f"val_size + train_size should be less than 1. Got {args.val_size + args.train_size}"
         train_dataset, validation_dataset= my_dataset["train"].train_test_split(test_size=args.val_size, train_size = args.train_size, seed = 0).values()
         my_dataset["train"] = train_dataset
@@ -110,11 +127,38 @@ def prepare_huggingface_dataset(args):
     
     if args.dataset == "sst2":
         my_dataset = my_dataset.filter(lambda example: (re.search('[a-zA-Z]', example["sentence"]) is not None))
-    if args.dataset == "snli":
+    if args.dataset == "rte":
+        def map_labels(example):
+            key_map_dict = {'sentence1':'premise','sentence2':'hypothesis'}
+            example['sentence'] = example['sentence1'] + "\nquestion: " + example['sentence2']
+            # remove sentence1 and sentence2
+            example = {k:v  for (k,v) in example.items() if k not in key_map_dict}
+            # example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
+            return example
+        my_dataset = my_dataset.map(map_labels)
+        my_dataset = my_dataset.remove_columns(['sentence1', 'sentence2'])
+    if args.dataset == "mnli":
         # Dataset instances which don't have any gold label are marked with -1 label. 
         # Make sure you filter them before starting the training using datasets.Dataset.filter.
         # This is too slow!
         my_dataset = my_dataset.filter(lambda example: (example['label']!=-1))
+        def map_labels(example):
+            key_map_dict = {'premise':'sentence1','hypothesis':'sentence2'}
+            example['sentence'] = 'Premise: ' + example['premise'] + "\nHypothesis: " + example['hypothesis']
+            # remove sentence1 and sentence2
+            example = {k:v  for (k,v) in example.items() if k not in key_map_dict}
+            return example
+        my_dataset = my_dataset.map(map_labels)
+        # filter the key 'premise' and 'hypothesis' from the dataset
+        my_dataset = my_dataset.remove_columns(['premise', 'hypothesis'])
+
+    if args.dataset == "subj":
+        def map_labels(example):
+            key_map_dict = {'label':'label', "text":"sentence"}
+            example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
+            return example
+        my_dataset = my_dataset.map(map_labels)
+        
     if args.dataset == "boolq":
         def map_labels(example):
             key_map_dict = {'passage':'sentence','answer':'label'}

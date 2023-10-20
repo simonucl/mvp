@@ -268,11 +268,19 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                 if (type(icl_examples) is list) and (type(icl_examples[0]) is list):
                     icl_example = icl_examples[i]
                     for e in icl_example:
-                        sentence = e['sentence']
-                        label = e['label']
-                        if type(label) is int:
-                            label = model.verbalizer[label][0]
-                        examples.append(template.format(sentence, label))
+                        if 'sentence' in e.keys():
+                            sentence = e['sentence']
+                            label = e['label']
+                            if type(label) is int:
+                                label = model.verbalizer[label][0]
+                            examples.append(template.format(sentence, label))
+                        elif 'premise' in e.keys():
+                            premise = e['premise']
+                            hypothesis = e['hypothesis']
+                            label = e['label']
+                            if type(label) is int:
+                                label = model.verbalizer[label][0]
+                            examples.append(template.format(premise, hypothesis, label))
                 else:
                     if type(icl_examples) is list:
                         icl_example = icl_examples[i]
@@ -288,18 +296,31 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                         num_examples_per_label = num_examples_per_label_map[0]
                         for idx in range(num_examples_per_label):
                             for label, example in icl_example.items():
-                                example = example[idx]['sentence']
-                                examples.append(template.format(example, label))
+                                if 'sentence' in example[idx].keys():
+                                    example = example[idx]['sentence']
+                                    examples.append(template.format(example, label))
+                                elif 'premise' in example[idx].keys():
+                                    premise = example[idx]['premise']
+                                    hypothesis = example[idx]['hypothesis']
+                                    examples.append(template.format(premise, hypothesis, label))
                     else:
                         for label, example in icl_example.items():
                             for e in example:
-                                examples.append(template.format(e['sentence'], label))
+                                if 'sentence' in e.keys():
+                                    example = e['sentence']
+                                    examples.append(template.format(example, label))
+                                elif 'premise' in e.keys():
+                                    premise = e['premise']
+                                    hypothesis = e['hypothesis']
+                                    examples.append(template.format(premise, hypothesis, label))
+                                # examples.append(template.format(e['sentence'], label))
             prompt = "\n\n".join(examples)
 
-            if model_type in ["knn_icl", "retrieval_icl", "retrieval_icl_attack"]:
-                prompt_title = ""
-            else:
-                prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
+            # if model_type in ["knn_icl", "retrieval_icl", "retrieval_icl_attack"]:
+            #     prompt_title = ""
+            # else:
+            #     prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
+            prompt_title = ""
             input = tokenizer.decode(input_ids[i,:], skip_special_tokens=True)
             inference_sample = "\n\n" + template.format(input, "").strip()
             

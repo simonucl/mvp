@@ -14,6 +14,7 @@ ADV=${8}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
+<<<<<<< HEAD
 for ATTACK in textbugger;
 do
     for SEED in 1 13 42;
@@ -25,6 +26,23 @@ do
         elif [[ $SEED -eq 42 ]]; then
             SHOTS=(4 8 32)
         fi
+=======
+for ATTACK in textfooler textbugger;
+do
+    if [[ $ATTACK -eq "textfooler" ]]; then
+        SEEDS=(42)
+    else
+        SEEDS=(1 13 42)
+    fi
+    for SEED in ${SEEDS[@]};
+    do
+        if [[ $ATTACK -eq "textfooler" ]]; then
+            SHOTS=(32)
+        else
+            SHOTS=(4 8 16 32)
+        fi
+
+>>>>>>> a0811a73f7b87ec6117527f58b1b6e11e036613c
         for SHOT in ${SHOTS[@]};
         do 
             echo $SEED+${SHOT}+${MODEL}+"mvp"

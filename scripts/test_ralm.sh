@@ -16,7 +16,12 @@ ADV=${8}
 
 for ATTACK in textbugger;
 do
-    for SEED in 1 13 42;
+    if [[ $ATTACK -eq "textfooler" ]]; then
+        SEEDS=(42)
+    else
+        SEEDS=(1 13 42)
+    fi
+    for SEED in ${SEEDS[@]};
     do
         if [[ $SEED -eq 1 ]]; then
             SHOTS=(8 16 32)
