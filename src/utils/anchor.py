@@ -223,7 +223,7 @@ def subsamplebyshot(anchor_data, seed, label_set, verbalizer, shot=1, examples_p
     new_anchor_data = []
     icl_example = {}
     for label in label_set:
-        label_data = [d for d in anchor_data if d['label'] == label]
+        label_data = [d for d in anchor_data if d['label'] == label] # 0, 1, 2, before verbalizer
         random.shuffle(label_data)
         new_anchor_data.extend(label_data[: shot-examples_per_class])
         # how to get the item from tensor? 

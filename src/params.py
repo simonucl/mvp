@@ -70,6 +70,9 @@ def parse_args():
     parser.add_argument('--shot', type=int, default=16)
     parser.add_argument('--beta', type=float, default=1.0)
 
+    # RALM Params
+    parser.add_argument('--retrieve_method', type=str, default='sbert')
+
     # ICL Params
     parser.add_argument('--examples_per_label', type=int, default=1)
     

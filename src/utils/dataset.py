@@ -207,3 +207,14 @@ class TRECDataset(BASEDataset):
         self.label2id = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5}
         self.label2verb = {'0': 'description', '1': 'entity', '2': 'expression', '3': 'human','4': 'location', '5': 'number'}
         self.id2verb = ['description', 'entity', 'expression', 'human', 'location', 'number']
+
+def format_template(example, template, dataset, label=None, verbalizer=None):
+    if label is None:
+        label = example["label"]
+    if type(label) is int:
+        label = verbalizer[label][0]
+        
+    if dataset in ["mnli", "rte"]:
+        return template.format(example["premise"], example["hypothesis"], label)
+    else:
+        return template.format(example["sentence"], label)

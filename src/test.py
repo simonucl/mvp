@@ -59,7 +59,7 @@ def convert_to_icl(data, icl_examples, verbalizer=None):
                 outputs[f"Premise_{i}"] = e['premise']
                 outputs[f"Hypothesis_{i}"] = e['hypothesis']
             outputs[f"Label_{i}"] = verbalizer[e['label']][0]
-    else:            
+    else:
         num_labels = len(icl_examples.keys())
         num_samples_per_label = len(list(icl_examples.values())[0])
         for i in range(num_samples_per_label):
@@ -73,12 +73,15 @@ def convert_to_icl(data, icl_examples, verbalizer=None):
                 outputs[f"Label_{i*num_labels + j}"] = k
                 j += 1
     if 'sentence' in data.keys():
-        outputs["inference"] = data['sentence']
+        outputs["sentence"] = data['sentence']
+        outputs.move_to_end("sentence")
     elif 'premise' in data.keys():
         outputs["premise"] = data['premise']
         outputs["hypothesis"] = data['hypothesis']
+        outputs.move_to_end("premise")
+        outputs.move_to_end("hypothesis")
     outputs["label"] = data['label']
-    print('Outputs', outputs)
+    # print('Outputs', outputs)
     return outputs
 
 def attacker(args):
@@ -119,12 +122,12 @@ def attacker(args):
         label_set = []
         for k,v in verbalizer.items():
             for word in v:
-                if not is_causal_model(args.model):
+                if (not is_causal_model(args.model)) or ("gpt" in args.model):
                     word = " " + word
                 if (len(tokenizer(word)["input_ids"]) == num_tokens):
                     label_set.append(k)
                 else:
-                    assert len(tokenizer(word)["input_ids"]) == num_tokens, "Verbalizer word not tokenized into a single token"
+                    assert len(tokenizer(word)["input_ids"]) == num_tokens, f"Verbalizer word {word} has {len(tokenizer(word)['input_ids'])} tokens, but model has {num_tokens} tokens"
         # if args.model_type in ["retrieval_icl_attack"]:
         #     anchor_subsample, _ = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, 0)
         #     icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
@@ -132,7 +135,11 @@ def attacker(args):
         _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
 
         verbalizer = model.verbalizer if model is not None else None
-        my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False, remove_columns='sentence')
+        # if 'sentence' in my_dataset[0].keys():
+        #     remove_columns = 'sentence'
+        # elif 'premise' in my_dataset[0].keys():
+        #     remove_columns = ['premise', 'hypothesis']
+        my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
         print('ICL examples')
         print(my_dataset[0])
     else:

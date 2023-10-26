@@ -47,7 +47,7 @@ def tokenize_function(args, tokenizer):
         raise("Unsupported")
     return ret_func
 
-
+    
 def do_lower(example):
     for key in example.keys():
         if type(example[key]) == type("str"):
@@ -81,6 +81,10 @@ def prepare_huggingface_dataset(args):
         name = "SetFit/sst5"
     elif args.dataset == "subj":
         name = "SetFit/subj"
+    elif args.dataset == "mr":
+        name = "rotten_tomatoes"
+    elif args.dataset == "cr":
+        name = "SetFit/CR"
     else:
         name = args.dataset
     if name in ["sst2", "mnli", "rte"]:
@@ -102,7 +106,7 @@ def prepare_huggingface_dataset(args):
         train_dataset, validation_dataset= my_dataset["train"].train_test_split(test_size=args.val_size, train_size = args.train_size, seed = 0).values()
         my_dataset["train"] = train_dataset
         my_dataset["validation"] = validation_dataset
-    elif args.dataset == "subj":
+    elif args.dataset in ["subj", "trec", "cr"]:
         my_dataset["test"] = my_dataset["test"]
         assert args.val_size + args.train_size <= 1, f"val_size + train_size should be less than 1. Got {args.val_size + args.train_size}"
         train_dataset, validation_dataset= my_dataset["train"].train_test_split(test_size=args.val_size, train_size = args.train_size, seed = 0).values()
@@ -130,10 +134,10 @@ def prepare_huggingface_dataset(args):
     if args.dataset == "rte":
         def map_labels(example):
             key_map_dict = {'sentence1':'premise','sentence2':'hypothesis'}
-            example['sentence'] = example['sentence1'] + "\nquestion: " + example['sentence2']
+            # example['sentence'] = example['sentence1'] + "\nquestion: " + example['sentence2']
             # remove sentence1 and sentence2
-            example = {k:v  for (k,v) in example.items() if k not in key_map_dict}
-            # example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
+            example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
+            # example = {k:v  for (k,v) in example.items() if k not in key_map_dict}
             return example
         my_dataset = my_dataset.map(map_labels)
         my_dataset = my_dataset.remove_columns(['sentence1', 'sentence2'])
@@ -142,22 +146,38 @@ def prepare_huggingface_dataset(args):
         # Make sure you filter them before starting the training using datasets.Dataset.filter.
         # This is too slow!
         my_dataset = my_dataset.filter(lambda example: (example['label']!=-1))
+        # def map_labels(example):
+        #     key_map_dict = {'premise':'sentence1','hypothesis':'sentence2'}
+        #     example['sentence'] = 'Premise: ' + example['premise'] + "\nHypothesis: " + example['hypothesis']
+        #     # remove sentence1 and sentence2
+        #     example = {k:v  for (k,v) in example.items() if k not in key_map_dict}
+        #     return example
+        # my_dataset = my_dataset.map(map_labels)
+        # # filter the key 'premise' and 'hypothesis' from the dataset
+        # my_dataset = my_dataset.remove_columns(['premise', 'hypothesis'])
+    if args.dataset == "trec":
         def map_labels(example):
-            key_map_dict = {'premise':'sentence1','hypothesis':'sentence2'}
-            example['sentence'] = 'Premise: ' + example['premise'] + "\nHypothesis: " + example['hypothesis']
-            # remove sentence1 and sentence2
-            example = {k:v  for (k,v) in example.items() if k not in key_map_dict}
+            key_map_dict = {'text':'sentence', 'coarse_label':'label'}
+            example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
             return example
         my_dataset = my_dataset.map(map_labels)
-        # filter the key 'premise' and 'hypothesis' from the dataset
-        my_dataset = my_dataset.remove_columns(['premise', 'hypothesis'])
+        my_dataset = my_dataset.remove_columns(['text', 'coarse_label', 'fine_label'])
 
-    if args.dataset == "subj":
+    if args.dataset == "cr":
+        def map_labels(example):
+            key_map_dict = {'text':'sentence', 'label':'label'}
+            example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
+            return example
+        my_dataset = my_dataset.map(map_labels)
+        my_dataset = my_dataset.remove_columns(['text', 'label_text'])
+        
+    if args.dataset in ["subj", "mr"]:
         def map_labels(example):
             key_map_dict = {'label':'label', "text":"sentence"}
             example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
             return example
         my_dataset = my_dataset.map(map_labels)
+        my_dataset = my_dataset.remove_columns(['text'])
         
     if args.dataset == "boolq":
         def map_labels(example):

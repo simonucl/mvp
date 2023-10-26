@@ -14,7 +14,7 @@ ADV=${8}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for SHOT in 4 16 32;
+for SHOT in 16;
 do
     for SEED in 1 13 42;
     do 

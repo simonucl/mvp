@@ -71,31 +71,61 @@ class ModelWrapper(torch.nn.Module):
             for t in input_ids:
                 if type(t) is not tuple:
                     text_input_list.append(t.lower())
+                elif len(t) == 2:
+                    text_input_list.append((t[0].lower(), t[1].lower()))
                 elif len(t) > 2:
                     # text_input_list = [t[-1]]
                     # the len(t) must be odd number
-                    assert len(t) % 2 == 1
-                    no_examples = (len(t) - 1) // 2
-                    if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack"]:
-                        examples = []
-                        for i in range(no_examples):
-                            example, label = t[2*i], t[2*i+1]
-                            examples.append({'sentence': example, 'label': label})
-                        inference_input = t[-1]
-                        text_input_list.append(inference_input)
-                        is_icl_attack = True
-                        icl_examples.append(examples)
-                    else:
-                        examples = {}
-                        for i in range(no_examples):
-                            example, label = t[2*i], t[2*i+1]
-                            if label not in examples:
-                                examples[label] = []
-                            examples[label].append({'sentence': example})
-                        inference_input = t[-1]
-                        text_input_list.append(inference_input)
-                        is_icl_attack = True
-                        icl_examples.append(examples)
+                    if self.args.dataset in ["sst2"]:
+                        inference_input = t[0]
+                        t = t[1:]
+                        no_examples = len(t) // 2
+                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack"]:
+                            examples = []
+                            for i in range(no_examples):
+                                example, label = t[2*i], t[2*i+1]
+                                examples.append({'sentence': example, 'label': label})
+                            # inference_input = t[-1]
+                            text_input_list.append(inference_input)
+                            is_icl_attack = True
+                            icl_examples.append(examples)
+                        else:
+                            examples = {}
+                            for i in range(no_examples):
+                                example, label = t[2*i], t[2*i+1]
+                                if label not in examples:
+                                    examples[label] = []
+                                examples[label].append({'sentence': example})
+                            # inference_input = t[-1]
+                            text_input_list.append(inference_input)
+                            is_icl_attack = True
+                            icl_examples.append(examples)
+                    elif self.args.dataset in ["mnli", "rte"]:
+                        inference_pre, inference_hyp = t[0], t[1]
+                        t = t[2:]
+                        no_examples = len(t) // 3
+                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack"]:
+                            examples = []
+                            for i in range(no_examples):
+                                premise, hypothesis, label = t[3*i], t[3*i+1], t[3*i+2]
+                                examples.append({'premise': premise, 'hypothesis': hypothesis, 'label': label})
+                            # inference_pre, inference_hyp = t[-2], t[-1]
+
+                            text_input_list.append((inference_pre, inference_hyp))
+                            is_icl_attack = True
+                            icl_examples.append(examples)
+                        else:
+                            examples = {}
+                            for i in range(no_examples):
+                                premise, hypothesis, label = t[3*i], t[3*i+1], t[3*i+2]
+                                if label not in examples:
+                                    examples[label] = []
+                                examples[label].append({'premise': premise, 'hypothesis': hypothesis})
+                            # inference_pre, inference_hyp = t[-2], t[-1]
+                            text_input_list.append((inference_pre, inference_hyp))
+                            is_icl_attack = True
+                            icl_examples.append(examples)
+
                     # for i in range(no_examples):
                     #     text_input.append((t[2*i], t[2*i+1]))
                     # text_input.append(inference_input)
@@ -116,31 +146,32 @@ class ModelWrapper(torch.nn.Module):
                         self.anchor_store.enqueue(i, hidden_states, torch.tensor(self.inv_verbalizer[labels]))
 
             if self.args.model_type in ["retrieval_icl"]:
-                icl_examples = self.indexEmbedder.subsamplebyretrieval(self.anchor_subsample, text_input_list, self.args.examples_per_label)
+                icl_examples = self.indexEmbedder.subsamplebyretrieval(self.anchor_subsample, text_input_list, self.args.examples_per_label, num_labels=self.args.num_labels, retrieve_method = self.args.retrieve_method)
                 self.icl_examples = icl_examples
             elif self.args.model_type in ["retrieval_icl_attack"]:
-                icl_examples = self.indexEmbedder.subsamplebyretrieval(icl_examples, text_input_list, self.args.examples_per_label)
+                icl_examples = self.indexEmbedder.subsamplebyretrieval(icl_examples, text_input_list, self.args.examples_per_label, num_labels=self.args.num_labels, retrieve_method = self.args.retrieve_method)
                 self.icl_examples = icl_examples
 
-            if (not is_icl_attack) or (self.args.model_type in ["knn_icl_attack"]):
-                input_ids, attention_mask = self.text_to_ids(text_input_list)
-            else:
-                self.icl_examples = icl_examples
-                input_ids, attention_mask = self.text_to_ids(text_input_list)
+            # if (not is_icl_attack) or (self.args.model_type in ["knn_icl_attack"]):
+            #     input_ids, attention_mask = self.text_to_ids(text_input_list)
+            # else:
+            #     self.icl_examples = icl_examples
+            #     input_ids, attention_mask = self.text_to_ids(text_input_list)
         
-
+            if is_icl_attack:
+                self.icl_examples = icl_examples
         # print('ICL examples', self.icl_examples)
 
         input_indices = None
 
         if is_icl_attack or (self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack', "retrieval_icl", "retrieval_icl_attack"]):
             # input_ids, attention_mask, input_indices = craft_tokenized_prompts(self.tokenizer, self.args.model, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
-            input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
+            input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
         # elif self.args.model_type in ['icl', 'knn_icl', 'icl_attack', 'knn_icl_attack']:
             # input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
-        elif self.args.model_type in ["mvp", "untrained_mvp", "mvp_knn", "knn_cli"]:
-        # elif self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn" or self.args.model_type == "knn_cli" or self.args.model_type == "knn_icl" or self.args.model_type == "icl_attack" or 
-            input_ids, attention_mask, input_indices = insert_tokenized_prompts(self.tokenizer, self.args.model, input_ids, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
+        # elif self.args.model_type in ["mvp", "untrained_mvp", "mvp_knn", "knn_cli"]:
+        # # elif self.args.model_type == "mvp" or self.args.model_type == "untrained_mvp" or self.args.model_type == "mvp_knn" or self.args.model_type == "knn_cli" or self.args.model_type == "knn_icl" or self.args.model_type == "icl_attack" or 
+        #     input_ids, attention_mask, input_indices = insert_tokenized_prompts(self.tokenizer, self.args.model, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples)
         return input_ids, attention_mask, input_indices
     
 

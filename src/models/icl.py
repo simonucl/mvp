@@ -11,6 +11,7 @@ from ..utils.dataset import *
 from tqdm import tqdm
 from time import time
 from functools import lru_cache
+from ..utils.dataset import format_template
 
 SST2_LABELS2ID = {'0': 0, '1': 1}
 
@@ -110,13 +111,14 @@ class ICL(ModelWrapper):
                                 )
             self.anchor_store = anchor_store
 
-            print('Input sample example', anchor_subsample[0]['sentence'])
+            # print('Input sample example', anchor_subsample[0]['sentence'])
 
             for ins in tqdm(anchor_subsample, total=len(anchor_subsample)):
                 labels = ins['label']
                 # gen_logits = self.get_logits([ins['sentence']], labels)[0].detach().cpu()
                 # self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
-                hidden_states = self.get_logits([ins['sentence']], labels, is_knn=True)[1].detach().cpu()
+                input_ids = ins['sentence'] if 'sentence' in ins else (ins['premise'], ins['hypothesis'])
+                hidden_states = self.get_logits([input_ids], labels, is_knn=True)[1].detach().cpu()
                 self.anchor_store.enqueue(hidden_states, torch.tensor(labels))
 
                 if args.adv_augment:
@@ -134,12 +136,13 @@ class ICL(ModelWrapper):
                 num_examples_per_label = num_examples_per_label_map[0]
                 for idx in range(num_examples_per_label):
                     for label, example in icl_examples.items():
-                        example = example[idx]['sentence']
-                        examples.append(template.format(example, label))
+                        example = format_template(example[idx], template, self.args.dataset, label=label)
+                        # example = example[idx]['sentence']
+                        examples.append(example)
             else:
                 for label, example in icl_examples.items():
                     for e in example:
-                        examples.append(template.format(e['sentence'], label))
+                        examples.append(format_template(e, template, self.args.dataset, label=label))
             self.prompt = "\n\n".join(examples)
 
             anchor_store = AnchorStores(

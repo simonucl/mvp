@@ -16,7 +16,7 @@ ADV=${8}
 
 for ATTACK in icl_attack;
 do
-    for SHOT in 4 8 16 32;
+    for SHOT in 8 16 32;
     do
         for SEED in 1 13 42;
         do 
@@ -42,7 +42,7 @@ do
             # Set BATCH_SIZE=8 if SHOT < 16, else BATCH_SIZE=4
             BATCH_SIZE=$((64 / SHOT))
 
-            for M in $((SHOT/2)) $((SHOT/4));
+            for M in $((SHOT/2));
             do
             # M should equal to shot / 2
 

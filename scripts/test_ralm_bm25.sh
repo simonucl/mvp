@@ -16,16 +16,9 @@ ADV=${8}
 
 for ATTACK in textbugger;
 do
-    for SEED in 1 13 42;
+    for SHOT in 2 4 8;
     do
-        if [[ $SEED -eq 1 ]]; then
-            SHOTS=(8 16 32)
-        elif [[ $SEED -eq 13 ]]; then
-            SHOTS=(4 16 32)
-        elif [[ $SEED -eq 42 ]]; then
-            SHOTS=(4 8 32)
-        fi
-        for SHOT in ${SHOTS[@]};
+        for SEED in 1 13 42;
         do 
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             # if [[ $ADV -eq 1 ]]; then
@@ -47,9 +40,9 @@ do
             # MODEL_TYPE=knn_icl
             KNN=4
             # Set BATCH_SIZE=8 if SHOT < 16, else BATCH_SIZE=4
-            BATCH_SIZE=$((128 / SHOT))
+            BATCH_SIZE=$((64 / SHOT))
 
-            for M in $((SHOT/2));
+            for M in $((SHOT/2)) $((SHOT/4));
             do
             # M should equal to shot / 2
 
@@ -58,7 +51,7 @@ do
                                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                             --seed $SEED --shot ${SHOT} \
-                                            --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} > ${MODELPATH}/logs_${ATTACK}_m_${M}_test.txt
+                                            --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} --retrieve_method bm25 > ${MODELPATH}/logs_${ATTACK}_m_${M}_bm25.txt
             done
         done
     done

@@ -14,18 +14,11 @@ ADV=${8}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for ATTACK in textbugger;
+for ATTACK in icl_attack;
 do
-    for SEED in 1 13 42;
+    for SHOT in 8 16 32;
     do
-        if [[ $SEED -eq 1 ]]; then
-            SHOTS=(8 16 32)
-        elif [[ $SEED -eq 13 ]]; then
-            SHOTS=(4 16 32)
-        elif [[ $SEED -eq 42 ]]; then
-            SHOTS=(4 8 32)
-        fi
-        for SHOT in ${SHOTS[@]};
+        for SEED in 1 13 42;
         do 
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             # if [[ $ADV -eq 1 ]]; then
@@ -47,9 +40,9 @@ do
             # MODEL_TYPE=knn_icl
             KNN=4
             # Set BATCH_SIZE=8 if SHOT < 16, else BATCH_SIZE=4
-            BATCH_SIZE=$((128 / SHOT))
+            BATCH_SIZE=$((64 / SHOT))
 
-            for M in $((SHOT/2));
+            for M in $((SHOT/4));
             do
             # M should equal to shot / 2
 

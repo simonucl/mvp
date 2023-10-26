@@ -1,6 +1,7 @@
 
 import torch
 import random
+from .dataset import format_template
 
 def insert_tokenized_template_front(tokenizer, model_type, input_id, template_id, len_templates):
     '''
@@ -234,7 +235,7 @@ def insert_tokenized_prompts(tokenizer, model_type, text_input_list, templates, 
             j=j+1
     return new_input_ids.long(), new_attention_masks.long(), new_input_id_indices
 
-def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_templates, use_all=True, icl_examples=None, len_examples=[0]):
+def insert_icl_prompts(model, tokenizer, model_type, text_input_list, templates, len_templates, use_all=True, icl_examples=None, len_examples=[0]):
     '''
     '''
     # if icl_examples is not None:
@@ -256,7 +257,7 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
     input_length = []
     new_input_id_indices = []
     prompts = []
-    for i in range(input_ids.shape[0]):
+    for i in range(len(text_input_list)):
         if use_all:
             templates_new = templates
         else:
@@ -268,19 +269,8 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                 if (type(icl_examples) is list) and (type(icl_examples[0]) is list):
                     icl_example = icl_examples[i]
                     for e in icl_example:
-                        if 'sentence' in e.keys():
-                            sentence = e['sentence']
-                            label = e['label']
-                            if type(label) is int:
-                                label = model.verbalizer[label][0]
-                            examples.append(template.format(sentence, label))
-                        elif 'premise' in e.keys():
-                            premise = e['premise']
-                            hypothesis = e['hypothesis']
-                            label = e['label']
-                            if type(label) is int:
-                                label = model.verbalizer[label][0]
-                            examples.append(template.format(premise, hypothesis, label))
+                        example = format_template(e, template, model.args.dataset, verbalizer=model.verbalizer)
+                        examples.append(example)
                 else:
                     if type(icl_examples) is list:
                         icl_example = icl_examples[i]
@@ -296,23 +286,13 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
                         num_examples_per_label = num_examples_per_label_map[0]
                         for idx in range(num_examples_per_label):
                             for label, example in icl_example.items():
-                                if 'sentence' in example[idx].keys():
-                                    example = example[idx]['sentence']
-                                    examples.append(template.format(example, label))
-                                elif 'premise' in example[idx].keys():
-                                    premise = example[idx]['premise']
-                                    hypothesis = example[idx]['hypothesis']
-                                    examples.append(template.format(premise, hypothesis, label))
+                                example = format_template(example[idx], template, model.args.dataset, label=label, verbalizer=model.verbalizer)
+                                examples.append(example)
                     else:
                         for label, example in icl_example.items():
                             for e in example:
-                                if 'sentence' in e.keys():
-                                    example = e['sentence']
-                                    examples.append(template.format(example, label))
-                                elif 'premise' in e.keys():
-                                    premise = e['premise']
-                                    hypothesis = e['hypothesis']
-                                    examples.append(template.format(premise, hypothesis, label))
+                                example = format_template(e, template, model.args.dataset, verbalizer=model.verbalizer)
+                                examples.append(example)
                                 # examples.append(template.format(e['sentence'], label))
             prompt = "\n\n".join(examples)
 
@@ -321,13 +301,19 @@ def insert_icl_prompts(model, tokenizer, model_type, input_ids, templates, len_t
             # else:
             #     prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
             prompt_title = ""
-            input = tokenizer.decode(input_ids[i,:], skip_special_tokens=True)
-            inference_sample = "\n\n" + template.format(input, "").strip()
+            input = text_input_list[i]
+            if type(input) is tuple:
+                premise, hypothesis = input
+                inference_sample = "\n\n" + template.format(premise, hypothesis, "").strip()
+            else:
+                inference_sample = "\n\n" + template.format(input, "").strip()
+            # if "gpt" in model.args.model:
+            #     inference_sample += " "
             
             prompt = prompt_title + prompt + inference_sample
             prompts.append(prompt)
-    
 
+    # print('Prompts', prompts[0])
     # if model.args.model_type in ["icl_attack", "retrieval_icl"]:
 
     inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
