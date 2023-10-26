@@ -6,6 +6,7 @@ from torch import nn
 from time import time
 from functools import lru_cache
 from ..utils.anchor import AnchorStore, subsamplebyshot
+from collections import Counter
 
 class ModelWrapper(torch.nn.Module):
     def __init__(self, args, model, tokenizer, data_collator, verbalizer = None, template=None):  
@@ -80,12 +81,13 @@ class ModelWrapper(torch.nn.Module):
                         inference_input = t[0]
                         t = t[1:]
                         no_examples = len(t) // 2
-                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack"]:
+                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack", "icl_attack"]:
                             examples = []
                             for i in range(no_examples):
                                 example, label = t[2*i], t[2*i+1]
                                 examples.append({'sentence': example, 'label': label})
                             # inference_input = t[-1]
+                            print(Counter([e['label'] for e in examples]))
                             text_input_list.append(inference_input)
                             is_icl_attack = True
                             icl_examples.append(examples)
@@ -104,13 +106,14 @@ class ModelWrapper(torch.nn.Module):
                         inference_pre, inference_hyp = t[0], t[1]
                         t = t[2:]
                         no_examples = len(t) // 3
-                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack"]:
+                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack", "icl_attack"]:
                             examples = []
                             for i in range(no_examples):
                                 premise, hypothesis, label = t[3*i], t[3*i+1], t[3*i+2]
                                 examples.append({'premise': premise, 'hypothesis': hypothesis, 'label': label})
                             # inference_pre, inference_hyp = t[-2], t[-1]
-
+                            print(Counter([e['label'] for e in examples]))
+                            
                             text_input_list.append((inference_pre, inference_hyp))
                             is_icl_attack = True
                             icl_examples.append(examples)

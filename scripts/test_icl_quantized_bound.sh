@@ -6,7 +6,7 @@ TEMPLATE_FILE=${5}
 VERBALIZER_FILE=${6}
 ATTACK=${7}
 ADV=${8}
-KNN_T=${9}
+
 
 # source ~/.bashrc
 # echo $PWD
@@ -14,13 +14,12 @@ KNN_T=${9}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for ATTACK in textfooler textbugger;
+for ATTACK in swap_labels;
 do
-    for SHOT in 4 8;
-    do 
-        for SEED in 1 13 42;
-        do
-            BETA=0.2
+    for SHOT in 8 16;
+    do
+        for SEED in 1;
+        do 
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             # if [[ $ADV -eq 1 ]]; then
             #     EXTRA_NAMES=adv_seed_${SEED}
@@ -39,16 +38,21 @@ do
             echo ${MODELPATH}
 
             # MODEL_TYPE=knn_icl
-            KNN=$(( SHOT / 2 - 1 ))
-            
-            BATCH_SIZE=4
+            KNN=4
+            BATCH_SIZE=1
+            # nohup python3 main.py --mode attack \
+            #                             --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+            #                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+            #                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+            #                             --seed $SEED --shot ${SHOT} \
+            #                             --adv_augment $ADV --knn_k $KNN --max_percent_words 0.15 > ${MODELPATH}/logs_${ATTACK}.txt
+
             nohup python3 main.py --mode attack \
-                                        --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+                                        --attack_name ${ATTACK} --num_examples 50 --dataset ${DATASET} \
                                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
-                                        --seed $SEED --shot ${SHOT} --path ${MODELPATH} \
-                                        --adv_augment $ADV --knn_k $KNN --beta ${BETA} --max_percent_words 0.15 --examples_per_label 1 \
-                                        --knn_T $KNN_T > ${MODELPATH}/logs_knn_${ATTACK}_${BETA}.txt
+                                        --seed $SEED --shot ${SHOT} \
+                                        --adv_augment $ADV --knn_k $KNN --max_percent_words 0.5 --is_quantized --model_dir ${MODELPATH} > ${MODELPATH}/logs_${ATTACK}_quantized_bound.txt
         done
     done
 done

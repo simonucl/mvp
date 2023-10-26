@@ -48,7 +48,7 @@ do
                                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                         --seed $SEED --shot ${SHOT} --path ${MODELPATH} \
                                         --adv_augment $ADV --knn_k $KNN --beta ${BETA} --max_percent_words 0.15 --examples_per_label 1 \
-                                        --knn_T $KNN_T > ${MODELPATH}/logs_knn_${ATTACK}_${BETA}.txt
+                                        --knn_T $KNN_T --is_quantized > ${MODELPATH}/logs_knn_${ATTACK}_${BETA}_8_bit.txt
         done
     done
 done

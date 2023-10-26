@@ -22,6 +22,7 @@ def parse_args():
     parser.add_argument("--model_type", help = "Which model to use", choices = "[mvp, untrained_mvp, mlp_ft, untrained_mlp_ft, projectcls, clsprompt, lpft_sparse, lpft_dense, mvp_knn, knn_cli, knn_icl, icl_attack, icl, knn_icl_attack, retrieval_icl, retrieval_icl_attack, knn_features]", type = str, default = "mvp")
     parser.add_argument("--seed", help = "Seed", type = int, default = 0)
     parser.add_argument("--checkpoint_interval", help = "Save model after every N steps", type = int, default = 1000)
+    parser.add_argument("--model_dir", help = "Path for saving model", type = str, default = None)
     
     # MVP specific params
     parser.add_argument("--pool_label_words", help = "How to pool the logits of label words?", type = str, default = "max", choices = ["max", "mean"])
@@ -69,6 +70,9 @@ def parse_args():
     parser.add_argument('--train_epoch', type=int, default=30)
     parser.add_argument('--shot', type=int, default=16)
     parser.add_argument('--beta', type=float, default=1.0)
+
+    # Efficiency Params
+    parser.add_argument('--is_quantized', default=False, action='store_true')
 
     # RALM Params
     parser.add_argument('--retrieve_method', type=str, default='sbert')

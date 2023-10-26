@@ -96,7 +96,9 @@ class ICL(ModelWrapper):
         else:
             self.icl_examples = icl_examples
 
-        model = model.to('cuda')
+        if not args.is_quantized:
+            model = model.to('cuda')
+            
         self.anchor_subsample = anchor_subsample
 
         if self.args.model_type in ["knn_icl"]:
@@ -240,7 +242,7 @@ class ICL(ModelWrapper):
         '''
 
         query_logits, label_hidden_states = self.get_logits(input_ids, outputs=outputs) # (B, num_classes), (B, hidden_size)
-        print('Decoded output', self.tokenizer.batch_decode(torch.argmax(query_logits, dim=-1)))
+        # print('Decoded output', self.tokenizer.batch_decode(torch.argmax(query_logits, dim=-1)))
 
         label_words_logits = query_logits[:, self.label_word_ids]    # (B, num_candidates)
         # label_words_logits = query_logits

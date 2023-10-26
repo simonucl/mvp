@@ -182,7 +182,8 @@ def attacker(args):
 
         print(templates)
         print(verbalizer)
-
+        print(log_to_csv)
+        
         attack = attack_class.build(model)
         
         if args.query_budget < 0: args.query_budget = None 
@@ -199,7 +200,7 @@ def attacker(args):
         if attack_name in ["icl_attack", "icl_attack_word"]:
             max_percent_words = 0.1
         elif attack_name in ["swap_labels"]:
-            max_percent_words = 0.7
+            max_percent_words = 1
         else:
             max_percent_words = 0.15
         #flag = 0

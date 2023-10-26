@@ -16,7 +16,7 @@ ADV=${8}
 
 for ATTACK in textfooler textbugger;
 do
-    for SHOT in 2 4 8 16;
+    for SHOT in 4 8;
     do
         for SEED in 1 13 42;
         do 
@@ -39,8 +39,7 @@ do
 
             # MODEL_TYPE=knn_icl
             KNN=4
-            BATCH_SIZE=$((32 / SHOT))
-
+            BATCH_SIZE=$((8 / SHOT))
             # nohup python3 main.py --mode attack \
             #                             --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
             #                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \

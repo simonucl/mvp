@@ -45,7 +45,10 @@ if __name__ == "__main__":
                       "mr":2,
                       "subj":2,
                       "trec":6,
-                      "mnli":3}
+                      "mnli":3,
+                      "qnli":2,
+                      "cb":2,
+                      "wnli":2}
     
     args.num_labels = num_labels_map[args.dataset]
     set_seeds(args.seed)
@@ -61,7 +64,9 @@ if __name__ == "__main__":
     
     if args.mode == "attack":
         model_dir = f"{args.path}/attack_logs/"
-    args.model_dir = model_dir
+    if args.model_dir is None:
+        args.model_dir = model_dir
+        
     args.cache_dir = args.model_dir + "/cache"
     if(not os.path.exists(model_dir)):
         os.makedirs(model_dir)

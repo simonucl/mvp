@@ -87,13 +87,15 @@ def prepare_huggingface_dataset(args):
         name = "SetFit/CR"
     else:
         name = args.dataset
-    if name in ["sst2", "mnli", "rte"]:
+    if name in ["sst2", "mnli", "rte", "qnli", "wnli"]:
         my_dataset = load_dataset("glue",name)
+    elif name in ["cb"]:
+        my_dataset = load_dataset("super_glue",name)
     else:
         my_dataset = load_dataset(name)
     my_dataset = my_dataset.map(do_lower)
     
-    if args.dataset in ["sst2", "rte"]:
+    if args.dataset in ["sst2", "rte", "qnli", "wnli", "cb"]:
         # test datset has no labels, so use val set as test for sst2
         my_dataset["test"] = my_dataset["validation"]
         assert args.val_size + args.train_size <= 1, f"val_size + train_size should be less than 1. Got {args.val_size + args.train_size}"
@@ -131,7 +133,7 @@ def prepare_huggingface_dataset(args):
     
     if args.dataset == "sst2":
         my_dataset = my_dataset.filter(lambda example: (re.search('[a-zA-Z]', example["sentence"]) is not None))
-    if args.dataset == "rte":
+    if args.dataset in ["rte", "wnli"]:
         def map_labels(example):
             key_map_dict = {'sentence1':'premise','sentence2':'hypothesis'}
             # example['sentence'] = example['sentence1'] + "\nquestion: " + example['sentence2']
@@ -141,6 +143,17 @@ def prepare_huggingface_dataset(args):
             return example
         my_dataset = my_dataset.map(map_labels)
         my_dataset = my_dataset.remove_columns(['sentence1', 'sentence2'])
+    if args.dataset in ["qnli"]:
+        def map_labels(example):
+            key_map_dict = {'question':'premise','sentence':'hypothesis'}
+            # example['sentence'] = example['sentence1'] + "\nquestion: " + example['sentence2']
+            # remove sentence1 and sentence2
+            example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
+            # example = {k:v  for (k,v) in example.items() if k not in key_map_dict}
+            return example
+        my_dataset = my_dataset.map(map_labels)
+        my_dataset = my_dataset.remove_columns(['question', 'sentence'])
+
     if args.dataset == "mnli":
         # Dataset instances which don't have any gold label are marked with -1 label. 
         # Make sure you filter them before starting the training using datasets.Dataset.filter.
