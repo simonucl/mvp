@@ -87,7 +87,7 @@ class ModelWrapper(torch.nn.Module):
                                 example, label = t[2*i], t[2*i+1]
                                 examples.append({'sentence': example, 'label': label})
                             # inference_input = t[-1]
-                            print(Counter([e['label'] for e in examples]))
+                            # print(Counter([e['label'] for e in examples]))
                             text_input_list.append(inference_input)
                             is_icl_attack = True
                             icl_examples.append(examples)
@@ -112,7 +112,7 @@ class ModelWrapper(torch.nn.Module):
                                 premise, hypothesis, label = t[3*i], t[3*i+1], t[3*i+2]
                                 examples.append({'premise': premise, 'hypothesis': hypothesis, 'label': label})
                             # inference_pre, inference_hyp = t[-2], t[-1]
-                            print(Counter([e['label'] for e in examples]))
+                            # print(Counter([e['label'] for e in examples]))
                             
                             text_input_list.append((inference_pre, inference_hyp))
                             is_icl_attack = True

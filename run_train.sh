@@ -39,7 +39,16 @@ CUDA_VISIBLE_DEVICES=0 bash scripts/test_knn_icl_attack.sh 8 sst2 meta-llama/Lla
 # Seed 1, Shot 4, ICL for RTE 
 CUDA_VISIBLE_DEVICES=1 bash scripts/test_icl.sh 8 mnli meta-llama/Llama-2-7b-hf icl configs/templates_mnli.yaml configs/verbalizer_mnli.yaml textfooler 0
 
-CUDA_VISIBLE_DEVICES=0 bash scripts/test_icl_quantized_bound.sh 8 rte meta-llama/Llama-2-7b-hf icl_attack configs/templates_rte.yaml configs/verbalizer_rte.yaml swap_labels 0
+CUDA_VISIBLE_DEVICES=0 nohup bash scripts/test_icl_quantized_bound.sh 8 rte meta-llama/Llama-2-7b-hf icl_attack configs/templates_rte.yaml configs/verbalizer_rte.yaml swap_labels 0 > ./logs/run_icl_quantized_bound.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=1 nohup bash scripts/test_icl_quantized.sh 8 rte meta-llama/Llama-2-7b-hf icl_attack configs/templates_rte.yaml configs/verbalizer_rte.yaml swap_labels 0 > ./logs/run_icl_quantized.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=2 nohup bash scripts/test_icl.sh 8 rte meta-llama/Llama-2-7b-hf icl_attack configs/templates_rte.yaml configs/verbalizer_rte.yaml swap_labels 0 > ./logs/run_icl.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=2 bash scripts/test_icl_precision.sh 8 rte meta-llama/Llama-2-7b-hf icl_attack configs/templates_rte.yaml configs/verbalizer_rte.yaml swap_labels 0 > ./logs/run_icl_precision.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=1 bash scripts/test_icl_precision_1.sh 8 rte meta-llama/Llama-2-7b-hf icl_attack configs/templates_rte.yaml configs/verbalizer_rte.yaml swap_labels 0 > ./logs/run_icl_precision_1.log 2>&1 &
+
 
 CUDA_VISIBLE_DEVICES=1 bash scripts/test_knn_icl_quantized.sh 8 trec meta-llama/Llama-2-7b-hf knn_icl configs/templates_trec.yaml configs/verbalizer_trec.yaml textfooler 0 100
 

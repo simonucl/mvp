@@ -73,7 +73,8 @@ def parse_args():
 
     # Efficiency Params
     parser.add_argument('--is_quantized', default=False, action='store_true')
-
+    parser.add_argument('--precision', type=str, default='bfloat16')
+    
     # RALM Params
     parser.add_argument('--retrieve_method', type=str, default='sbert')
 

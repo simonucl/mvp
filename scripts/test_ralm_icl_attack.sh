@@ -16,7 +16,7 @@ ADV=${8}
 
 for ATTACK in icl_attack;
 do
-    for SHOT in 8 16 32;
+    for SHOT in 2 4 8 16 32;
     do
         for SEED in 1 13 42;
         do 
@@ -40,7 +40,7 @@ do
             # MODEL_TYPE=knn_icl
             KNN=4
             # Set BATCH_SIZE=8 if SHOT < 16, else BATCH_SIZE=4
-            BATCH_SIZE=$((64 / SHOT))
+            BATCH_SIZE=$((32 / SHOT))
 
             for M in $((SHOT/2));
             do
@@ -51,7 +51,7 @@ do
                                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                             --seed $SEED --shot ${SHOT} \
-                                            --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} > ${MODELPATH}/logs_${ATTACK}_m_${M}_test.txt
+                                            --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} --max_percent_words 0.5 --model_dir ${MODELPATH} > ${MODELPATH}/logs_${ATTACK}_m_${M}_test.txt
             done
         done
     done

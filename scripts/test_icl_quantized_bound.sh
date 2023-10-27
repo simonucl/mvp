@@ -16,9 +16,9 @@ ADV=${8}
 
 for ATTACK in swap_labels;
 do
-    for SHOT in 8 16;
+    for SHOT in 8 2 4 16;
     do
-        for SEED in 1;
+        for SEED in 1 13 42;
         do 
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             # if [[ $ADV -eq 1 ]]; then
@@ -39,7 +39,8 @@ do
 
             # MODEL_TYPE=knn_icl
             KNN=4
-            BATCH_SIZE=1
+            BATCH_SIZE=$((16 / SHOT))
+
             # nohup python3 main.py --mode attack \
             #                             --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
             #                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
@@ -48,11 +49,57 @@ do
             #                             --adv_augment $ADV --knn_k $KNN --max_percent_words 0.15 > ${MODELPATH}/logs_${ATTACK}.txt
 
             nohup python3 main.py --mode attack \
-                                        --attack_name ${ATTACK} --num_examples 50 --dataset ${DATASET} \
+                                        --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
                                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                         --seed $SEED --shot ${SHOT} \
-                                        --adv_augment $ADV --knn_k $KNN --max_percent_words 0.5 --is_quantized --model_dir ${MODELPATH} > ${MODELPATH}/logs_${ATTACK}_quantized_bound.txt
+                                        --adv_augment $ADV --knn_k $KNN --max_percent_words 0.5 --is_quantized --model_dir ${MODELPATH}_quantized_bound > ${MODELPATH}/logs_${ATTACK}_quantized_bound.txt
+        done
+    done
+done
+
+MODEL_TYPE=retrieval_icl_attack
+
+for ATTACK in swap_labels;
+do
+    for SHOT in 8 2 4 16;
+    do
+        for SEED in 1 13 42;
+        do 
+            echo $SEED+${SHOT}+${MODEL}+"mvp"
+            # if [[ $ADV -eq 1 ]]; then
+            #     EXTRA_NAMES=adv_seed_${SEED}
+            # else
+            #     EXTRA_NAMES=seed_${SEED}
+            # fi
+
+            MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
+            
+            # ATTACK=textfooler
+            MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
+
+            DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
+
+            mkdir -p ${MODELPATH}
+            echo ${MODELPATH}
+
+            # MODEL_TYPE=knn_icl
+            KNN=4
+            BATCH_SIZE=$((16 / SHOT))
+
+            # nohup python3 main.py --mode attack \
+            #                             --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+            #                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+            #                             --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+            #                             --seed $SEED --shot ${SHOT} \
+            #                             --adv_augment $ADV --knn_k $KNN --max_percent_words 0.15 > ${MODELPATH}/logs_${ATTACK}.txt
+
+                nohup python3 main.py --mode attack \
+                                            --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
+                                            --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
+                                            --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
+                                            --seed $SEED --shot ${SHOT} \
+                                            --adv_augment $ADV --knn_k $KNN --examples_per_label ${M} --max_percent_words 0.5 --is_quantized --model_dir ${MODELPATH}_quantized_bound > ${MODELPATH}/logs_${ATTACK}_quantized_bound.txt
         done
     done
 done

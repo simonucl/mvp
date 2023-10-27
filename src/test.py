@@ -128,11 +128,11 @@ def attacker(args):
                     label_set.append(k)
                 else:
                     assert len(tokenizer(word)["input_ids"]) == num_tokens, f"Verbalizer word {word} has {len(tokenizer(word)['input_ids'])} tokens, but model has {num_tokens} tokens"
-        # if args.model_type in ["retrieval_icl_attack"]:
-        #     anchor_subsample, _ = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, 0)
-        #     icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
-        # else:
-        _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
+        if args.model_type in ["retrieval_icl_attack"]:
+            anchor_subsample, _ = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, 0)
+            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
+        else:
+            _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
 
         verbalizer = model.verbalizer if model is not None else None
         # if 'sentence' in my_dataset[0].keys():
@@ -200,7 +200,7 @@ def attacker(args):
         if attack_name in ["icl_attack", "icl_attack_word"]:
             max_percent_words = 0.1
         elif attack_name in ["swap_labels"]:
-            max_percent_words = 1
+            max_percent_words = 1.0
         else:
             max_percent_words = 0.15
         #flag = 0

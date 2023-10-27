@@ -16,7 +16,7 @@ ADV=${8}
 
 for ATTACK in swap_labels;
 do
-    for SHOT in 2 4 8 16;
+    for SHOT in 8 2 4 16;
     do
         for SEED in 1 13 42;
         do 
@@ -52,7 +52,7 @@ do
                                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                         --seed $SEED --shot ${SHOT} \
-                                        --adv_augment $ADV --knn_k $KNN --is_quantized --model_dir ${MODELPATH} > ${MODELPATH}/logs_${ATTACK}_quantized.txt
+                                        --adv_augment $ADV --knn_k $KNN --is_quantized --model_dir ${MODELPATH}_quantized > ${MODELPATH}/logs_${ATTACK}_quantized.txt
         done
     done
 done
