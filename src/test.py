@@ -184,7 +184,10 @@ def attacker(args):
         print(verbalizer)
         print(log_to_csv)
         
-        attack = attack_class.build(model)
+        if attack_name in ["swap_labels"]:
+            attack = attack_class.build(model, verbalizer=verbalizer, fix_dist=args.fix_dist)
+        else:
+            attack = attack_class.build(model)
         
         if args.query_budget < 0: args.query_budget = None 
         attack_args = AttackArgs(num_examples=args.num_examples, 

@@ -84,6 +84,9 @@ def parse_args():
     # ICL Attack Params
     parser.add_argument('--max_percent_words', type=float, default=-1)
 
+    # ICL Label Swap Attack Params
+    parser.add_argument('--fix_dist', action='store_true', default=False)
+    
     # Masking Params
     parser.add_argument('--mask_augment', action='store_true', default=False)
     parser.add_argument('--mask_prob', type=float, default=0.15)
