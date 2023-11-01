@@ -41,7 +41,7 @@ def parse_args():
     
     #TEST
     parser.add_argument("--path", help = "Path for test model load", type = str, default = "None")
-    parser.add_argument("--attack_name", help = "Attack Name", type = str, default = "textfooler", choices = ["none", "textfooler", "textbugger", "bae", "icl_attack", "icl_attack_word", "swap_labels", "swap_orders"])
+    parser.add_argument("--attack_name", help = "Attack Name", type = str, default = "textfooler", choices = ["none", "textfooler", "textbugger", "bae", "icl_attack", "icl_attack_word", "swap_labels", "swap_orders", "irrelevant_sample"])
     parser.add_argument("--num_examples", help = "number of test examples", type = int, default = 1000)
     parser.add_argument("--query_budget", help = "Query Budget per example (-1 for no budget)", type = int, default = -1)
     parser.add_argument("--split", help = "split to attack on", type = str, default = "test", choices = ["train", "validation", "test"])

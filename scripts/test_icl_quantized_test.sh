@@ -14,11 +14,14 @@ ADV=${8}
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for ATTACK in swap_labels;
+# for ATTACK in irrelevant_sample;
+for ATTACK in swap_orders;
 do
-    for SHOT in 8 2 4 16;
+    # for SHOT in 8 2 4 16;
+    for SHOT in 8;
     do
-        for SEED in 1 13 42;
+        # for SEED in 1 13 42;
+        for SEED in 1;
         do 
             echo $SEED+${SHOT}+${MODEL}+"mvp"
             # if [[ $ADV -eq 1 ]]; then
@@ -52,7 +55,7 @@ do
                                         --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                         --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                         --seed $SEED --shot ${SHOT} \
-                                        --adv_augment $ADV --knn_k $KNN --is_quantized --precision int8 --fix_dist --model_dir ${MODELPATH}_quantized_fix_dist > ${MODELPATH}/logs_${ATTACK}_quantized_fix_dist.txt
+                                        --adv_augment $ADV --knn_k $KNN --is_quantized --precision int8 --model_dir ${MODELPATH}_quantized_test > ${MODELPATH}/logs_${ATTACK}_quantized_test.txt
         done
     done
 done

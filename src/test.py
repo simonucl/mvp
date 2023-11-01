@@ -5,7 +5,7 @@ sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
 from customattacks import TextFoolerCustom, TextBuggerCustom
 # from TextBuggerCustom import TextBuggerCustom
-from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord, SwapLabel2023, SwapOrderAttack
+from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord, SwapLabel2023, SwapOrderAttack, IrrelevantSampleAttack
 from src.utils.funcs import *
 from src.models import get_model
 from textattack import AttackArgs
@@ -174,7 +174,8 @@ def attacker(args):
                             "icl_attack": ICLTextAttack,
                             "icl_attack_word": ICLTextAttackWord,
                             "swap_labels": SwapLabel2023,
-                            "swap_orders": SwapOrderAttack
+                            "swap_orders": SwapOrderAttack,
+                            'irrelevant_sample': IrrelevantSampleAttack
                             }
                             
         attack_class = attack_name_mapper[attack_name]
@@ -186,6 +187,10 @@ def attacker(args):
         
         if attack_name in ["swap_labels"]:
             attack = attack_class.build(model, verbalizer=verbalizer, fix_dist=args.fix_dist)
+        elif attack_name in ['irrelevant_sample']:
+            with open('./src/ood/ood_cc_news.txt' , 'r') as f:
+                ood_dataset = f.readlines()
+            attack = attack_class.build(model, ood_dataset=ood_dataset)
         else:
             attack = attack_class.build(model)
         
