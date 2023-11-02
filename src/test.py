@@ -190,6 +190,7 @@ def attacker(args):
         elif attack_name in ['irrelevant_sample']:
             with open('./src/ood/ood_cc_news.txt' , 'r') as f:
                 ood_dataset = f.readlines()
+            print("Finished loading ood dataset")
             attack = attack_class.build(model, ood_dataset=ood_dataset)
         else:
             attack = attack_class.build(model)
@@ -198,7 +199,7 @@ def attacker(args):
         attack_args = AttackArgs(num_examples=args.num_examples, 
                                 log_to_csv=log_to_csv,
                                 disable_stdout=True,
-                                enable_advance_metrics=True,
+                                enable_advance_metrics= attack_name not in ["swap_orders", "irrelevant_sample"],
                                 query_budget = args.query_budget,parallel=False)
         attacker = Attacker(attack, dataset, attack_args)
 
