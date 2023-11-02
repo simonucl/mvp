@@ -18,11 +18,11 @@ ADV=${8}
 # # for ATTACK in swap_orders;
 # do
 
-# for SHOT in 8 2 4 16;
-for SHOT in 8 4;
+for SHOT in 8 2 4 16;
+# for SHOT in 8;
 do
-    # for SEED in 1 13 42;
-    for SEED in 1;
+    for SEED in 1 13 42;
+    # for SEED in 1;
     do 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         # if [[ $ADV -eq 1 ]]; then
@@ -43,7 +43,7 @@ do
 
         # MODEL_TYPE=knn_icl
         KNN=4
-        BATCH_SIZE=$((8 / SHOT))
+        BATCH_SIZE=$((16 / SHOT))
         # nohup python3 main.py --mode attack \
         #                             --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
         #                             --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
@@ -51,12 +51,13 @@ do
         #                             --seed $SEED --shot ${SHOT} \
         #                             --adv_augment $ADV --knn_k $KNN --max_percent_words 0.15 > ${MODELPATH}/logs_${ATTACK}.txt
 
-        nohup python3 main.py --mode attack \
-                                    --attack_name ${ATTACK} --num_examples 20 --dataset ${DATASET} \
+         nohup python3 main.py --mode attack \
+                                    --attack_name ${ATTACK} --num_examples 1000 --dataset ${DATASET} \
                                     --query_budget -1 --batch_size ${BATCH_SIZE} --model_type ${MODEL_TYPE} --model ${MODEL} \
                                     --verbalizer_file ${VERBALIZER_FILE} --template_file ${TEMPLATE_FILE} \
                                     --seed $SEED --shot ${SHOT} \
-                                    --adv_augment $ADV --knn_k $KNN --is_quantized --precision int8 --model_dir ${MODELPATH}_quantized_test > ${MODELPATH}/logs_${ATTACK}_quantized.txt
+                                    --adv_augment $ADV --knn_k $KNN --model_dir ${MODELPATH} > ${MODELPATH}/logs_${ATTACK}.txt
+                                    # > ${MODELPATH}/logs_${ATTACK}_quantized.txt
     done
 done
 # done
