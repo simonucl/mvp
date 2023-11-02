@@ -77,7 +77,7 @@ class ICL(ModelWrapper):
 
         if args.model_type in ["icl", "icl_attack", "retrieval_icl_attack"]:
             examples_per_label = args.shot
-        elif args.model_type in ["retrieval_icl", "knn_icl_attack"]:
+        elif args.model_type in ["retrieval_icl"]:
             examples_per_label = 0
         else:
             examples_per_label = args.examples_per_label
@@ -112,7 +112,7 @@ class ICL(ModelWrapper):
                                 n_class=args.num_labels
                                 )
             self.anchor_store = anchor_store
-
+ 
             # print('Input sample example', anchor_subsample[0]['sentence'])
 
             for ins in tqdm(anchor_subsample, total=len(anchor_subsample)):
@@ -133,18 +133,19 @@ class ICL(ModelWrapper):
         elif self.args.model_type in ["knn_icl_attack"]:
             examples = []
             num_examples_per_label_map = [len(v) for k, v in icl_examples.items()]
+            print('Num examples per label map', num_examples_per_label_map)
             # check if all instance in num_examples_per_label_map are equal
             if len(set(num_examples_per_label_map)) == 1:
                 num_examples_per_label = num_examples_per_label_map[0]
                 for idx in range(num_examples_per_label):
                     for label, example in icl_examples.items():
-                        example = format_template(example[idx], template, self.args.dataset, label=label)
+                        example = format_template(example[idx], template[0], self.args.dataset, label=label)
                         # example = example[idx]['sentence']
                         examples.append(example)
             else:
                 for label, example in icl_examples.items():
                     for e in example:
-                        examples.append(format_template(e, template, self.args.dataset, label=label))
+                        examples.append(format_template(e, template[0], self.args.dataset, label=label))
             self.prompt = "\n\n".join(examples)
 
             anchor_store = AnchorStores(
@@ -160,7 +161,11 @@ class ICL(ModelWrapper):
 
     @lru_cache(maxsize=1000)
     def get_knn_logits(self, input_sent):
+
         sent = self.prompt + '\n\n' + input_sent
+        # print("====================")
+        # print(self.prompt)
+        # print("====================")
         input_ids = self.tokenizer(sent, return_tensors='pt', padding=True, truncation=True)['input_ids']
         input_ids = input_ids.to('cuda')
         with torch.no_grad():
