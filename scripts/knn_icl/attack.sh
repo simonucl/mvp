@@ -4,7 +4,7 @@ MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
 ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | irrelevant_sample]
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
-VERBALIZER_FILE=configs/verbalizers_${DATASET}.yaml
+VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 SHOTS=(8 2 4 16)
 SEEDS=(1 13 42)
 BETA=0.2
