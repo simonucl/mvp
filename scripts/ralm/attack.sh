@@ -4,7 +4,7 @@ MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
 ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | irrelevant_sample]
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
-VERBALIZER_FILE=configs/verbalizers_${DATASET}.yaml
+VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 SHOTS=(8 2 4 16)
 SEEDS=(1 13 42)
 RETRIEVAL_METHOD=sbert
@@ -53,10 +53,7 @@ do
                 --shot ${SHOT} \
                 --max_percent_words ${ATTACK_PRECENT} \
                 --model_dir ${MODELPATH}_m_${M} \
-                --knn_T ${KNN_T} \
-                --beta ${BETA} \
-                --retrieval_method ${RETRIEVAL_METHOD} \
-                --knn ${KNN} \
+                --retrieve_method ${RETRIEVAL_METHOD} \
                 --examples_per_label ${M} \
                     > ${MODELPATH}/logs_${ATTACK}_m_${M}.txt
         done
