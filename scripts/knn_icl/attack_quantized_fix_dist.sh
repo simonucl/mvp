@@ -50,13 +50,39 @@ do
             --verbalizer_file ${VERBALIZER_FILE} \
             --template_file ${TEMPLATE_FILE} \
             --seed $SEED \
+            --is_quantized \
+            --precision int8 \
             --shot ${SHOT} \
             --max_percent_words ${ATTACK_PRECENT} \
-            --model_dir ${MODELPATH} \
+            --model_dir ${MODELPATH}_quantized \
             --knn_T ${KNN_T} \
             --beta ${BETA} \
             --knn_k ${KNN} \
             --examples_per_label 1 \
-                > ${MODELPATH}/logs_${ATTACK}.txt
+                > ${MODELPATH}/logs_${ATTACK}_quantized.txt
+
+        nohup python3 main.py \
+            --mode attack \
+            --attack_name ${ATTACK} \
+            --num_examples 1000 \
+            --dataset ${DATASET} \
+            --query_budget -1 \
+            --batch_size ${BATCH_SIZE} \
+            --model_type ${MODEL_TYPE} \
+            --model ${MODEL} \
+            --verbalizer_file ${VERBALIZER_FILE} \
+            --template_file ${TEMPLATE_FILE} \
+            --seed $SEED \
+            --is_quantized \
+            --precision int8 \
+            --shot ${SHOT} \
+            --max_percent_words ${ATTACK_PRECENT} \
+            --model_dir ${MODELPATH}_quantized_fix_dist \
+            --fix_dist \
+            --knn_T ${KNN_T} \
+            --beta ${BETA} \
+            --knn_k ${KNN} \
+            --examples_per_label 1 \
+                > ${MODELPATH}/logs_${ATTACK}_quantized_fix_dist.txt
     done
 done

@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=0 bash scripts/test_1_seed.sh 8 sst2 roberta-large mvp 20 1e-5 max mean max mean configs/templates_sst2.yaml configs/verbalizer_sst2.yaml mvp_seed_16 textfooler train -1 0.95 0.05

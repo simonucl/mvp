@@ -53,10 +53,7 @@ do
                 --shot ${SHOT} \
                 --max_percent_words ${ATTACK_PRECENT} \
                 --model_dir ${MODELPATH}_m_${M} \
-                --knn_T ${KNN_T} \
-                --beta ${BETA} \
-                --retrieval_method ${RETRIEVAL_METHOD} \
-                --knn ${KNN} \
+                --retrieve_method ${RETRIEVAL_METHOD} \
                 --examples_per_label ${M} \
                     > ${MODELPATH}/logs_${ATTACK}_m_${M}.txt
         done

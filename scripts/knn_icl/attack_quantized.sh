@@ -57,7 +57,7 @@ do
             --model_dir ${MODELPATH}_quantized \
             --knn_T ${KNN_T} \
             --beta ${BETA} \
-            --knn ${KNN} \
+            --knn_k ${KNN} \
             --examples_per_label 1 \
                 > ${MODELPATH}/logs_${ATTACK}_quantized.txt
     done
