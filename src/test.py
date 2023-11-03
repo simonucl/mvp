@@ -5,7 +5,7 @@ sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
 from customattacks import TextFoolerCustom, TextBuggerCustom
 # from TextBuggerCustom import TextBuggerCustom
-from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord, SwapLabel2023, SwapOrderAttack
+from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord, SwapLabel2023, SwapOrderAttack, IrrelevantSampleAttack
 from src.utils.funcs import *
 from src.models import get_model
 from textattack import AttackArgs
@@ -112,9 +112,9 @@ def attacker(args):
         else:
             num_tokens = 3
 
-        if args.model_type in ["icl", "icl_attack", "retrieval_icl_attack", "knn_icl_attack"]:
+        if args.model_type in ["icl", "icl_attack"]:
             examples_per_label = args.shot
-        elif args.model_type in ["retrieval_icl"]:
+        elif args.model_type in ["retrieval_icl", "retrieval_icl_attack"]:
             examples_per_label = 0
         else:
             examples_per_label = args.examples_per_label
@@ -128,12 +128,25 @@ def attacker(args):
                     label_set.append(k)
                 else:
                     assert len(tokenizer(word)["input_ids"]) == num_tokens, f"Verbalizer word {word} has {len(tokenizer(word)['input_ids'])} tokens, but model has {num_tokens} tokens"
-        if args.model_type in ["retrieval_icl_attack"]:
-            anchor_subsample, _ = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, 0)
-            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label)
-        else:
-            _, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
 
+        anchor_subsample, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
+            #   icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label, retrieve_method = args.retrieve_method)
+
+        if args.model_type in ["retrieval_icl", "retrieval_icl_attack"]:
+            ralm_num = args.examples_per_label if args.model_type == "retrieval_icl" else args.shot # retrieval_icl means decide the retrieval demonstrations before training, retrieval_icl_attack means decide the retrieval demonstrations during attack
+            text_input_list = [(x['premise'], x['hypothesis']) if 'premise' in x.keys() else x['sentence'] for x in my_dataset[split]]
+
+            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, text_input_list, ralm_num, retrieve_method = args.retrieve_method, num_labels=len(verbalizer.keys()))
+
+        if args.model_type in ["knn_icl_attack"]:
+            new_icl_examples = {}
+            for example in anchor_subsample:
+                label = verbalizer[example['label']][0]
+                if label not in new_icl_examples.keys():
+                    new_icl_examples[label] = []
+                new_icl_examples[label].append(example)
+            icl_examples = new_icl_examples
+        
         verbalizer = model.verbalizer if model is not None else None
         # if 'sentence' in my_dataset[0].keys():
         #     remove_columns = 'sentence'
@@ -174,7 +187,8 @@ def attacker(args):
                             "icl_attack": ICLTextAttack,
                             "icl_attack_word": ICLTextAttackWord,
                             "swap_labels": SwapLabel2023,
-                            "swap_orders": SwapOrderAttack
+                            "swap_orders": SwapOrderAttack,
+                            'irrelevant_sample': IrrelevantSampleAttack
                             }
                             
         attack_class = attack_name_mapper[attack_name]
@@ -184,14 +198,25 @@ def attacker(args):
         print(verbalizer)
         print(log_to_csv)
         
-        attack = attack_class.build(model)
+        if attack_name in ["swap_labels"]:
+            attack = attack_class.build(model, verbalizer=verbalizer, fix_dist=args.fix_dist)
+        elif attack_name in ['irrelevant_sample']:
+            with open('./src/ood/ood_cc_news.txt' , 'r') as f:
+                ood_dataset = f.readlines()
+            print("Finished loading ood dataset")
+            attack = attack_class.build(model, ood_dataset=ood_dataset, max_keys_perturbed=sum([len(v) for v in icl_examples.values()]) * 0.5)
+        else:
+            attack = attack_class.build(model)
         
         if args.query_budget < 0: args.query_budget = None 
         attack_args = AttackArgs(num_examples=args.num_examples, 
                                 log_to_csv=log_to_csv,
                                 disable_stdout=True,
-                                enable_advance_metrics=True,
-                                query_budget = args.query_budget,parallel=False)
+                                enable_advance_metrics= attack_name not in ["swap_orders", "irrelevant_sample"],
+                                query_budget = args.query_budget,
+                                log_to_wandb={"project": "textattack", "notes": "/".join(args.model_dir.split("/"))[-4:], "name": "-".join(args.model_dir.split("/")[-3:])},
+                                # wandb_notes="_".join(args.model_dir.split("/")[-4:]),
+                                parallel=False)
         attacker = Attacker(attack, dataset, attack_args)
 
         #set batch size of goal function

@@ -150,6 +150,9 @@ class AnchorStores(nn.Module):
         # self.datastore_vals[ptr:ptr + bs] = labels.cpu().numpy()
         # self.datastore_ptr = ptr + bs
 
+    def reset(self):
+        self.queue_ptr[:, 0] = 0
+        
     def knn_calibrate(self, logits, dist_metric='kl'):
         '''
         logits: [B, dim]

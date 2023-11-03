@@ -47,7 +47,12 @@ class IndexEmbedder(torch.nn.Module):
             retrieved_examples.append(original_anchor[idx.item()])
         return retrieved_examples
 
-    def subsamplebyretrieval(self, anchor_data : Union[List[Dict], List[List[Dict]]], text_input_list, top_k=1, num_labels=2, retrieve_method='sbert') -> List[List[Dict]]:
+    def subsamplebyretrieval(self, 
+                             anchor_data : Union[List[Dict], List[List[Dict]]], 
+                             text_input_list, 
+                             top_k=1, 
+                            num_labels=2,
+                            retrieve_method='sbert') -> List[List[str]]:
         '''
         anchor_data: list of anchor data, [{'sentence': 'text', 'label': 0}, ...]
         text_input_list: list of input text, Shape: [B, seq_len]

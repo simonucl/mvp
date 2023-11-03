@@ -41,7 +41,7 @@ def parse_args():
     
     #TEST
     parser.add_argument("--path", help = "Path for test model load", type = str, default = "None")
-    parser.add_argument("--attack_name", help = "Attack Name", type = str, default = "textfooler", choices = ["none", "textfooler", "textbugger", "bae", "icl_attack", "icl_attack_word", "swap_labels", "swap_orders"])
+    parser.add_argument("--attack_name", help = "Attack Name", type = str, default = "textfooler", choices = ["none", "textfooler", "textbugger", "bae", "icl_attack", "icl_attack_word", "swap_labels", "swap_orders", "irrelevant_sample"])
     parser.add_argument("--num_examples", help = "number of test examples", type = int, default = 1000)
     parser.add_argument("--query_budget", help = "Query Budget per example (-1 for no budget)", type = int, default = -1)
     parser.add_argument("--split", help = "split to attack on", type = str, default = "test", choices = ["train", "validation", "test"])
@@ -61,8 +61,8 @@ def parse_args():
     parser.add_argument('--ensemble_num', type=int, default=1)
     parser.add_argument('--sampled_num', type=int, default=1)
     parser.add_argument('--prompt_num', type=int, default=2)
-    parser.add_argument('--knn_k', type=int, default=8)
-    parser.add_argument('--knn_T', type=float, default=1)
+    parser.add_argument('--knn_k', type=int, default=None)
+    parser.add_argument('--knn_T', type=float, default=None)
     parser.add_argument('--tindex', type=int, default=0)
     parser.add_argument('--knn_model', type=str, default='bert-base-uncased')
     parser.add_argument('--num_labels', type=int, default=2)
@@ -84,6 +84,9 @@ def parse_args():
     # ICL Attack Params
     parser.add_argument('--max_percent_words', type=float, default=-1)
 
+    # ICL Label Swap Attack Params
+    parser.add_argument('--fix_dist', action='store_true', default=False)
+    
     # Masking Params
     parser.add_argument('--mask_augment', action='store_true', default=False)
     parser.add_argument('--mask_prob', type=float, default=0.15)

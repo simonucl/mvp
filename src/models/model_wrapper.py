@@ -7,6 +7,8 @@ from time import time
 from functools import lru_cache
 from ..utils.anchor import AnchorStore, subsamplebyshot
 from collections import Counter
+from ..utils.dataset import format_template
+from collections import defaultdict, Counter
 
 class ModelWrapper(torch.nn.Module):
     def __init__(self, args, model, tokenizer, data_collator, verbalizer = None, template=None):  
@@ -81,13 +83,13 @@ class ModelWrapper(torch.nn.Module):
                         inference_input = t[0]
                         t = t[1:]
                         no_examples = len(t) // 2
-                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack", "icl_attack"]:
+                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack", "icl_attack", "retrieval_icl"]:
                             examples = []
                             for i in range(no_examples):
                                 example, label = t[2*i], t[2*i+1]
                                 examples.append({'sentence': example, 'label': label})
                             # inference_input = t[-1]
-                            # print(Counter([e['label'] for e in examples]))
+                            print(Counter([e['label'] for e in examples]))
                             text_input_list.append(inference_input)
                             is_icl_attack = True
                             icl_examples.append(examples)
@@ -106,13 +108,13 @@ class ModelWrapper(torch.nn.Module):
                         inference_pre, inference_hyp = t[0], t[1]
                         t = t[2:]
                         no_examples = len(t) // 3
-                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack", "icl_attack"]:
+                        if self.args.model_type in ["retrieval_icl_attack", "knn_icl_attack", "icl_attack", "retrieval_icl"]:
                             examples = []
                             for i in range(no_examples):
                                 premise, hypothesis, label = t[3*i], t[3*i+1], t[3*i+2]
                                 examples.append({'premise': premise, 'hypothesis': hypothesis, 'label': label})
                             # inference_pre, inference_hyp = t[-2], t[-1]
-                            # print(Counter([e['label'] for e in examples]))
+                            print(Counter([e['label'] for e in examples]))
                             
                             text_input_list.append((inference_pre, inference_hyp))
                             is_icl_attack = True
@@ -129,6 +131,8 @@ class ModelWrapper(torch.nn.Module):
                             is_icl_attack = True
                             icl_examples.append(examples)
 
+                    # print('ICL examples', examples)
+
                     # for i in range(no_examples):
                     #     text_input.append((t[2*i], t[2*i+1]))
                     # text_input.append(inference_input)
@@ -140,17 +144,24 @@ class ModelWrapper(torch.nn.Module):
                     text_input_list.append((t[0]+"</s></s>"+t[1]).lower())
 
             if self.args.model_type in ["knn_icl_attack"]:
+                count = defaultdict(int)
+                # print('ICL examples', icl_examples)
+                
                 for i, example in enumerate(icl_examples):
+                    self.anchor_store.reset()
                     for ins in example:
                         labels = ins['label']
                         # gen_logits = self.get_logits([ins['sentence']], labels)[0].detach().cpu()
                         # self.anchor_store.enqueue(torch.softmax(gen_logits, dim=-1), torch.tensor(labels))
-                        hidden_states = self.get_knn_logits(ins['sentence'])[1]
+                        inference = format_template(ins, self.template[0], self.args.dataset, label="").strip()
+                        hidden_states = self.get_knn_logits(inference)[1]
                         self.anchor_store.enqueue(i, hidden_states, torch.tensor(self.inv_verbalizer[labels]))
-
-            if self.args.model_type in ["retrieval_icl"]:
-                icl_examples = self.indexEmbedder.subsamplebyretrieval(self.anchor_subsample, text_input_list, self.args.examples_per_label, num_labels=self.args.num_labels, retrieve_method = self.args.retrieve_method)
-                self.icl_examples = icl_examples
+                        count[labels] += 1
+                # print('Count', count)
+                
+            # if self.args.model_type in ["retrieval_icl"]:
+            #     icl_examples = self.indexEmbedder.subsamplebyretrieval(self.anchor_subsample, text_input_list, self.args.examples_per_label, num_labels=self.args.num_labels, retrieve_method = self.args.retrieve_method)
+            #     self.icl_examples = icl_examples
             elif self.args.model_type in ["retrieval_icl_attack"]:
                 icl_examples = self.indexEmbedder.subsamplebyretrieval(icl_examples, text_input_list, self.args.examples_per_label, num_labels=self.args.num_labels, retrieve_method = self.args.retrieve_method)
                 self.icl_examples = icl_examples
@@ -161,7 +172,7 @@ class ModelWrapper(torch.nn.Module):
             #     self.icl_examples = icl_examples
             #     input_ids, attention_mask = self.text_to_ids(text_input_list)
         
-            if is_icl_attack:
+            if (is_icl_attack) and (not self.args.model_type in ["knn_icl_attack"]):
                 self.icl_examples = icl_examples
         # print('ICL examples', self.icl_examples)
 
