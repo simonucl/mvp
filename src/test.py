@@ -204,7 +204,13 @@ def attacker(args):
             with open('./src/ood/ood_cc_news.txt' , 'r') as f:
                 ood_dataset = f.readlines()
             print("Finished loading ood dataset")
-            attack = attack_class.build(model, ood_dataset=ood_dataset, max_keys_perturbed=sum([len(v) for v in icl_examples.values()]) * 0.5)
+            if type(icl_examples) == dict:
+                max_keys_perturbed = sum([len(v) for v in icl_examples.values()]) * 0.5
+            elif type(icl_examples) == list:
+                max_keys_perturbed = sum([len(v) for v in icl_examples]) * 0.5
+            else:
+                raise NotImplementedError(f"icl_examples type {type(icl_examples)} not supported")
+            attack = attack_class.build(model, ood_dataset=ood_dataset, max_keys_perturbed=max_keys_perturbed)
         else:
             attack = attack_class.build(model)
         
