@@ -104,7 +104,7 @@ def attacker(args):
     split = args.split
     args.num_examples = min(my_dataset[split].num_rows, args.num_examples)
 
-    if args.model_type in ["icl_attack", "knn_icl_attack", "retrieval_icl_attack"] or args.attack_name in ["swap_labels"]:
+    if args.model_type in ["icl_attack", "knn_icl_attack", "retrieval_icl_attack"] or args.attack_name in ["swap_labels", "icl_attack", "swap_orders", "irrelevant_sample"]:
         if 'gpt' in args.model:
             num_tokens = 1
         elif ('opt' in args.model) or ('Llama' in args.model):
@@ -132,12 +132,18 @@ def attacker(args):
         anchor_subsample, icl_examples = subsamplebyshot(my_dataset['train'], args.seed, label_set, verbalizer, args.shot, examples_per_label)
             #   icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, my_dataset[split]['sentence'], args.examples_per_label, retrieve_method = args.retrieve_method)
 
-        if args.model_type in ["retrieval_icl", "retrieval_icl_attack"]:
+        if args.model_type in ["retrieval_icl"]:
+            # ralm_num = args.examples_per_label if args.model_type == "retrieval_icl" else args.shot # retrieval_icl means decide the retrieval demonstrations before training, retrieval_icl_attack means decide the retrieval demonstrations during attack
+            ralm_num = args.shot
+            text_input_list = [(x['premise'], x['hypothesis']) if 'premise' in x.keys() else x['sentence'] for x in my_dataset[split]]
+
+            icl_examples = model.indexEmbedder.subsamplebyretrieval(my_dataset['train'], text_input_list, ralm_num, retrieve_method = args.retrieve_method, num_labels=len(verbalizer.keys()))
+        elif args.model_type in ["retrieval_icl_attack"]:
             ralm_num = args.examples_per_label if args.model_type == "retrieval_icl" else args.shot # retrieval_icl means decide the retrieval demonstrations before training, retrieval_icl_attack means decide the retrieval demonstrations during attack
             text_input_list = [(x['premise'], x['hypothesis']) if 'premise' in x.keys() else x['sentence'] for x in my_dataset[split]]
 
-            icl_examples = model.indexEmbedder.subsamplebyretrieval(anchor_subsample, text_input_list, ralm_num, retrieve_method = args.retrieve_method, num_labels=len(verbalizer.keys()))
-
+            # TODO add icl_examples
+            #
         if args.model_type in ["knn_icl_attack"]:
             new_icl_examples = {}
             for example in anchor_subsample:
