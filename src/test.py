@@ -220,7 +220,11 @@ def attacker(args):
                                 disable_stdout=True,
                                 enable_advance_metrics= attack_name not in ["swap_orders", "irrelevant_sample"],
                                 query_budget = args.query_budget,
-                                log_to_wandb={"project": "textattack", "notes": "/".join(args.model_dir.split("/"))[-4:], "name": "-".join(args.model_dir.split("/")[-3:])},
+                                log_to_wandb={
+                                    "entity": "simon011130",
+                                    "project": "textattack", "notes": "/".join(args.model_dir.split("/"))[-4:], 
+                                    "name": "-".join(args.model_dir.split("/")[-3:])
+                                },
                                 # wandb_notes="_".join(args.model_dir.split("/")[-4:]),
                                 parallel=False)
         attacker = Attacker(attack, dataset, attack_args)

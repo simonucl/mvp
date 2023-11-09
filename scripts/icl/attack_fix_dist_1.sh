@@ -6,7 +6,9 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 SHOTS=(8 2 4 16)
+SHOTS=(2 16)
 SEEDS=(1 13 42)
+# SEEDS=(1)
 
 if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]]; then
     ATTACK_PRECENT=0.15
@@ -20,10 +22,10 @@ fi
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for SHOT in ${SHOTS[@]};
+for SEED in ${SEEDS[@]};
 do
-    for SEED in ${SEEDS[@]};
-    do 
+    for SHOT in ${SHOTS[@]};
+    do
         BATCH_SIZE=$((8 / SHOT))
 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
@@ -48,8 +50,9 @@ do
             --template_file ${TEMPLATE_FILE} \
             --seed $SEED \
             --shot ${SHOT} \
+            --fix_dist \
             --max_percent_words ${ATTACK_PRECENT} \
-            --model_dir ${MODELPATH} \
-                > ${MODELPATH}/logs_${ATTACK}.txt
+            --model_dir ${MODELPATH}_fix_dist \
+                > ${MODELPATH}/logs_${ATTACK}_fix_dist.txt
     done
 done
