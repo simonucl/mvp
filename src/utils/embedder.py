@@ -5,6 +5,8 @@ import torch
 from rank_bm25 import BM25Okapi
 from transformers import AutoTokenizer
 from InstructorEmbedding import INSTRUCTOR
+from tqdm import tqdm
+import multiprocessing
 
 instructor_suffix = (' for retrieval: ', ' for retrieving support documents: ')
 
@@ -25,7 +27,7 @@ class IndexEmbedder(torch.nn.Module):
     def encode(self, queries: List[str]) -> torch.Tensor:
         return self.embedder.encode(queries, convert_to_tensor=True)
 
-    def bm25subsmple(self, anchor_data : List[str], original_anchor, query : str, top_k=1, num_labels=2) -> List[str]:
+    def bm25subsample(self, anchor_data : List[str], original_anchor, query : str, top_k=1, num_labels=2) -> List[str]:
         '''
         queries: list of query, Shape: [B, seq_len]
         corpus: list of corpus, Shape: [B, seq_len]
@@ -83,6 +85,15 @@ class IndexEmbedder(torch.nn.Module):
         for score, idx in zip(top_results[0], top_results[1]):
             retrieved_examples.append(original_anchor[idx.item()])
         return retrieved_examples
+
+    def process_text(self, i, text, anchor_data_idx, original_anchor_data, retrieve_method, top_k, num_labels):
+        if retrieve_method == 'sbert':
+            result = self.sbert_subsample(anchor_data_idx, original_anchor_data, text, top_k, num_labels)
+        elif retrieve_method == 'bm25':
+            result = self.bm25subsample(anchor_data_idx, original_anchor_data, text, top_k, num_labels)
+        elif retrieve_method == 'instructor':
+            result = self.instructor_subsample(anchor_data_idx, original_anchor_data, text, top_k, num_labels)
+        return i, result
     
     def subsamplebyretrieval(self, 
                              anchor_data : Union[List[Dict], List[List[Dict]]], 
@@ -96,12 +107,17 @@ class IndexEmbedder(torch.nn.Module):
         returns: top-k retrieved anchor data
         '''
         # print(len(anchor_data))
+        num_processes = min(1, multiprocessing.cpu_count())
+        pool = multiprocessing.Pool(processes=num_processes)
+
+        print(f'Using {num_processes} processes for retrieval')
+
         retrieved_examples = [[] for _ in range(len(text_input_list))]
 
         if type(anchor_data[0]) is list:
             assert (len(anchor_data) == len(text_input_list)), f'Length of anchor data {len(anchor_data)} and text input list {len(text_input_list)} must be the same'
         
-        for i, text in enumerate(text_input_list):
+        for i, text in enumerate(tqdm(text_input_list, desc='Retrieving anchor data')):
             if type(text) is tuple:
                 text = text[0]
             if type(anchor_data[0]) is list:
@@ -116,12 +132,15 @@ class IndexEmbedder(torch.nn.Module):
             elif type(anchor_data_idx[0]) is tuple:
                 anchor_data_idx = list(map(lambda x: x[0], anchor_data_idx))
 
-            # anchor_data_idx = list(map(lambda x: x['sentence'] if 'sentence' in x else x['premise'], anchor_data_idx))
-            if retrieve_method == 'sbert':
-                retrieved_examples[i] = self.sbert_subsample(anchor_data_idx, original_anchor_data, text, top_k, num_labels)
-            elif retrieve_method == 'bm25':
-                retrieved_examples[i] = self.bm25subsmple(anchor_data_idx, original_anchor_data, text, top_k, num_labels)
-            elif retrieve_method == 'instructor':
-                retrieved_examples[i] = self.instructor_subsample(anchor_data_idx, original_anchor_data, text, top_k, num_labels)
+            retrieved_examples[i] = self.process_text(i, text, anchor_data_idx, original_anchor_data, retrieve_method, top_k, num_labels)[1]
+        #     result = pool.apply_async(self.process_text, args=(self, i, text, anchor_data_idx, original_anchor_data, retrieve_method, top_k, num_labels))
+
+        # pool.close()
+        # pool.join()
+
+        # results = [r.get() for r in result]
+        # results.sort(key=lambda x: x[0])
+
+        # retrieved_examples = [r[1] for r in results]
                 
         return retrieved_examples

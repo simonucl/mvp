@@ -82,8 +82,14 @@ class ICL(ModelWrapper):
         else:
             examples_per_label = args.examples_per_label
 
+        if args.model_type in ["retrieval_icl"]:
+            ralm_num = args.shot
+            text_input_list = [(x['premise'], x['hypothesis']) if 'premise' in x.keys() else x['sentence'] for x in dataset[args.split]]
 
-        anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, examples_per_label)
+            icl_examples = self.indexEmbedder.subsamplebyretrieval(anchor_data, text_input_list, ralm_num, retrieve_method = args.retrieve_method, num_labels=len(verbalizer.keys()))
+            anchor_subsample = []
+        else:
+            anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, examples_per_label)
         
         # print('Anchor subsample', anchor_data)
 
