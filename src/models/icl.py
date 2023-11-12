@@ -74,7 +74,8 @@ class ICL(ModelWrapper):
         self.len_templates = []
 
         anchor_data = dataset['train']
-
+        self.anchor_data = anchor_data
+        
         if args.model_type in ["icl", "icl_attack", "retrieval_icl_attack"]:
             examples_per_label = args.shot
         elif args.model_type in ["retrieval_icl"]:

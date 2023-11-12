@@ -24,6 +24,10 @@ fi
 
 for SHOT in ${SHOTS[@]};
 do
+    if [[ $SHOT == 8 ]]; then
+        SEEDS=(13 42)
+    fi
+    
     for SEED in ${SEEDS[@]};
     do 
         BATCH_SIZE=$((16 / SHOT))

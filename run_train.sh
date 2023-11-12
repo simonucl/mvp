@@ -36,10 +36,10 @@ CUDA_VISIBLE_DEVICES=1 nohup bash scripts/icl/attack_fix_dist.sh rte meta-llama/
 # KNN-ICL
 ## RTE
 ### textfooler
-CUDA_VISIBLE_DEVICES=0 nohup bash scripts/icl/attack.sh rte meta-llama/Llama-2-7b-hf knn_icl textfooler > ./logs/run_knn_icl_rte_textfooler.log 2>&1 &
+CUDA_VISIBLE_DEVICES=0 nohup bash scripts/knn_icl/attack.sh rte meta-llama/Llama-2-7b-hf knn_icl textfooler > ./logs/run_knn_icl_rte_textfooler.log 2>&1 &
 
 ### textbugger
-CUDA_VISIBLE_DEVICES=1 nohup bash scripts/icl/attack.sh rte meta-llama/Llama-2-7b-hf knn_icl textbugger > ./logs/run_knn_icl_rte_textbugger.log 2>&1 &
+CUDA_VISIBLE_DEVICES=1 nohup bash scripts/knn_icl/attack.sh rte meta-llama/Llama-2-7b-hf knn_icl textbugger > ./logs/run_knn_icl_rte_textbugger.log 2>&1 &
 
 ### swap_labels
 CUDA_VISIBLE_DEVICES=0 nohup bash scripts/knn_icl/attack.sh rte meta-llama/Llama-2-7b-hf knn_icl_attack swap_labels > ./logs/run_knn_icl_rte_swap_labels.log 2>&1 &
@@ -68,6 +68,11 @@ CUDA_VISIBLE_DEVICES=1 nohup bash scripts/knn_icl/attack_quantized.sh rte meta-l
 ## Retrieval-ICL
 
 ### textbugger
+CUDA_VISIBLE_DEVICES=0 nohup bash scripts/ralm/attack.sh rte meta-llama/Llama-2-7b-hf retrieval_icl textbugger > ./logs/run_retrieval_icl_rte_textbugger.log 2>&1 &
+
+### textfooler
+CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack.sh rte meta-llama/Llama-2-7b-hf retrieval_icl textfooler > ./logs/run_retrieval_icl_rte_textfooler.log 2>&1 &
+
 ### icl_attack
 ### swap_labels
 CUDA_VISIBLE_DEVICES=0 nohup bash scripts/ralm/attack_quantized_fix_dist.sh rte meta-llama/Llama-2-7b-hf retrieval_icl swap_labels > ./logs/run_retrieval_icl_rte_swap_labels.log 2>&1 &
@@ -84,6 +89,7 @@ CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack.sh rte meta-llama/Llama-2-
 ## Retrieval-ICL-attack
 
 ### textbugger
+CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack_ralm_attack.sh rte meta-llama/Llama-2-7b-hf retrieval_icl_attack textbugger > ./logs/run_retrieval_icl_attack_rte_textbugger.log 2>&1 &
 ### icl_attack
 ### swap_labels
 CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack_quantized_fix_dist.sh rte meta-llama/Llama-2-7b-hf retrieval_icl_attack swap_labels > ./logs/run_retrieval_icl_attack_rte_swap_labels.log 2>&1 &

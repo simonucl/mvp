@@ -163,7 +163,8 @@ class ModelWrapper(torch.nn.Module):
             #     icl_examples = self.indexEmbedder.subsamplebyretrieval(self.anchor_subsample, text_input_list, self.args.examples_per_label, num_labels=self.args.num_labels, retrieve_method = self.args.retrieve_method)
             #     self.icl_examples = icl_examples
             elif self.args.model_type in ["retrieval_icl_attack"]:
-                icl_examples = self.indexEmbedder.subsamplebyretrieval(icl_examples, text_input_list, self.args.examples_per_label, num_labels=self.args.num_labels, retrieve_method = self.args.retrieve_method)
+                # icl_examples = self.indexEmbedder.subsamplebyretrieval(icl_examples, text_input_list, self.args.examples_per_label, num_labels=self.args.num_labels, retrieve_method = self.args.retrieve_method)
+                icl_examples = self.indexEmbedder.subsamplebyretrieval(self.anchor_data, text_input_list, self.args.shot, num_labels=self.args.num_labels, retrieve_method = self.args.retrieve_method)
                 self.icl_examples = icl_examples
 
             # if (not is_icl_attack) or (self.args.model_type in ["knn_icl_attack"]):
