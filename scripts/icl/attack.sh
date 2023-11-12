@@ -8,7 +8,7 @@ VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 SHOTS=(8 2 4 16)
 SEEDS=(1 13 42)
 
-if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]]; then
+if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]]; then
     ATTACK_PRECENT=0.15
 else
     ATTACK_PRECENT=0.5

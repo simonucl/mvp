@@ -10,7 +10,7 @@ SHOTS=(2 16)
 SEEDS=(1 13 42)
 # SEEDS=(1)
 
-if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]]; then
+if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]]; then
     ATTACK_PRECENT=0.15
 else
     ATTACK_PRECENT=0.5
