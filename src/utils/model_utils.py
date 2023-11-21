@@ -311,7 +311,6 @@ def insert_icl_prompts(model, tokenizer, model_type, text_input_list, templates,
             #     inference_sample += " "
             
             prompt = prompt_title + prompt + inference_sample
-            # print('Prompt', prompt)
             
             prompts.append(prompt)
 

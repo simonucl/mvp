@@ -85,6 +85,12 @@ def convert_to_icl(data, icl_examples, verbalizer=None):
     return outputs
 
 def attacker(args):
+    if args.model_type in ["retrieval_icl"]:
+        ralm_save_path = './data/ralm/'
+        if not os.path.exists(ralm_save_path):
+            os.makedirs(ralm_save_path)
+        ralm_save_path = os.path.join(ralm_save_path, args.dataset + '_' + args.retrieve_method + '.pkl')
+        args.ralm_save_path = ralm_save_path
     print(args)
     
     #ipdb.set_trace()
@@ -100,7 +106,7 @@ def attacker(args):
     model = get_model(args, my_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
 
     print('Finished loading model')
-    
+
     split = args.split
     args.num_examples = min(my_dataset[split].num_rows, args.num_examples)
 
@@ -137,7 +143,9 @@ def attacker(args):
             ralm_num = args.shot
             text_input_list = [(x['premise'], x['hypothesis']) if 'premise' in x.keys() else x['sentence'] for x in my_dataset[split]]
 
-            icl_examples = model.indexEmbedder.subsamplebyretrieval(my_dataset['train'], text_input_list, ralm_num, retrieve_method = args.retrieve_method, num_labels=len(verbalizer.keys()))
+            icl_examples = model.indexEmbedder.subsamplebyretrieval(my_dataset['train'], text_input_list, ralm_num, retrieve_method = args.retrieve_method, num_labels=len(verbalizer.keys()), save_path=args.ralm_save_path)
+            import sys
+            sys.exit(1)
         elif args.model_type in ["retrieval_icl_attack"]:
             ralm_num = args.examples_per_label if args.model_type == "retrieval_icl" else args.shot # retrieval_icl means decide the retrieval demonstrations before training, retrieval_icl_attack means decide the retrieval demonstrations during attack
             text_input_list = [(x['premise'], x['hypothesis']) if 'premise' in x.keys() else x['sentence'] for x in my_dataset[split]]

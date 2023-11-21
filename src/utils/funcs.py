@@ -131,6 +131,9 @@ def prepare_huggingface_dataset(args):
             train_dataset, _= my_dataset["train"].train_test_split(test_size=args.val_size, train_size = args.train_size, seed = 0).values()
             my_dataset["train"] = train_dataset
     
+    if (args.num_examples > 0) and (len(my_dataset['test']) > args.num_examples):
+        my_dataset['test'] = my_dataset['test'].select(range(args.num_examples))
+        
     if args.dataset == "sst2":
         my_dataset = my_dataset.filter(lambda example: (re.search('[a-zA-Z]', example["sentence"]) is not None))
     if args.dataset in ["rte", "wnli"]:

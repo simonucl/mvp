@@ -7,6 +7,9 @@ from transformers import AutoTokenizer
 from InstructorEmbedding import INSTRUCTOR
 from tqdm import tqdm
 import multiprocessing
+import os
+import pickle
+from torch.multiprocessing import Pool, Process, set_start_method
 
 instructor_suffix = (' for retrieval: ', ' for retrieving support documents: ')
 
@@ -100,47 +103,67 @@ class IndexEmbedder(torch.nn.Module):
                              text_input_list, 
                              top_k=1, 
                             num_labels=2,
-                            retrieve_method='sbert') -> List[List[str]]:
+                            retrieve_method='sbert',
+                            save_path=None) -> List[List[str]]:
         '''
         anchor_data: list of anchor data, [{'sentence': 'text', 'label': 0}, ...]
         text_input_list: list of input text, Shape: [B, seq_len]
         returns: top-k retrieved anchor data
         '''
+        try:
+            set_start_method('spawn', force=True)
+        except RuntimeError:
+            pass
+
         # print(len(anchor_data))
-        num_processes = min(1, multiprocessing.cpu_count())
-        pool = multiprocessing.Pool(processes=num_processes)
-
-        print(f'Using {num_processes} processes for retrieval')
-
-        retrieved_examples = [[] for _ in range(len(text_input_list))]
-
-        if type(anchor_data[0]) is list:
-            assert (len(anchor_data) == len(text_input_list)), f'Length of anchor data {len(anchor_data)} and text input list {len(text_input_list)} must be the same'
+        retrieved_examples = None
+        if save_path is None or not os.path.exists(save_path):
         
-        for i, text in enumerate(tqdm(text_input_list, desc='Retrieving anchor data')):
-            if type(text) is tuple:
-                text = text[0]
+            num_processes = min(1, multiprocessing.cpu_count())
+            pool = Pool(processes=num_processes)
+
+            print(f'Using {num_processes} processes for retrieval')
+
+            retrieved_examples = [[] for _ in range(len(text_input_list))]
+            results = []
             if type(anchor_data[0]) is list:
-                anchor_data_idx = anchor_data[i]
-                original_anchor_data = anchor_data[i]
-            else:
-                anchor_data_idx = anchor_data
-                original_anchor_data = anchor_data
+                assert (len(anchor_data) == len(text_input_list)), f'Length of anchor data {len(anchor_data)} and text input list {len(text_input_list)} must be the same'
+            
+            for i, text in enumerate(tqdm(text_input_list, desc='Retrieving anchor data')):
+                if type(text) is tuple:
+                    text = text[0]
+                if type(anchor_data[0]) is list:
+                    anchor_data_idx = anchor_data[i]
+                    original_anchor_data = anchor_data[i]
+                else:
+                    anchor_data_idx = anchor_data
+                    original_anchor_data = anchor_data
 
-            if type(anchor_data_idx[0]) is dict:
-                anchor_data_idx = list(map(lambda x: x['sentence'] if 'sentence' in x else x['premise'], anchor_data_idx))
-            elif type(anchor_data_idx[0]) is tuple:
-                anchor_data_idx = list(map(lambda x: x[0], anchor_data_idx))
+                if type(anchor_data_idx[0]) is dict:
+                    anchor_data_idx = list(map(lambda x: x['sentence'] if 'sentence' in x else x['premise'], anchor_data_idx))
+                elif type(anchor_data_idx[0]) is tuple:
+                    anchor_data_idx = list(map(lambda x: x[0], anchor_data_idx))
 
-            retrieved_examples[i] = self.process_text(i, text, anchor_data_idx, original_anchor_data, retrieve_method, top_k, num_labels)[1]
-        #     result = pool.apply_async(self.process_text, args=(self, i, text, anchor_data_idx, original_anchor_data, retrieve_method, top_k, num_labels))
+                retrieved_examples[i] = self.process_text(i, text, anchor_data_idx, original_anchor_data, retrieve_method, top_k, num_labels)[1]
+                # result = pool.apply_async(self.process_text, args=(i, text, anchor_data_idx, original_anchor_data, retrieve_method, 64, num_labels))
+                # results.append(result)
 
-        # pool.close()
-        # pool.join()
+            # pool.close()
+            # pool.join()
 
-        # results = [r.get() for r in result]
-        # results.sort(key=lambda x: x[0])
+            # results = [r.get() for r in results]
+            # results.sort(key=lambda x: x[0])
 
-        # retrieved_examples = [r[1] for r in results]
-                
-        return retrieved_examples
+            # retrieved_examples = [r[1] for r in results]
+
+            with open(save_path, 'wb') as f:
+                print(f'Saving retrieved examples to {save_path}')
+                pickle.dump(retrieved_examples, f)
+
+        if retrieved_examples is None:
+            with open(save_path, 'rb') as f:
+                print(f'Loading retrieved examples from {save_path}')
+                retrieved_examples = pickle.load(f)
+        assert len(retrieved_examples) == len(text_input_list), f'Length of retrieved examples {len(retrieved_examples)} and text input list {len(text_input_list)} must be the same'
+        
+        return [retrieved_example[:top_k*num_labels] for retrieved_example in retrieved_examples]
