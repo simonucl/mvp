@@ -1,0 +1,18 @@
+
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip3 install sentence-transformers && pip install -e git+https://github.com/simonucl/TextAttack.git#egg=TextAttack \
+    && pip3 install torch-scatter -f https://data.pyg.org/whl/torch-2.1.0+cu118.html \
+    && pip3 install rank_bm25 \
+    && pip3 install bitsandbytes
+
+pip install packaging && pip install ninja && pip install flash-attn --no-build-isolation
+
+pip install InstructorEmbedding
+
+pip install wandb
+
+git config --global credential.helper store
+
+huggingface-cli login --token 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
+
+wandb login 99c1cfcf5ab402b2d7df6da383d1645fe6da06b6

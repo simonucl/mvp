@@ -16,6 +16,7 @@ instructor_suffix = (' for retrieval: ', ' for retrieving support documents: ')
 instructor_prefix = {
     'sst2': 'Represent the sentence',
     'rte': 'Represent the document',
+    'mnli': 'Represent the document',
 }
 
 
