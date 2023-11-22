@@ -144,8 +144,6 @@ def attacker(args):
             text_input_list = [(x['premise'], x['hypothesis']) if 'premise' in x.keys() else x['sentence'] for x in my_dataset[split]]
 
             icl_examples = model.indexEmbedder.subsamplebyretrieval(my_dataset['train'], text_input_list, ralm_num, retrieve_method = args.retrieve_method, num_labels=len(verbalizer.keys()), save_path=args.ralm_save_path)
-            import sys
-            sys.exit(1)
         elif args.model_type in ["retrieval_icl_attack"]:
             ralm_num = args.examples_per_label if args.model_type == "retrieval_icl" else args.shot # retrieval_icl means decide the retrieval demonstrations before training, retrieval_icl_attack means decide the retrieval demonstrations during attack
             text_input_list = [(x['premise'], x['hypothesis']) if 'premise' in x.keys() else x['sentence'] for x in my_dataset[split]]

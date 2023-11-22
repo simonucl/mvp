@@ -39,7 +39,7 @@ class ModelWrapper(torch.nn.Module):
         self.model.resize_token_embeddings(len(tokenizer))
         self.indexEmbedder = None
         if self.args.model_type in ["retrieval_icl", "retrieval_icl_attack"]:
-            self.indexEmbedder = IndexEmbedder("sentence-transformers/all-MiniLM-L6-v2", task_name=self.args.dataset)
+            self.indexEmbedder = IndexEmbedder("sentence-transformers/all-MiniLM-L6-v2", task_name=self.args.dataset, retrieval_method=self.args.retrieve_method)
     
     def text_to_ids(self, text):
         '''

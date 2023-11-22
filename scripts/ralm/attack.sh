@@ -5,13 +5,14 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-# SHOTS=(8 2 4 16)
-SHOTS=(8)
+SHOTS=(8 2 4 16)
+# SHOTS=(8)
 # SHOTS=(2 4 8 16)
-SEEDS=(1 13 42)
+# SEEDS=(1 13 42)
+SEEDS=(1)
 RETRIEVAL_METHOD=sbert
 
-if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]]; then
+if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]]; then
     ATTACK_PRECENT=0.15
 else
     ATTACK_PRECENT=0.5
@@ -27,7 +28,7 @@ for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
     do 
-        BATCH_SIZE=$((8 / SHOT))
+        BATCH_SIZE=$((16 / SHOT))
 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
@@ -38,27 +39,6 @@ do
         mkdir -p ${MODELPATH}
         echo ${MODELPATH}
 
-        # for M in $((SHOT/2)) $((SHOT/4));
-        # do
-        #     nohup python3 main.py \
-        #         --mode attack \
-        #         --attack_name ${ATTACK} \
-        #         --num_examples 1000 \
-        #         --dataset ${DATASET} \
-        #         --query_budget -1 \
-        #         --batch_size ${BATCH_SIZE} \
-        #         --model_type ${MODEL_TYPE} \
-        #         --model ${MODEL} \
-        #         --verbalizer_file ${VERBALIZER_FILE} \
-        #         --template_file ${TEMPLATE_FILE} \
-        #         --seed $SEED \
-        #         --shot ${SHOT} \
-        #         --max_percent_words ${ATTACK_PRECENT} \
-        #         --model_dir ${MODELPATH}_m_${M} \
-        #         --retrieve_method ${RETRIEVAL_METHOD} \
-        #         --examples_per_label ${M} \
-        #             > ${MODELPATH}/logs_${ATTACK}_m_${M}.txt
-        # done
         for RETRIEVAL_METHOD in bm25 sbert instructor;
         do
             nohup python3 main.py \

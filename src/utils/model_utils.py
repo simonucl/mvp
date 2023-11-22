@@ -301,6 +301,7 @@ def insert_icl_prompts(model, tokenizer, model_type, text_input_list, templates,
             # else:
             #     prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
             prompt_title = ""
+            prompt_title = "Please identify whether the premise entails the hypothesis. The answer should be exact 'yes', 'no' or 'maybe'.\n\n"
             input = text_input_list[i]
             if type(input) is tuple:
                 premise, hypothesis = input
@@ -315,6 +316,7 @@ def insert_icl_prompts(model, tokenizer, model_type, text_input_list, templates,
             prompts.append(prompt)
 
     # print('Prompts', prompts[0])
+    # print('=============================================')
     # if model.args.model_type in ["icl_attack", "retrieval_icl"]:
 
     inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")

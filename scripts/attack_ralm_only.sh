@@ -22,11 +22,13 @@ fi
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
+MODEL_TYPE=retrieval_icl
 for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
     do 
-        for ATTACK in icl_attack;
+        # for DATASET in sst2 mnli cr mr;
+        for DATASET in sst2 mnli;
         do
             if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]]; then
                 ATTACK_PRECENT=0.15
@@ -45,6 +47,7 @@ do
             mkdir -p ${MODELPATH}
             echo ${MODELPATH}
 
+            # for RETRIEVAL_METHOD in bm25 sbert instructor;
             for RETRIEVAL_METHOD in bm25 sbert instructor;
             do
                 python3 main.py \

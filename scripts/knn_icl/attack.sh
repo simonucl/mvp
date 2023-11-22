@@ -24,13 +24,9 @@ fi
 
 for SHOT in ${SHOTS[@]};
 do
-    if [[ $SHOT == 8 ]]; then
-        SEEDS=(13 42)
-    fi
-    
     for SEED in ${SEEDS[@]};
     do 
-        BATCH_SIZE=$((16 / SHOT))
+        BATCH_SIZE=$((32 / SHOT))
         KNN=$(( SHOT / 2 - 1 ))
 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
