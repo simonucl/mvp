@@ -301,7 +301,13 @@ def insert_icl_prompts(model, tokenizer, model_type, text_input_list, templates,
             # else:
             #     prompt_title = "Classify the sentiment of {} and {}.\n\n".format(model.verbalizer[0][0], model.verbalizer[1][0])            
             prompt_title = ""
-            prompt_title = "Please identify whether the premise entails the hypothesis. The answer should be exact 'yes', 'no' or 'maybe'.\n\n"
+            if model.args.dataset in ["mnli", "cb"]:
+                prompt_title = "Please identify whether the premise entails the hypothesis. The answer should be exact 'yes', 'no' or 'maybe'.\n\n"
+            elif model.args.dataset in ["qqp"]:
+                prompt_title = "Please identify whether the two questions are semantically equivalent. The answer should be exact 'yes' or 'no'.\n\n"
+            else:
+                prompt_title = ""
+                
             input = text_input_list[i]
             if type(input) is tuple:
                 premise, hypothesis = input

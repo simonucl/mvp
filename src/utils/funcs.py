@@ -87,7 +87,7 @@ def prepare_huggingface_dataset(args):
         name = "SetFit/CR"
     else:
         name = args.dataset
-    if name in ["sst2", "mnli", "rte", "qnli", "wnli"]:
+    if name in ["sst2", "mnli", "rte", "qnli", "wnli", "qqp"]:
         my_dataset = load_dataset("glue",name)
     elif name in ["cb"]:
         my_dataset = load_dataset("super_glue",name)
@@ -95,7 +95,7 @@ def prepare_huggingface_dataset(args):
         my_dataset = load_dataset(name)
     my_dataset = my_dataset.map(do_lower)
     
-    if args.dataset in ["sst2", "rte", "qnli", "wnli", "cb"]:
+    if args.dataset in ["sst2", "rte", "qnli", "wnli", "cb", "qqp"]:
         # test datset has no labels, so use val set as test for sst2
         my_dataset["test"] = my_dataset["validation"]
         assert args.val_size + args.train_size <= 1, f"val_size + train_size should be less than 1. Got {args.val_size + args.train_size}"
@@ -146,6 +146,17 @@ def prepare_huggingface_dataset(args):
             return example
         my_dataset = my_dataset.map(map_labels)
         my_dataset = my_dataset.remove_columns(['sentence1', 'sentence2'])
+    if args.dataset in ["qqp"]:
+        def map_labels(example):
+            key_map_dict = {'question1':'premise','question2':'hypothesis'}
+            # example['sentence'] = example['sentence1'] + "\nquestion: " + example['sentence2']
+            # remove sentence1 and sentence2
+            example = {(key_map_dict[k] if k in key_map_dict else k):v  for (k,v) in example.items() }
+            # example = {k:v  for (k,v) in example.items() if k not in key_map_dict}
+            return example
+        my_dataset = my_dataset.map(map_labels)
+        my_dataset = my_dataset.remove_columns(['question1', 'question2'])
+        
     if args.dataset in ["qnli"]:
         def map_labels(example):
             key_map_dict = {'question':'premise','sentence':'hypothesis'}
