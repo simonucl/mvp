@@ -24,7 +24,7 @@ for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
     do 
-        BATCH_SIZE=$((8 / SHOT))
+        BATCH_SIZE=$((32 / SHOT))
 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
