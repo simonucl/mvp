@@ -32,8 +32,12 @@ for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
     do 
-        BATCH_SIZE=$((16 / SHOT))
-
+        if [[ $SHOT -eq 2 ]]; then
+            BATCH_SIZE=2
+        else
+            BATCH_SIZE=$((8 / SHOT))
+        fi
+        
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
         MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
