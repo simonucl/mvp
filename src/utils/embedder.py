@@ -152,7 +152,7 @@ class IndexEmbedder(torch.nn.Module):
     
     def encode_anchor_data(self, anchor_data, batch_size=128):
         if type(anchor_data[0]) is dict:
-            anchor_data = list(map(lambda x: x['sentence'] if 'sentence' in x else x['premise'], anchor_data))
+            anchor_data = list(map(lambda x: x['sentence'] if 'sentence' in x else x['hypothesis'], anchor_data))
         elif type(anchor_data[0]) is tuple:
             anchor_data = list(map(lambda x: x[0], anchor_data))
 
@@ -207,7 +207,7 @@ class IndexEmbedder(torch.nn.Module):
                         original_anchor_data = anchor_data
 
                     if type(anchor_data_idx[0]) is dict:
-                        anchor_data_idx = list(map(lambda x: x['sentence'] if 'sentence' in x else x['premise'], anchor_data_idx))
+                        anchor_data_idx = list(map(lambda x: x['sentence'] if 'sentence' in x else x['hypothesis'], anchor_data_idx))
                     elif type(anchor_data_idx[0]) is tuple:
                         anchor_data_idx = list(map(lambda x: x[0], anchor_data_idx))
 

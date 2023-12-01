@@ -14,6 +14,7 @@ from textattack.attack_recipes import BAEGarg2019
 from src.utils.anchor import subsamplebyshot
 from collections import OrderedDict
 from time import time
+from tqdm import trange
 
 import tensorflow as tf
 gpus = tf.config.list_physical_devices('GPU')
@@ -89,7 +90,10 @@ def attacker(args):
         ralm_save_path = './data/ralm/'
         if not os.path.exists(ralm_save_path):
             os.makedirs(ralm_save_path)
-        ralm_save_path = os.path.join(ralm_save_path, args.dataset + '_' + args.retrieve_method + '.pkl')
+        file_name = args.dataset + '_' + args.retrieve_method
+        if args.attack_name in ['irrelevant_sample']:
+            file_name += '_ood'
+        ralm_save_path = os.path.join(ralm_save_path, file_name + '.pkl')
         args.ralm_save_path = ralm_save_path
     print(args)
     
@@ -103,10 +107,38 @@ def attacker(args):
     verbalizer, templates = get_prompts(args)
     model = None
 
+    if args.attack_name in ['irrelevant_sample']:
+        with open('./src/ood/ood_cc_news.txt' , 'r') as f:
+            ood_dataset = f.readlines()
+        print("Finished loading ood dataset")
+
+        # shuffle ood dataset
+        import random
+        random.shuffle(ood_dataset)
+
+        # replace 50% of the sentence from my_dataset with ood_dataset
+        def replace_ood_dataset(x):                
+            if random.random() <= 1.0:
+                if 'sentence' in x.keys():
+                    x['sentence'] = ood_dataset[random.randint(0, len(ood_dataset)-1)]
+                elif 'premise' in x.keys():
+                    x['premise'] = ood_dataset[random.randint(0, len(ood_dataset)-1)]
+                    x['hypothesis'] = ood_dataset[random.randint(0, len(ood_dataset)-1)]
+            return x
+            
+        print(my_dataset['train'][0])
+        my_dataset['train'] = my_dataset['train'].map(replace_ood_dataset)
+
+        print("Finished replacing ood dataset")
+        print(my_dataset['train'][0])
+
+        args.attack_name = 'textfooler'
+
+        # import sys; sys.exit(1)
     model = get_model(args, my_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
 
     print('Finished loading model')
-
+        
     split = args.split
     args.num_examples = min(my_dataset[split].num_rows, args.num_examples)
 

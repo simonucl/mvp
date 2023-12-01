@@ -9,6 +9,8 @@ pip install packaging && pip install ninja && pip install flash-attn --no-build-
 
 pip install InstructorEmbedding
 
+pip install tensorflow_hub
+
 pip install wandb
 
 git config --global credential.helper store

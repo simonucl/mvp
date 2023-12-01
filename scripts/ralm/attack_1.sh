@@ -5,7 +5,7 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-SHOTS=(8 4 16)
+SHOTS=(4 16)
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2)
 # fi
@@ -66,7 +66,7 @@ do
                     --model_dir ${MODELPATH}_${RETRIEVAL_METHOD} \
                     --retrieve_method ${RETRIEVAL_METHOD} \
                     > ${MODELPATH}/logs_${ATTACK}_${RETRIEVAL_METHOD}.txt
-                    
+        
 	    if [[ $ATTACK == "swap_labels" ]]; then
                 nohup python3 main.py \
                     --mode attack \
