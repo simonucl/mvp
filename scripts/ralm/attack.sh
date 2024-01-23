@@ -5,7 +5,7 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-SHOTS=(8 4 2)
+SHOTS=(8 4 2 16)
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2)
 # fi
@@ -33,9 +33,9 @@ do
     for SEED in ${SEEDS[@]};
     do 
         if [[ $SHOT -eq 2 ]]; then
-            BATCH_SIZE=2
+            BATCH_SIZE=4
         else
-            BATCH_SIZE=$((16 / SHOT))
+            BATCH_SIZE=$((32 / SHOT))
         fi
         
         echo $SEED+${SHOT}+${MODEL}+"mvp"

@@ -24,7 +24,7 @@ for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
     do 
-        BATCH_SIZE=$((64 / SHOT))
+        BATCH_SIZE=$((32 / SHOT))
 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
@@ -35,7 +35,7 @@ do
         mkdir -p ${MODELPATH}
         echo ${MODELPATH}
 
-        python3 main.py \
+        nohup python3 main.py \
             --mode attack \
             --attack_name ${ATTACK} \
             --num_examples 1000 \
@@ -50,6 +50,26 @@ do
             --shot ${SHOT} \
             --max_percent_words ${ATTACK_PRECENT} \
             --model_dir ${MODELPATH} \
-                # > ${MODELPATH}/logs_${ATTACK}.txt
+                > ${MODELPATH}/logs_${ATTACK}.txt
+
+	    if [[ $ATTACK == "swap_labels" ]]; then
+                nohup python3 main.py \
+                    --mode attack \
+                    --attack_name ${ATTACK} \
+                    --num_examples 1000 \
+                    --dataset ${DATASET} \
+                    --query_budget -1 \
+                    --batch_size ${BATCH_SIZE} \
+                    --model_type ${MODEL_TYPE} \
+                    --model ${MODEL} \
+                    --verbalizer_file ${VERBALIZER_FILE} \
+                    --template_file ${TEMPLATE_FILE} \
+                    --seed $SEED \
+                    --shot ${SHOT} \
+                    --max_percent_words ${ATTACK_PRECENT} \
+                    --model_dir ${MODELPATH} \
+                    --fix_dist \
+                    > ${MODELPATH}/logs_${ATTACK}_fix_dist.txt
+            fi
     done
 done
