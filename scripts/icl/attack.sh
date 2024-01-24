@@ -40,7 +40,7 @@ do
             --attack_name ${ATTACK} \
             --num_examples 1000 \
             --dataset ${DATASET} \
-            --query_budget 1 \
+            --query_budget -1 \
             --batch_size ${BATCH_SIZE} \
             --model_type ${MODEL_TYPE} \
             --model ${MODEL} \
