@@ -5,7 +5,7 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-SHOTS=(8 4 2 16)
+SHOTS=(4)
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2)
 # fi
