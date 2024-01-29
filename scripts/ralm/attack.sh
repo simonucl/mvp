@@ -6,9 +6,9 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 SHOTS=(8 2 4 16)
-if [[ $DATASET == "rte" ]]; then
-	SHOTS=(8 2 4)
-fi
+# if [[ $DATASET == "rte" ]]; then
+# 	SHOTS=(8 2 4)
+# fi
 
 # SHOTS=(8)
 # SHOTS=(2 4 8 16)
@@ -32,12 +32,17 @@ for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
     do 
+<<<<<<< Updated upstream
         if [[ $SHOT -eq 2 ]]; then
             BATCH_SIZE=2
         else
             BATCH_SIZE=$((8 / SHOT))
         fi
         
+=======
+        BATCH_SIZE=$((8 / SHOT))
+
+>>>>>>> Stashed changes
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
         MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
@@ -82,11 +87,11 @@ do
                     --seed $SEED \
                     --shot ${SHOT} \
                     --max_percent_words ${ATTACK_PRECENT} \
-                    --model_dir ${MODELPATH}_${RETRIEVAL_METHOD} \
+                    --model_dir ${MODELPATH}_${RETRIEVAL_METHOD}_fix_dist \
                     --retrieve_method ${RETRIEVAL_METHOD} \
                     --fix_dist \
                     > ${MODELPATH}/logs_${ATTACK}_${RETRIEVAL_METHOD}_fix_dist.txt
             fi
-	done
+	    done
     done
 done

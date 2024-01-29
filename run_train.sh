@@ -79,6 +79,7 @@ CUDA_VISIBLE_DEVICES=0 nohup bash scripts/ralm/attack_quantized_fix_dist.sh rte 
 ### swap_orders
 CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack.sh rte meta-llama/Llama-2-7b-hf retrieval_icl swap_orders > ./logs/run_retrieval_icl_rte_swap_orders.log 2>&1 &
 
+CUDA_VISIBLE_DEVICES=0 nohup bash scripts/ralm/attack.sh rte meta-llama/Llama-2-7b-hf retrieval_icl swap_labels > ./logs/run_retrieval_icl_rte_swap_labels.log 2>&1 &
 ### irrelevant_sample
 
 ################################################
@@ -87,7 +88,6 @@ CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack.sh rte meta-llama/Llama-2-
 
 
 ## Retrieval-ICL-attack
-
 ### textbugger
 CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack_ralm_attack.sh rte meta-llama/Llama-2-7b-hf retrieval_icl_attack textbugger > ./logs/run_retrieval_icl_attack_rte_textbugger.log 2>&1 &
 ### icl_attack

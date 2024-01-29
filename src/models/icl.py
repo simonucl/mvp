@@ -83,7 +83,7 @@ class ICL(ModelWrapper):
         else:
             examples_per_label = args.examples_per_label
 
-        if args.model_type in ["retrieval_icl"]:
+        if (args.model_type in ["retrieval_icl"]) and (args.attack_name not in ["swap_labels", "icl_attack", "swap_orders", "irrelevant_sample"]):
             ralm_num = args.shot
             text_input_list = [(x['premise'], x['hypothesis']) if 'premise' in x.keys() else x['sentence'] for x in dataset[args.split]]
 
