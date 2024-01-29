@@ -46,6 +46,7 @@ def compare_non_modifable(row):
     return (all([(e[0] == ae[0]) and (e[1] == ae[1]) for e, ae in zip(ori_icl_examples, mod_icl_examples)])) and (ori_q == mod_q)
 
 def compute_distributions(question, icl_examples, tokenizer, model):
+    model.eval()
     template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
     verbalizer = {0: "true", 1: "false"}
     if isinstance(model, FalconForCausalLM):
@@ -61,7 +62,9 @@ def compute_distributions(question, icl_examples, tokenizer, model):
     prompt = "\n\n".join(demos) + "\n\n" + q
 
     # print(prompt)
-    tokenized = tokenizer(prompt, return_tensors="pt", padding=True).to('cuda')
+    tokenized = tokenizer(prompt, return_tensors="pt", padding=False, truncation=True, max_length=1536)
+    # print(f'Tokenied length: {len(tokenized["input_ids"][0])}')
+
     logits = model(**tokenized).logits
     output = logits[:, -1, :].detach().cpu()
 
@@ -115,14 +118,15 @@ def main(args):
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     print('Loading model')
     if args.precision == 'bf16':
-        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, torch_dtype=torch.bfloat16)
+        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, torch_dtype=torch.bfloat16, device_map='auto')
         model = model.to('cuda')
     elif args.precision == 'int8':
-        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, load_in_8bit=True)
+        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, load_in_8bit=True, device_map='auto')
     elif args.precision == 'int4':
-        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, load_in_4bit=True)
+        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, load_in_4bit=True, device_map='auto')
 
-    tokenizer.padding_side = "left"
+    model.eval()
+    # tokenizer.padding_side = "left"
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.truncation_side = "left"
 
@@ -135,14 +139,14 @@ def main(args):
     df['attacked_answer'] = df.progress_apply(lambda x : compute_the_attacked_answer(x, tokenizer=tokenizer, model=model), axis=1)
     df['original_answer'] = df.progress_apply(lambda x : compute_original_answer(x, tokenizer=tokenizer, model=model), axis=1)
     df['random_flip_original_answer'] = df.progress_apply(lambda x : compute_random_flip_original_answer(x, tokenizer=tokenizer, model=model), axis=1)
-    df['full_flip_true_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label='true'), axis=1)
-    df['full_flip_false_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label='false'), axis=1)
+    # df['full_flip_true_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label='true'), axis=1)
+    # df['full_flip_false_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label='false'), axis=1)
 
     df['correct'] = df['original_answer'] == df['ground_truth_output']
     df['attack_correct'] = df['attacked_answer'] == df['ground_truth_output']
     df['random_flip_correct'] = df['random_flip_original_answer'] == df['ground_truth_output']
-    df['full_flip_true_correct'] = df['full_flip_true_original_answer'] == df['ground_truth_output']
-    df['full_flip_false_correct'] = df['full_flip_false_original_answer'] == df['ground_truth_output']
+    # df['full_flip_true_correct'] = df['full_flip_true_original_answer'] == df['ground_truth_output']
+    # df['full_flip_false_correct'] = df['full_flip_false_original_answer'] == df['ground_truth_output']
 
     print('Original Accuracy')
     print(round(df['correct'].value_counts()[True] / df['correct'].value_counts().sum(), 4))
@@ -151,11 +155,14 @@ def main(args):
     print('\nRandom Flip Accuracy')
     print(round(df['random_flip_correct'].value_counts()[True] / df['random_flip_correct'].value_counts().sum(), 4))
 
-    print('\nAll True Accuracy')
-    print(round(df['full_flip_true_correct'].value_counts()[True] / df['full_flip_true_correct'].value_counts().sum(), 4))
-    print('\nAll False Accuracy')
-    print(round(df['full_flip_false_correct'].value_counts()[True] / df['full_flip_false_correct'].value_counts().sum(), 4))
+    # print('\nAll True Accuracy')
+    # print(round(df['full_flip_true_correct'].value_counts()[True] / df['full_flip_true_correct'].value_counts().sum(), 4))
+    # print('\nAll False Accuracy')
+    # print(round(df['full_flip_false_correct'].value_counts()[True] / df['full_flip_false_correct'].value_counts().sum(), 4))
 
+    import sys
+    sys.exit(1)
+    
     from collections import Counter
 
     def compute_label_icl_example_dist(row):
@@ -229,8 +236,10 @@ if __name__ == '__main__':
     main(args)
 
 # # python src/eval_label_flip.py --csv_path ./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-1-shot-8/swap_labels_log.csv --precision int4
-# CUDA_VISIBLE_DEVICES=0 python src/eval_label_flip.py --csv_path ./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-1-shot-8/swap_labels_log.csv --model meta-llama/Llama-2-7b-hf
+# CUDA_VISIBLE_DEVICES=0 python3 src/eval_label_flip.py --csv_path ./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-1-shot-8/swap_labels_log.csv --model meta-llama/Llama-2-7b-hf
+
+# CUDA_VISIBLE_DEVICES=0 nohup python3 src/eval_label_flip.py --csv_path /mnt/ceph_rbd/mvp/checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/icl_attack-seed-1-shot-8/swap_labels_log.csv --model meta-llama/Llama-2-70b-hf --precision int8 > logs/eval_label_flip_Llama-2-70b-hf.log 2>&1 &
 
 # CUDA_VISIBLE_DEVICES=0 python src/eval_label_flip.py --csv_path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/icl_attack-seed-1-shot-8/swap_labels_log.csv --model tiiuae/falcon-7b
-
+ 
 # CUDA_VISIBLE_DEVICES=0 python src/eval_label_flip.py --csv_path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/icl_attack-seed-1-shot-8/swap_labels_log.csv --model mistralai/Mistral-7B-v0.1

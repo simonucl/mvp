@@ -32,17 +32,14 @@ for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
     do 
-<<<<<<< Updated upstream
         if [[ $SHOT -eq 2 ]]; then
             BATCH_SIZE=2
+        elif [[ $SHOT -eq 4 ]]; then
+            BATCH_SIZE=2
         else
-            BATCH_SIZE=$((8 / SHOT))
+            BATCH_SIZE=$((16 / SHOT))
         fi
         
-=======
-        BATCH_SIZE=$((8 / SHOT))
-
->>>>>>> Stashed changes
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
         MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
@@ -71,7 +68,7 @@ do
                     --model_dir ${MODELPATH}_${RETRIEVAL_METHOD} \
                     --retrieve_method ${RETRIEVAL_METHOD} \
                     > ${MODELPATH}/logs_${ATTACK}_${RETRIEVAL_METHOD}.txt
-        
+                    
 	    if [[ $ATTACK == "swap_labels" ]]; then
                 nohup python3 main.py \
                     --mode attack \

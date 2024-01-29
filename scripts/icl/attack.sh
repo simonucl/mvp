@@ -6,7 +6,7 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 SHOTS=(8 2 4 16)
-SEEDS=(13 42)
+SEEDS=(1 13 42)
 
 if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]]; then
     ATTACK_PRECENT=0.15
@@ -51,5 +51,25 @@ do
             --max_percent_words ${ATTACK_PRECENT} \
             --model_dir ${MODELPATH} \
                 > ${MODELPATH}/logs_${ATTACK}.txt
+
+	    if [[ $ATTACK == "swap_labels" ]]; then
+                nohup python3 main.py \
+                    --mode attack \
+                    --attack_name ${ATTACK} \
+                    --num_examples 1000 \
+                    --dataset ${DATASET} \
+                    --query_budget -1 \
+                    --batch_size ${BATCH_SIZE} \
+                    --model_type ${MODEL_TYPE} \
+                    --model ${MODEL} \
+                    --verbalizer_file ${VERBALIZER_FILE} \
+                    --template_file ${TEMPLATE_FILE} \
+                    --seed $SEED \
+                    --shot ${SHOT} \
+                    --max_percent_words ${ATTACK_PRECENT} \
+                    --model_dir ${MODELPATH} \
+                    --fix_dist \
+                    > ${MODELPATH}/logs_${ATTACK}_fix_dist.txt
+            fi
     done
 done

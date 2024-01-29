@@ -58,5 +58,27 @@ do
             --knn_k ${KNN} \
             --examples_per_label 1 \
                 > ${MODELPATH}/logs_${ATTACK}.txt
+        if [[ $ATTACK == "swap_labels" ]]; then
+            nohup python3 main.py \
+                --mode attack \
+                --attack_name ${ATTACK} \
+                --num_examples 1000 \
+                --dataset ${DATASET} \
+                --query_budget -1 \
+                --batch_size ${BATCH_SIZE} \
+                --model_type ${MODEL_TYPE} \
+                --model ${MODEL} \
+                --verbalizer_file ${VERBALIZER_FILE} \
+                --template_file ${TEMPLATE_FILE} \
+                --seed $SEED \
+                --max_percent_words ${ATTACK_PRECENT} \
+                --model_dir ${MODELPATH} \
+                --knn_T ${KNN_T} \
+                --beta ${BETA} \
+                --knn_k ${KNN} \
+                --examples_per_label 1 \
+                --fix_dist \
+                > ${MODELPATH}/logs_${ATTACK}_fix_dist.txt
+        fi
     done
 done
