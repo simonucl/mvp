@@ -1,0 +1,73 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='icl_attack', batch_size=8, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/icl_attack/icl-seed-1-shot-8', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/icl_attack/icl-seed-1-shot-8
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='icl_attack', batch_size=8, beta=1.0, cache_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/icl_attack/icl-seed-1-shot-8/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/icl_attack/icl-seed-1-shot-8', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
+Length of anchor subsample 0
+Length of icl examples 2
+Finished loading model
+ICL examples
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'is a step down for director gary fleder . ', 'Label_0': 'negative', 'Example_1': 'the director , tom dey , had spliced together bits and pieces of midnight run and 48 hours ( and , for that matter , shrek ) ', 'Label_1': 'positive', 'Example_2': "from two fatal ailments -- a dearth of vitality and a story that 's shapeless and uninflected ", 'Label_2': 'negative', 'Example_3': 'results that are sometimes bracing ', 'Label_3': 'positive', 'Example_4': 'plodding soap opera ', 'Label_4': 'negative', 'Example_5': 'all-star salute ', 'Label_5': 'positive', 'Example_6': 'fit all of pootie tang in between its punchlines ', 'Label_6': 'negative', 'Example_7': 'award-winning ', 'Label_7': 'positive', 'Example_8': 'deserve better . ', 'Label_8': 'negative', 'Example_9': 'you actually buy into ', 'Label_9': 'positive', 'Example_10': 'of cliches that shoplifts shamelessly from farewell-to-innocence movies like the wanderers and a bronx tale without cribbing any of their intelligence ', 'Label_10': 'negative', 'Example_11': 'real-life basis is , in fact , so interesting that no embellishment is ', 'Label_11': 'positive', 'Example_12': "to insulting the intelligence of anyone who has n't been living under a rock ", 'Label_12': 'negative', 'Example_13': 'immensely ambitious , ', 'Label_13': 'positive', 'Example_14': 'into the modern rut of narrative banality ', 'Label_14': 'negative', 'Example_15': 'user-friendly ', 'Label_15': 'positive'}
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'is a step down for director gary fleder . ', 'Label_0': 'negative', 'Example_1': 'the director , tom dey , had spliced together bits and pieces of midnight run and 48 hours ( and , for that matter , shrek ) ', 'Label_1': 'positive', 'Example_2': "from two fatal ailments -- a dearth of vitality and a story that 's shapeless and uninflected ", 'Label_2': 'negative', 'Example_3': 'results that are sometimes bracing ', 'Label_3': 'positive', 'Example_4': 'plodding soap opera ', 'Label_4': 'negative', 'Example_5': 'all-star salute ', 'Label_5': 'positive', 'Example_6': 'fit all of pootie tang in between its punchlines ', 'Label_6': 'negative', 'Example_7': 'award-winning ', 'Label_7': 'positive', 'Example_8': 'deserve better . ', 'Label_8': 'negative', 'Example_9': 'you actually buy into ', 'Label_9': 'positive', 'Example_10': 'of cliches that shoplifts shamelessly from farewell-to-innocence movies like the wanderers and a bronx tale without cribbing any of their intelligence ', 'Label_10': 'negative', 'Example_11': 'real-life basis is , in fact , so interesting that no embellishment is ', 'Label_11': 'positive', 'Example_12': "to insulting the intelligence of anyone who has n't been living under a rock ", 'Label_12': 'negative', 'Example_13': 'immensely ambitious , ', 'Label_13': 'positive', 'Example_14': 'into the modern rut of narrative banality ', 'Label_14': 'negative', 'Example_15': 'user-friendly ', 'Label_15': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/sst2/meta-llama/Llama-2-7b-hf/icl_attack/icl-seed-1-shot-8/icl_attack_log.csv
+<textattack.attacker.Attacker object at 0x7f3785212580>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapRandomCharacterInsertion(
+        (random_one):  True
+      )
+    (1): WordSwapRandomCharacterDeletion(
+        (random_one):  True
+      )
+    (2): WordSwapNeighboringCharacterSwap(
+        (random_one):  True
+      )
+    (3): WordSwapHomoglyphSwap
+    (4): WordSwapEmbedding(
+        (max_candidates):  5
+        (embedding):  WordEmbedding
+      )
+    )
+  (constraints): 
+    (0): IclUniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.8
+        (window_size):  inf
+        (skip_text_shorter_than_window):  False
+        (compare_against_original):  True
+      )
+    (1): RepeatModification
+    (2): StopwordModification
+    (3): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'label_', 'premise', 'hypothesis']
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 370    |
+| Number of failed attacks:     | 406    |
+| Number of skipped attacks:    | 96     |
+| Original accuracy:            | 88.99  |
+| Accuracy under attack:        | 46.56  |
+| Attack success rate:          | 47.68  |
+| Average perturbed word %:     | 9.87   |
+| Average num. words per input: | 160.4  |
+| Avg num queries:              | 365.03 |
+| Adv confidence:               | 0.53   |
+| Average Original Perplexity:  | 1.92   |
+| Average Attack Perplexity:    | 2.82   |
+| Average Attack USE Score:     | 0.95   |
++-------------------------------+--------+
+Attack time: 13455.29734158516
+Attack time: 13455.29734158516
