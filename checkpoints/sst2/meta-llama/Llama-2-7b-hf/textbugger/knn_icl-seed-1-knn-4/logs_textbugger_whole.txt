@@ -13,7 +13,7 @@ Finished loading model
 ['Review: {}\nSentiment: {}']
 {0: ['negative'], 1: ['positive']}
 ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/textbugger/knn_icl-seed-1-knn-4/textbugger_log.csv
-<textattack.attacker.Attacker object at 0x7f445ab8ebb0>
+<textattack.attacker.Attacker object at 0x7f41349abca0>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
