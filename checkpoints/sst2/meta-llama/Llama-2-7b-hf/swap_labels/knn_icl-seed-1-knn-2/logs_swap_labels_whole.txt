@@ -15,7 +15,7 @@ ICL examples
 ['Review: {}\nSentiment: {}']
 {0: ['negative'], 1: ['positive']}
 ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/knn_icl-seed-1-knn-2/swap_labels_log.csv
-<textattack.attacker.Attacker object at 0x7f15bbaa7490>
+<textattack.attacker.Attacker object at 0x7fecff9c3a90>
 Attack(
   (search_method): GreedySearch
   (goal_function):  UntargetedClassification
@@ -54,5 +54,5 @@ Attack(
 | Average Attack Perplexity:    | 6.39  |
 | Average Attack USE Score:     | 0.96  |
 +-------------------------------+-------+
-Attack time: 146.44000959396362
-Attack time: 146.44000959396362
+Attack time: 144.57082867622375
+Attack time: 144.57082867622375
