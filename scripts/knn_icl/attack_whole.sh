@@ -23,12 +23,13 @@ fi
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
 SHOT=-1
-BATCH_SIZE=512
+BATCH_SIZE=32
 # KNN=$(( SHOT / 2 - 1 ))
 
 SEED=1
 for KNN in 8 2 4 16;
 do
+
     echo $SEED+${SHOT}+${MODEL}+"mvp"
     MODEL_ID=${MODEL_TYPE}-seed-${SEED}-knn-${KNN}
     MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
