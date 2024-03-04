@@ -233,7 +233,7 @@ def attacker(args):
                             "swap_labels": SwapLabel2023,
                             "swap_orders": SwapOrderAttack,
                             'irrelevant_sample': IrrelevantSampleAttack,
-                            "bert-attack": BERTAttackLi2020
+                            "bert_attack": BERTAttackLi2020
                             }
                             
         attack_class = attack_name_mapper[attack_name]

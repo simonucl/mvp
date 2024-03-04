@@ -5,18 +5,22 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-SHOTS=(8 2 4 16)
+if [[ $DATASET == "rte" ]]; then
+    SHOTS=(8 2 4)
+    TOTAL_BATCH=8
+else
+    SHOTS=(8 2 4 16)
+    TOTAL_BATCH=16
+fi
+
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2 4)
 # fi
 
-# SHOTS=(8)
-# SHOTS=(2 4 8 16)
-# SEEDS=(1 13 42)
 SEEDS=(1)
 RETRIEVAL_METHOD=sbert
 
-if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]]; then
+if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
     ATTACK_PRECENT=0.15
 else
     ATTACK_PRECENT=0.5
@@ -32,12 +36,9 @@ for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
     do 
+        BATCH_SIZE=$((TOTAL_BATCH / SHOT))
         if [[ $SHOT -eq 2 ]]; then
-            BATCH_SIZE=2
-        elif [[ $SHOT -eq 4 ]]; then
-            BATCH_SIZE=2
-        else
-            BATCH_SIZE=$((16 / SHOT))
+            BATCH_SIZE=$((BATCH_SIZE / 2))
         fi
         
         echo $SEED+${SHOT}+${MODEL}+"mvp"
