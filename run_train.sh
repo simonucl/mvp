@@ -12,6 +12,10 @@ CUDA_VISIBLE_DEVICES=0 nohup bash scripts/icl/attack.sh rte meta-llama/Llama-2-7
 
 CUDA_VISIBLE_DEVICES=0 bash scripts/icl/attack.sh rte meta-llama/Llama-2-7b-hf icl textbugger
 
+CUDA_VISIBLE_DEVICES=0 nohup bash scripts/icl/attack.sh sst2 meta-llama/Llama-2-7b-hf icl icl_attack > ./logs/run_icl_sst2_icl_attack.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack_sst2.sh sst2 meta-llama/Llama-2-7b-hf retrieval_icl icl_attack > ./logs/run_retrieval_icl_attack_sst2_icl_attack.log 2>&1 &
+
 ### swap_labels fix dist
 CUDA_VISIBLE_DEVICES=0 nohup bash scripts/icl/attack_fix_dist.sh rte meta-llama/Llama-2-7b-hf icl_attack swap_labels > ./logs/run_icl_rte_swap_labels.log 2>&1 &
 
@@ -29,6 +33,7 @@ CUDA_VISIBLE_DEVICES=0 nohup bash scripts/icl/attack.sh sst2 meta-llama/Llama-2-
 ### swap_labels
 CUDA_VISIBLE_DEVICES=0 nohup bash scripts/icl/attack.sh sst2 meta-llama/Llama-2-7b-hf icl_attack swap_labels > ./logs/run_icl_sst2_swap_labels.log 2>&1 &
 
+CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack.sh sst2 meta-llama/Llama-2-7b-hf retrieval_icl icl_attack > ./logs/run_retrieval_icl_sst2_icl_attack.log 2>&1 &
 ### swap_labels fix dist
 
 ### swap_orders
@@ -90,6 +95,11 @@ CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack.sh rte meta-llama/Llama-2-
 
 ### icl_attack
 CUDA_VISIBLE_DEVICES=0 nohup bash scripts/ralm/attack.sh rte meta-llama/Llama-2-7b-hf retrieval_icl icl_attack > ./logs/run_retrieval_icl_attack_rte_icl_attack.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=0 nohup bash scripts/icl/attack_icl_attack.sh sst2 meta-llama/Llama-2-7b-hf icl icl_attack > ./logs/run_icl_sst2_icl_attack.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=0 nohup bash scripts/icl/attack_icl_attack.sh rte meta-llama/Llama-2-7b-hf icl icl_attack > ./logs/run_icl_rte_icl_attack.log 2>&1 &
+
 CUDA_VISIBLE_DEVICES=1 nohup bash scripts/ralm/attack_1.sh rte meta-llama/Llama-2-7b-hf retrieval_icl icl_attack > ./logs/run_retrieval_icl_attack_rte_icl_attack_1.log 2>&1 &
 ### swap_labels
 CUDA_VISIBLE_DEVICES=0 nohup bash scripts/ralm/attack_quantized_fix_dist.sh rte meta-llama/Llama-2-7b-hf retrieval_icl swap_labels > ./logs/run_retrieval_icl_rte_swap_labels.log 2>&1 &

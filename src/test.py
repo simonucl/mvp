@@ -5,7 +5,7 @@ sys.path.append("customattacks/.")
 from textattack.attacker import Attacker
 from customattacks import TextFoolerCustom, TextBuggerCustom
 # from TextBuggerCustom import TextBuggerCustom
-from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord, SwapLabel2023, SwapOrderAttack, IrrelevantSampleAttack
+from textattack.attack_recipes import TextFoolerJin2019, TextBuggerLi2018, ICLTextAttack, ICLTextAttackWord, SwapLabel2023, SwapOrderAttack, IrrelevantSampleAttack, BERTAttackLi2020
 from src.utils.funcs import *
 from src.models import get_model
 from textattack import AttackArgs
@@ -232,7 +232,8 @@ def attacker(args):
                             "icl_attack_word": ICLTextAttackWord,
                             "swap_labels": SwapLabel2023,
                             "swap_orders": SwapOrderAttack,
-                            'irrelevant_sample': IrrelevantSampleAttack
+                            'irrelevant_sample': IrrelevantSampleAttack,
+                            "bert-attack": BERTAttackLi2020
                             }
                             
         attack_class = attack_name_mapper[attack_name]
