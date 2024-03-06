@@ -5,26 +5,11 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-if [[ $DATASET == "rte" ]]; then
-    SHOTS=(8 2 4)
-    TOTAL_BATCH=8
-elif [[ $DATASET == "mnli" ]]; then
-    SHOTS=(2 4)
-    TOTAL_BATCH=8
-else
-    SHOTS=(8 2 4 16)
-    TOTAL_BATCH=16
-fi
+SHOTS=(8 16)
 
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2 4)
 # fi
-
-if [[ $ATTACK == "bert_attack" ]]; then
-    QUERY_BUDGET=100
-else
-    QUERY_BUDGET=-1
-fi
 
 SEEDS=(1)
 RETRIEVAL_METHOD=sbert
@@ -45,11 +30,8 @@ for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
     do 
-        BATCH_SIZE=$((TOTAL_BATCH / SHOT))
-        if [[ $SHOT -eq 2 ]]; then
-            BATCH_SIZE=$((BATCH_SIZE / 2))
-        fi
-        
+        BATCH_SIZE=$((16 / SHOT))
+
         echo $SEED+${SHOT}+${MODEL}+"mvp"
         MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
         MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
@@ -66,7 +48,7 @@ do
                     --attack_name ${ATTACK} \
                     --num_examples 1000 \
                     --dataset ${DATASET} \
-                    --query_budget ${QUERY_BUDGET} \
+                    --query_budget -1 \
                     --batch_size ${BATCH_SIZE} \
                     --model_type ${MODEL_TYPE} \
                     --model ${MODEL} \
@@ -85,7 +67,7 @@ do
                     --attack_name ${ATTACK} \
                     --num_examples 1000 \
                     --dataset ${DATASET} \
-                    --query_budget ${QUERY_BUDGET} \
+                    --query_budget -1 \
                     --batch_size ${BATCH_SIZE} \
                     --model_type ${MODEL_TYPE} \
                     --model ${MODEL} \

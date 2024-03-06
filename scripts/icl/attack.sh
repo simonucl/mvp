@@ -8,6 +8,9 @@ VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 if [[ $DATASET == "rte" ]]; then
     SHOTS=(8 2 4)
     TOTAL_BATCH=8
+elif [[ $DATASET == "mnli" ]]; then
+    SHOTS=(2 4)
+    TOTAL_BATCH=8
 else
     SHOTS=(8 2 4 16)
     TOTAL_BATCH=16
@@ -19,6 +22,12 @@ if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK 
     ATTACK_PRECENT=0.15
 else
     ATTACK_PRECENT=0.5
+fi
+
+if [[ $ATTACK == "bert_attack" ]]; then
+    QUERY_BUDGET=250
+else
+    QUERY_BUDGET=-1
 fi
 
 # source ~/.bashrc
@@ -50,7 +59,7 @@ do
             --attack_name ${ATTACK} \
             --num_examples 1000 \
             --dataset ${DATASET} \
-            --query_budget -1 \
+            --query_budget ${QUERY_BUDGET} \
             --batch_size ${BATCH_SIZE} \
             --model_type ${MODEL_TYPE} \
             --model ${MODEL} \
@@ -68,7 +77,7 @@ do
                     --attack_name ${ATTACK} \
                     --num_examples 1000 \
                     --dataset ${DATASET} \
-                    --query_budget -1 \
+                    --query_budget ${QUERY_BUDGET} \
                     --batch_size ${BATCH_SIZE} \
                     --model_type ${MODEL_TYPE} \
                     --model ${MODEL} \
