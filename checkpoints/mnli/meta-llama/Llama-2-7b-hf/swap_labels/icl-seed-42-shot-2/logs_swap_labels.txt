@@ -1,0 +1,36 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-42-shot-2', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=42, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-42-shot-2
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-42-shot-2/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-42-shot-2', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=42, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Length of anchor subsample 0
+Length of icl examples 3
+Finished loading model
+ICL examples
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'restaurants serve lunch from 1:00 to 3:00 p.m. and dinner from about 8:00 to 11:00 p.m.', 'Hypothesis_0': 'eating establishments give out lunch between the hours of 1:00 to 3:00 p.m. and then dinner at about 8:00 to 11:00 p.m.', 'Label_0': 'yes', 'Premise_1': 'oh you do have to make reservations there', 'Hypothesis_1': 'you have to make reservations at the hotel.', 'Label_1': 'maybe', 'Premise_2': 'teaching here is conducted in both chinese and english.', 'Hypothesis_2': 'the teaching is done in french and taiwanese. ', 'Label_2': 'no', 'Premise_3': 'lentauw finished ninth despite being chased into a cornfield by dogs.', 'Hypothesis_3': 'lentauw was chased by dogs and still finished ninth.', 'Label_3': 'yes', 'Premise_4': 'accordingly, he wished them goodbye, and they left the hotel.', 'Hypothesis_4': 'accordingly, he hugged them and led the out of the hotel.', 'Label_4': 'maybe', 'Premise_5': 'others who have signed up for pk have subsequently turned up on republican mailing lists.', 'Hypothesis_5': 'no one signed up for pk and the republican lists.', 'Label_5': 'no'}
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'restaurants serve lunch from 1:00 to 3:00 p.m. and dinner from about 8:00 to 11:00 p.m.', 'Hypothesis_0': 'eating establishments give out lunch between the hours of 1:00 to 3:00 p.m. and then dinner at about 8:00 to 11:00 p.m.', 'Label_0': 'yes', 'Premise_1': 'oh you do have to make reservations there', 'Hypothesis_1': 'you have to make reservations at the hotel.', 'Label_1': 'maybe', 'Premise_2': 'teaching here is conducted in both chinese and english.', 'Hypothesis_2': 'the teaching is done in french and taiwanese. ', 'Label_2': 'no', 'Premise_3': 'lentauw finished ninth despite being chased into a cornfield by dogs.', 'Hypothesis_3': 'lentauw was chased by dogs and still finished ninth.', 'Label_3': 'yes', 'Premise_4': 'accordingly, he wished them goodbye, and they left the hotel.', 'Hypothesis_4': 'accordingly, he hugged them and led the out of the hotel.', 'Label_4': 'maybe', 'Premise_5': 'others who have signed up for pk have subsequently turned up on republican mailing lists.', 'Hypothesis_5': 'no one signed up for pk and the republican lists.', 'Label_5': 'no'}
+['Premise: {}\nHypothesis: {}\nPrediction: {}']
+{0: ['yes'], 1: ['maybe'], 2: ['no']}
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-42-shot-2/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f742eb48e50>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapLabel(
+        (label_map):  ['yes', 'maybe', 'no']
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (2): RepeatModification
+  (is_black_box):  True
+) 
+

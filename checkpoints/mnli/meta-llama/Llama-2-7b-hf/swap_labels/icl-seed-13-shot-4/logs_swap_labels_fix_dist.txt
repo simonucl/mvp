@@ -1,0 +1,58 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-13-shot-4', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=13, shot=4, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-13-shot-4
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-13-shot-4/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-13-shot-4', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=13, shot=4, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Length of anchor subsample 0
+Length of icl examples 3
+Finished loading model
+ICL examples
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'jon had never bothered to learn their names.', 'Hypothesis_0': 'jon did not know any of their names. ', 'Label_0': 'yes', 'Premise_1': "it's difficult to believe that this little spot was once a major junction for traffic in the lakes before motorized vehicles were invented.", 'Hypothesis_1': 'motorized vehicles were introduced in 1965.', 'Label_1': 'maybe', 'Premise_2': 'from the dock from shore', 'Hypothesis_2': 'it stops at the dock.', 'Label_2': 'no', 'Premise_3': "yeah and and the question is is does the government make a difference if they'll mostly leave him alone uh and i think that's the difficulty they that that we have that uh it it it reality doesn't make uh doesn't make a difference if he has no income and apparently even some of our alleged uh central american leaders that uh are are that are mostly democratic have done some pretty terrible things so it's uh", 'Hypothesis_3': "the question is, will the government make a difference if they leave him alone? the reality is, it doesn't make a difference if he has no income.  apparently, some of our democratic central american leaders have done some terrible things.", 'Label_3': 'yes', 'Premise_4': 'exactly, said poirot dryly. ', 'Hypothesis_4': 'poirot was not happy.', 'Label_4': 'maybe', 'Premise_5': 'in about 2000 b.c.', 'Hypothesis_5': 'it was about 2000 a.d.', 'Label_5': 'no', 'Premise_6': 'flags are used at all beaches to advise swimmers of sea a green flag means the sea is safe for swimming, while a red flag warns of danger.', 'Hypothesis_6': 'at the beach, a green flag means it is safe to swim and a red flag means danger.', 'Label_6': 'yes', 'Premise_7': 'high cliffs and plateaus rose from the rock-hard cracked mud.', 'Hypothesis_7': "the mud hadn't seen rain in months.", 'Label_7': 'maybe', 'Premise_8': "yeah clocks is what i meant i can i'm going crazy my daughter's playing the piano and i can't think", 'Hypothesis_8': 'my daughter is playing the flute', 'Label_8': 'no', 'Premise_9': 'a signpost flashed by the train window.', 'Hypothesis_9': 'there was at least one window on the train.', 'Label_9': 'yes', 'Premise_10': 'when the supply ship crashed into the space station, foale feared death by decompression.', 'Hypothesis_10': 'the ship crashed into the space station, and foale cried, fearing death.', 'Label_10': 'maybe', 'Premise_11': 'for the fiscal year 1998 budget, omb plans to continue to increase the role of performance goals and information in guiding funding decisions.', 'Hypothesis_11': 'omb plans to discontinue its use of performance goals in guiding funding decisions.', 'Label_11': 'no'}
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'jon had never bothered to learn their names.', 'Hypothesis_0': 'jon did not know any of their names. ', 'Label_0': 'yes', 'Premise_1': "it's difficult to believe that this little spot was once a major junction for traffic in the lakes before motorized vehicles were invented.", 'Hypothesis_1': 'motorized vehicles were introduced in 1965.', 'Label_1': 'maybe', 'Premise_2': 'from the dock from shore', 'Hypothesis_2': 'it stops at the dock.', 'Label_2': 'no', 'Premise_3': "yeah and and the question is is does the government make a difference if they'll mostly leave him alone uh and i think that's the difficulty they that that we have that uh it it it reality doesn't make uh doesn't make a difference if he has no income and apparently even some of our alleged uh central american leaders that uh are are that are mostly democratic have done some pretty terrible things so it's uh", 'Hypothesis_3': "the question is, will the government make a difference if they leave him alone? the reality is, it doesn't make a difference if he has no income.  apparently, some of our democratic central american leaders have done some terrible things.", 'Label_3': 'yes', 'Premise_4': 'exactly, said poirot dryly. ', 'Hypothesis_4': 'poirot was not happy.', 'Label_4': 'maybe', 'Premise_5': 'in about 2000 b.c.', 'Hypothesis_5': 'it was about 2000 a.d.', 'Label_5': 'no', 'Premise_6': 'flags are used at all beaches to advise swimmers of sea a green flag means the sea is safe for swimming, while a red flag warns of danger.', 'Hypothesis_6': 'at the beach, a green flag means it is safe to swim and a red flag means danger.', 'Label_6': 'yes', 'Premise_7': 'high cliffs and plateaus rose from the rock-hard cracked mud.', 'Hypothesis_7': "the mud hadn't seen rain in months.", 'Label_7': 'maybe', 'Premise_8': "yeah clocks is what i meant i can i'm going crazy my daughter's playing the piano and i can't think", 'Hypothesis_8': 'my daughter is playing the flute', 'Label_8': 'no', 'Premise_9': 'a signpost flashed by the train window.', 'Hypothesis_9': 'there was at least one window on the train.', 'Label_9': 'yes', 'Premise_10': 'when the supply ship crashed into the space station, foale feared death by decompression.', 'Hypothesis_10': 'the ship crashed into the space station, and foale cried, fearing death.', 'Label_10': 'maybe', 'Premise_11': 'for the fiscal year 1998 budget, omb plans to continue to increase the role of performance goals and information in guiding funding decisions.', 'Hypothesis_11': 'omb plans to discontinue its use of performance goals in guiding funding decisions.', 'Label_11': 'no'}
+['Premise: {}\nHypothesis: {}\nPrediction: {}']
+{0: ['yes'], 1: ['maybe'], 2: ['no']}
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl-seed-13-shot-4/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f5e380d9f70>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapDuo
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): UniformSwap(
+        (threshold):  1
+        (compare_against_original):  True
+      )
+    (2): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (3): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 375    |
+| Number of failed attacks:     | 142    |
+| Number of skipped attacks:    | 483    |
+| Original accuracy:            | 51.7   |
+| Accuracy under attack:        | 14.2   |
+| Attack success rate:          | 72.53  |
+| Average perturbed word %:     | 0.75   |
+| Average num. words per input: | 398.54 |
+| Avg num queries:              | 79.03  |
+| Adv confidence:               | 0.67   |
+| Average Original Perplexity:  | 1.55   |
+| Average Attack Perplexity:    | 1.62   |
+| Average Attack USE Score:     | 0.99   |
++-------------------------------+--------+
+Attack time: 3096.1867809295654
+Attack time: 3096.1867809295654
