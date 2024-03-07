@@ -16,6 +16,8 @@ from collections import OrderedDict
 from time import time
 from tqdm import trange
 
+os.environ["TA_DEVICE"] = "cuda"
+
 import tensorflow as tf
 gpus = tf.config.list_physical_devices('GPU')
 if gpus:

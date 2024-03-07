@@ -205,6 +205,8 @@ def prepare_huggingface_dataset(args):
             return example
         my_dataset = my_dataset.map(map_labels)
         my_dataset = my_dataset.remove_columns(['text'])
+        if "idx" not in my_dataset.column_names:
+            my_dataset = my_dataset.add_column('idx', list(range(len(my_dataset['label']))))
         
     if args.dataset == "boolq":
         def map_labels(example):
