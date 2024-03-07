@@ -24,11 +24,12 @@ else
     ATTACK_PRECENT=0.5
 fi
 
-if [[ $ATTACK == "bert_attack" ]]; then
-    QUERY_BUDGET=250
-else
-    QUERY_BUDGET=-1
-fi
+QUERY_BUDGET=-1
+# if [[ $ATTACK == "bert_attack" ]]; then
+#     QUERY_BUDGET=250
+# else
+#     QUERY_BUDGET=-1
+# fi
 
 # source ~/.bashrc
 # echo $PWD
