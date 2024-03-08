@@ -1,0 +1,68 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='bert_attack', batch_size=8, beta=0.2, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=100.0, knn_k=1, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/knn_icl-seed-1-shot-4', model_id='0', model_type='knn_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=4, split='test', template_file='configs/templates_cr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_cr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/knn_icl-seed-1-shot-4
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='bert_attack', batch_size=8, beta=0.2, cache_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/knn_icl-seed-1-shot-4/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=100.0, knn_k=1, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/knn_icl-seed-1-shot-4', model_id='0', model_type='knn_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=4, split='test', template_file='configs/templates_cr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_cr.yaml', weight_decay=0.01)
+Length of anchor subsample 6
+Length of icl examples 2
+Loading anchor store
+Finished loading anchor store
+Finished loading model
+{'label': 1, 'sentence': "they 're easy to use"}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/knn_icl-seed-1-shot-4/bert_attack_log.csv
+<textattack.attacker.Attacker object at 0x7f4a1e3d1670>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  unk
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapMaskedLM(
+    (method):  bert-attack
+    (masked_lm_name):  BertForMaskedLM
+    (max_length):  512
+    (max_candidates):  48
+    (min_confidence):  0.0005
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): UniversalSentenceEncoder(
+        (metric):  cosine
+        (threshold):  0.8
+        (window_size):  inf
+        (skip_text_shorter_than_window):  False
+        (compare_against_original):  True
+      )
+    (2): RepeatModification
+    (3): StopwordModification
+    (4): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 260    |
+| Number of failed attacks:     | 89     |
+| Number of skipped attacks:    | 27     |
+| Original accuracy:            | 92.82  |
+| Accuracy under attack:        | 23.67  |
+| Attack success rate:          | 74.5   |
+| Average perturbed word %:     | 12.01  |
+| Average num. words per input: | 16.47  |
+| Avg num queries:              | 83.71  |
+| Adv confidence:               | 0.67   |
+| Average Original Perplexity:  | 68.02  |
+| Average Attack Perplexity:    | 112.48 |
+| Average Attack USE Score:     | 0.87   |
++-------------------------------+--------+
+Attack time: 897.3004813194275
+Attack time: 897.3004813194275
