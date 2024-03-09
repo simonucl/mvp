@@ -1,0 +1,86 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='textfooler', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mr/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='textfooler', batch_size=2, beta=1.0, cache_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/mr_bm25.pkl', replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Finished encoding anchor data
+Saving retrieved examples to ./data/ralm/mr_bm25.pkl
+Length of anchor subsample 0
+Length of icl examples 1000
+Finished loading model
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/mr/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25/textfooler_log.csv
+<textattack.attacker.Attacker object at 0x7f6d78f58d30>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.15
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 415    |
+| Number of failed attacks:     | 501    |
+| Number of skipped attacks:    | 84     |
+| Original accuracy:            | 91.6   |
+| Accuracy under attack:        | 50.1   |
+| Attack success rate:          | 45.31  |
+| Average perturbed word %:     | 11.69  |
+| Average num. words per input: | 18.64  |
+| Avg num queries:              | 62.2   |
+| Adv confidence:               | 0.63   |
+| Average Original Perplexity:  | 70.82  |
+| Average Attack Perplexity:    | 128.48 |
+| Average Attack USE Score:     | 0.86   |
++-------------------------------+--------+
+Attack time: 4239.457226753235
+Attack time: 4239.457226753235
