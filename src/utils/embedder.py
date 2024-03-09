@@ -19,6 +19,7 @@ instructor_prefix = {
     'mnli': 'Represent the document',
     'mr': 'Represent the sentence',
     'cr': 'Represent the sentence',
+    'trec': 'Represent the sentence',
 }
 
 
