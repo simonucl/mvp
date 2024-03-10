@@ -10,7 +10,7 @@ SEEDS=(1 13 42)
 BETA=0.2
 KNN_T=100
 
-if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]]; then
+if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
     ATTACK_PRECENT=0.15
 else
     ATTACK_PRECENT=0.5
@@ -27,6 +27,9 @@ do
     for SEED in ${SEEDS[@]};
     do 
         BATCH_SIZE=$((32 / SHOT))
+        if [[ $SHOT -eq 2 ]]; then
+            BATCH_SIZE=$((BATCH_SIZE / 2))
+        fi
         KNN=$(( SHOT / 2 - 1 ))
 
         echo $SEED+${SHOT}+${MODEL}+"mvp"
