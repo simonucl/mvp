@@ -21,10 +21,15 @@ SEEDS=(1 13 42)
 if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
     ATTACK_PRECENT=0.15
 else
-    ATTACK_PRECENT=0.5
+    if [[ $DATASET == "sst2" ]] || [[ $DATASET == "rte" ]] || [[ $DATASET == "mr" ]] || [[ $DATASET == "cr" ]]; then
+        ATTACK_PRECENT=0.5
+    elif [[ $DATASET == "mnli" ]]; then
+        ATTACK_PRECENT=0.33
+    else
+        ATTACK_PRECENT=0.2
+    fi
 fi
 
-QUERY_BUDGET=-1
 if [[ $ATTACK == "swap_labels" ]]; then
     QUERY_BUDGET=250
 else
@@ -86,7 +91,7 @@ do
                     --template_file ${TEMPLATE_FILE} \
                     --seed $SEED \
                     --shot ${SHOT} \
-                    --max_percent_words ${ATTACK_PRECENT} \
+                    --max_percent_words 0.5 \
                     --model_dir ${MODELPATH} \
                     --fix_dist \
                     > ${MODELPATH}/logs_${ATTACK}_fix_dist.txt
