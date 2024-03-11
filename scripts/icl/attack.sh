@@ -25,11 +25,11 @@ else
 fi
 
 QUERY_BUDGET=-1
-# if [[ $ATTACK == "bert_attack" ]]; then
-#     QUERY_BUDGET=250
-# else
-#     QUERY_BUDGET=-1
-# fi
+if [[ $ATTACK == "swap_labels" ]]; then
+    QUERY_BUDGET=250
+else
+    QUERY_BUDGET=-1
+fi
 
 # source ~/.bashrc
 # echo $PWD

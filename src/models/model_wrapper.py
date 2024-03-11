@@ -79,7 +79,7 @@ class ModelWrapper(torch.nn.Module):
                 elif len(t) > 2:
                     # text_input_list = [t[-1]]
                     # the len(t) must be odd number
-                    if self.args.dataset in ["sst2"]:
+                    if self.args.dataset in ["sst2", "mr", "cr", "trec"]:
                         inference_input = t[0]
                         t = t[1:]
                         no_examples = len(t) // 2

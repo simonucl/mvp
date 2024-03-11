@@ -20,11 +20,11 @@ fi
 # 	SHOTS=(8 2 4)
 # fi
 
-# if [[ $ATTACK == "bert_attack" ]]; then
-#     QUERY_BUDGET=100
-# else
-#     QUERY_BUDGET=-1
-# fi
+if [[ $ATTACK == "swap_labels" ]]; then
+    QUERY_BUDGET=250
+else
+    QUERY_BUDGET=-1
+fi
 
 QUERY_BUDGET=-1
 
