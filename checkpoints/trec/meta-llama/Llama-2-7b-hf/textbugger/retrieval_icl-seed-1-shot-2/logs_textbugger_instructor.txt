@@ -6,3 +6,82 @@ Model Directory: ./checkpoints/trec/meta-llama/Llama-2-7b-hf/textbugger/retrieva
 Namespace(adv_augment=0, alpha=None, attack_name='textbugger', batch_size=4, beta=1.0, cache_dir='./checkpoints/trec/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='trec', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/trec/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=6, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/trec_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=2, split='test', template_file='configs/templates_trec.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_trec.yaml', weight_decay=0.01)
 load INSTRUCTOR_Transformer
 max_seq_length  512
+Finished encoding anchor data
+anchor_data_embeddings shape: torch.Size([5179, 768])
+query shape: 500
+query_embedding shape: torch.Size([500, 768])
+cos_scores shape: torch.Size([500, 5179])
+Saving retrieved examples to ./data/ralm/trec_instructor.pkl
+Length of anchor subsample 0
+Length of icl examples 500
+Finished loading model
+{'sentence': 'how far is it from denver to aspen ?', 'label': 5, 'idx': 0}
+['Question: {}\nType: {}']
+{0: ['expression'], 1: ['entity'], 2: ['description'], 3: ['person'], 4: ['location'], 5: ['number']}
+./checkpoints/trec/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_instructor/textbugger_log.csv
+<textattack.attacker.Attacker object at 0x7f0208868fa0>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapRandomCharacterInsertion(
+        (random_one):  True
+      )
+    (1): WordSwapRandomCharacterDeletion(
+        (random_one):  True
+      )
+    (2): WordSwapNeighboringCharacterSwap(
+        (random_one):  True
+      )
+    (3): WordSwapHomoglyphSwap
+    (4): WordSwapEmbedding(
+        (max_candidates):  5
+        (embedding):  WordEmbedding
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.15
+        (compare_against_original):  True
+      )
+    (1): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.8
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (2): RepeatModification
+    (3): StopwordModification
+    (4): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (5): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+-------+
+| Attack Results                |       |
++-------------------------------+-------+
+| Number of successful attacks: | 224   |
+| Number of failed attacks:     | 154   |
+| Number of skipped attacks:    | 122   |
+| Original accuracy:            | 75.6  |
+| Accuracy under attack:        | 30.8  |
+| Attack success rate:          | 59.26 |
+| Average perturbed word %:     | 21.9  |
+| Average num. words per input: | 6.5   |
+| Avg num queries:              | 20.78 |
+| Adv confidence:               | 0.81  |
+| Average Original Perplexity:  | 24.28 |
+| Average Attack Perplexity:    | 74.24 |
+| Average Attack USE Score:     | 0.76  |
++-------------------------------+-------+
+Attack time: 301.6972162723541
+Attack time: 301.6972162723541

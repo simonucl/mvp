@@ -1,0 +1,66 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='bert_attack', batch_size=1, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/bert_attack/icl-seed-42-shot-8', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=42, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/rte/meta-llama/Llama-2-7b-hf/bert_attack/icl-seed-42-shot-8
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='bert_attack', batch_size=1, beta=1.0, cache_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/bert_attack/icl-seed-42-shot-8/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/bert_attack/icl-seed-42-shot-8', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=42, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Length of anchor subsample 0
+Length of icl examples 2
+Finished loading model
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/bert_attack/icl-seed-42-shot-8/bert_attack_log.csv
+<textattack.attacker.Attacker object at 0x7fa63afd09d0>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  unk
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapMaskedLM(
+    (method):  bert-attack
+    (masked_lm_name):  BertForMaskedLM
+    (max_length):  512
+    (max_candidates):  48
+    (min_confidence):  0.0005
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.15
+        (compare_against_original):  True
+      )
+    (1): UniversalSentenceEncoder(
+        (metric):  cosine
+        (threshold):  0.8
+        (window_size):  inf
+        (skip_text_shorter_than_window):  False
+        (compare_against_original):  True
+      )
+    (2): RepeatModification
+    (3): StopwordModification
+    (4): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 203    |
+| Number of failed attacks:     | 3      |
+| Number of skipped attacks:    | 71     |
+| Original accuracy:            | 74.37  |
+| Accuracy under attack:        | 1.08   |
+| Attack success rate:          | 98.54  |
+| Average perturbed word %:     | 3.52   |
+| Average num. words per input: | 51.02  |
+| Avg num queries:              | 132.03 |
+| Adv confidence:               | 0.55   |
+| Average Original Perplexity:  | 37.72  |
+| Average Attack Perplexity:    | 45.71  |
+| Average Attack USE Score:     | 0.94   |
++-------------------------------+--------+
+Attack time: 9035.977947235107
+Attack time: 9035.977947235107
