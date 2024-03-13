@@ -1,9 +1,9 @@
 1
-Namespace(adv_augment=0, alpha=None, attack_name='bert_attack', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-8_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=100, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_cr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_cr.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='bert_attack', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-8_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_cr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_cr.yaml', weight_decay=0.01)
 meta-llama/Llama-2-7b-hf
 Model Directory: ./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-8_instructor
 1 Physical GPUs, 1 Logical GPUs
-Namespace(adv_augment=0, alpha=None, attack_name='bert_attack', batch_size=2, beta=1.0, cache_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-8_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-8_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=100, ralm_save_path='./data/ralm/cr_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_cr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_cr.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='bert_attack', batch_size=2, beta=1.0, cache_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-8_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-8_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/cr_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_cr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_cr.yaml', weight_decay=0.01)
 load INSTRUCTOR_Transformer
 max_seq_length  512
 Loading retrieved examples from ./data/ralm/cr_instructor.pkl
@@ -14,7 +14,7 @@ Finished loading model
 ['Review: {}\nSentiment: {}']
 {0: ['negative'], 1: ['positive']}
 ./checkpoints/cr/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-8_instructor/bert_attack_log.csv
-<textattack.attacker.Attacker object at 0x7f7da6132670>
+<textattack.attacker.Attacker object at 0x7f61ecad0370>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  unk
@@ -34,7 +34,7 @@ Attack(
       )
     (1): UniversalSentenceEncoder(
         (metric):  cosine
-        (threshold):  0.2
+        (threshold):  0.8
         (window_size):  inf
         (skip_text_shorter_than_window):  False
         (compare_against_original):  True
@@ -51,19 +51,19 @@ Attack(
 +-------------------------------+--------+
 | Attack Results                |        |
 +-------------------------------+--------+
-| Number of successful attacks: | 91     |
-| Number of failed attacks:     | 167    |
+| Number of successful attacks: | 95     |
+| Number of failed attacks:     | 163    |
 | Number of skipped attacks:    | 118    |
 | Original accuracy:            | 68.62  |
-| Accuracy under attack:        | 44.41  |
-| Attack success rate:          | 35.27  |
-| Average perturbed word %:     | 14.3   |
+| Accuracy under attack:        | 43.35  |
+| Attack success rate:          | 36.82  |
+| Average perturbed word %:     | 12.07  |
 | Average num. words per input: | 16.47  |
-| Avg num queries:              | 82.19  |
+| Avg num queries:              | 107.17 |
 | Adv confidence:               | 0.62   |
-| Average Original Perplexity:  | 69.18  |
-| Average Attack Perplexity:    | 105.55 |
-| Average Attack USE Score:     | 0.84   |
+| Average Original Perplexity:  | 68.88  |
+| Average Attack Perplexity:    | 108.92 |
+| Average Attack USE Score:     | 0.86   |
 +-------------------------------+--------+
-Attack time: 3938.387764930725
-Attack time: 3938.387764930725
+Attack time: 18735.246171474457
+Attack time: 18735.246171474457
