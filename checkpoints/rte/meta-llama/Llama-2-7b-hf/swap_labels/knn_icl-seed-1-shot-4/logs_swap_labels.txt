@@ -1,0 +1,58 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=8, beta=0.2, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=100.0, knn_k=1, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/knn_icl-seed-1-shot-4', model_id='0', model_type='knn_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=4, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/knn_icl-seed-1-shot-4
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=8, beta=0.2, cache_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/knn_icl-seed-1-shot-4/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=100.0, knn_k=1, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/knn_icl-seed-1-shot-4', model_id='0', model_type='knn_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=4, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Length of anchor subsample 6
+Length of icl examples 2
+Loading anchor store
+Finished loading anchor store
+Finished loading model
+ICL examples
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'jerusalem, april 2 (xinhua) -- israel\'s new foreign minister avigdor lieberman was questioned by police on thursday over several criminal allegations, local news service ynet reported.  national fraud unit investigators questioned the deputy premier, who is suspected of bribery, money laundering, fraud and breach of trust, for over seven hours, and another round is in the cards, said the report.  "lieberman answered all of the questions he was asked, and will continue to do so in the future," his attorney yaron kostelitz was quoted as saying.', 'Hypothesis_0': 'avigdor lieberman is the foreign minister of israel.', 'Label_0': 'true', 'Premise_1': 'other friends were not surprised at his death. "i wasn\'t surprised," said george stranahan, a former owner of the woody creek tavern, a favourite haunt of thompson. "i never expected hunter to die in a hospital bed with tubes coming out of him." neighbours have said how his broken leg had prevented him from leaving his house as often as he had liked to. one neighbour and long-standing friend, mike cleverly, said thompson was clearly hobbled by the broken leg. "medically speaking, he\'s had a rotten year."', 'Hypothesis_1': 'the woody creek tavern is owned by george stranahan.', 'Label_1': 'false'}
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'jerusalem, april 2 (xinhua) -- israel\'s new foreign minister avigdor lieberman was questioned by police on thursday over several criminal allegations, local news service ynet reported.  national fraud unit investigators questioned the deputy premier, who is suspected of bribery, money laundering, fraud and breach of trust, for over seven hours, and another round is in the cards, said the report.  "lieberman answered all of the questions he was asked, and will continue to do so in the future," his attorney yaron kostelitz was quoted as saying.', 'Hypothesis_0': 'avigdor lieberman is the foreign minister of israel.', 'Label_0': 'true', 'Premise_1': 'other friends were not surprised at his death. "i wasn\'t surprised," said george stranahan, a former owner of the woody creek tavern, a favourite haunt of thompson. "i never expected hunter to die in a hospital bed with tubes coming out of him." neighbours have said how his broken leg had prevented him from leaving his house as often as he had liked to. one neighbour and long-standing friend, mike cleverly, said thompson was clearly hobbled by the broken leg. "medically speaking, he\'s had a rotten year."', 'Hypothesis_1': 'the woody creek tavern is owned by george stranahan.', 'Label_1': 'false'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/knn_icl-seed-1-shot-4/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f0cd4d6a160>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapLabel(
+        (label_map):  ['true', 'false']
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (2): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 57     |
+| Number of failed attacks:     | 101    |
+| Number of skipped attacks:    | 119    |
+| Original accuracy:            | 57.04  |
+| Accuracy under attack:        | 36.46  |
+| Attack success rate:          | 36.08  |
+| Average perturbed word %:     | 0.44   |
+| Average num. words per input: | 242.02 |
+| Avg num queries:              | 3.66   |
+| Adv confidence:               | 0.59   |
+| Average Original Perplexity:  | 2.5    |
+| Average Attack Perplexity:    | 2.53   |
+| Average Attack USE Score:     | 0.99   |
++-------------------------------+--------+
+Attack time: 69.24438405036926
+Attack time: 69.24438405036926
