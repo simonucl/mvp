@@ -100,9 +100,12 @@ class IndexEmbedder(torch.nn.Module):
         print(f'cos_scores shape: {cos_scores.shape}')
         top_results = torch.topk(cos_scores, k=top_k*num_labels, dim=1)
         print(f'top_results shape: {top_results[0].shape}, {top_results[1].shape}')
-        for score, idx in zip(top_results[0], top_results[1]):
-            for i, (s, id) in enumerate(zip(score, idx)):
-                retrieved_examples[i].append(original_anchor[id.item()])
+        for i in range(top_results[0].shape[0]):
+            for j in range(top_results[0].shape[1]):
+                retrieved_examples[i].append(original_anchor[top_results[1][i][j].item()])
+        # for score, idx in zip(top_results[0], top_results[1]):
+        #     for i, (s, id) in enumerate(zip(score, idx)):
+        #         retrieved_examples[i].append(original_anchor[id.item()])
         return retrieved_examples
 
     def instructor_subsample(self, 
@@ -137,9 +140,9 @@ class IndexEmbedder(torch.nn.Module):
         print(f'cos_scores shape: {cos_scores.shape}')
 
         top_results = torch.topk(cos_scores, k=top_k*num_labels, dim=1) # [B, top_k*num_labels], [B, top_k*num_labels]
-        for score, idx in zip(top_results[0], top_results[1]):
-            for i, (s, id) in enumerate(zip(score, idx)):
-                retrieved_examples[i].append(original_anchor[id.item()])
+        for i in range(top_results[0].shape[0]):
+            for j in range(top_results[0].shape[1]):
+                retrieved_examples[i].append(original_anchor[top_results[1][i][j].item()])
         return retrieved_examples
 
     def process_text(self, i, text, anchor_data_idx, original_anchor_data, retrieve_method, top_k, num_labels):
@@ -149,6 +152,8 @@ class IndexEmbedder(torch.nn.Module):
             result = self.bm25subsample(anchor_data_idx, original_anchor_data, text, top_k, num_labels)
         elif retrieve_method == 'instructor':
             result = self.instructor_subsample(anchor_data_idx, original_anchor_data, text, top_k, num_labels)
+        else:
+            raise NotImplementedError(f'Retrieval method {retrieve_method} not implemented')
         return i, result
     
     def encode_anchor_data(self, anchor_data, batch_size=128):
@@ -192,7 +197,8 @@ class IndexEmbedder(torch.nn.Module):
 
                 text_input_list = [text[0] if type(text) is tuple else text for text in text_input_list]
 
-                retrieved_examples = self.process_text(0, text_input_list, anchor_data, anchor_data, retrieve_method, top_k*2, num_labels)[1]
+                processed_text = self.process_text(0, text_input_list, anchor_data, anchor_data, retrieve_method, top_k*2, num_labels)
+                retrieved_examples = processed_text[1]
             else:
                 assert (len(anchor_data) == len(text_input_list)), f'Length of anchor data {len(anchor_data)} and text input list {len(text_input_list)} must be the same'
                 retrieved_examples = [[] for _ in range(len(text_input_list))]
@@ -212,7 +218,8 @@ class IndexEmbedder(torch.nn.Module):
                     elif type(anchor_data_idx[0]) is tuple:
                         anchor_data_idx = list(map(lambda x: x[0], anchor_data_idx))
 
-                    retrieved_examples[i] = self.process_text(i, text, anchor_data_idx, original_anchor_data, retrieve_method, top_k*2, num_labels)[1]
+                    processed_text = self.process_text(i, text, anchor_data_idx, original_anchor_data, retrieve_method, top_k*2, num_labels)
+                    retrieved_examples[i] = processed_text[1]
 
             with open(save_path, 'wb') as f:
                 print(f'Saving retrieved examples to {save_path}')

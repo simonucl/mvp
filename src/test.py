@@ -61,6 +61,9 @@ def convert_to_icl(data, icl_examples, verbalizer=None):
             elif 'premise' in e.keys():
                 outputs[f"Premise_{i}"] = e['premise']
                 outputs[f"Hypothesis_{i}"] = e['hypothesis']
+            else:
+                print(e)
+                raise NotImplementedError(f"icl_example type {e.keys()} not supported")
             outputs[f"Label_{i}"] = verbalizer[e['label']][0]
     else:
         num_labels = len(icl_examples.keys())
@@ -73,6 +76,9 @@ def convert_to_icl(data, icl_examples, verbalizer=None):
                 elif 'premise' in v[i].keys():
                     outputs[f"Premise_{i*num_labels + j}"] = v[i]['premise']
                     outputs[f"Hypothesis_{i*num_labels + j}"] = v[i]['hypothesis']
+                else:
+                    print(e)
+                    raise NotImplementedError(f"icl_example type {e.keys()} not supported")
                 outputs[f"Label_{i*num_labels + j}"] = k
                 j += 1
     if 'sentence' in data.keys():
@@ -198,6 +204,7 @@ def attacker(args):
         #     remove_columns = 'sentence'
         # elif 'premise' in my_dataset[0].keys():
         #     remove_columns = ['premise', 'hypothesis']
+
         my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
         print('ICL examples')
         print(my_dataset[0])
