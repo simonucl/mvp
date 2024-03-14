@@ -6,7 +6,12 @@ Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textbugger/retrieva
 Namespace(adv_augment=0, alpha=None, attack_name='textbugger', batch_size=2, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/mnli_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
 load INSTRUCTOR_Transformer
 max_seq_length  512
-Loading retrieved examples from ./data/ralm/mnli_instructor.pkl
+Finished encoding anchor data
+anchor_data_embeddings shape: torch.Size([373066, 768])
+query shape: 1000
+query_embedding shape: torch.Size([1000, 768])
+cos_scores shape: torch.Size([1000, 373066])
+Saving retrieved examples to ./data/ralm/mnli_instructor.pkl
 Length of anchor subsample 0
 Length of icl examples 1000
 Finished loading model
@@ -14,7 +19,7 @@ Finished loading model
 ['Premise: {}\nHypothesis: {}\nPrediction: {}']
 {0: ['yes'], 1: ['maybe'], 2: ['no']}
 ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_instructor/textbugger_log.csv
-<textattack.attacker.Attacker object at 0x7fee64d427c0>
+<textattack.attacker.Attacker object at 0x7f7b6e69c2e0>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -64,19 +69,19 @@ Attack(
 +-------------------------------+-------+
 | Attack Results                |       |
 +-------------------------------+-------+
-| Number of successful attacks: | 450   |
-| Number of failed attacks:     | 3     |
-| Number of skipped attacks:    | 547   |
-| Original accuracy:            | 45.3  |
-| Accuracy under attack:        | 0.3   |
-| Attack success rate:          | 99.34 |
-| Average perturbed word %:     | 5.25  |
+| Number of successful attacks: | 216   |
+| Number of failed attacks:     | 136   |
+| Number of skipped attacks:    | 648   |
+| Original accuracy:            | 35.2  |
+| Accuracy under attack:        | 13.6  |
+| Attack success rate:          | 61.36 |
+| Average perturbed word %:     | 6.83  |
 | Average num. words per input: | 28.54 |
-| Avg num queries:              | 31.02 |
-| Adv confidence:               | 0.8   |
-| Average Original Perplexity:  | 48.6  |
-| Average Attack Perplexity:    | 67.72 |
-| Average Attack USE Score:     | 0.92  |
+| Avg num queries:              | 93.39 |
+| Adv confidence:               | 0.62  |
+| Average Original Perplexity:  | 52.19 |
+| Average Attack Perplexity:    | 86.14 |
+| Average Attack USE Score:     | 0.91  |
 +-------------------------------+-------+
-Attack time: 668.2490601539612
-Attack time: 668.2490601539612
+Attack time: 1422.4336655139923
+Attack time: 1422.4336655139923

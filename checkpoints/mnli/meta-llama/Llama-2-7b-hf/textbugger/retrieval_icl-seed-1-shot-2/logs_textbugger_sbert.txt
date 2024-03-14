@@ -4,7 +4,12 @@ meta-llama/Llama-2-7b-hf
 Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_sbert
 1 Physical GPUs, 1 Logical GPUs
 Namespace(adv_augment=0, alpha=None, attack_name='textbugger', batch_size=2, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_sbert/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/mnli_sbert.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
-Loading retrieved examples from ./data/ralm/mnli_sbert.pkl
+Finished encoding anchor data
+anchor_data_embeddings shape: torch.Size([373066, 384])
+query_embedding shape: torch.Size([1000, 384])
+cos_scores shape: torch.Size([1000, 373066])
+top_results shape: torch.Size([1000, 12]), torch.Size([1000, 12])
+Saving retrieved examples to ./data/ralm/mnli_sbert.pkl
 Length of anchor subsample 0
 Length of icl examples 1000
 Finished loading model
@@ -12,7 +17,7 @@ Finished loading model
 ['Premise: {}\nHypothesis: {}\nPrediction: {}']
 {0: ['yes'], 1: ['maybe'], 2: ['no']}
 ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_sbert/textbugger_log.csv
-<textattack.attacker.Attacker object at 0x7efe540c75b0>
+<textattack.attacker.Attacker object at 0x7f9bf7676910>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -62,19 +67,19 @@ Attack(
 +-------------------------------+-------+
 | Attack Results                |       |
 +-------------------------------+-------+
-| Number of successful attacks: | 377   |
-| Number of failed attacks:     | 166   |
-| Number of skipped attacks:    | 457   |
-| Original accuracy:            | 54.3  |
-| Accuracy under attack:        | 16.6  |
-| Attack success rate:          | 69.43 |
-| Average perturbed word %:     | 7.7   |
+| Number of successful attacks: | 542   |
+| Number of failed attacks:     | 8     |
+| Number of skipped attacks:    | 450   |
+| Original accuracy:            | 55.0  |
+| Accuracy under attack:        | 0.8   |
+| Attack success rate:          | 98.55 |
+| Average perturbed word %:     | 4.72  |
 | Average num. words per input: | 28.54 |
-| Avg num queries:              | 82.11 |
-| Adv confidence:               | 0.65  |
-| Average Original Perplexity:  | 47.25 |
-| Average Attack Perplexity:    | 82.39 |
-| Average Attack USE Score:     | 0.9   |
+| Avg num queries:              | 32.61 |
+| Adv confidence:               | 0.73  |
+| Average Original Perplexity:  | 49.14 |
+| Average Attack Perplexity:    | 65.67 |
+| Average Attack USE Score:     | 0.93  |
 +-------------------------------+-------+
-Attack time: 2067.445286512375
-Attack time: 2067.445286512375
+Attack time: 952.060001373291
+Attack time: 952.060001373291
