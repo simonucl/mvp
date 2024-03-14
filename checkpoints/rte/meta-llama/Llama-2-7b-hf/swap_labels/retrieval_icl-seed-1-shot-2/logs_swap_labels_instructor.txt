@@ -1,0 +1,59 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=2, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_instructor
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, cache_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, ralm_save_path='./data/ralm/rte_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=2, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+load INSTRUCTOR_Transformer
+max_seq_length  512
+Length of anchor subsample 4
+Length of icl examples 2
+Finished loading model
+Loading retrieved examples from ./data/ralm/rte_instructor.pkl
+ICL examples
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'actor christopher reeve, best known for his role as superman, is paralyzed and cannot breathe without the help of a respirator after breaking his neck in a riding accident in culpeper, va., on saturday.', 'Hypothesis_0': 'christopher reeve had an accident.', 'Label_0': 'true', 'Premise_1': 'christopher reeve, an actor and director who became an inspiration worldwide after being paralyzed in a horse riding accident, died sunday of heart failure.', 'Hypothesis_1': 'christopher reeve had an accident.', 'Label_1': 'true', 'Premise_2': 'hepburn, a four-time academy award winner, died last june in connecticut at age 96.', 'Hypothesis_2': 'hepburn, who won four oscars, died last june aged 96.', 'Label_2': 'true', 'Premise_3': "roddenberry was probably most known for her role as the voice of the computers in nearly every star trek television spinoff series from the 1960's to present time. she is also the voice of the computer in the upcoming movie by director j.j. abrams, star trek. majel also played nurse chapel in the original star trek series starring william shatner and later played lwaxana troi in star trek: the next generation and star trek: deep space nine.", 'Hypothesis_3': 'majel roddenberry died of cancer.', 'Label_3': 'false'}
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'actor christopher reeve, best known for his role as superman, is paralyzed and cannot breathe without the help of a respirator after breaking his neck in a riding accident in culpeper, va., on saturday.', 'Hypothesis_0': 'christopher reeve had an accident.', 'Label_0': 'true', 'Premise_1': 'christopher reeve, an actor and director who became an inspiration worldwide after being paralyzed in a horse riding accident, died sunday of heart failure.', 'Hypothesis_1': 'christopher reeve had an accident.', 'Label_1': 'true', 'Premise_2': 'hepburn, a four-time academy award winner, died last june in connecticut at age 96.', 'Hypothesis_2': 'hepburn, who won four oscars, died last june aged 96.', 'Label_2': 'true', 'Premise_3': "roddenberry was probably most known for her role as the voice of the computers in nearly every star trek television spinoff series from the 1960's to present time. she is also the voice of the computer in the upcoming movie by director j.j. abrams, star trek. majel also played nurse chapel in the original star trek series starring william shatner and later played lwaxana troi in star trek: the next generation and star trek: deep space nine.", 'Hypothesis_3': 'majel roddenberry died of cancer.', 'Label_3': 'false'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_instructor/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f8166ab9bb0>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapLabel(
+        (label_map):  ['true', 'false']
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (2): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 148    |
+| Number of failed attacks:     | 39     |
+| Number of skipped attacks:    | 90     |
+| Original accuracy:            | 67.51  |
+| Accuracy under attack:        | 14.08  |
+| Attack success rate:          | 79.14  |
+| Average perturbed word %:     | 0.78   |
+| Average num. words per input: | 248.84 |
+| Avg num queries:              | 7.6    |
+| Adv confidence:               | 0.61   |
+| Average Original Perplexity:  | 24.58  |
+| Average Attack Perplexity:    | 24.57  |
+| Average Attack USE Score:     | 0.99   |
++-------------------------------+--------+
+Attack time: 111.78810596466064
+Attack time: 111.78810596466064
