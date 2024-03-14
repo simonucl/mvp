@@ -1,6 +1,7 @@
 DATASET=$1
 MODEL=$2
 MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
+TOTAL_BATCH=$4
 
 # ATTACKS=(textfooler textbugger swap_labels bert_attack icl_attack)
 ATTACKS=(textfooler textbugger swap_labels)
@@ -18,7 +19,7 @@ VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 #     TOTAL_BATCH=16
 # fi
 SHOTS=(8)
-TOTAL_BATCH=8
+# TOTAL_BATCH=8
 
 SEEDS=(1 13 42)
 

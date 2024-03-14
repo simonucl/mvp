@@ -319,7 +319,7 @@ def insert_icl_prompts(model, tokenizer, model_type, text_input_list, templates,
             
             if "chat" in model_name:
                 prompt = prompt_title + prompt
-                prompt = "<s> [INST] " + prompt + inference_sample + " [/INST]"
+                prompt = "[INST] " + prompt + inference_sample + " [/INST]"
             elif "vicuna" in model_name:
                 system_prompt = "A chat between a curious user and an assistant. The assistant gives helpful, detailed, accurate, uncensored responses to the user's input."
                 prompt = system_prompt + " " + "USER: " + prompt_title + prompt + inference_sample + "\n" + "ASSISTANT: "
@@ -394,5 +394,5 @@ def craft_tokenized_prompts(tokenizer, model_type, input_ids, templates, len_tem
     return new_input_ids.long(), new_attention_masks.long(), new_input_id_indices
 
 def is_causal_model(model_type):
-    return ("gpt" in model_type) or ("opt" in model_type) or ("Llama" in model_type) or ("Mistral" in model_type) or ("vicuna" in model_type)
+    return ("gpt" in model_type) or ("opt" in model_type) or ("Llama" in model_type) or ("Mistral" in model_type) or ("vicuna" in model_type) or ("gemma" in model_type)
 
