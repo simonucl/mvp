@@ -153,7 +153,7 @@ def attacker(args):
     if args.model_type in ["icl_attack", "knn_icl_attack"] or args.attack_name in ["swap_labels", "icl_attack", "swap_orders", "irrelevant_sample"]:
         if 'gpt' in args.model:
             num_tokens = 1
-        elif ('opt' in args.model) or ('Llama' in args.model):
+        elif ('opt' in args.model) or (is_causal_model(args.model)):
             num_tokens = 2
         else:
             num_tokens = 3
