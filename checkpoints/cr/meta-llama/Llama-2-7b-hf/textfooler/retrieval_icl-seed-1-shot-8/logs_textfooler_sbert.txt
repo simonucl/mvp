@@ -4,7 +4,12 @@ meta-llama/Llama-2-7b-hf
 Model Directory: ./checkpoints/cr/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_sbert
 1 Physical GPUs, 1 Logical GPUs
 Namespace(adv_augment=0, alpha=None, attack_name='textfooler', batch_size=2, beta=1.0, cache_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_sbert/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/cr_sbert.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_cr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_cr.yaml', weight_decay=0.01)
-Loading retrieved examples from ./data/ralm/cr_sbert.pkl
+Finished encoding anchor data
+anchor_data_embeddings shape: torch.Size([3224, 384])
+query_embedding shape: torch.Size([376, 384])
+cos_scores shape: torch.Size([376, 3224])
+top_results shape: torch.Size([376, 32]), torch.Size([376, 32])
+Saving retrieved examples to ./data/ralm/cr_sbert.pkl
 Length of anchor subsample 0
 Length of icl examples 376
 Finished loading model
@@ -12,7 +17,7 @@ Finished loading model
 ['Review: {}\nSentiment: {}']
 {0: ['negative'], 1: ['positive']}
 ./checkpoints/cr/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_sbert/textfooler_log.csv
-<textattack.attacker.Attacker object at 0x7f0b59383ac0>
+<textattack.attacker.Attacker object at 0x7f6945223730>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -67,19 +72,19 @@ Attack(
 +-------------------------------+--------+
 | Attack Results                |        |
 +-------------------------------+--------+
-| Number of successful attacks: | 135    |
-| Number of failed attacks:     | 189    |
-| Number of skipped attacks:    | 52     |
-| Original accuracy:            | 86.17  |
-| Accuracy under attack:        | 50.27  |
-| Attack success rate:          | 41.67  |
-| Average perturbed word %:     | 13.34  |
+| Number of successful attacks: | 117    |
+| Number of failed attacks:     | 176    |
+| Number of skipped attacks:    | 83     |
+| Original accuracy:            | 77.93  |
+| Accuracy under attack:        | 46.81  |
+| Attack success rate:          | 39.93  |
+| Average perturbed word %:     | 13.99  |
 | Average num. words per input: | 16.47  |
-| Avg num queries:              | 61.52  |
+| Avg num queries:              | 61.41  |
 | Adv confidence:               | 0.68   |
-| Average Original Perplexity:  | 78.23  |
-| Average Attack Perplexity:    | 159.85 |
+| Average Original Perplexity:  | 72.03  |
+| Average Attack Perplexity:    | 152.03 |
 | Average Attack USE Score:     | 0.84   |
 +-------------------------------+--------+
-Attack time: 1170.8168873786926
-Attack time: 1170.8168873786926
+Attack time: 1162.359671831131
+Attack time: 1162.359671831131
