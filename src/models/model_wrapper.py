@@ -225,7 +225,7 @@ class ModelWrapper(torch.nn.Module):
             outputs = self.model(**adv_inputs)
         else:
             start_time = time()
-            outputs = self.model(input_ids=input_ids, attention_mask = attention_mask, output_hidden_states = True, output_attentions = True)
+            outputs = self.model(input_ids=input_ids, attention_mask = attention_mask, output_hidden_states = True, output_attentions = False)
             end_time = time()
             # print('Model forward time', end_time - start_time)
 
