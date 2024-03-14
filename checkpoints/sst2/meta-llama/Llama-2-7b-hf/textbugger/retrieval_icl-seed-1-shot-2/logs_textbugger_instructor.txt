@@ -14,7 +14,7 @@ Finished loading model
 ['Review: {}\nSentiment: {}']
 {0: ['negative'], 1: ['positive']}
 ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-2_instructor/textbugger_log.csv
-<textattack.attacker.Attacker object at 0x7f5e60bf40d0>
+<textattack.attacker.Attacker object at 0x7fa1cd444880>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -64,19 +64,19 @@ Attack(
 +-------------------------------+--------+
 | Attack Results                |        |
 +-------------------------------+--------+
-| Number of successful attacks: | 318    |
-| Number of failed attacks:     | 510    |
-| Number of skipped attacks:    | 44     |
-| Original accuracy:            | 94.95  |
-| Accuracy under attack:        | 58.49  |
-| Attack success rate:          | 38.41  |
-| Average perturbed word %:     | 12.94  |
+| Number of successful attacks: | 238    |
+| Number of failed attacks:     | 295    |
+| Number of skipped attacks:    | 339    |
+| Original accuracy:            | 61.12  |
+| Accuracy under attack:        | 33.83  |
+| Attack success rate:          | 44.65  |
+| Average perturbed word %:     | 12.72  |
 | Average num. words per input: | 17.4   |
-| Avg num queries:              | 56.93  |
-| Adv confidence:               | 0.61   |
-| Average Original Perplexity:  | 66.82  |
-| Average Attack Perplexity:    | 133.75 |
-| Average Attack USE Score:     | 0.85   |
+| Avg num queries:              | 52.19  |
+| Adv confidence:               | 0.6    |
+| Average Original Perplexity:  | 70.52  |
+| Average Attack Perplexity:    | 139.45 |
+| Average Attack USE Score:     | 0.86   |
 +-------------------------------+--------+
-Attack time: 1072.614824295044
-Attack time: 1072.614824295044
+Attack time: 706.7491154670715
+Attack time: 706.7491154670715
