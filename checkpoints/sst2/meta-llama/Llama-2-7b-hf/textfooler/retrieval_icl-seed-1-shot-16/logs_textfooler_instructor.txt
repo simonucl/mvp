@@ -14,7 +14,7 @@ Finished loading model
 ['Review: {}\nSentiment: {}']
 {0: ['negative'], 1: ['positive']}
 ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-16_instructor/textfooler_log.csv
-<textattack.attacker.Attacker object at 0x7f4fd2f805b0>
+<textattack.attacker.Attacker object at 0x7ff1c962bfa0>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -66,22 +66,22 @@ Attack(
 ) 
 
 
-+-------------------------------+--------+
-| Attack Results                |        |
-+-------------------------------+--------+
-| Number of successful attacks: | 368    |
-| Number of failed attacks:     | 455    |
-| Number of skipped attacks:    | 49     |
-| Original accuracy:            | 94.38  |
-| Accuracy under attack:        | 52.18  |
-| Attack success rate:          | 44.71  |
-| Average perturbed word %:     | 13.25  |
-| Average num. words per input: | 17.4   |
-| Avg num queries:              | 56.87  |
-| Adv confidence:               | 0.69   |
-| Average Original Perplexity:  | 62.62  |
-| Average Attack Perplexity:    | 109.95 |
-| Average Attack USE Score:     | 0.84   |
-+-------------------------------+--------+
-Attack time: 3824.2482903003693
-Attack time: 3824.2482903003693
++-------------------------------+-------+
+| Attack Results                |       |
++-------------------------------+-------+
+| Number of successful attacks: | 13    |
+| Number of failed attacks:     | 444   |
+| Number of skipped attacks:    | 415   |
+| Original accuracy:            | 52.41 |
+| Accuracy under attack:        | 50.92 |
+| Attack success rate:          | 2.84  |
+| Average perturbed word %:     | 17.29 |
+| Average num. words per input: | 17.4  |
+| Avg num queries:              | 75.35 |
+| Adv confidence:               | 0.74  |
+| Average Original Perplexity:  | 60.61 |
+| Average Attack Perplexity:    | 108.7 |
+| Average Attack USE Score:     | 0.8   |
++-------------------------------+-------+
+Attack time: 2012.7557821273804
+Attack time: 2012.7557821273804
