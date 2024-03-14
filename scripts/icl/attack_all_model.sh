@@ -24,6 +24,13 @@ SEEDS=(1 13 42)
 
 for ATTACK in ${ATTACKS[@]};
 do
+
+    if [[ $ATTACK == "swap_labels" ]]; then
+        MODEL_TYPE="icl_attack"
+    else
+        MODEL_TYPE="icl"
+    fi
+    
     if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
         ATTACK_PRECENT=0.15
     else
