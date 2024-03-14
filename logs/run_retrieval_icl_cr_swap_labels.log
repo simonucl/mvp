@@ -1,0 +1,1190 @@
+1+8+meta-llama/Llama-2-7b-hf+mvp
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8
+textattack: Updating TextAttack package dependencies.
+textattack: Downloading NLTK required packages.
+2024-03-14 10:50:25.672621: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 10:50:26.656047: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[nltk_data] Downloading package averaged_perceptron_tagger to
+[nltk_data]     /root/nltk_data...
+[nltk_data]   Unzipping taggers/averaged_perceptron_tagger.zip.
+[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Unzipping corpora/stopwords.zip.
+[nltk_data] Downloading package omw to /root/nltk_data...
+[nltk_data] Downloading package universal_tagset to /root/nltk_data...
+[nltk_data]   Unzipping taggers/universal_tagset.zip.
+[nltk_data] Downloading package wordnet to /root/nltk_data...
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Unzipping tokenizers/punkt.zip.
+textattack: Downloading https://textattack.s3.amazonaws.com/word_embeddings/paragramcf.
+  0%|          | 0.00/481M [00:00<?, ?B/s]  0%|          | 54.3k/481M [00:00<25:23, 316kB/s]  0%|          | 141k/481M [00:00<18:16, 439kB/s]   0%|          | 629k/481M [00:00<05:12, 1.54MB/s]  0%|          | 1.74M/481M [00:00<01:54, 4.19MB/s]  1%|          | 4.59M/481M [00:00<00:43, 11.1MB/s]  2%|▏         | 7.33M/481M [00:00<00:34, 13.8MB/s]  2%|▏         | 11.2M/481M [00:00<00:22, 20.4MB/s]  3%|▎         | 15.4M/481M [00:01<00:17, 26.3MB/s]  4%|▍         | 18.3M/481M [00:01<00:19, 23.6MB/s]  5%|▍         | 22.2M/481M [00:01<00:16, 27.7MB/s]  5%|▌         | 26.4M/481M [00:01<00:16, 26.9MB/s]  6%|▋         | 30.4M/481M [00:01<00:14, 30.1MB/s]  7%|▋         | 34.3M/481M [00:01<00:13, 32.5MB/s]  8%|▊         | 37.7M/481M [00:01<00:15, 28.5MB/s]  9%|▊         | 41.7M/481M [00:01<00:13, 31.4MB/s]  9%|▉         | 45.4M/481M [00:02<00:15, 28.5MB/s] 10%|█         | 49.4M/481M [00:02<00:13, 31.3MB/s] 11%|█         | 52.8M/481M [00:02<00:13, 32.1MB/s] 12%|█▏        | 56.2M/481M [00:02<00:15, 28.3MB/s] 12%|█▏        | 59.9M/481M [00:02<00:13, 30.5MB/s] 13%|█▎        | 63.8M/481M [00:02<00:12, 32.7MB/s] 14%|█▍        | 67.2M/481M [00:02<00:14, 28.8MB/s] 15%|█▍        | 70.5M/481M [00:02<00:13, 29.9MB/s] 15%|█▌        | 74.5M/481M [00:03<00:14, 28.1MB/s] 16%|█▋        | 78.5M/481M [00:03<00:12, 31.1MB/s] 17%|█▋        | 82.3M/481M [00:03<00:12, 32.9MB/s] 18%|█▊        | 85.7M/481M [00:03<00:13, 29.1MB/s] 19%|█▊        | 89.5M/481M [00:03<00:12, 31.2MB/s] 19%|█▉        | 93.5M/481M [00:03<00:11, 33.7MB/s] 20%|██        | 97.1M/481M [00:03<00:12, 29.6MB/s] 21%|██        | 101M/481M [00:03<00:12, 31.2MB/s]  22%|██▏       | 104M/481M [00:04<00:13, 28.5MB/s] 22%|██▏       | 108M/481M [00:04<00:12, 30.6MB/s] 23%|██▎       | 112M/481M [00:04<00:11, 33.0MB/s] 24%|██▍       | 116M/481M [00:04<00:12, 29.0MB/s] 25%|██▍       | 119M/481M [00:04<00:11, 31.0MB/s] 26%|██▌       | 123M/481M [00:04<00:12, 28.7MB/s] 26%|██▋       | 127M/481M [00:04<00:11, 30.6MB/s] 27%|██▋       | 131M/481M [00:04<00:10, 33.5MB/s] 28%|██▊       | 134M/481M [00:04<00:11, 29.4MB/s] 29%|██▊       | 138M/481M [00:05<00:10, 31.3MB/s] 29%|██▉       | 142M/481M [00:05<00:11, 28.9MB/s] 30%|███       | 146M/481M [00:05<00:10, 30.8MB/s] 31%|███       | 150M/481M [00:05<00:10, 33.2MB/s] 32%|███▏      | 153M/481M [00:05<00:11, 29.2MB/s] 33%|███▎      | 157M/481M [00:05<00:10, 31.1MB/s] 33%|███▎      | 161M/481M [00:05<00:11, 28.5MB/s] 34%|███▍      | 164M/481M [00:05<00:10, 30.9MB/s] 35%|███▍      | 168M/481M [00:06<00:09, 33.6MB/s] 36%|███▌      | 172M/481M [00:06<00:10, 29.5MB/s] 36%|███▋      | 176M/481M [00:06<00:09, 31.5MB/s] 37%|███▋      | 180M/481M [00:06<00:09, 33.3MB/s] 38%|███▊      | 183M/481M [00:06<00:10, 29.8MB/s] 39%|███▉      | 187M/481M [00:06<00:09, 31.8MB/s] 40%|███▉      | 190M/481M [00:06<00:08, 33.2MB/s] 40%|████      | 194M/481M [00:06<00:09, 29.5MB/s] 41%|████      | 198M/481M [00:07<00:08, 31.5MB/s] 42%|████▏     | 201M/481M [00:07<00:08, 33.0MB/s] 43%|████▎     | 205M/481M [00:07<00:09, 29.7MB/s] 43%|████▎     | 209M/481M [00:07<00:08, 31.7MB/s] 44%|████▍     | 212M/481M [00:07<00:08, 33.1MB/s] 45%|████▍     | 216M/481M [00:07<00:09, 29.5MB/s] 46%|████▌     | 220M/481M [00:07<00:08, 31.7MB/s] 46%|████▋     | 223M/481M [00:07<00:07, 33.1MB/s] 47%|████▋     | 227M/481M [00:07<00:08, 29.4MB/s] 48%|████▊     | 231M/481M [00:08<00:07, 32.3MB/s] 49%|████▊     | 235M/481M [00:08<00:07, 33.4MB/s] 49%|████▉     | 238M/481M [00:08<00:08, 29.6MB/s] 50%|█████     | 242M/481M [00:08<00:07, 33.1MB/s] 51%|█████     | 246M/481M [00:08<00:06, 33.8MB/s] 52%|█████▏    | 249M/481M [00:08<00:07, 32.3MB/s] 52%|█████▏    | 253M/481M [00:08<00:07, 31.0MB/s] 53%|█████▎    | 257M/481M [00:08<00:06, 33.3MB/s] 54%|█████▍    | 260M/481M [00:08<00:06, 33.9MB/s] 55%|█████▍    | 264M/481M [00:09<00:06, 32.3MB/s] 55%|█████▌    | 267M/481M [00:09<00:06, 30.9MB/s] 56%|█████▋    | 271M/481M [00:09<00:06, 33.0MB/s] 57%|█████▋    | 275M/481M [00:09<00:06, 34.2MB/s] 58%|█████▊    | 278M/481M [00:09<00:06, 32.6MB/s] 58%|█████▊    | 281M/481M [00:09<00:06, 30.9MB/s] 59%|█████▉    | 285M/481M [00:09<00:05, 33.9MB/s] 60%|██████    | 289M/481M [00:09<00:05, 34.6MB/s] 61%|██████    | 293M/481M [00:09<00:05, 32.9MB/s] 61%|██████▏   | 296M/481M [00:10<00:05, 31.5MB/s] 62%|██████▏   | 300M/481M [00:10<00:05, 33.7MB/s] 63%|██████▎   | 304M/481M [00:10<00:05, 34.6MB/s] 64%|██████▍   | 307M/481M [00:10<00:05, 32.8MB/s] 64%|██████▍   | 310M/481M [00:10<00:05, 31.4MB/s] 65%|██████▌   | 315M/481M [00:10<00:04, 34.2MB/s] 66%|██████▌   | 318M/481M [00:10<00:04, 35.0MB/s] 67%|██████▋   | 322M/481M [00:10<00:04, 32.9MB/s] 68%|██████▊   | 325M/481M [00:10<00:04, 31.7MB/s] 68%|██████▊   | 329M/481M [00:11<00:04, 33.3MB/s] 69%|██████▉   | 333M/481M [00:11<00:04, 34.4MB/s] 70%|██████▉   | 336M/481M [00:11<00:04, 32.6MB/s] 71%|███████   | 340M/481M [00:11<00:04, 34.2MB/s] 71%|███████▏  | 343M/481M [00:11<00:04, 33.4MB/s] 72%|███████▏  | 347M/481M [00:11<00:04, 33.5MB/s] 73%|███████▎  | 350M/481M [00:11<00:03, 33.0MB/s] 73%|███████▎  | 354M/481M [00:11<00:03, 32.8MB/s] 74%|███████▍  | 357M/481M [00:11<00:03, 33.6MB/s] 75%|███████▍  | 361M/481M [00:12<00:03, 32.8MB/s] 76%|███████▌  | 364M/481M [00:12<00:03, 33.6MB/s] 76%|███████▋  | 368M/481M [00:12<00:03, 31.9MB/s] 77%|███████▋  | 372M/481M [00:12<00:03, 33.5MB/s] 78%|███████▊  | 375M/481M [00:12<00:03, 33.1MB/s] 79%|███████▊  | 378M/481M [00:12<00:03, 33.2MB/s] 79%|███████▉  | 382M/481M [00:12<00:02, 33.9MB/s] 80%|████████  | 386M/481M [00:12<00:02, 32.5MB/s] 81%|████████  | 389M/481M [00:12<00:02, 34.0MB/s] 82%|████████▏ | 393M/481M [00:12<00:02, 33.3MB/s] 82%|████████▏ | 396M/481M [00:13<00:02, 33.3MB/s] 83%|████████▎ | 400M/481M [00:13<00:02, 33.4MB/s] 84%|████████▎ | 403M/481M [00:13<00:02, 32.5MB/s] 84%|████████▍ | 406M/481M [00:13<00:02, 33.2MB/s] 85%|████████▌ | 410M/481M [00:13<00:02, 32.9MB/s] 86%|████████▌ | 413M/481M [00:13<00:02, 32.7MB/s] 87%|████████▋ | 417M/481M [00:13<00:01, 33.9MB/s] 87%|████████▋ | 421M/481M [00:13<00:01, 33.3MB/s] 88%|████████▊ | 424M/481M [00:13<00:01, 33.9MB/s] 89%|████████▉ | 428M/481M [00:14<00:01, 33.1MB/s] 90%|████████▉ | 431M/481M [00:14<00:01, 33.2MB/s] 90%|█████████ | 434M/481M [00:14<00:01, 33.2MB/s] 91%|█████████ | 438M/481M [00:14<00:01, 33.1MB/s] 92%|█████████▏| 442M/481M [00:14<00:01, 34.0MB/s] 92%|█████████▏| 445M/481M [00:14<00:01, 32.9MB/s] 93%|█████████▎| 449M/481M [00:14<00:00, 33.8MB/s] 94%|█████████▍| 452M/481M [00:14<00:00, 33.5MB/s] 95%|█████████▍| 456M/481M [00:14<00:00, 33.5MB/s] 95%|█████████▌| 459M/481M [00:14<00:00, 34.2MB/s] 96%|█████████▌| 463M/481M [00:15<00:00, 33.0MB/s] 97%|█████████▋| 467M/481M [00:15<00:00, 34.2MB/s] 98%|█████████▊| 470M/481M [00:15<00:00, 34.0MB/s] 98%|█████████▊| 473M/481M [00:15<00:00, 34.0MB/s] 99%|█████████▉| 477M/481M [00:15<00:00, 34.0MB/s]100%|█████████▉| 480M/481M [00:15<00:00, 32.3MB/s]100%|██████████| 481M/481M [00:15<00:00, 30.8MB/s]
+textattack: Unzipping file /root/.cache/textattack/tmpboi66h08.zip to /root/.cache/textattack/word_embeddings/paragramcf.
+textattack: Successfully saved word_embeddings/paragramcf to cache.
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Downloading builder script:   0%|          | 0.00/1.65k [00:00<?, ?B/s]Downloading builder script: 4.21kB [00:00, 19.9MB/s]                   2024-03-14 10:50:54.791060: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:50:54.800044: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:50:54.802477: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:50:54.818916: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:50:54.821316: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:50:54.823678: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:50:55.015237: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:50:55.016882: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:50:55.018352: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:50:55.019845: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+
+Downloading readme:   0%|          | 0.00/255 [00:00<?, ?B/s]Downloading readme: 100%|██████████| 255/255 [00:00<00:00, 2.65MB/s]
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+Downloading data files:   0%|          | 0/2 [00:00<?, ?it/s]
+Downloading data:   0%|          | 0.00/493k [00:00<?, ?B/s][A
+Downloading data: 100%|██████████| 493k/493k [00:00<00:00, 1.45MB/s][ADownloading data: 100%|██████████| 493k/493k [00:00<00:00, 1.45MB/s]
+Downloading data files:  50%|█████     | 1/2 [00:00<00:00,  2.92it/s]
+Downloading data:   0%|          | 0.00/52.1k [00:00<?, ?B/s][A
+Downloading data: 100%|██████████| 52.1k/52.1k [00:00<00:00, 289kB/s][ADownloading data: 100%|██████████| 52.1k/52.1k [00:00<00:00, 288kB/s]
+Downloading data files: 100%|██████████| 2/2 [00:00<00:00,  4.02it/s]Downloading data files: 100%|██████████| 2/2 [00:00<00:00,  3.81it/s]
+Extracting data files:   0%|          | 0/2 [00:00<?, ?it/s]Extracting data files: 100%|██████████| 2/2 [00:00<00:00, 2558.28it/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 3394 examples [00:00, 487850.16 examples/s]
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 376 examples [00:00, 231409.88 examples/s]
+Map:   0%|          | 0/3394 [00:00<?, ? examples/s]Map:  57%|█████▋    | 1921/3394 [00:00<00:00, 19084.66 examples/s]Map: 100%|██████████| 3394/3394 [00:00<00:00, 19209.63 examples/s]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map: 100%|██████████| 376/376 [00:00<00:00, 17660.62 examples/s]
+Map:   0%|          | 0/3224 [00:00<?, ? examples/s]Map:  37%|███▋      | 1202/3224 [00:00<00:00, 11938.66 examples/s]Map:  75%|███████▌  | 2429/3224 [00:00<00:00, 12125.97 examples/s]Map: 100%|██████████| 3224/3224 [00:00<00:00, 11975.09 examples/s]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map: 100%|██████████| 376/376 [00:00<00:00, 17792.12 examples/s]
+Map:   0%|          | 0/170 [00:00<?, ? examples/s]Map: 100%|██████████| 170/170 [00:00<00:00, 10360.22 examples/s]
+Downloading tokenizer_config.json:   0%|          | 0.00/776 [00:00<?, ?B/s]Downloading tokenizer_config.json: 100%|██████████| 776/776 [00:00<00:00, 183kB/s]
+Downloading tokenizer.model:   0%|          | 0.00/500k [00:00<?, ?B/s]Downloading tokenizer.model: 100%|██████████| 500k/500k [00:00<00:00, 14.7MB/s]
+Downloading tokenizer.json:   0%|          | 0.00/1.84M [00:00<?, ?B/s]Downloading tokenizer.json: 100%|██████████| 1.84M/1.84M [00:00<00:00, 4.97MB/s]Downloading tokenizer.json: 100%|██████████| 1.84M/1.84M [00:00<00:00, 4.95MB/s]
+Downloading (…)cial_tokens_map.json:   0%|          | 0.00/414 [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 414/414 [00:00<00:00, 507kB/s]
+Downloading config.json:   0%|          | 0.00/609 [00:00<?, ?B/s]Downloading config.json: 100%|██████████| 609/609 [00:00<00:00, 179kB/s]
+Downloading (…)fetensors.index.json:   0%|          | 0.00/26.8k [00:00<?, ?B/s]Downloading (…)fetensors.index.json: 100%|██████████| 26.8k/26.8k [00:00<00:00, 24.5MB/s]
+Downloading shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Downloading (…)of-00002.safetensors:   0%|          | 0.00/9.98G [00:00<?, ?B/s][A
+Downloading (…)of-00002.safetensors:   0%|          | 10.5M/9.98G [00:00<02:23, 69.7MB/s][A
+Downloading (…)of-00002.safetensors:   0%|          | 31.5M/9.98G [00:00<01:16, 130MB/s] [A
+Downloading (…)of-00002.safetensors:   1%|          | 62.9M/9.98G [00:00<00:53, 184MB/s][A
+Downloading (…)of-00002.safetensors:   1%|          | 94.4M/9.98G [00:00<00:47, 208MB/s][A
+Downloading (…)of-00002.safetensors:   1%|▏         | 126M/9.98G [00:00<00:44, 222MB/s] [A
+Downloading (…)of-00002.safetensors:   2%|▏         | 157M/9.98G [00:00<00:42, 231MB/s][A
+Downloading (…)of-00002.safetensors:   2%|▏         | 189M/9.98G [00:00<00:41, 236MB/s][A
+Downloading (…)of-00002.safetensors:   2%|▏         | 220M/9.98G [00:01<00:41, 238MB/s][A
+Downloading (…)of-00002.safetensors:   3%|▎         | 252M/9.98G [00:01<00:57, 170MB/s][A
+Downloading (…)of-00002.safetensors:   3%|▎         | 283M/9.98G [00:01<00:51, 188MB/s][A
+Downloading (…)of-00002.safetensors:   3%|▎         | 315M/9.98G [00:01<00:48, 200MB/s][A
+Downloading (…)of-00002.safetensors:   3%|▎         | 346M/9.98G [00:01<00:45, 211MB/s][A
+Downloading (…)of-00002.safetensors:   4%|▍         | 377M/9.98G [00:01<00:52, 183MB/s][A
+Downloading (…)of-00002.safetensors:   4%|▍         | 409M/9.98G [00:02<00:48, 197MB/s][A
+Downloading (…)of-00002.safetensors:   4%|▍         | 440M/9.98G [00:02<00:45, 210MB/s][A
+Downloading (…)of-00002.safetensors:   5%|▍         | 472M/9.98G [00:02<00:43, 218MB/s][A
+Downloading (…)of-00002.safetensors:   5%|▌         | 503M/9.98G [00:02<00:41, 226MB/s][A
+Downloading (…)of-00002.safetensors:   5%|▌         | 535M/9.98G [00:02<00:40, 231MB/s][A
+Downloading (…)of-00002.safetensors:   6%|▌         | 566M/9.98G [00:02<00:40, 234MB/s][A
+Downloading (…)of-00002.safetensors:   6%|▌         | 598M/9.98G [00:02<00:39, 237MB/s][A
+Downloading (…)of-00002.safetensors:   6%|▋         | 629M/9.98G [00:02<00:39, 239MB/s][A
+Downloading (…)of-00002.safetensors:   7%|▋         | 661M/9.98G [00:03<00:49, 188MB/s][A
+Downloading (…)of-00002.safetensors:   7%|▋         | 692M/9.98G [00:03<00:58, 158MB/s][A
+Downloading (…)of-00002.safetensors:   7%|▋         | 724M/9.98G [00:03<00:51, 181MB/s][A
+Downloading (…)of-00002.safetensors:   8%|▊         | 755M/9.98G [00:03<00:45, 201MB/s][A
+Downloading (…)of-00002.safetensors:   8%|▊         | 786M/9.98G [00:03<00:42, 217MB/s][A
+Downloading (…)of-00002.safetensors:   8%|▊         | 818M/9.98G [00:03<00:39, 230MB/s][A
+Downloading (…)of-00002.safetensors:   9%|▊         | 849M/9.98G [00:04<00:52, 175MB/s][A
+Downloading (…)of-00002.safetensors:   9%|▉         | 881M/9.98G [00:04<00:46, 194MB/s][A
+Downloading (…)of-00002.safetensors:   9%|▉         | 912M/9.98G [00:04<00:42, 211MB/s][A
+Downloading (…)of-00002.safetensors:   9%|▉         | 944M/9.98G [00:04<00:39, 227MB/s][A
+Downloading (…)of-00002.safetensors:  10%|▉         | 975M/9.98G [00:04<00:37, 239MB/s][A
+Downloading (…)of-00002.safetensors:  10%|█         | 1.01G/9.98G [00:04<00:36, 248MB/s][A
+Downloading (…)of-00002.safetensors:  10%|█         | 1.04G/9.98G [00:04<00:35, 253MB/s][A
+Downloading (…)of-00002.safetensors:  11%|█         | 1.07G/9.98G [00:05<00:34, 255MB/s][A
+Downloading (…)of-00002.safetensors:  11%|█         | 1.10G/9.98G [00:05<00:34, 261MB/s][A
+Downloading (…)of-00002.safetensors:  11%|█▏        | 1.13G/9.98G [00:05<00:33, 264MB/s][A
+Downloading (…)of-00002.safetensors:  12%|█▏        | 1.16G/9.98G [00:05<00:39, 221MB/s][A
+Downloading (…)of-00002.safetensors:  12%|█▏        | 1.20G/9.98G [00:05<00:37, 236MB/s][A
+Downloading (…)of-00002.safetensors:  12%|█▏        | 1.23G/9.98G [00:05<00:35, 244MB/s][A
+Downloading (…)of-00002.safetensors:  13%|█▎        | 1.26G/9.98G [00:05<00:34, 251MB/s][A
+Downloading (…)of-00002.safetensors:  13%|█▎        | 1.29G/9.98G [00:05<00:33, 257MB/s][A
+Downloading (…)of-00002.safetensors:  13%|█▎        | 1.32G/9.98G [00:06<00:33, 258MB/s][A
+Downloading (…)of-00002.safetensors:  14%|█▎        | 1.35G/9.98G [00:06<00:33, 259MB/s][A
+Downloading (…)of-00002.safetensors:  14%|█▍        | 1.38G/9.98G [00:06<00:32, 261MB/s][A
+Downloading (…)of-00002.safetensors:  14%|█▍        | 1.42G/9.98G [00:06<00:32, 262MB/s][A
+Downloading (…)of-00002.safetensors:  15%|█▍        | 1.45G/9.98G [00:06<00:32, 259MB/s][A
+Downloading (…)of-00002.safetensors:  15%|█▍        | 1.48G/9.98G [00:06<00:32, 258MB/s][A
+Downloading (…)of-00002.safetensors:  15%|█▌        | 1.51G/9.98G [00:06<00:32, 260MB/s][A
+Downloading (…)of-00002.safetensors:  15%|█▌        | 1.54G/9.98G [00:06<00:32, 262MB/s][A
+Downloading (…)of-00002.safetensors:  16%|█▌        | 1.57G/9.98G [00:07<00:31, 264MB/s][A
+Downloading (…)of-00002.safetensors:  16%|█▌        | 1.60G/9.98G [00:07<00:32, 255MB/s][A
+Downloading (…)of-00002.safetensors:  16%|█▋        | 1.64G/9.98G [00:07<00:32, 257MB/s][A
+Downloading (…)of-00002.safetensors:  17%|█▋        | 1.67G/9.98G [00:07<00:32, 260MB/s][A
+Downloading (…)of-00002.safetensors:  17%|█▋        | 1.70G/9.98G [00:07<00:31, 261MB/s][A
+Downloading (…)of-00002.safetensors:  17%|█▋        | 1.73G/9.98G [00:07<00:31, 262MB/s][A
+Downloading (…)of-00002.safetensors:  18%|█▊        | 1.76G/9.98G [00:07<00:31, 264MB/s][A
+Downloading (…)of-00002.safetensors:  18%|█▊        | 1.79G/9.98G [00:07<00:31, 264MB/s][A
+Downloading (…)of-00002.safetensors:  18%|█▊        | 1.82G/9.98G [00:08<00:30, 264MB/s][A
+Downloading (…)of-00002.safetensors:  19%|█▊        | 1.86G/9.98G [00:08<00:30, 265MB/s][A
+Downloading (…)of-00002.safetensors:  19%|█▉        | 1.89G/9.98G [00:08<00:47, 172MB/s][A
+Downloading (…)of-00002.safetensors:  19%|█▉        | 1.92G/9.98G [00:08<00:42, 192MB/s][A
+Downloading (…)of-00002.safetensors:  20%|█▉        | 1.95G/9.98G [00:08<00:38, 208MB/s][A
+Downloading (…)of-00002.safetensors:  20%|█▉        | 1.98G/9.98G [00:08<00:36, 222MB/s][A
+Downloading (…)of-00002.safetensors:  20%|██        | 2.01G/9.98G [00:08<00:34, 230MB/s][A
+Downloading (…)of-00002.safetensors:  20%|██        | 2.04G/9.98G [00:09<00:32, 241MB/s][A
+Downloading (…)of-00002.safetensors:  21%|██        | 2.08G/9.98G [00:09<00:31, 248MB/s][A
+Downloading (…)of-00002.safetensors:  21%|██        | 2.11G/9.98G [00:09<00:30, 254MB/s][A
+Downloading (…)of-00002.safetensors:  21%|██▏       | 2.14G/9.98G [00:09<00:30, 259MB/s][A
+Downloading (…)of-00002.safetensors:  22%|██▏       | 2.17G/9.98G [00:09<00:29, 262MB/s][A
+Downloading (…)of-00002.safetensors:  22%|██▏       | 2.20G/9.98G [00:09<00:29, 264MB/s][A
+Downloading (…)of-00002.safetensors:  22%|██▏       | 2.23G/9.98G [00:10<00:48, 161MB/s][A
+Downloading (…)of-00002.safetensors:  23%|██▎       | 2.26G/9.98G [00:10<00:42, 181MB/s][A
+Downloading (…)of-00002.safetensors:  23%|██▎       | 2.30G/9.98G [00:10<00:38, 200MB/s][A
+Downloading (…)of-00002.safetensors:  23%|██▎       | 2.33G/9.98G [00:10<00:35, 216MB/s][A
+Downloading (…)of-00002.safetensors:  24%|██▎       | 2.36G/9.98G [00:10<00:33, 229MB/s][A
+Downloading (…)of-00002.safetensors:  24%|██▍       | 2.39G/9.98G [00:10<00:31, 238MB/s][A
+Downloading (…)of-00002.safetensors:  24%|██▍       | 2.42G/9.98G [00:10<00:30, 245MB/s][A
+Downloading (…)of-00002.safetensors:  25%|██▍       | 2.45G/9.98G [00:10<00:29, 251MB/s][A
+Downloading (…)of-00002.safetensors:  25%|██▍       | 2.49G/9.98G [00:10<00:29, 250MB/s][A
+Downloading (…)of-00002.safetensors:  25%|██▌       | 2.52G/9.98G [00:11<00:32, 230MB/s][A
+Downloading (…)of-00002.safetensors:  26%|██▌       | 2.55G/9.98G [00:11<00:40, 182MB/s][A
+Downloading (…)of-00002.safetensors:  26%|██▌       | 2.58G/9.98G [00:11<00:37, 200MB/s][A
+Downloading (…)of-00002.safetensors:  26%|██▌       | 2.61G/9.98G [00:11<00:33, 217MB/s][A
+Downloading (…)of-00002.safetensors:  26%|██▋       | 2.64G/9.98G [00:11<00:38, 190MB/s][A
+Downloading (…)of-00002.safetensors:  27%|██▋       | 2.67G/9.98G [00:12<00:40, 179MB/s][A
+Downloading (…)of-00002.safetensors:  27%|██▋       | 2.69G/9.98G [00:12<00:42, 172MB/s][A
+Downloading (…)of-00002.safetensors:  27%|██▋       | 2.73G/9.98G [00:12<00:38, 190MB/s][A
+Downloading (…)of-00002.safetensors:  28%|██▊       | 2.76G/9.98G [00:12<00:35, 204MB/s][A
+Downloading (…)of-00002.safetensors:  28%|██▊       | 2.79G/9.98G [00:12<00:33, 216MB/s][A
+Downloading (…)of-00002.safetensors:  28%|██▊       | 2.82G/9.98G [00:12<00:45, 157MB/s][A
+Downloading (…)of-00002.safetensors:  29%|██▊       | 2.85G/9.98G [00:13<00:40, 176MB/s][A
+Downloading (…)of-00002.safetensors:  29%|██▉       | 2.88G/9.98G [00:13<00:36, 193MB/s][A
+Downloading (…)of-00002.safetensors:  29%|██▉       | 2.92G/9.98G [00:13<00:34, 205MB/s][A
+Downloading (…)of-00002.safetensors:  30%|██▉       | 2.95G/9.98G [00:13<00:32, 214MB/s][A
+Downloading (…)of-00002.safetensors:  30%|██▉       | 2.98G/9.98G [00:13<00:31, 221MB/s][A
+Downloading (…)of-00002.safetensors:  30%|███       | 3.01G/9.98G [00:13<00:30, 228MB/s][A
+Downloading (…)of-00002.safetensors:  30%|███       | 3.04G/9.98G [00:13<00:29, 233MB/s][A
+Downloading (…)of-00002.safetensors:  31%|███       | 3.07G/9.98G [00:13<00:31, 223MB/s][A
+Downloading (…)of-00002.safetensors:  31%|███       | 3.10G/9.98G [00:14<00:53, 128MB/s][A
+Downloading (…)of-00002.safetensors:  31%|███▏      | 3.14G/9.98G [00:14<00:46, 149MB/s][A
+Downloading (…)of-00002.safetensors:  32%|███▏      | 3.17G/9.98G [00:14<00:40, 167MB/s][A
+Downloading (…)of-00002.safetensors:  32%|███▏      | 3.20G/9.98G [00:14<00:37, 183MB/s][A
+Downloading (…)of-00002.safetensors:  32%|███▏      | 3.23G/9.98G [00:14<00:33, 203MB/s][A
+Downloading (…)of-00002.safetensors:  33%|███▎      | 3.26G/9.98G [00:15<00:36, 185MB/s][A
+Downloading (…)of-00002.safetensors:  33%|███▎      | 3.29G/9.98G [00:15<00:33, 201MB/s][A
+Downloading (…)of-00002.safetensors:  33%|███▎      | 3.32G/9.98G [00:15<00:31, 214MB/s][A
+Downloading (…)of-00002.safetensors:  34%|███▎      | 3.36G/9.98G [00:15<00:29, 224MB/s][A
+Downloading (…)of-00002.safetensors:  34%|███▍      | 3.39G/9.98G [00:15<00:28, 231MB/s][A
+Downloading (…)of-00002.safetensors:  34%|███▍      | 3.42G/9.98G [00:15<00:28, 234MB/s][A
+Downloading (…)of-00002.safetensors:  35%|███▍      | 3.45G/9.98G [00:15<00:27, 234MB/s][A
+Downloading (…)of-00002.safetensors:  35%|███▍      | 3.48G/9.98G [00:16<00:27, 236MB/s][A
+Downloading (…)of-00002.safetensors:  35%|███▌      | 3.51G/9.98G [00:16<00:28, 231MB/s][A
+Downloading (…)of-00002.safetensors:  36%|███▌      | 3.54G/9.98G [00:16<00:43, 148MB/s][A
+Downloading (…)of-00002.safetensors:  36%|███▌      | 3.58G/9.98G [00:16<00:38, 167MB/s][A
+Downloading (…)of-00002.safetensors:  36%|███▌      | 3.61G/9.98G [00:16<00:34, 183MB/s][A
+Downloading (…)of-00002.safetensors:  36%|███▋      | 3.64G/9.98G [00:17<00:32, 197MB/s][A
+Downloading (…)of-00002.safetensors:  37%|███▋      | 3.67G/9.98G [00:17<00:30, 210MB/s][A
+Downloading (…)of-00002.safetensors:  37%|███▋      | 3.70G/9.98G [00:17<00:28, 217MB/s][A
+Downloading (…)of-00002.safetensors:  37%|███▋      | 3.73G/9.98G [00:17<00:27, 224MB/s][A
+Downloading (…)of-00002.safetensors:  38%|███▊      | 3.76G/9.98G [00:17<00:30, 200MB/s][A
+Downloading (…)of-00002.safetensors:  38%|███▊      | 3.80G/9.98G [00:17<00:32, 191MB/s][A
+Downloading (…)of-00002.safetensors:  38%|███▊      | 3.83G/9.98G [00:17<00:30, 204MB/s][A
+Downloading (…)of-00002.safetensors:  39%|███▊      | 3.86G/9.98G [00:18<00:28, 211MB/s][A
+Downloading (…)of-00002.safetensors:  39%|███▉      | 3.89G/9.98G [00:18<00:27, 220MB/s][A
+Downloading (…)of-00002.safetensors:  39%|███▉      | 3.92G/9.98G [00:18<00:26, 224MB/s][A
+Downloading (…)of-00002.safetensors:  40%|███▉      | 3.95G/9.98G [00:18<00:26, 230MB/s][A
+Downloading (…)of-00002.safetensors:  40%|███▉      | 3.98G/9.98G [00:18<00:25, 235MB/s][A
+Downloading (…)of-00002.safetensors:  40%|████      | 4.02G/9.98G [00:18<00:25, 237MB/s][A
+Downloading (…)of-00002.safetensors:  41%|████      | 4.05G/9.98G [00:18<00:24, 240MB/s][A
+Downloading (…)of-00002.safetensors:  41%|████      | 4.08G/9.98G [00:18<00:24, 240MB/s][A
+Downloading (…)of-00002.safetensors:  41%|████      | 4.11G/9.98G [00:19<00:24, 241MB/s][A
+Downloading (…)of-00002.safetensors:  42%|████▏     | 4.14G/9.98G [00:19<00:24, 242MB/s][A
+Downloading (…)of-00002.safetensors:  42%|████▏     | 4.17G/9.98G [00:19<00:23, 242MB/s][A
+Downloading (…)of-00002.safetensors:  42%|████▏     | 4.20G/9.98G [00:19<00:23, 242MB/s][A
+Downloading (…)of-00002.safetensors:  42%|████▏     | 4.24G/9.98G [00:19<00:23, 242MB/s][A
+Downloading (…)of-00002.safetensors:  43%|████▎     | 4.27G/9.98G [00:19<00:23, 241MB/s][A
+Downloading (…)of-00002.safetensors:  43%|████▎     | 4.30G/9.98G [00:19<00:23, 241MB/s][A
+Downloading (…)of-00002.safetensors:  43%|████▎     | 4.33G/9.98G [00:19<00:23, 241MB/s][A
+Downloading (…)of-00002.safetensors:  44%|████▎     | 4.36G/9.98G [00:20<00:23, 242MB/s][A
+Downloading (…)of-00002.safetensors:  44%|████▍     | 4.39G/9.98G [00:20<00:22, 243MB/s][A
+Downloading (…)of-00002.safetensors:  44%|████▍     | 4.42G/9.98G [00:20<00:22, 243MB/s][A
+Downloading (…)of-00002.safetensors:  45%|████▍     | 4.46G/9.98G [00:20<00:22, 243MB/s][A
+Downloading (…)of-00002.safetensors:  45%|████▍     | 4.49G/9.98G [00:20<00:22, 242MB/s][A
+Downloading (…)of-00002.safetensors:  45%|████▌     | 4.52G/9.98G [00:20<00:22, 241MB/s][A
+Downloading (…)of-00002.safetensors:  46%|████▌     | 4.55G/9.98G [00:20<00:22, 240MB/s][A
+Downloading (…)of-00002.safetensors:  46%|████▌     | 4.58G/9.98G [00:21<00:22, 239MB/s][A
+Downloading (…)of-00002.safetensors:  46%|████▌     | 4.61G/9.98G [00:21<00:22, 239MB/s][A
+Downloading (…)of-00002.safetensors:  47%|████▋     | 4.65G/9.98G [00:21<00:22, 239MB/s][A
+Downloading (…)of-00002.safetensors:  47%|████▋     | 4.68G/9.98G [00:21<00:22, 240MB/s][A
+Downloading (…)of-00002.safetensors:  47%|████▋     | 4.71G/9.98G [00:21<00:21, 240MB/s][A
+Downloading (…)of-00002.safetensors:  48%|████▊     | 4.74G/9.98G [00:21<00:21, 241MB/s][A
+Downloading (…)of-00002.safetensors:  48%|████▊     | 4.77G/9.98G [00:22<00:32, 160MB/s][A
+Downloading (…)of-00002.safetensors:  48%|████▊     | 4.80G/9.98G [00:22<00:28, 179MB/s][A
+Downloading (…)of-00002.safetensors:  48%|████▊     | 4.83G/9.98G [00:22<00:26, 194MB/s][A
+Downloading (…)of-00002.safetensors:  49%|████▉     | 4.87G/9.98G [00:22<00:24, 212MB/s][A
+Downloading (…)of-00002.safetensors:  49%|████▉     | 4.90G/9.98G [00:22<00:22, 227MB/s][A
+Downloading (…)of-00002.safetensors:  49%|████▉     | 4.93G/9.98G [00:22<00:21, 236MB/s][A
+Downloading (…)of-00002.safetensors:  50%|████▉     | 4.96G/9.98G [00:22<00:20, 243MB/s][A
+Downloading (…)of-00002.safetensors:  50%|█████     | 4.99G/9.98G [00:22<00:20, 247MB/s][A
+Downloading (…)of-00002.safetensors:  50%|█████     | 5.02G/9.98G [00:22<00:19, 255MB/s][A
+Downloading (…)of-00002.safetensors:  51%|█████     | 5.05G/9.98G [00:23<00:19, 258MB/s][A
+Downloading (…)of-00002.safetensors:  51%|█████     | 5.09G/9.98G [00:23<00:18, 260MB/s][A
+Downloading (…)of-00002.safetensors:  51%|█████▏    | 5.12G/9.98G [00:23<00:18, 260MB/s][A
+Downloading (…)of-00002.safetensors:  52%|█████▏    | 5.15G/9.98G [00:23<00:18, 263MB/s][A
+Downloading (…)of-00002.safetensors:  52%|█████▏    | 5.18G/9.98G [00:23<00:18, 265MB/s][A
+Downloading (…)of-00002.safetensors:  52%|█████▏    | 5.21G/9.98G [00:23<00:17, 267MB/s][A
+Downloading (…)of-00002.safetensors:  53%|█████▎    | 5.24G/9.98G [00:23<00:17, 269MB/s][A
+Downloading (…)of-00002.safetensors:  53%|█████▎    | 5.27G/9.98G [00:23<00:17, 268MB/s][A
+Downloading (…)of-00002.safetensors:  53%|█████▎    | 5.31G/9.98G [00:24<00:17, 269MB/s][A
+Downloading (…)of-00002.safetensors:  53%|█████▎    | 5.34G/9.98G [00:24<00:17, 270MB/s][A
+Downloading (…)of-00002.safetensors:  54%|█████▍    | 5.37G/9.98G [00:24<00:17, 263MB/s][A
+Downloading (…)of-00002.safetensors:  54%|█████▍    | 5.40G/9.98G [00:24<00:17, 265MB/s][A
+Downloading (…)of-00002.safetensors:  54%|█████▍    | 5.43G/9.98G [00:24<00:19, 229MB/s][A
+Downloading (…)of-00002.safetensors:  55%|█████▍    | 5.46G/9.98G [00:24<00:21, 207MB/s][A
+Downloading (…)of-00002.safetensors:  55%|█████▌    | 5.49G/9.98G [00:24<00:20, 219MB/s][A
+Downloading (…)of-00002.safetensors:  55%|█████▌    | 5.53G/9.98G [00:25<00:19, 229MB/s][A
+Downloading (…)of-00002.safetensors:  56%|█████▌    | 5.56G/9.98G [00:25<00:18, 240MB/s][A
+Downloading (…)of-00002.safetensors:  56%|█████▌    | 5.59G/9.98G [00:25<00:17, 246MB/s][A
+Downloading (…)of-00002.safetensors:  56%|█████▋    | 5.62G/9.98G [00:25<00:17, 250MB/s][A
+Downloading (…)of-00002.safetensors:  57%|█████▋    | 5.65G/9.98G [00:25<00:17, 253MB/s][A
+Downloading (…)of-00002.safetensors:  57%|█████▋    | 5.68G/9.98G [00:25<00:16, 258MB/s][A
+Downloading (…)of-00002.safetensors:  57%|█████▋    | 5.71G/9.98G [00:25<00:16, 258MB/s][A
+Downloading (…)of-00002.safetensors:  58%|█████▊    | 5.75G/9.98G [00:25<00:16, 261MB/s][A
+Downloading (…)of-00002.safetensors:  58%|█████▊    | 5.78G/9.98G [00:25<00:15, 263MB/s][A
+Downloading (…)of-00002.safetensors:  58%|█████▊    | 5.81G/9.98G [00:26<00:15, 265MB/s][A
+Downloading (…)of-00002.safetensors:  59%|█████▊    | 5.84G/9.98G [00:26<00:15, 268MB/s][A
+Downloading (…)of-00002.safetensors:  59%|█████▉    | 5.87G/9.98G [00:26<00:15, 267MB/s][A
+Downloading (…)of-00002.safetensors:  59%|█████▉    | 5.90G/9.98G [00:26<00:15, 267MB/s][A
+Downloading (…)of-00002.safetensors:  59%|█████▉    | 5.93G/9.98G [00:26<00:15, 266MB/s][A
+Downloading (…)of-00002.safetensors:  60%|█████▉    | 5.97G/9.98G [00:26<00:15, 251MB/s][A
+Downloading (…)of-00002.safetensors:  60%|██████    | 6.00G/9.98G [00:26<00:15, 255MB/s][A
+Downloading (…)of-00002.safetensors:  60%|██████    | 6.03G/9.98G [00:26<00:15, 259MB/s][A
+Downloading (…)of-00002.safetensors:  61%|██████    | 6.06G/9.98G [00:27<00:14, 262MB/s][A
+Downloading (…)of-00002.safetensors:  61%|██████    | 6.09G/9.98G [00:27<00:14, 264MB/s][A
+Downloading (…)of-00002.safetensors:  61%|██████▏   | 6.12G/9.98G [00:27<00:14, 266MB/s][A
+Downloading (…)of-00002.safetensors:  62%|██████▏   | 6.16G/9.98G [00:27<00:14, 269MB/s][A
+Downloading (…)of-00002.safetensors:  62%|██████▏   | 6.19G/9.98G [00:27<00:14, 270MB/s][A
+Downloading (…)of-00002.safetensors:  62%|██████▏   | 6.22G/9.98G [00:27<00:13, 271MB/s][A
+Downloading (…)of-00002.safetensors:  63%|██████▎   | 6.25G/9.98G [00:27<00:13, 267MB/s][A
+Downloading (…)of-00002.safetensors:  63%|██████▎   | 6.28G/9.98G [00:27<00:13, 267MB/s][A
+Downloading (…)of-00002.safetensors:  63%|██████▎   | 6.31G/9.98G [00:27<00:13, 266MB/s][A
+Downloading (…)of-00002.safetensors:  64%|██████▎   | 6.34G/9.98G [00:28<00:13, 263MB/s][A
+Downloading (…)of-00002.safetensors:  64%|██████▍   | 6.38G/9.98G [00:28<00:13, 260MB/s][A
+Downloading (…)of-00002.safetensors:  64%|██████▍   | 6.41G/9.98G [00:28<00:13, 258MB/s][A
+Downloading (…)of-00002.safetensors:  65%|██████▍   | 6.44G/9.98G [00:28<00:13, 257MB/s][A
+Downloading (…)of-00002.safetensors:  65%|██████▍   | 6.47G/9.98G [00:28<00:13, 258MB/s][A
+Downloading (…)of-00002.safetensors:  65%|██████▌   | 6.50G/9.98G [00:28<00:13, 258MB/s][A
+Downloading (…)of-00002.safetensors:  65%|██████▌   | 6.53G/9.98G [00:28<00:13, 260MB/s][A
+Downloading (…)of-00002.safetensors:  66%|██████▌   | 6.56G/9.98G [00:28<00:13, 256MB/s][A
+Downloading (…)of-00002.safetensors:  66%|██████▌   | 6.60G/9.98G [00:29<00:13, 258MB/s][A
+Downloading (…)of-00002.safetensors:  66%|██████▋   | 6.63G/9.98G [00:29<00:12, 260MB/s][A
+Downloading (…)of-00002.safetensors:  67%|██████▋   | 6.66G/9.98G [00:29<00:12, 263MB/s][A
+Downloading (…)of-00002.safetensors:  67%|██████▋   | 6.69G/9.98G [00:29<00:12, 263MB/s][A
+Downloading (…)of-00002.safetensors:  67%|██████▋   | 6.72G/9.98G [00:29<00:12, 261MB/s][A
+Downloading (…)of-00002.safetensors:  68%|██████▊   | 6.75G/9.98G [00:29<00:12, 262MB/s][A
+Downloading (…)of-00002.safetensors:  68%|██████▊   | 6.78G/9.98G [00:29<00:12, 262MB/s][A
+Downloading (…)of-00002.safetensors:  68%|██████▊   | 6.82G/9.98G [00:29<00:12, 262MB/s][A
+Downloading (…)of-00002.safetensors:  69%|██████▊   | 6.85G/9.98G [00:30<00:11, 263MB/s][A
+Downloading (…)of-00002.safetensors:  69%|██████▉   | 6.88G/9.98G [00:30<00:11, 264MB/s][A
+Downloading (…)of-00002.safetensors:  69%|██████▉   | 6.91G/9.98G [00:30<00:11, 264MB/s][A
+Downloading (…)of-00002.safetensors:  70%|██████▉   | 6.94G/9.98G [00:30<00:11, 265MB/s][A
+Downloading (…)of-00002.safetensors:  70%|██████▉   | 6.97G/9.98G [00:30<00:11, 262MB/s][A
+Downloading (…)of-00002.safetensors:  70%|███████   | 7.00G/9.98G [00:30<00:11, 262MB/s][A
+Downloading (…)of-00002.safetensors:  71%|███████   | 7.04G/9.98G [00:30<00:11, 261MB/s][A
+Downloading (…)of-00002.safetensors:  71%|███████   | 7.07G/9.98G [00:30<00:11, 263MB/s][A
+Downloading (…)of-00002.safetensors:  71%|███████   | 7.10G/9.98G [00:31<00:10, 264MB/s][A
+Downloading (…)of-00002.safetensors:  71%|███████▏  | 7.13G/9.98G [00:31<00:10, 265MB/s][A
+Downloading (…)of-00002.safetensors:  72%|███████▏  | 7.16G/9.98G [00:31<00:10, 265MB/s][A
+Downloading (…)of-00002.safetensors:  72%|███████▏  | 7.19G/9.98G [00:31<00:10, 263MB/s][A
+Downloading (…)of-00002.safetensors:  72%|███████▏  | 7.22G/9.98G [00:31<00:12, 225MB/s][A
+Downloading (…)of-00002.safetensors:  73%|███████▎  | 7.26G/9.98G [00:31<00:19, 140MB/s][A
+Downloading (…)of-00002.safetensors:  73%|███████▎  | 7.29G/9.98G [00:32<00:16, 162MB/s][A
+Downloading (…)of-00002.safetensors:  73%|███████▎  | 7.32G/9.98G [00:32<00:14, 183MB/s][A
+Downloading (…)of-00002.safetensors:  74%|███████▎  | 7.35G/9.98G [00:32<00:13, 201MB/s][A
+Downloading (…)of-00002.safetensors:  74%|███████▍  | 7.38G/9.98G [00:32<00:12, 216MB/s][A
+Downloading (…)of-00002.safetensors:  74%|███████▍  | 7.41G/9.98G [00:32<00:11, 228MB/s][A
+Downloading (…)of-00002.safetensors:  75%|███████▍  | 7.44G/9.98G [00:32<00:10, 236MB/s][A
+Downloading (…)of-00002.safetensors:  75%|███████▍  | 7.48G/9.98G [00:32<00:10, 244MB/s][A
+Downloading (…)of-00002.safetensors:  75%|███████▌  | 7.51G/9.98G [00:32<00:10, 243MB/s][A
+Downloading (…)of-00002.safetensors:  76%|███████▌  | 7.54G/9.98G [00:33<00:25, 95.2MB/s][A
+Downloading (…)of-00002.safetensors:  76%|███████▌  | 7.56G/9.98G [00:34<00:27, 87.7MB/s][A
+Downloading (…)of-00002.safetensors:  76%|███████▌  | 7.59G/9.98G [00:34<00:21, 110MB/s] [A
+Downloading (…)of-00002.safetensors:  76%|███████▋  | 7.62G/9.98G [00:34<00:17, 133MB/s][A
+Downloading (…)of-00002.safetensors:  77%|███████▋  | 7.65G/9.98G [00:34<00:15, 153MB/s][A
+Downloading (…)of-00002.safetensors:  77%|███████▋  | 7.69G/9.98G [00:34<00:13, 172MB/s][A
+Downloading (…)of-00002.safetensors:  77%|███████▋  | 7.72G/9.98G [00:34<00:16, 135MB/s][A
+Downloading (…)of-00002.safetensors:  78%|███████▊  | 7.74G/9.98G [00:35<00:25, 87.5MB/s][A
+Downloading (…)of-00002.safetensors:  78%|███████▊  | 7.76G/9.98G [00:35<00:26, 82.8MB/s][A
+Downloading (…)of-00002.safetensors:  78%|███████▊  | 7.79G/9.98G [00:35<00:20, 109MB/s] [A
+Downloading (…)of-00002.safetensors:  78%|███████▊  | 7.82G/9.98G [00:35<00:15, 135MB/s][A
+Downloading (…)of-00002.safetensors:  79%|███████▊  | 7.85G/9.98G [00:36<00:13, 160MB/s][A
+Downloading (…)of-00002.safetensors:  79%|███████▉  | 7.89G/9.98G [00:36<00:11, 185MB/s][A
+Downloading (…)of-00002.safetensors:  79%|███████▉  | 7.92G/9.98G [00:36<00:10, 206MB/s][A
+Downloading (…)of-00002.safetensors:  80%|███████▉  | 7.95G/9.98G [00:36<00:09, 222MB/s][A
+Downloading (…)of-00002.safetensors:  80%|███████▉  | 7.98G/9.98G [00:36<00:08, 237MB/s][A
+Downloading (…)of-00002.safetensors:  80%|████████  | 8.01G/9.98G [00:36<00:07, 247MB/s][A
+Downloading (…)of-00002.safetensors:  81%|████████  | 8.04G/9.98G [00:36<00:07, 246MB/s][A
+Downloading (…)of-00002.safetensors:  81%|████████  | 8.07G/9.98G [00:37<00:15, 126MB/s][A
+Downloading (…)of-00002.safetensors:  81%|████████  | 8.10G/9.98G [00:37<00:16, 115MB/s][A
+Downloading (…)of-00002.safetensors:  81%|████████▏ | 8.13G/9.98G [00:37<00:13, 142MB/s][A
+Downloading (…)of-00002.safetensors:  82%|████████▏ | 8.16G/9.98G [00:37<00:10, 168MB/s][A
+Downloading (…)of-00002.safetensors:  82%|████████▏ | 8.19G/9.98G [00:37<00:09, 192MB/s][A
+Downloading (…)of-00002.safetensors:  82%|████████▏ | 8.22G/9.98G [00:38<00:08, 212MB/s][A
+Downloading (…)of-00002.safetensors:  83%|████████▎ | 8.25G/9.98G [00:38<00:07, 230MB/s][A
+Downloading (…)of-00002.safetensors:  83%|████████▎ | 8.28G/9.98G [00:38<00:06, 243MB/s][A
+Downloading (…)of-00002.safetensors:  83%|████████▎ | 8.32G/9.98G [00:38<00:06, 253MB/s][A
+Downloading (…)of-00002.safetensors:  84%|████████▎ | 8.35G/9.98G [00:38<00:06, 259MB/s][A
+Downloading (…)of-00002.safetensors:  84%|████████▍ | 8.38G/9.98G [00:38<00:05, 267MB/s][A
+Downloading (…)of-00002.safetensors:  84%|████████▍ | 8.41G/9.98G [00:39<00:18, 86.2MB/s][A
+Downloading (…)of-00002.safetensors:  85%|████████▍ | 8.43G/9.98G [00:40<00:21, 71.4MB/s][A
+Downloading (…)of-00002.safetensors:  85%|████████▍ | 8.46G/9.98G [00:40<00:16, 93.3MB/s][A
+Downloading (…)of-00002.safetensors:  85%|████████▌ | 8.49G/9.98G [00:40<00:12, 118MB/s] [A
+Downloading (…)of-00002.safetensors:  85%|████████▌ | 8.52G/9.98G [00:40<00:10, 143MB/s][A
+Downloading (…)of-00002.safetensors:  86%|████████▌ | 8.56G/9.98G [00:40<00:08, 166MB/s][A
+Downloading (…)of-00002.safetensors:  86%|████████▌ | 8.59G/9.98G [00:40<00:07, 188MB/s][A
+Downloading (…)of-00002.safetensors:  86%|████████▋ | 8.62G/9.98G [00:40<00:06, 208MB/s][A
+Downloading (…)of-00002.safetensors:  87%|████████▋ | 8.65G/9.98G [00:40<00:05, 223MB/s][A
+Downloading (…)of-00002.safetensors:  87%|████████▋ | 8.68G/9.98G [00:40<00:05, 236MB/s][A
+Downloading (…)of-00002.safetensors:  87%|████████▋ | 8.71G/9.98G [00:41<00:05, 246MB/s][A
+Downloading (…)of-00002.safetensors:  88%|████████▊ | 8.75G/9.98G [00:41<00:14, 86.4MB/s][A
+Downloading (…)of-00002.safetensors:  88%|████████▊ | 8.77G/9.98G [00:42<00:14, 84.8MB/s][A
+Downloading (…)of-00002.safetensors:  88%|████████▊ | 8.80G/9.98G [00:42<00:10, 107MB/s] [A
+Downloading (…)of-00002.safetensors:  88%|████████▊ | 8.83G/9.98G [00:42<00:08, 130MB/s][A
+Downloading (…)of-00002.safetensors:  89%|████████▉ | 8.86G/9.98G [00:42<00:07, 152MB/s][A
+Downloading (…)of-00002.safetensors:  89%|████████▉ | 8.89G/9.98G [00:42<00:06, 170MB/s][A
+Downloading (…)of-00002.safetensors:  89%|████████▉ | 8.92G/9.98G [00:42<00:05, 188MB/s][A
+Downloading (…)of-00002.safetensors:  90%|████████▉ | 8.95G/9.98G [00:43<00:05, 198MB/s][A
+Downloading (…)of-00002.safetensors:  90%|█████████ | 8.99G/9.98G [00:43<00:04, 210MB/s][A
+Downloading (…)of-00002.safetensors:  90%|█████████ | 9.02G/9.98G [00:43<00:04, 218MB/s][A
+Downloading (…)of-00002.safetensors:  91%|█████████ | 9.05G/9.98G [00:43<00:06, 151MB/s][A
+Downloading (…)of-00002.safetensors:  91%|█████████ | 9.08G/9.98G [00:43<00:05, 172MB/s][A
+Downloading (…)of-00002.safetensors:  91%|█████████▏| 9.11G/9.98G [00:43<00:04, 191MB/s][A
+Downloading (…)of-00002.safetensors:  92%|█████████▏| 9.14G/9.98G [00:44<00:04, 206MB/s][A
+Downloading (…)of-00002.safetensors:  92%|█████████▏| 9.18G/9.98G [00:44<00:06, 133MB/s][A
+Downloading (…)of-00002.safetensors:  92%|█████████▏| 9.21G/9.98G [00:44<00:04, 156MB/s][A
+Downloading (…)of-00002.safetensors:  93%|█████████▎| 9.24G/9.98G [00:44<00:04, 178MB/s][A
+Downloading (…)of-00002.safetensors:  93%|█████████▎| 9.27G/9.98G [00:44<00:03, 198MB/s][A
+Downloading (…)of-00002.safetensors:  93%|█████████▎| 9.30G/9.98G [00:44<00:03, 215MB/s][A
+Downloading (…)of-00002.safetensors:  94%|█████████▎| 9.33G/9.98G [00:45<00:02, 227MB/s][A
+Downloading (…)of-00002.safetensors:  94%|█████████▍| 9.36G/9.98G [00:45<00:02, 238MB/s][A
+Downloading (…)of-00002.safetensors:  94%|█████████▍| 9.40G/9.98G [00:45<00:02, 220MB/s][A
+Downloading (…)of-00002.safetensors:  94%|█████████▍| 9.43G/9.98G [00:45<00:02, 226MB/s][A
+Downloading (…)of-00002.safetensors:  95%|█████████▍| 9.46G/9.98G [00:46<00:05, 89.5MB/s][A
+Downloading (…)of-00002.safetensors:  95%|█████████▌| 9.49G/9.98G [00:46<00:04, 112MB/s] [A
+Downloading (…)of-00002.safetensors:  95%|█████████▌| 9.51G/9.98G [00:46<00:04, 109MB/s][A
+Downloading (…)of-00002.safetensors:  96%|█████████▌| 9.54G/9.98G [00:46<00:03, 134MB/s][A
+Downloading (…)of-00002.safetensors:  96%|█████████▌| 9.57G/9.98G [00:46<00:02, 160MB/s][A
+Downloading (…)of-00002.safetensors:  96%|█████████▋| 9.60G/9.98G [00:46<00:02, 184MB/s][A
+Downloading (…)of-00002.safetensors:  97%|█████████▋| 9.64G/9.98G [00:47<00:01, 205MB/s][A
+Downloading (…)of-00002.safetensors:  97%|█████████▋| 9.67G/9.98G [00:47<00:01, 222MB/s][A
+Downloading (…)of-00002.safetensors:  97%|█████████▋| 9.70G/9.98G [00:47<00:01, 236MB/s][A
+Downloading (…)of-00002.safetensors:  98%|█████████▊| 9.73G/9.98G [00:47<00:00, 246MB/s][A
+Downloading (…)of-00002.safetensors:  98%|█████████▊| 9.76G/9.98G [00:47<00:00, 255MB/s][A
+Downloading (…)of-00002.safetensors:  98%|█████████▊| 9.79G/9.98G [00:47<00:00, 258MB/s][A
+Downloading (…)of-00002.safetensors:  98%|█████████▊| 9.83G/9.98G [00:48<00:01, 86.6MB/s][A
+Downloading (…)of-00002.safetensors:  99%|█████████▊| 9.85G/9.98G [00:48<00:01, 85.3MB/s][A
+Downloading (…)of-00002.safetensors:  99%|█████████▉| 9.88G/9.98G [00:48<00:00, 106MB/s] [A
+Downloading (…)of-00002.safetensors:  99%|█████████▉| 9.91G/9.98G [00:49<00:00, 123MB/s][A
+Downloading (…)of-00002.safetensors: 100%|█████████▉| 9.94G/9.98G [00:49<00:00, 144MB/s][A
+Downloading (…)of-00002.safetensors: 100%|█████████▉| 9.97G/9.98G [00:49<00:00, 165MB/s][ADownloading (…)of-00002.safetensors: 100%|██████████| 9.98G/9.98G [00:49<00:00, 202MB/s]
+Downloading shards:  50%|█████     | 1/2 [00:49<00:49, 49.58s/it]
+Downloading (…)of-00002.safetensors:   0%|          | 0.00/3.50G [00:00<?, ?B/s][A
+Downloading (…)of-00002.safetensors:   0%|          | 10.5M/3.50G [00:00<01:18, 44.4MB/s][A
+Downloading (…)of-00002.safetensors:   1%|          | 31.5M/3.50G [00:00<00:36, 95.4MB/s][A
+Downloading (…)of-00002.safetensors:   2%|▏         | 62.9M/3.50G [00:00<00:22, 154MB/s] [A
+Downloading (…)of-00002.safetensors:   3%|▎         | 94.4M/3.50G [00:00<00:18, 187MB/s][A
+Downloading (…)of-00002.safetensors:   4%|▎         | 126M/3.50G [00:00<00:16, 208MB/s] [A
+Downloading (…)of-00002.safetensors:   4%|▍         | 157M/3.50G [00:00<00:15, 221MB/s][A
+Downloading (…)of-00002.safetensors:   5%|▌         | 189M/3.50G [00:00<00:14, 231MB/s][A
+Downloading (…)of-00002.safetensors:   6%|▋         | 220M/3.50G [00:01<00:13, 236MB/s][A
+Downloading (…)of-00002.safetensors:   7%|▋         | 252M/3.50G [00:01<00:13, 241MB/s][A
+Downloading (…)of-00002.safetensors:   8%|▊         | 283M/3.50G [00:01<00:13, 244MB/s][A
+Downloading (…)of-00002.safetensors:   9%|▉         | 315M/3.50G [00:01<00:12, 245MB/s][A
+Downloading (…)of-00002.safetensors:  10%|▉         | 346M/3.50G [00:01<00:12, 244MB/s][A
+Downloading (…)of-00002.safetensors:  11%|█         | 377M/3.50G [00:01<00:12, 246MB/s][A
+Downloading (…)of-00002.safetensors:  12%|█▏        | 409M/3.50G [00:01<00:12, 247MB/s][A
+Downloading (…)of-00002.safetensors:  13%|█▎        | 440M/3.50G [00:02<00:12, 247MB/s][A
+Downloading (…)of-00002.safetensors:  13%|█▎        | 472M/3.50G [00:02<00:12, 247MB/s][A
+Downloading (…)of-00002.safetensors:  14%|█▍        | 503M/3.50G [00:02<00:12, 247MB/s][A
+Downloading (…)of-00002.safetensors:  15%|█▌        | 535M/3.50G [00:02<00:12, 244MB/s][A
+Downloading (…)of-00002.safetensors:  16%|█▌        | 566M/3.50G [00:02<00:11, 249MB/s][A
+Downloading (…)of-00002.safetensors:  17%|█▋        | 598M/3.50G [00:02<00:12, 241MB/s][A
+Downloading (…)of-00002.safetensors:  18%|█▊        | 629M/3.50G [00:02<00:11, 246MB/s][A
+Downloading (…)of-00002.safetensors:  19%|█▉        | 661M/3.50G [00:02<00:11, 249MB/s][A
+Downloading (…)of-00002.safetensors:  20%|█▉        | 692M/3.50G [00:03<00:11, 255MB/s][A
+Downloading (…)of-00002.safetensors:  21%|██        | 724M/3.50G [00:03<00:10, 258MB/s][A
+Downloading (…)of-00002.safetensors:  22%|██▏       | 755M/3.50G [00:03<00:10, 257MB/s][A
+Downloading (…)of-00002.safetensors:  22%|██▏       | 786M/3.50G [00:03<00:10, 257MB/s][A
+Downloading (…)of-00002.safetensors:  23%|██▎       | 818M/3.50G [00:03<00:10, 258MB/s][A
+Downloading (…)of-00002.safetensors:  24%|██▍       | 849M/3.50G [00:03<00:10, 259MB/s][A
+Downloading (…)of-00002.safetensors:  25%|██▌       | 881M/3.50G [00:03<00:10, 259MB/s][A
+Downloading (…)of-00002.safetensors:  26%|██▌       | 912M/3.50G [00:03<00:10, 258MB/s][A
+Downloading (…)of-00002.safetensors:  27%|██▋       | 944M/3.50G [00:03<00:09, 257MB/s][A
+Downloading (…)of-00002.safetensors:  28%|██▊       | 975M/3.50G [00:04<00:09, 256MB/s][A
+Downloading (…)of-00002.safetensors:  29%|██▉       | 1.01G/3.50G [00:04<00:09, 257MB/s][A
+Downloading (…)of-00002.safetensors:  30%|██▉       | 1.04G/3.50G [00:04<00:09, 257MB/s][A
+Downloading (…)of-00002.safetensors:  31%|███       | 1.07G/3.50G [00:04<00:09, 259MB/s][A
+Downloading (…)of-00002.safetensors:  31%|███▏      | 1.10G/3.50G [00:04<00:09, 261MB/s][A
+Downloading (…)of-00002.safetensors:  32%|███▏      | 1.13G/3.50G [00:04<00:08, 263MB/s][A
+Downloading (…)of-00002.safetensors:  33%|███▎      | 1.16G/3.50G [00:04<00:08, 268MB/s][A
+Downloading (…)of-00002.safetensors:  34%|███▍      | 1.20G/3.50G [00:04<00:08, 269MB/s][A
+Downloading (…)of-00002.safetensors:  35%|███▌      | 1.23G/3.50G [00:05<00:08, 269MB/s][A
+Downloading (…)of-00002.safetensors:  36%|███▌      | 1.26G/3.50G [00:05<00:08, 272MB/s][A
+Downloading (…)of-00002.safetensors:  37%|███▋      | 1.29G/3.50G [00:05<00:08, 274MB/s][A
+Downloading (…)of-00002.safetensors:  38%|███▊      | 1.32G/3.50G [00:05<00:07, 276MB/s][A
+Downloading (…)of-00002.safetensors:  39%|███▊      | 1.35G/3.50G [00:05<00:07, 276MB/s][A
+Downloading (…)of-00002.safetensors:  40%|███▉      | 1.38G/3.50G [00:05<00:07, 275MB/s][A
+Downloading (…)of-00002.safetensors:  40%|████      | 1.42G/3.50G [00:05<00:08, 245MB/s][A
+Downloading (…)of-00002.safetensors:  41%|████▏     | 1.45G/3.50G [00:06<00:13, 154MB/s][A
+Downloading (…)of-00002.safetensors:  42%|████▏     | 1.48G/3.50G [00:06<00:11, 179MB/s][A
+Downloading (…)of-00002.safetensors:  43%|████▎     | 1.51G/3.50G [00:06<00:10, 199MB/s][A
+Downloading (…)of-00002.safetensors:  44%|████▍     | 1.54G/3.50G [00:06<00:08, 218MB/s][A
+Downloading (…)of-00002.safetensors:  45%|████▍     | 1.57G/3.50G [00:06<00:08, 231MB/s][A
+Downloading (…)of-00002.safetensors:  46%|████▌     | 1.60G/3.50G [00:06<00:07, 240MB/s][A
+Downloading (…)of-00002.safetensors:  47%|████▋     | 1.64G/3.50G [00:06<00:07, 252MB/s][A
+Downloading (…)of-00002.safetensors:  48%|████▊     | 1.67G/3.50G [00:06<00:07, 260MB/s][A
+Downloading (…)of-00002.safetensors:  49%|████▊     | 1.70G/3.50G [00:07<00:06, 265MB/s][A
+Downloading (…)of-00002.safetensors:  49%|████▉     | 1.73G/3.50G [00:07<00:06, 270MB/s][A
+Downloading (…)of-00002.safetensors:  50%|█████     | 1.76G/3.50G [00:07<00:07, 225MB/s][A
+Downloading (…)of-00002.safetensors:  51%|█████     | 1.79G/3.50G [00:07<00:07, 239MB/s][A
+Downloading (…)of-00002.safetensors:  52%|█████▏    | 1.82G/3.50G [00:07<00:06, 252MB/s][A
+Downloading (…)of-00002.safetensors:  53%|█████▎    | 1.86G/3.50G [00:07<00:06, 261MB/s][A
+Downloading (…)of-00002.safetensors:  54%|█████▍    | 1.89G/3.50G [00:07<00:05, 269MB/s][A
+Downloading (…)of-00002.safetensors:  55%|█████▍    | 1.92G/3.50G [00:07<00:05, 275MB/s][A
+Downloading (…)of-00002.safetensors:  56%|█████▌    | 1.95G/3.50G [00:08<00:05, 277MB/s][A
+Downloading (…)of-00002.safetensors:  57%|█████▋    | 1.98G/3.50G [00:08<00:05, 278MB/s][A
+Downloading (…)of-00002.safetensors:  58%|█████▊    | 2.01G/3.50G [00:08<00:05, 270MB/s][A
+Downloading (…)of-00002.safetensors:  58%|█████▊    | 2.04G/3.50G [00:08<00:05, 266MB/s][A
+Downloading (…)of-00002.safetensors:  59%|█████▉    | 2.08G/3.50G [00:08<00:05, 265MB/s][A
+Downloading (…)of-00002.safetensors:  60%|██████    | 2.11G/3.50G [00:08<00:05, 264MB/s][A
+Downloading (…)of-00002.safetensors:  61%|██████    | 2.14G/3.50G [00:08<00:05, 265MB/s][A
+Downloading (…)of-00002.safetensors:  62%|██████▏   | 2.17G/3.50G [00:08<00:05, 265MB/s][A
+Downloading (…)of-00002.safetensors:  63%|██████▎   | 2.20G/3.50G [00:08<00:04, 267MB/s][A
+Downloading (…)of-00002.safetensors:  64%|██████▍   | 2.23G/3.50G [00:09<00:04, 270MB/s][A
+Downloading (…)of-00002.safetensors:  65%|██████▍   | 2.26G/3.50G [00:09<00:05, 215MB/s][A
+Downloading (…)of-00002.safetensors:  66%|██████▌   | 2.30G/3.50G [00:09<00:05, 229MB/s][A
+Downloading (…)of-00002.safetensors:  67%|██████▋   | 2.33G/3.50G [00:09<00:04, 241MB/s][A
+Downloading (…)of-00002.safetensors:  67%|██████▋   | 2.36G/3.50G [00:09<00:04, 249MB/s][A
+Downloading (…)of-00002.safetensors:  68%|██████▊   | 2.39G/3.50G [00:09<00:04, 256MB/s][A
+Downloading (…)of-00002.safetensors:  69%|██████▉   | 2.42G/3.50G [00:09<00:04, 261MB/s][A
+Downloading (…)of-00002.safetensors:  70%|███████   | 2.45G/3.50G [00:10<00:03, 263MB/s][A
+Downloading (…)of-00002.safetensors:  71%|███████   | 2.49G/3.50G [00:10<00:03, 268MB/s][A
+Downloading (…)of-00002.safetensors:  72%|███████▏  | 2.52G/3.50G [00:10<00:03, 270MB/s][A
+Downloading (…)of-00002.safetensors:  73%|███████▎  | 2.55G/3.50G [00:10<00:03, 269MB/s][A
+Downloading (…)of-00002.safetensors:  74%|███████▎  | 2.58G/3.50G [00:10<00:03, 270MB/s][A
+Downloading (…)of-00002.safetensors:  75%|███████▍  | 2.61G/3.50G [00:10<00:03, 270MB/s][A
+Downloading (…)of-00002.safetensors:  75%|███████▌  | 2.64G/3.50G [00:10<00:03, 270MB/s][A
+Downloading (…)of-00002.safetensors:  76%|███████▋  | 2.67G/3.50G [00:10<00:03, 270MB/s][A
+Downloading (…)of-00002.safetensors:  77%|███████▋  | 2.71G/3.50G [00:10<00:02, 271MB/s][A
+Downloading (…)of-00002.safetensors:  78%|███████▊  | 2.74G/3.50G [00:11<00:07, 97.0MB/s][A
+Downloading (…)of-00002.safetensors:  79%|███████▉  | 2.76G/3.50G [00:12<00:09, 78.0MB/s][A
+Downloading (…)of-00002.safetensors:  80%|███████▉  | 2.79G/3.50G [00:12<00:06, 102MB/s] [A
+Downloading (…)of-00002.safetensors:  81%|████████  | 2.82G/3.50G [00:12<00:05, 127MB/s][A
+Downloading (…)of-00002.safetensors:  81%|████████▏ | 2.85G/3.50G [00:12<00:04, 152MB/s][A
+Downloading (…)of-00002.safetensors:  82%|████████▏ | 2.88G/3.50G [00:12<00:03, 174MB/s][A
+Downloading (…)of-00002.safetensors:  83%|████████▎ | 2.92G/3.50G [00:12<00:02, 197MB/s][A
+Downloading (…)of-00002.safetensors:  84%|████████▍ | 2.95G/3.50G [00:12<00:02, 218MB/s][A
+Downloading (…)of-00002.safetensors:  85%|████████▌ | 2.98G/3.50G [00:13<00:02, 234MB/s][A
+Downloading (…)of-00002.safetensors:  86%|████████▌ | 3.01G/3.50G [00:13<00:01, 246MB/s][A
+Downloading (…)of-00002.safetensors:  87%|████████▋ | 3.04G/3.50G [00:13<00:01, 253MB/s][A
+Downloading (…)of-00002.safetensors:  88%|████████▊ | 3.07G/3.50G [00:13<00:02, 188MB/s][A
+Downloading (…)of-00002.safetensors:  89%|████████▊ | 3.10G/3.50G [00:14<00:03, 118MB/s][A
+Downloading (…)of-00002.safetensors:  89%|████████▉ | 3.12G/3.50G [00:14<00:05, 66.5MB/s][A
+Downloading (…)of-00002.safetensors:  90%|█████████ | 3.16G/3.50G [00:14<00:04, 85.9MB/s][A
+Downloading (…)of-00002.safetensors:  91%|█████████ | 3.19G/3.50G [00:15<00:02, 106MB/s] [A
+Downloading (…)of-00002.safetensors:  92%|█████████▏| 3.22G/3.50G [00:15<00:02, 126MB/s][A
+Downloading (…)of-00002.safetensors:  93%|█████████▎| 3.25G/3.50G [00:15<00:01, 145MB/s][A
+Downloading (…)of-00002.safetensors:  94%|█████████▍| 3.28G/3.50G [00:15<00:01, 161MB/s][A
+Downloading (…)of-00002.safetensors:  95%|█████████▍| 3.31G/3.50G [00:15<00:01, 175MB/s][A
+Downloading (…)of-00002.safetensors:  96%|█████████▌| 3.34G/3.50G [00:15<00:00, 185MB/s][A
+Downloading (…)of-00002.safetensors:  96%|█████████▋| 3.38G/3.50G [00:16<00:00, 177MB/s][A
+Downloading (…)of-00002.safetensors:  97%|█████████▋| 3.41G/3.50G [00:16<00:00, 187MB/s][A
+Downloading (…)of-00002.safetensors:  98%|█████████▊| 3.44G/3.50G [00:16<00:00, 146MB/s][A
+Downloading (…)of-00002.safetensors:  99%|█████████▉| 3.46G/3.50G [00:16<00:00, 138MB/s][A
+Downloading (…)of-00002.safetensors:  99%|█████████▉| 3.48G/3.50G [00:17<00:00, 87.8MB/s][ADownloading (…)of-00002.safetensors: 100%|██████████| 3.50G/3.50G [00:17<00:00, 203MB/s] 
+Downloading shards: 100%|██████████| 2/2 [01:06<00:00, 30.64s/it]Downloading shards: 100%|██████████| 2/2 [01:06<00:00, 33.48s/it]
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.23s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.41s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.03s/it]
+Downloading generation_config.json:   0%|          | 0.00/188 [00:00<?, ?B/s]Downloading generation_config.json: 100%|██████████| 188/188 [00:00<00:00, 36.6kB/s]
+Downloading .gitattributes:   0%|          | 0.00/1.18k [00:00<?, ?B/s]Downloading .gitattributes: 100%|██████████| 1.18k/1.18k [00:00<00:00, 884kB/s]
+Downloading 1_Pooling/config.json:   0%|          | 0.00/190 [00:00<?, ?B/s]Downloading 1_Pooling/config.json: 100%|██████████| 190/190 [00:00<00:00, 331kB/s]
+Downloading README.md:   0%|          | 0.00/10.7k [00:00<?, ?B/s]Downloading README.md: 100%|██████████| 10.7k/10.7k [00:00<00:00, 23.3MB/s]
+Downloading config.json:   0%|          | 0.00/612 [00:00<?, ?B/s]Downloading config.json: 100%|██████████| 612/612 [00:00<00:00, 1.48MB/s]
+Downloading (…)ce_transformers.json:   0%|          | 0.00/116 [00:00<?, ?B/s]Downloading (…)ce_transformers.json: 100%|██████████| 116/116 [00:00<00:00, 318kB/s]
+Downloading data_config.json:   0%|          | 0.00/39.3k [00:00<?, ?B/s]Downloading data_config.json: 100%|██████████| 39.3k/39.3k [00:00<00:00, 3.82MB/s]
+Downloading pytorch_model.bin:   0%|          | 0.00/90.9M [00:00<?, ?B/s]Downloading pytorch_model.bin:  12%|█▏        | 10.5M/90.9M [00:00<00:02, 40.0MB/s]Downloading pytorch_model.bin:  35%|███▍      | 31.5M/90.9M [00:00<00:00, 89.5MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 52.4M/90.9M [00:00<00:00, 89.8MB/s]Downloading pytorch_model.bin:  69%|██████▉   | 62.9M/90.9M [00:00<00:00, 90.9MB/s]Downloading pytorch_model.bin:  81%|████████  | 73.4M/90.9M [00:00<00:00, 90.6MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 83.9M/90.9M [00:00<00:00, 91.8MB/s]Downloading pytorch_model.bin: 100%|██████████| 90.9M/90.9M [00:01<00:00, 85.9MB/s]
+Downloading (…)nce_bert_config.json:   0%|          | 0.00/53.0 [00:00<?, ?B/s]Downloading (…)nce_bert_config.json: 100%|██████████| 53.0/53.0 [00:00<00:00, 13.2kB/s]
+Downloading (…)cial_tokens_map.json:   0%|          | 0.00/112 [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 112/112 [00:00<00:00, 184kB/s]
+Downloading tokenizer.json:   0%|          | 0.00/466k [00:00<?, ?B/s]Downloading tokenizer.json: 100%|██████████| 466k/466k [00:00<00:00, 110MB/s]
+Downloading tokenizer_config.json:   0%|          | 0.00/350 [00:00<?, ?B/s]Downloading tokenizer_config.json: 100%|██████████| 350/350 [00:00<00:00, 598kB/s]
+Downloading train_script.py:   0%|          | 0.00/13.2k [00:00<?, ?B/s]Downloading train_script.py: 100%|██████████| 13.2k/13.2k [00:00<00:00, 23.3MB/s]
+Downloading vocab.txt:   0%|          | 0.00/232k [00:00<?, ?B/s]Downloading vocab.txt: 100%|██████████| 232k/232k [00:00<00:00, 1.57MB/s]Downloading vocab.txt: 100%|██████████| 232k/232k [00:00<00:00, 1.57MB/s]
+Downloading modules.json:   0%|          | 0.00/349 [00:00<?, ?B/s]Downloading modules.json: 100%|██████████| 349/349 [00:00<00:00, 441kB/s]
+Batches:   0%|          | 0/26 [00:00<?, ?it/s]Batches:   4%|▍         | 1/26 [00:00<00:03,  6.72it/s]Batches:  35%|███▍      | 9/26 [00:00<00:00, 40.78it/s]Batches:  73%|███████▎  | 19/26 [00:00<00:00, 64.01it/s]Batches: 100%|██████████| 26/26 [00:00<00:00, 62.21it/s]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 10:54:40.750410: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 10:54:41.506325: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 10:54:48.371656: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:54:48.380929: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:54:48.383346: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:54:48.396592: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:54:48.398991: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:54:48.401360: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:54:48.586442: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:54:48.588102: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:54:48.589574: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:54:48.591053: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.90s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:39<00:00, 17.88s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:39<00:00, 19.53s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 10:57:19.040498: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 10:57:19.777866: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 10:57:26.517649: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:57:26.526516: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:57:26.528924: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:57:26.543952: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:57:26.546340: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:57:26.548698: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:57:26.744644: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:57:26.746274: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:57:26.747744: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 10:57:26.749219: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:29<00:29, 29.18s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:39<00:00, 17.92s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:39<00:00, 19.61s/it]
+Downloading .gitattributes:   0%|          | 0.00/1.48k [00:00<?, ?B/s]Downloading .gitattributes: 100%|██████████| 1.48k/1.48k [00:00<00:00, 314kB/s]
+Downloading 1_Pooling/config.json:   0%|          | 0.00/270 [00:00<?, ?B/s]Downloading 1_Pooling/config.json: 100%|██████████| 270/270 [00:00<00:00, 97.2kB/s]
+Downloading 2_Dense/config.json:   0%|          | 0.00/116 [00:00<?, ?B/s]Downloading 2_Dense/config.json: 100%|██████████| 116/116 [00:00<00:00, 250kB/s]
+Downloading pytorch_model.bin:   0%|          | 0.00/3.15M [00:00<?, ?B/s]Downloading pytorch_model.bin: 100%|██████████| 3.15M/3.15M [00:00<00:00, 17.6MB/s]Downloading pytorch_model.bin: 100%|██████████| 3.15M/3.15M [00:00<00:00, 17.4MB/s]
+Downloading README.md:   0%|          | 0.00/66.3k [00:00<?, ?B/s]Downloading README.md: 100%|██████████| 66.3k/66.3k [00:00<00:00, 48.0MB/s]
+Downloading config.json:   0%|          | 0.00/1.53k [00:00<?, ?B/s]Downloading config.json: 100%|██████████| 1.53k/1.53k [00:00<00:00, 2.20MB/s]
+Downloading (…)ce_transformers.json:   0%|          | 0.00/122 [00:00<?, ?B/s]Downloading (…)ce_transformers.json: 100%|██████████| 122/122 [00:00<00:00, 185kB/s]
+Downloading pytorch_model.bin:   0%|          | 0.00/1.34G [00:00<?, ?B/s]Downloading pytorch_model.bin:   1%|          | 10.5M/1.34G [00:00<00:14, 92.4MB/s]Downloading pytorch_model.bin:   2%|▏         | 21.0M/1.34G [00:00<00:14, 88.0MB/s]Downloading pytorch_model.bin:   2%|▏         | 31.5M/1.34G [00:00<00:14, 91.4MB/s]Downloading pytorch_model.bin:   3%|▎         | 41.9M/1.34G [00:00<00:13, 92.8MB/s]Downloading pytorch_model.bin:   4%|▍         | 52.4M/1.34G [00:00<00:13, 92.5MB/s]Downloading pytorch_model.bin:   5%|▍         | 62.9M/1.34G [00:00<00:13, 94.0MB/s]Downloading pytorch_model.bin:   5%|▌         | 73.4M/1.34G [00:00<00:13, 94.9MB/s]Downloading pytorch_model.bin:   6%|▋         | 83.9M/1.34G [00:00<00:13, 95.3MB/s]Downloading pytorch_model.bin:   7%|▋         | 94.4M/1.34G [00:01<00:13, 95.5MB/s]Downloading pytorch_model.bin:   8%|▊         | 105M/1.34G [00:01<00:13, 94.6MB/s] Downloading pytorch_model.bin:   9%|▊         | 115M/1.34G [00:01<00:12, 95.2MB/s]Downloading pytorch_model.bin:   9%|▉         | 126M/1.34G [00:01<00:12, 95.2MB/s]Downloading pytorch_model.bin:  10%|█         | 136M/1.34G [00:01<00:12, 95.4MB/s]Downloading pytorch_model.bin:  11%|█         | 147M/1.34G [00:01<00:12, 94.1MB/s]Downloading pytorch_model.bin:  12%|█▏        | 157M/1.34G [00:01<00:12, 95.0MB/s]Downloading pytorch_model.bin:  13%|█▎        | 168M/1.34G [00:01<00:12, 94.5MB/s]Downloading pytorch_model.bin:  13%|█▎        | 178M/1.34G [00:01<00:12, 93.9MB/s]Downloading pytorch_model.bin:  14%|█▍        | 189M/1.34G [00:02<00:12, 93.1MB/s]Downloading pytorch_model.bin:  15%|█▍        | 199M/1.34G [00:02<00:12, 93.7MB/s]Downloading pytorch_model.bin:  16%|█▌        | 210M/1.34G [00:02<00:12, 93.6MB/s]Downloading pytorch_model.bin:  16%|█▋        | 220M/1.34G [00:02<00:11, 94.2MB/s]Downloading pytorch_model.bin:  17%|█▋        | 231M/1.34G [00:02<00:11, 94.5MB/s]Downloading pytorch_model.bin:  18%|█▊        | 241M/1.34G [00:02<00:11, 93.8MB/s]Downloading pytorch_model.bin:  19%|█▉        | 252M/1.34G [00:02<00:11, 94.8MB/s]Downloading pytorch_model.bin:  20%|█▉        | 262M/1.34G [00:02<00:11, 92.0MB/s]Downloading pytorch_model.bin:  20%|██        | 273M/1.34G [00:02<00:11, 93.0MB/s]Downloading pytorch_model.bin:  21%|██        | 283M/1.34G [00:03<00:11, 93.5MB/s]Downloading pytorch_model.bin:  22%|██▏       | 294M/1.34G [00:03<00:11, 93.4MB/s]Downloading pytorch_model.bin:  23%|██▎       | 304M/1.34G [00:03<00:11, 93.0MB/s]Downloading pytorch_model.bin:  23%|██▎       | 315M/1.34G [00:03<00:10, 93.6MB/s]Downloading pytorch_model.bin:  24%|██▍       | 325M/1.34G [00:03<00:10, 94.1MB/s]Downloading pytorch_model.bin:  25%|██▌       | 336M/1.34G [00:03<00:10, 94.6MB/s]Downloading pytorch_model.bin:  26%|██▌       | 346M/1.34G [00:03<00:10, 94.8MB/s]Downloading pytorch_model.bin:  27%|██▋       | 357M/1.34G [00:03<00:10, 93.3MB/s]Downloading pytorch_model.bin:  27%|██▋       | 367M/1.34G [00:03<00:10, 93.3MB/s]Downloading pytorch_model.bin:  28%|██▊       | 377M/1.34G [00:04<00:10, 93.5MB/s]Downloading pytorch_model.bin:  29%|██▉       | 388M/1.34G [00:04<00:10, 94.4MB/s]Downloading pytorch_model.bin:  30%|██▉       | 398M/1.34G [00:04<00:09, 94.4MB/s]Downloading pytorch_model.bin:  31%|███       | 409M/1.34G [00:04<00:09, 95.1MB/s]Downloading pytorch_model.bin:  31%|███▏      | 419M/1.34G [00:04<00:09, 95.5MB/s]Downloading pytorch_model.bin:  32%|███▏      | 430M/1.34G [00:04<00:09, 92.6MB/s]Downloading pytorch_model.bin:  33%|███▎      | 440M/1.34G [00:04<00:09, 93.9MB/s]Downloading pytorch_model.bin:  34%|███▎      | 451M/1.34G [00:04<00:09, 94.6MB/s]Downloading pytorch_model.bin:  34%|███▍      | 461M/1.34G [00:04<00:09, 93.7MB/s]Downloading pytorch_model.bin:  35%|███▌      | 472M/1.34G [00:05<00:09, 93.9MB/s]Downloading pytorch_model.bin:  36%|███▌      | 482M/1.34G [00:05<00:09, 92.0MB/s]Downloading pytorch_model.bin:  37%|███▋      | 493M/1.34G [00:05<00:09, 92.7MB/s]Downloading pytorch_model.bin:  38%|███▊      | 503M/1.34G [00:05<00:08, 93.5MB/s]Downloading pytorch_model.bin:  38%|███▊      | 514M/1.34G [00:05<00:08, 94.3MB/s]Downloading pytorch_model.bin:  39%|███▉      | 524M/1.34G [00:05<00:08, 95.7MB/s]Downloading pytorch_model.bin:  40%|███▉      | 535M/1.34G [00:05<00:08, 96.4MB/s]Downloading pytorch_model.bin:  41%|████      | 545M/1.34G [00:05<00:08, 96.1MB/s]Downloading pytorch_model.bin:  41%|████▏     | 556M/1.34G [00:05<00:08, 96.0MB/s]Downloading pytorch_model.bin:  42%|████▏     | 566M/1.34G [00:06<00:08, 95.7MB/s]Downloading pytorch_model.bin:  43%|████▎     | 577M/1.34G [00:06<00:08, 95.1MB/s]Downloading pytorch_model.bin:  44%|████▍     | 587M/1.34G [00:06<00:07, 95.9MB/s]Downloading pytorch_model.bin:  45%|████▍     | 598M/1.34G [00:06<00:07, 95.5MB/s]Downloading pytorch_model.bin:  45%|████▌     | 608M/1.34G [00:06<00:07, 95.3MB/s]Downloading pytorch_model.bin:  46%|████▌     | 619M/1.34G [00:06<00:07, 92.7MB/s]Downloading pytorch_model.bin:  47%|████▋     | 629M/1.34G [00:06<00:07, 94.2MB/s]Downloading pytorch_model.bin:  48%|████▊     | 640M/1.34G [00:06<00:07, 95.3MB/s]Downloading pytorch_model.bin:  49%|████▊     | 650M/1.34G [00:06<00:07, 96.2MB/s]Downloading pytorch_model.bin:  49%|████▉     | 661M/1.34G [00:07<00:07, 95.0MB/s]Downloading pytorch_model.bin:  50%|█████     | 671M/1.34G [00:07<00:07, 94.9MB/s]Downloading pytorch_model.bin:  51%|█████     | 682M/1.34G [00:07<00:06, 94.7MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 692M/1.34G [00:07<00:06, 95.0MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 703M/1.34G [00:07<00:06, 92.6MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 713M/1.34G [00:07<00:06, 93.4MB/s]Downloading pytorch_model.bin:  54%|█████▍    | 724M/1.34G [00:07<00:06, 94.1MB/s]Downloading pytorch_model.bin:  55%|█████▍    | 734M/1.34G [00:07<00:06, 94.6MB/s]Downloading pytorch_model.bin:  56%|█████▌    | 744M/1.34G [00:07<00:06, 95.4MB/s]Downloading pytorch_model.bin:  56%|█████▋    | 755M/1.34G [00:08<00:06, 95.4MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 765M/1.34G [00:08<00:06, 94.9MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 776M/1.34G [00:08<00:05, 95.7MB/s]Downloading pytorch_model.bin:  59%|█████▊    | 786M/1.34G [00:08<00:05, 95.3MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 797M/1.34G [00:08<00:05, 95.2MB/s]Downloading pytorch_model.bin:  60%|██████    | 807M/1.34G [00:08<00:05, 91.9MB/s]Downloading pytorch_model.bin:  61%|██████    | 818M/1.34G [00:08<00:05, 93.5MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 828M/1.34G [00:08<00:05, 94.3MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 839M/1.34G [00:08<00:05, 94.3MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 849M/1.34G [00:09<00:05, 94.4MB/s]Downloading pytorch_model.bin:  64%|██████▍   | 860M/1.34G [00:09<00:05, 94.3MB/s]Downloading pytorch_model.bin:  65%|██████▍   | 870M/1.34G [00:09<00:04, 93.9MB/s]Downloading pytorch_model.bin:  66%|██████▌   | 881M/1.34G [00:09<00:04, 92.5MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 891M/1.34G [00:09<00:04, 92.8MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 902M/1.34G [00:09<00:04, 91.8MB/s]Downloading pytorch_model.bin:  68%|██████▊   | 912M/1.34G [00:09<00:04, 92.1MB/s]Downloading pytorch_model.bin:  69%|██████▉   | 923M/1.34G [00:09<00:04, 93.3MB/s]Downloading pytorch_model.bin:  70%|██████▉   | 933M/1.34G [00:09<00:04, 93.6MB/s]Downloading pytorch_model.bin:  70%|███████   | 944M/1.34G [00:10<00:04, 83.8MB/s]Downloading pytorch_model.bin:  71%|███████   | 954M/1.34G [00:10<00:04, 86.8MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 965M/1.34G [00:10<00:04, 87.3MB/s]Downloading pytorch_model.bin:  73%|███████▎  | 975M/1.34G [00:10<00:04, 89.2MB/s]Downloading pytorch_model.bin:  74%|███████▎  | 986M/1.34G [00:10<00:03, 90.2MB/s]Downloading pytorch_model.bin:  74%|███████▍  | 996M/1.34G [00:10<00:03, 91.5MB/s]Downloading pytorch_model.bin:  75%|███████▌  | 1.01G/1.34G [00:10<00:03, 93.1MB/s]Downloading pytorch_model.bin:  76%|███████▌  | 1.02G/1.34G [00:10<00:03, 93.5MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 1.03G/1.34G [00:10<00:03, 91.2MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 1.04G/1.34G [00:11<00:03, 88.9MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 1.05G/1.34G [00:11<00:03, 91.0MB/s]Downloading pytorch_model.bin:  79%|███████▉  | 1.06G/1.34G [00:11<00:03, 92.1MB/s]Downloading pytorch_model.bin:  80%|███████▉  | 1.07G/1.34G [00:11<00:02, 91.8MB/s]Downloading pytorch_model.bin:  81%|████████  | 1.08G/1.34G [00:11<00:02, 93.4MB/s]Downloading pytorch_model.bin:  81%|████████▏ | 1.09G/1.34G [00:11<00:02, 93.0MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 1.10G/1.34G [00:11<00:02, 94.2MB/s]Downloading pytorch_model.bin:  83%|████████▎ | 1.11G/1.34G [00:11<00:02, 93.1MB/s]Downloading pytorch_model.bin:  84%|████████▎ | 1.12G/1.34G [00:11<00:02, 93.4MB/s]Downloading pytorch_model.bin:  85%|████████▍ | 1.13G/1.34G [00:12<00:02, 94.5MB/s]Downloading pytorch_model.bin:  85%|████████▌ | 1.14G/1.34G [00:12<00:02, 94.4MB/s]Downloading pytorch_model.bin:  86%|████████▌ | 1.15G/1.34G [00:12<00:02, 91.5MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 1.16G/1.34G [00:12<00:01, 91.2MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 1.17G/1.34G [00:12<00:01, 90.3MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 1.18G/1.34G [00:12<00:01, 89.5MB/s]Downloading pytorch_model.bin:  89%|████████▉ | 1.20G/1.34G [00:12<00:01, 90.8MB/s]Downloading pytorch_model.bin:  90%|█████████ | 1.21G/1.34G [00:12<00:01, 91.8MB/s]Downloading pytorch_model.bin:  91%|█████████ | 1.22G/1.34G [00:13<00:01, 62.0MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 1.24G/1.34G [00:13<00:01, 75.8MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 1.25G/1.34G [00:13<00:01, 79.8MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 1.26G/1.34G [00:13<00:00, 83.0MB/s]Downloading pytorch_model.bin:  95%|█████████▍| 1.27G/1.34G [00:13<00:00, 86.0MB/s]Downloading pytorch_model.bin:  95%|█████████▌| 1.28G/1.34G [00:13<00:00, 88.6MB/s]Downloading pytorch_model.bin:  96%|█████████▋| 1.29G/1.34G [00:13<00:00, 90.4MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 1.30G/1.34G [00:14<00:00, 91.9MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 1.31G/1.34G [00:14<00:00, 92.7MB/s]Downloading pytorch_model.bin:  99%|█████████▊| 1.32G/1.34G [00:14<00:00, 93.0MB/s]Downloading pytorch_model.bin:  99%|█████████▉| 1.33G/1.34G [00:14<00:00, 93.4MB/s]Downloading pytorch_model.bin: 100%|██████████| 1.34G/1.34G [00:14<00:00, 92.4MB/s]
+Downloading (…)nce_bert_config.json:   0%|          | 0.00/53.0 [00:00<?, ?B/s]Downloading (…)nce_bert_config.json: 100%|██████████| 53.0/53.0 [00:00<00:00, 12.1kB/s]
+Downloading (…)cial_tokens_map.json:   0%|          | 0.00/2.20k [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 2.20k/2.20k [00:00<00:00, 2.36MB/s]
+Downloading spiece.model:   0%|          | 0.00/792k [00:00<?, ?B/s]Downloading spiece.model: 100%|██████████| 792k/792k [00:00<00:00, 90.8MB/s]
+Downloading tokenizer.json:   0%|          | 0.00/2.42M [00:00<?, ?B/s]Downloading tokenizer.json: 100%|██████████| 2.42M/2.42M [00:00<00:00, 5.48MB/s]Downloading tokenizer.json: 100%|██████████| 2.42M/2.42M [00:00<00:00, 5.46MB/s]
+Downloading tokenizer_config.json:   0%|          | 0.00/2.41k [00:00<?, ?B/s]Downloading tokenizer_config.json: 100%|██████████| 2.41k/2.41k [00:00<00:00, 2.89MB/s]
+Downloading modules.json:   0%|          | 0.00/461 [00:00<?, ?B/s]Downloading modules.json: 100%|██████████| 461/461 [00:00<00:00, 933kB/s]
+Batches:   0%|          | 0/26 [00:00<?, ?it/s]Batches:   4%|▍         | 1/26 [00:00<00:21,  1.14it/s]Batches:   8%|▊         | 2/26 [00:01<00:14,  1.62it/s]Batches:  12%|█▏        | 3/26 [00:01<00:11,  1.98it/s]Batches:  15%|█▌        | 4/26 [00:02<00:09,  2.28it/s]Batches:  19%|█▉        | 5/26 [00:02<00:08,  2.42it/s]Batches:  23%|██▎       | 6/26 [00:02<00:07,  2.66it/s]Batches:  27%|██▋       | 7/26 [00:02<00:06,  2.84it/s]Batches:  31%|███       | 8/26 [00:03<00:05,  3.07it/s]Batches:  35%|███▍      | 9/26 [00:03<00:05,  3.22it/s]Batches:  38%|███▊      | 10/26 [00:03<00:04,  3.36it/s]Batches:  42%|████▏     | 11/26 [00:04<00:04,  3.46it/s]Batches:  46%|████▌     | 12/26 [00:04<00:03,  3.61it/s]Batches:  50%|█████     | 13/26 [00:04<00:03,  3.70it/s]Batches:  54%|█████▍    | 14/26 [00:04<00:03,  3.94it/s]Batches:  58%|█████▊    | 15/26 [00:05<00:02,  4.19it/s]Batches:  62%|██████▏   | 16/26 [00:05<00:02,  4.38it/s]Batches:  65%|██████▌   | 17/26 [00:05<00:01,  4.52it/s]Batches:  69%|██████▉   | 18/26 [00:05<00:01,  4.80it/s]Batches:  73%|███████▎  | 19/26 [00:05<00:01,  5.07it/s]Batches:  77%|███████▋  | 20/26 [00:05<00:01,  5.05it/s]Batches:  81%|████████  | 21/26 [00:06<00:00,  5.45it/s]Batches:  85%|████████▍ | 22/26 [00:06<00:00,  5.63it/s]Batches:  88%|████████▊ | 23/26 [00:06<00:00,  5.92it/s]Batches:  92%|█████████▏| 24/26 [00:06<00:00,  6.26it/s]Batches:  96%|█████████▌| 25/26 [00:06<00:00,  6.80it/s]Batches: 100%|██████████| 26/26 [00:06<00:00,  3.87it/s]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:00:44.127103: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:00:44.881850: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:00:51.964593: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:00:51.973536: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:00:51.975918: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:00:51.990169: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:00:51.992552: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:00:51.994898: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:00:52.174335: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:00:52.175923: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:00:52.177374: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:00:52.178837: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:29<00:29, 29.05s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.68s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.39s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+1+2+meta-llama/Llama-2-7b-hf+mvp
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2
+2024-03-14 11:03:40.947883: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:03:41.692741: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:03:48.414386: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:03:48.423375: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:03:48.425787: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:03:48.440781: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:03:48.443189: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:03:48.445557: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:03:48.635069: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:03:48.636712: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:03:48.638180: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:03:48.639662: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:29<00:29, 29.24s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:39<00:00, 17.88s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:39<00:00, 19.59s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:06:18.473177: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:06:19.243487: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:06:26.188350: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:06:26.197300: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:06:26.199715: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:06:26.213934: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:06:26.216327: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:06:26.218677: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:06:26.405696: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:06:26.407329: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:06:26.408786: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:06:26.410249: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.20s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.51s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.11s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:08:57.453161: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:08:58.229545: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:09:04.990990: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:09:05.000401: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:09:05.002837: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:09:05.017112: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:09:05.019497: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:09:05.021858: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:09:05.209372: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:09:05.211011: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:09:05.212482: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:09:05.213958: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.44s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.29s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:11:53.038025: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:11:53.809881: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:12:00.781194: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:12:00.790273: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:12:00.792787: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:12:00.806761: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:12:00.809195: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:12:00.811556: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:12:00.998147: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:12:00.999810: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:12:01.001316: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:12:01.002821: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.09s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.23s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+1+4+meta-llama/Llama-2-7b-hf+mvp
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4
+2024-03-14 11:14:50.246073: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:14:51.002253: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:14:57.739919: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:14:57.748917: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:14:57.752109: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:14:57.766289: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:14:57.768661: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:14:57.771006: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:14:57.961029: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:14:57.962675: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:14:57.964127: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:14:57.965601: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.33s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:37<00:00, 17.20s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:37<00:00, 18.87s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:17:26.247366: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:17:27.136385: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:17:34.257287: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:17:34.266671: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:17:34.269094: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:17:34.284291: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:17:34.286689: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:17:34.289054: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:17:34.480002: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:17:34.481604: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:17:34.483057: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:17:34.484521: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.76s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.33s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.04s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:20:03.460044: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:20:04.241820: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:20:10.894187: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:20:10.903656: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:20:10.906088: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:20:10.921029: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:20:10.923499: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:20:10.925897: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:20:11.115638: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:20:11.117266: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:20:11.118738: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:20:11.120586: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.99s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.64s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.34s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:22:58.640021: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:22:59.411169: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:23:06.397195: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:23:06.406545: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:23:06.408958: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:23:06.422491: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:23:06.424901: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:23:06.427254: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:23:06.617465: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:23:06.621132: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:23:06.622589: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:23:06.624060: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.44s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.74s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.35s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+1+16+meta-llama/Llama-2-7b-hf+mvp
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16
+2024-03-14 11:25:56.465398: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:25:57.267685: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:26:04.166883: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:26:04.176071: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:26:04.178565: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:26:04.192576: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:26:04.195505: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:26:04.197885: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:26:04.393317: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:26:04.395355: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:26:04.396834: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:26:04.398322: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:29<00:29, 29.35s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.75s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.49s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:28:33.234360: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:28:33.981074: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:28:41.001462: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:28:41.010416: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:28:41.014154: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:28:41.218023: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:28:41.220604: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:28:41.222976: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:28:41.414693: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:28:41.416389: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:28:41.417869: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:28:41.419358: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.41s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.09s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:31:09.481368: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:31:10.260642: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:31:17.736317: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:31:17.745363: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:31:17.747793: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:31:17.762921: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:31:17.765338: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:31:17.767713: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:31:17.963850: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:31:17.965544: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:31:17.967020: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:31:17.968499: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:29<00:29, 29.54s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:39<00:00, 18.09s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:39<00:00, 19.81s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
+2024-03-14 11:34:07.252400: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 11:34:08.061165: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 11:34:14.868409: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:34:14.877105: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:34:14.879546: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:34:14.893288: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:34:14.895689: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:34:14.898050: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:34:15.084206: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:34:15.085832: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:34:15.087296: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 11:34:15.088767: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38375 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:06:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:29<00:29, 29.10s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.78s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.47s/it]
+Map:   0%|          | 0/376 [00:00<?, ? examples/s]Map:   0%|          | 0/376 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 208, in attacker
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 592, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3097, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3450, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+  File "/usr/local/lib/python3.8/dist-packages/datasets/arrow_dataset.py", line 3353, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/mnt/data/mvp/src/test.py", line 208, in <lambda>
+    my_dataset = my_dataset[split].map(lambda x: convert_to_icl(x, icl_examples, verbalizer), batched=False)
+  File "/mnt/data/mvp/src/test.py", line 56, in convert_to_icl
+    idx = data['idx']
+  File "/usr/local/lib/python3.8/dist-packages/datasets/formatting/formatting.py", line 270, in __getitem__
+    value = self.data[key]
+KeyError: 'idx'
