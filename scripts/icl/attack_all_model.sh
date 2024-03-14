@@ -2,7 +2,8 @@ DATASET=$1
 MODEL=$2
 MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
 
-ATTACKS=(textfooler textbugger swap_labels bert_attack icl_attack)
+# ATTACKS=(textfooler textbugger swap_labels bert_attack icl_attack)
+ATTACKS=(textfooler textbugger swap_labels)
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
