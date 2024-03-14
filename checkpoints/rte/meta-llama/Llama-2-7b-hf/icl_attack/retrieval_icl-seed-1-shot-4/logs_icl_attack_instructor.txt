@@ -10,3 +10,47 @@ Length of anchor subsample 8
 Length of icl examples 2
 Finished loading model
 Loading retrieved examples from ./data/ralm/rte_instructor.pkl
+ICL examples
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'actor christopher reeve, best known for his role as superman, is paralyzed and cannot breathe without the help of a respirator after breaking his neck in a riding accident in culpeper, va., on saturday.', 'Hypothesis_0': 'christopher reeve had an accident.', 'Label_0': 'true', 'Premise_1': 'christopher reeve, an actor and director who became an inspiration worldwide after being paralyzed in a horse riding accident, died sunday of heart failure.', 'Hypothesis_1': 'christopher reeve had an accident.', 'Label_1': 'true', 'Premise_2': 'hepburn, a four-time academy award winner, died last june in connecticut at age 96.', 'Hypothesis_2': 'hepburn, who won four oscars, died last june aged 96.', 'Label_2': 'true', 'Premise_3': "roddenberry was probably most known for her role as the voice of the computers in nearly every star trek television spinoff series from the 1960's to present time. she is also the voice of the computer in the upcoming movie by director j.j. abrams, star trek. majel also played nurse chapel in the original star trek series starring william shatner and later played lwaxana troi in star trek: the next generation and star trek: deep space nine.", 'Hypothesis_3': 'majel roddenberry died of cancer.', 'Label_3': 'false', 'Premise_4': "reagan announced he had alzheimer's disease, an incurable brain affliction.", 'Hypothesis_4': "reagan died of pneumonia complicated by alzheimer's disease", 'Label_4': 'false', 'Premise_5': "et confirms that actor bruce willis has married his girlfriend of a year, model/actress emma heming.  a small, private wedding ceremony took place on saturday at willis' home in parrot cay, turks & caicos, a rep said.  in attendance were the 54-year-old actor's first wife, demi moore, and her husband ashton kutcher, as well as his daughters rumer, scout, and tallulah belle. the couple plans to hold a civil ceremony when they return to california.", 'Hypothesis_5': "bruce willis' wife is from california.", 'Label_5': 'false', 'Premise_6': 'in a statement to reporters, parker called the spilt with gap a mutual decision, and walks away $38 million richer and recently signed a 2-year deal with former employer hbo to develop future programming for the network. parker is also scheduled to appear in two upcoming comedy films, a movie adaptation of the comedy central series, strangers with candy, as well as the family stone, costarring diane keaton and claire danes.', 'Hypothesis_6': 'claire danes is an actress who played in "stardust".', 'Label_6': 'false', 'Premise_7': 'the disappearance of york university chef claudia lawrence is now being treated as suspected murder, north yorkshire police said. however detectives said they had not found any proof that the 35-year-old, who went missing on 18 march, was dead. her father peter lawrence made a direct appeal to his daughter to contact him five weeks after she disappeared. his plea came at a news conference held shortly after a £10,000 reward was offered to help find miss lawrence. crimestoppers said the sum they were offering was "significantly higher" than usual because of public interest in the case.', 'Hypothesis_7': 'claudia lawrence is 35 years old.', 'Label_7': 'true'}
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'actor christopher reeve, best known for his role as superman, is paralyzed and cannot breathe without the help of a respirator after breaking his neck in a riding accident in culpeper, va., on saturday.', 'Hypothesis_0': 'christopher reeve had an accident.', 'Label_0': 'true', 'Premise_1': 'christopher reeve, an actor and director who became an inspiration worldwide after being paralyzed in a horse riding accident, died sunday of heart failure.', 'Hypothesis_1': 'christopher reeve had an accident.', 'Label_1': 'true', 'Premise_2': 'hepburn, a four-time academy award winner, died last june in connecticut at age 96.', 'Hypothesis_2': 'hepburn, who won four oscars, died last june aged 96.', 'Label_2': 'true', 'Premise_3': "roddenberry was probably most known for her role as the voice of the computers in nearly every star trek television spinoff series from the 1960's to present time. she is also the voice of the computer in the upcoming movie by director j.j. abrams, star trek. majel also played nurse chapel in the original star trek series starring william shatner and later played lwaxana troi in star trek: the next generation and star trek: deep space nine.", 'Hypothesis_3': 'majel roddenberry died of cancer.', 'Label_3': 'false', 'Premise_4': "reagan announced he had alzheimer's disease, an incurable brain affliction.", 'Hypothesis_4': "reagan died of pneumonia complicated by alzheimer's disease", 'Label_4': 'false', 'Premise_5': "et confirms that actor bruce willis has married his girlfriend of a year, model/actress emma heming.  a small, private wedding ceremony took place on saturday at willis' home in parrot cay, turks & caicos, a rep said.  in attendance were the 54-year-old actor's first wife, demi moore, and her husband ashton kutcher, as well as his daughters rumer, scout, and tallulah belle. the couple plans to hold a civil ceremony when they return to california.", 'Hypothesis_5': "bruce willis' wife is from california.", 'Label_5': 'false', 'Premise_6': 'in a statement to reporters, parker called the spilt with gap a mutual decision, and walks away $38 million richer and recently signed a 2-year deal with former employer hbo to develop future programming for the network. parker is also scheduled to appear in two upcoming comedy films, a movie adaptation of the comedy central series, strangers with candy, as well as the family stone, costarring diane keaton and claire danes.', 'Hypothesis_6': 'claire danes is an actress who played in "stardust".', 'Label_6': 'false', 'Premise_7': 'the disappearance of york university chef claudia lawrence is now being treated as suspected murder, north yorkshire police said. however detectives said they had not found any proof that the 35-year-old, who went missing on 18 march, was dead. her father peter lawrence made a direct appeal to his daughter to contact him five weeks after she disappeared. his plea came at a news conference held shortly after a £10,000 reward was offered to help find miss lawrence. crimestoppers said the sum they were offering was "significantly higher" than usual because of public interest in the case.', 'Hypothesis_7': 'claudia lawrence is 35 years old.', 'Label_7': 'true'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/icl_attack/retrieval_icl-seed-1-shot-4_instructor/icl_attack_log.csv
+<textattack.attacker.Attacker object at 0x7f2f450a2fd0>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapRandomCharacterInsertion(
+        (random_one):  True
+      )
+    (1): WordSwapRandomCharacterDeletion(
+        (random_one):  True
+      )
+    (2): WordSwapNeighboringCharacterSwap(
+        (random_one):  True
+      )
+    (3): WordSwapHomoglyphSwap
+    (4): WordSwapEmbedding(
+        (max_candidates):  5
+        (embedding):  WordEmbedding
+      )
+    )
+  (constraints): 
+    (0): IclUniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.8
+        (window_size):  inf
+        (skip_text_shorter_than_window):  False
+        (compare_against_original):  True
+      )
+    (1): RepeatModification
+    (2): StopwordModification
+    (3): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'label_', 'premise', 'hypothesis']
+      )
+  (is_black_box):  True
+) 
+
