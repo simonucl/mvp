@@ -58,23 +58,23 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
     elif args.model_type in ['knn_icl', 'icl', 'icl_attack', 'knn_icl_attack', 'retrieval_icl', 'retrieval_icl_attack']:
         assert ((args.is_quantized) and (args.precision in ['int8', 'int4'])) or ((not args.is_quantized) and (args.precision in ['float16', 'bfloat16'])), f'ICL only supports quantized models, but args.is_quantized = {args.is_quantized} and args.precision = {args.precision}'
         
-        if ("Llama" in args.model):
-            if args.is_quantized:
-                if args.precision == 'int8':
-                    model = LlamaForCausalLM.from_pretrained(
-                        location, 
-                        return_dict = True, 
-                        use_flash_attention_2=True, load_in_8bit=True)
-                elif args.precision == 'int4':
-                    model = LlamaForCausalLM.from_pretrained(
-                        location, 
-                        return_dict = True, 
-                        use_flash_attention_2=True, load_in_4bit=True)
-            else:
-                dtype = torch.float16 if args.precision == 'float16' else torch.bfloat16
-                model = LlamaForCausalLM.from_pretrained(location, return_dict = True, use_flash_attention_2=True, torch_dtype=dtype)
+        if args.is_quantized:
+            if args.precision == 'int8':
+                model = model_class.from_pretrained(
+                    location, 
+                    return_dict = True, 
+                    use_flash_attention_2=True, load_in_8bit=True)
+                
+            elif args.precision == 'int4':
+                model = model_class.from_pretrained(
+                    location, 
+                    return_dict = True, 
+                    use_flash_attention_2=True, load_in_4bit=True)
         else:
-            model = model_class.from_pretrained(location, return_dict = True)
+            dtype = torch.float16 if args.precision == 'float16' else torch.bfloat16
+            model = model_class.from_pretrained(location, return_dict = True, use_flash_attention_2=True, torch_dtype=dtype)
+        # else:
+        #     model = model_class.from_pretrained(location, return_dict = True)
         model = ICL(args, model, tokenizer, data_collator, dataset, verbalizer = verbalizer, template = template)
     elif args.model_type in ['knn_cli', 'knn_adv']:
         model = model_class.from_pretrained(location, return_dict = True)
