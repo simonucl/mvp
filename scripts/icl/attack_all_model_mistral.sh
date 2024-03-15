@@ -4,7 +4,7 @@ MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
 TOTAL_BATCH=$4
 
 # ATTACKS=(textfooler textbugger swap_labels bert_attack icl_attack)
-ATTACKS=(textbugger swap_labels)
+ATTACKS=(swap_labels)
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
