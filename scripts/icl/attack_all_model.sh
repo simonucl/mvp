@@ -5,7 +5,7 @@ TOTAL_BATCH=$4
 
 # ATTACKS=(textfooler textbugger swap_labels bert_attack icl_attack)
 
-ATTACKS=(swap_labels bert_attack icl_attack)
+ATTACKS=(bert_attack icl_attack)
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
