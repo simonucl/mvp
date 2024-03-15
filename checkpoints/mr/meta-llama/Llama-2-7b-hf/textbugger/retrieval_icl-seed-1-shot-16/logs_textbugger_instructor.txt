@@ -14,7 +14,7 @@ Finished loading model
 ['Review: {}\nSentiment: {}']
 {0: ['negative'], 1: ['positive']}
 ./checkpoints/mr/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl-seed-1-shot-16_instructor/textbugger_log.csv
-<textattack.attacker.Attacker object at 0x7f80ead2ad60>
+<textattack.attacker.Attacker object at 0x7f924a58cd30>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -61,22 +61,22 @@ Attack(
 ) 
 
 
-+-------------------------------+-------+
-| Attack Results                |       |
-+-------------------------------+-------+
-| Number of successful attacks: | 357   |
-| Number of failed attacks:     | 572   |
-| Number of skipped attacks:    | 71    |
-| Original accuracy:            | 92.9  |
-| Accuracy under attack:        | 57.2  |
-| Attack success rate:          | 38.43 |
-| Average perturbed word %:     | 12.31 |
-| Average num. words per input: | 18.64 |
-| Avg num queries:              | 49.05 |
-| Adv confidence:               | 0.67  |
-| Average Original Perplexity:  | 70.3  |
-| Average Attack Perplexity:    | 140.9 |
-| Average Attack USE Score:     | 0.86  |
-+-------------------------------+-------+
-Attack time: 4937.608534574509
-Attack time: 4937.608534574509
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 358    |
+| Number of failed attacks:     | 570    |
+| Number of skipped attacks:    | 72     |
+| Original accuracy:            | 92.8   |
+| Accuracy under attack:        | 57.0   |
+| Attack success rate:          | 38.58  |
+| Average perturbed word %:     | 12.04  |
+| Average num. words per input: | 18.64  |
+| Avg num queries:              | 49.45  |
+| Adv confidence:               | 0.62   |
+| Average Original Perplexity:  | 71.34  |
+| Average Attack Perplexity:    | 145.34 |
+| Average Attack USE Score:     | 0.86   |
++-------------------------------+--------+
+Attack time: 17687.208924531937
+Attack time: 17687.208924531937
