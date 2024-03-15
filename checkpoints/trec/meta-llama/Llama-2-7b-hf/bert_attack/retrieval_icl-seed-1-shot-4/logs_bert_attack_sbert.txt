@@ -8,11 +8,11 @@ Loading retrieved examples from ./data/ralm/trec_sbert.pkl
 Length of anchor subsample 0
 Length of icl examples 500
 Finished loading model
-{'sentence': 'how far is it from denver to aspen ?', 'label': 5}
+{'sentence': 'how far is it from denver to aspen ?', 'label': 5, 'idx': 0}
 ['Question: {}\nType: {}']
 {0: ['expression'], 1: ['entity'], 2: ['description'], 3: ['person'], 4: ['location'], 5: ['number']}
 ./checkpoints/trec/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-4_sbert/bert_attack_log.csv
-<textattack.attacker.Attacker object at 0x7f6810fa0130>
+<textattack.attacker.Attacker object at 0x7fee76b7b5e0>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  unk
@@ -49,19 +49,19 @@ Attack(
 +-------------------------------+-------+
 | Attack Results                |       |
 +-------------------------------+-------+
-| Number of successful attacks: | 204   |
-| Number of failed attacks:     | 220   |
-| Number of skipped attacks:    | 76    |
-| Original accuracy:            | 84.8  |
-| Accuracy under attack:        | 44.0  |
-| Attack success rate:          | 48.11 |
-| Average perturbed word %:     | 15.26 |
+| Number of successful attacks: | 245   |
+| Number of failed attacks:     | 131   |
+| Number of skipped attacks:    | 124   |
+| Original accuracy:            | 75.2  |
+| Accuracy under attack:        | 26.2  |
+| Attack success rate:          | 65.16 |
+| Average perturbed word %:     | 16.54 |
 | Average num. words per input: | 6.5   |
-| Avg num queries:              | 29.5  |
-| Adv confidence:               | 0.78  |
-| Average Original Perplexity:  | 28.06 |
+| Avg num queries:              | 25.84 |
+| Adv confidence:               | 0.91  |
+| Average Original Perplexity:  | 26.8  |
 | Average Attack Perplexity:    | 55.43 |
-| Average Attack USE Score:     | 0.85  |
+| Average Attack USE Score:     | 0.86  |
 +-------------------------------+-------+
-Attack time: 8418.565952062607
-Attack time: 8418.565952062607
+Attack time: 8038.548112154007
+Attack time: 8038.548112154007

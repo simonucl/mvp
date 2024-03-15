@@ -8,11 +8,11 @@ Loading retrieved examples from ./data/ralm/trec_sbert.pkl
 Length of anchor subsample 0
 Length of icl examples 500
 Finished loading model
-{'sentence': 'how far is it from denver to aspen ?', 'label': 5}
+{'sentence': 'how far is it from denver to aspen ?', 'label': 5, 'idx': 0}
 ['Question: {}\nType: {}']
 {0: ['expression'], 1: ['entity'], 2: ['description'], 3: ['person'], 4: ['location'], 5: ['number']}
 ./checkpoints/trec/meta-llama/Llama-2-7b-hf/bert_attack/retrieval_icl-seed-1-shot-16_sbert/bert_attack_log.csv
-<textattack.attacker.Attacker object at 0x7fd9273001f0>
+<textattack.attacker.Attacker object at 0x7fc594103670>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  unk
@@ -49,19 +49,19 @@ Attack(
 +-------------------------------+-------+
 | Attack Results                |       |
 +-------------------------------+-------+
-| Number of successful attacks: | 208   |
-| Number of failed attacks:     | 242   |
-| Number of skipped attacks:    | 50    |
-| Original accuracy:            | 90.0  |
-| Accuracy under attack:        | 48.4  |
-| Attack success rate:          | 46.22 |
-| Average perturbed word %:     | 15.66 |
+| Number of successful attacks: | 121   |
+| Number of failed attacks:     | 262   |
+| Number of skipped attacks:    | 117   |
+| Original accuracy:            | 76.6  |
+| Accuracy under attack:        | 52.4  |
+| Attack success rate:          | 31.59 |
+| Average perturbed word %:     | 16.2  |
 | Average num. words per input: | 6.5   |
-| Avg num queries:              | 29.14 |
+| Avg num queries:              | 28.36 |
 | Adv confidence:               | 0.76  |
-| Average Original Perplexity:  | 26.33 |
-| Average Attack Perplexity:    | 52.25 |
+| Average Original Perplexity:  | 23.55 |
+| Average Attack Perplexity:    | 51.66 |
 | Average Attack USE Score:     | 0.84  |
 +-------------------------------+-------+
-Attack time: 11137.879690885544
-Attack time: 11137.879690885544
+Attack time: 10988.711153507233
+Attack time: 10988.711153507233
