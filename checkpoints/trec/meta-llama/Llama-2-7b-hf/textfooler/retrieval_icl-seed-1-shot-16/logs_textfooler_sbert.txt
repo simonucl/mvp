@@ -8,11 +8,11 @@ Loading retrieved examples from ./data/ralm/trec_sbert.pkl
 Length of anchor subsample 0
 Length of icl examples 500
 Finished loading model
-{'sentence': 'how far is it from denver to aspen ?', 'label': 5}
+{'sentence': 'how far is it from denver to aspen ?', 'label': 5, 'idx': 0}
 ['Question: {}\nType: {}']
 {0: ['expression'], 1: ['entity'], 2: ['description'], 3: ['person'], 4: ['location'], 5: ['number']}
 ./checkpoints/trec/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-16_sbert/textfooler_log.csv
-<textattack.attacker.Attacker object at 0x7fadd29a85b0>
+<textattack.attacker.Attacker object at 0x7f7f247ecf10>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -67,19 +67,19 @@ Attack(
 +-------------------------------+-------+
 | Attack Results                |       |
 +-------------------------------+-------+
-| Number of successful attacks: | 179   |
-| Number of failed attacks:     | 271   |
-| Number of skipped attacks:    | 50    |
-| Original accuracy:            | 90.0  |
-| Accuracy under attack:        | 54.2  |
-| Attack success rate:          | 39.78 |
-| Average perturbed word %:     | 18.32 |
+| Number of successful attacks: | 99    |
+| Number of failed attacks:     | 284   |
+| Number of skipped attacks:    | 117   |
+| Original accuracy:            | 76.6  |
+| Accuracy under attack:        | 56.8  |
+| Attack success rate:          | 25.85 |
+| Average perturbed word %:     | 18.71 |
 | Average num. words per input: | 6.5   |
-| Avg num queries:              | 21.28 |
-| Adv confidence:               | 0.82  |
-| Average Original Perplexity:  | 25.26 |
-| Average Attack Perplexity:    | 64.2  |
+| Avg num queries:              | 19.91 |
+| Adv confidence:               | 0.84  |
+| Average Original Perplexity:  | 22.26 |
+| Average Attack Perplexity:    | 54.99 |
 | Average Attack USE Score:     | 0.77  |
 +-------------------------------+-------+
-Attack time: 1563.3166782855988
-Attack time: 1563.3166782855988
+Attack time: 1360.0850837230682
+Attack time: 1360.0850837230682
