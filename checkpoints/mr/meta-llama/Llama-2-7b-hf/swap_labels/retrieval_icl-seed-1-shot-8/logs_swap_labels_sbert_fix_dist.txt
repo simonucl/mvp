@@ -1,0 +1,59 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert_fix_dist
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, cache_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert_fix_dist/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, ralm_save_path='./data/ralm/mr_sbert.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Length of anchor subsample 16
+Length of icl examples 2
+Finished loading model
+Loading retrieved examples from ./data/ralm/mr_sbert.pkl
+ICL examples
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': 'there is a refreshing absence of cynicism in stuart little 2--quite a rarity , even in the family film market . eventually , it wins you over .', 'Label_0': 'positive', 'Example_1': "while i can't say it's on par with the first one , stuart little 2 is a light , fun cheese puff of a movie .", 'Label_1': 'positive', 'Example_2': 'very special effects , brilliantly bold colors and heightened reality can\'t hide the giant achilles\' heel in " stuart little 2 " : there\'s just no story , folks .', 'Label_2': 'negative', 'Example_3': 'as immaculate as stuart little 2 is , it could be a lot better if it were , well , more adventurous .', 'Label_3': 'negative', 'Example_4': "much of the movie's charm lies in the utter cuteness of stuart and margolo . their computer-animated faces are very expressive .", 'Label_4': 'positive', 'Example_5': "i still can't relate to stuart : he's a mouse , for cryin' out loud , and all he does is milk it with despondent eyes and whine that nobody treats him human enough .", 'Label_5': 'negative', 'Example_6': 'a loving little film of considerable appeal .', 'Label_6': 'positive', 'Example_7': 'brave and sweetly rendered love story .', 'Label_7': 'positive', 'Example_8': 'this charming but slight tale has warmth , wit and interesting characters compassionately portrayed .', 'Label_8': 'positive', 'Example_9': "for single digits kidlets stuart little 2 is still a no brainer . if you're looking to rekindle the magic of the first film , you'll need a stronger stomach than us .", 'Label_9': 'negative', 'Example_10': 'a beguiling evocation of the quality that keeps dickens evergreen : the exuberant openness with which he expresses our most basic emotions .', 'Label_10': 'positive', 'Example_11': "as conceived by mr . schaeffer , christopher and grace are little more than collections of quirky traits lifted from a screenwriter's outline and thrown at actors charged with the impossible task of making them jell .", 'Label_11': 'negative', 'Example_12': 'a particularly joyless , and exceedingly dull , period coming-of-age tale .', 'Label_12': 'negative', 'Example_13': "lush and beautifully photographed ( somebody suggested the stills might make a nice coffee table book ) , but ultimately you'll leave the theater wondering why these people mattered .", 'Label_13': 'negative', 'Example_14': 'an eccentric little comic/thriller deeply in love with its own quirky personality .', 'Label_14': 'negative', 'Example_15': 'wow , so who knew charles dickens could be so light-hearted ?', 'Label_15': 'positive'}
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': 'there is a refreshing absence of cynicism in stuart little 2--quite a rarity , even in the family film market . eventually , it wins you over .', 'Label_0': 'positive', 'Example_1': "while i can't say it's on par with the first one , stuart little 2 is a light , fun cheese puff of a movie .", 'Label_1': 'positive', 'Example_2': 'very special effects , brilliantly bold colors and heightened reality can\'t hide the giant achilles\' heel in " stuart little 2 " : there\'s just no story , folks .', 'Label_2': 'negative', 'Example_3': 'as immaculate as stuart little 2 is , it could be a lot better if it were , well , more adventurous .', 'Label_3': 'negative', 'Example_4': "much of the movie's charm lies in the utter cuteness of stuart and margolo . their computer-animated faces are very expressive .", 'Label_4': 'positive', 'Example_5': "i still can't relate to stuart : he's a mouse , for cryin' out loud , and all he does is milk it with despondent eyes and whine that nobody treats him human enough .", 'Label_5': 'negative', 'Example_6': 'a loving little film of considerable appeal .', 'Label_6': 'positive', 'Example_7': 'brave and sweetly rendered love story .', 'Label_7': 'positive', 'Example_8': 'this charming but slight tale has warmth , wit and interesting characters compassionately portrayed .', 'Label_8': 'positive', 'Example_9': "for single digits kidlets stuart little 2 is still a no brainer . if you're looking to rekindle the magic of the first film , you'll need a stronger stomach than us .", 'Label_9': 'negative', 'Example_10': 'a beguiling evocation of the quality that keeps dickens evergreen : the exuberant openness with which he expresses our most basic emotions .', 'Label_10': 'positive', 'Example_11': "as conceived by mr . schaeffer , christopher and grace are little more than collections of quirky traits lifted from a screenwriter's outline and thrown at actors charged with the impossible task of making them jell .", 'Label_11': 'negative', 'Example_12': 'a particularly joyless , and exceedingly dull , period coming-of-age tale .', 'Label_12': 'negative', 'Example_13': "lush and beautifully photographed ( somebody suggested the stills might make a nice coffee table book ) , but ultimately you'll leave the theater wondering why these people mattered .", 'Label_13': 'negative', 'Example_14': 'an eccentric little comic/thriller deeply in love with its own quirky personality .', 'Label_14': 'negative', 'Example_15': 'wow , so who knew charles dickens could be so light-hearted ?', 'Label_15': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert_fix_dist/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f02c6d61190>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapDuo
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): UniformSwap(
+        (threshold):  1
+        (compare_against_original):  True
+      )
+    (2): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (3): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 574    |
+| Number of failed attacks:     | 352    |
+| Number of skipped attacks:    | 74     |
+| Original accuracy:            | 92.6   |
+| Accuracy under attack:        | 35.2   |
+| Attack success rate:          | 61.99  |
+| Average perturbed word %:     | 1.83   |
+| Average num. words per input: | 328.39 |
+| Avg num queries:              | 113.35 |
+| Adv confidence:               | 0.67   |
+| Average Original Perplexity:  | 36.39  |
+| Average Attack Perplexity:    | 36.26  |
+| Average Attack USE Score:     | 0.98   |
++-------------------------------+--------+
+Attack time: 6614.451333522797
+Attack time: 6614.451333522797
