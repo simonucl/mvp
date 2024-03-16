@@ -1,0 +1,22 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='textfooler', batch_size=11, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_sbert
+Traceback (most recent call last):
+  File "main.py", line 84, in <module>
+    from src.test import attacker
+  File "/mnt/data/mvp/src/test.py", line 5, in <module>
+    from textattack.attacker import Attacker
+  File "/mnt/data/src/textattack/textattack/__init__.py", line 12, in <module>
+    from .attack_args import AttackArgs, CommandLineAttackArgs
+  File "/mnt/data/src/textattack/textattack/attack_args.py", line 14, in <module>
+    from textattack.shared.utils import ARGS_SPLIT_TOKEN, load_module_from_file
+  File "/mnt/data/src/textattack/textattack/shared/__init__.py", line 11, in <module>
+    from . import utils
+  File "/mnt/data/src/textattack/textattack/shared/utils/__init__.py", line 2, in <module>
+    from .misc import *
+  File "/mnt/data/src/textattack/textattack/shared/utils/misc.py", line 11, in <module>
+    "TA_DEVICE", torch.device("cuda" if torch.cuda.is_available() else "cpu")
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/cuda/__init__.py", line 138, in is_available
+    return torch._C._cuda_getDeviceCount() > 0
+KeyboardInterrupt
