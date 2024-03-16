@@ -11,7 +11,7 @@ Finished loading model
 ['{}\n The question is: {}. True or False?\nThe Answer is: {}']
 {0: ['true'], 1: ['false']}
 ./checkpoints/rte/lmsys/vicuna-7b-v1.5/bert_attack/icl-seed-13-shot-8/bert_attack_log.csv
-<textattack.attacker.Attacker object at 0x7ff1f2ea4fd0>
+<textattack.attacker.Attacker object at 0x7f7de8e5cd90>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  unk
@@ -62,5 +62,5 @@ Attack(
 | Average Attack Perplexity:    | 45.82 |
 | Average Attack USE Score:     | 0.94  |
 +-------------------------------+-------+
-Attack time: 9706.47780251503
-Attack time: 9706.47780251503
+Attack time: 6822.124644756317
+Attack time: 6822.124644756317
