@@ -37,3 +37,23 @@ Attack(
   (is_black_box):  True
 ) 
 
+
++-------------------------------+---------+
+| Attack Results                |         |
++-------------------------------+---------+
+| Number of successful attacks: | 126     |
+| Number of failed attacks:     | 99      |
+| Number of skipped attacks:    | 52      |
+| Original accuracy:            | 81.23   |
+| Accuracy under attack:        | 35.74   |
+| Attack success rate:          | 56.0    |
+| Average perturbed word %:     | 0.29    |
+| Average num. words per input: | 1455.91 |
+| Avg num queries:              | 134.3   |
+| Adv confidence:               | 0.59    |
+| Average Original Perplexity:  | 29.26   |
+| Average Attack Perplexity:    | 29.26   |
+| Average Attack USE Score:     | 0.99    |
++-------------------------------+---------+
+Attack time: 12363.434961557388
+Attack time: 12363.434961557388

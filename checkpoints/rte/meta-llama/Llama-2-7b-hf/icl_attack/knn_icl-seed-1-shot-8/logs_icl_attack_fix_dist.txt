@@ -1,0 +1,79 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='icl_attack', batch_size=2, beta=0.2, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=100.0, knn_k=3, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/icl_attack/knn_icl-seed-1-shot-8_fix_dist', model_id='0', model_type='knn_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/rte/meta-llama/Llama-2-7b-hf/icl_attack/knn_icl-seed-1-shot-8_fix_dist
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='icl_attack', batch_size=2, beta=0.2, cache_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/icl_attack/knn_icl-seed-1-shot-8_fix_dist/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=100.0, knn_k=3, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/icl_attack/knn_icl-seed-1-shot-8_fix_dist', model_id='0', model_type='knn_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Length of anchor subsample 14
+Length of icl examples 2
+Loading anchor store
+Finished loading anchor store
+Finished loading model
+ICL examples
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'while local cab drivers had compliments, not everyone appreciated the company. the chicago cubs decided to cancel their booking after hearing about the con, and j.j. hardy of the milwaukee brewers reported being kept up by fans on wednesday night. the brewers lost their game the following day. the convention closed with next year\'s date ―june 26-29 ―along with the announcement of a guest: disney animator floyd norman. the event\'s theme will be "it\'s a jungle out there!".', 'Hypothesis_0': 'j.j. hardy has a contract with the milwaukee brewers.', 'Label_0': 'true', 'Premise_1': 'for a western european country, the birth rate in finland is high.', 'Hypothesis_1': 'finland is the european country with the highest birth rate.', 'Label_1': 'false'}
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'while local cab drivers had compliments, not everyone appreciated the company. the chicago cubs decided to cancel their booking after hearing about the con, and j.j. hardy of the milwaukee brewers reported being kept up by fans on wednesday night. the brewers lost their game the following day. the convention closed with next year\'s date ―june 26-29 ―along with the announcement of a guest: disney animator floyd norman. the event\'s theme will be "it\'s a jungle out there!".', 'Hypothesis_0': 'j.j. hardy has a contract with the milwaukee brewers.', 'Label_0': 'true', 'Premise_1': 'for a western european country, the birth rate in finland is high.', 'Hypothesis_1': 'finland is the european country with the highest birth rate.', 'Label_1': 'false'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/icl_attack/knn_icl-seed-1-shot-8_fix_dist/icl_attack_log.csv
+<textattack.attacker.Attacker object at 0x7fe48e1d6850>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapRandomCharacterInsertion(
+        (random_one):  True
+      )
+    (1): WordSwapRandomCharacterDeletion(
+        (random_one):  True
+      )
+    (2): WordSwapNeighboringCharacterSwap(
+        (random_one):  True
+      )
+    (3): WordSwapHomoglyphSwap
+    (4): WordSwapEmbedding(
+        (max_candidates):  5
+        (embedding):  WordEmbedding
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.15
+        (compare_against_original):  True
+      )
+    (1): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.8
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (2): RepeatModification
+    (3): StopwordModification
+    (4): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'label_']
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 178    |
+| Number of failed attacks:     | 5      |
+| Number of skipped attacks:    | 94     |
+| Original accuracy:            | 66.06  |
+| Accuracy under attack:        | 1.81   |
+| Attack success rate:          | 97.27  |
+| Average perturbed word %:     | 1.69   |
+| Average num. words per input: | 164.02 |
+| Avg num queries:              | 187.92 |
+| Adv confidence:               | 0.53   |
+| Average Original Perplexity:  | 3.32   |
+| Average Attack Perplexity:    | 4.16   |
+| Average Attack USE Score:     | 0.97   |
++-------------------------------+--------+
+Attack time: 1394.5158395767212
+Attack time: 1394.5158395767212
