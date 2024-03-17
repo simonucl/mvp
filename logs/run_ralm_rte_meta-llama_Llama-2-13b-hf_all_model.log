@@ -1,0 +1,791 @@
+1+8+meta-llama/Llama-2-13b-hf+mvp
+./checkpoints/rte/meta-llama/Llama-2-13b-hf/textfooler/retrieval_icl-seed-1-shot-8
+2024-03-14 21:23:25.906625: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:23:26.769327: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:23:34.490632: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:23:34.499540: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:23:34.501913: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:23:34.539987: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:23:34.542416: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:23:34.544744: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:23:34.748380: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:23:34.749899: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:23:34.751259: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:23:34.752632: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:44, 22.43s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:44<00:22, 22.46s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.43s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.52s/it]
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25/textfooler_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.020 MB uploadedwandb: | 0.020 MB of 0.020 MB uploadedwandb: / 0.020 MB of 0.020 MB uploadedwandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.020 MB uploadedwandb: | 0.020 MB of 0.020 MB uploadedwandb: / 0.020 MB of 0.020 MB uploadedwandb: - 0.027 MB of 0.038 MB uploaded (0.006 MB deduped)wandb: \ 0.038 MB of 0.038 MB uploaded (0.006 MB deduped)Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+Exception in thread NetStatThr:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.8/threading.py", line 870, in run
+Exception in thread IntMsgThr:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_run.py", line 268, in check_network_status
+    self.run()
+  File "/usr/lib/python3.8/threading.py", line 870, in run
+    self._loop_check_status(
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_run.py", line 224, in _loop_check_status
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_run.py", line 300, in check_internal_messages
+    local_handle = request()
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface.py", line 795, in deliver_network_status
+    self._loop_check_status(
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_run.py", line 224, in _loop_check_status
+    return self._deliver_network_status(status)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_shared.py", line 500, in _deliver_network_status
+    local_handle = request()
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface.py", line 803, in deliver_internal_messages
+    return self._deliver_record(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_shared.py", line 449, in _deliver_record
+    return self._deliver_internal_messages(internal_message)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_shared.py", line 506, in _deliver_internal_messages
+    handle = mailbox._deliver_record(record, interface=self)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/mailbox.py", line 455, in _deliver_record
+    return self._deliver_record(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_shared.py", line 449, in _deliver_record
+    interface._publish(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_sock.py", line 51, in _publish
+    handle = mailbox._deliver_record(record, interface=self)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/mailbox.py", line 455, in _deliver_record
+    self._sock_client.send_record_publish(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 221, in send_record_publish
+    interface._publish(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_sock.py", line 51, in _publish
+    self.send_server_request(server_req)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 155, in send_server_request
+    self._sock_client.send_record_publish(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 221, in send_record_publish
+    self._send_message(msg)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 152, in _send_message
+    self.send_server_request(server_req)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 155, in send_server_request
+    self._sendall_with_error_handle(header + data)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+    self._send_message(msg)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 152, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2024-03-14 21:26:18.538845: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:26:19.383714: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:26:27.064449: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:26:27.073429: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:26:27.075793: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:26:27.091023: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:26:27.093376: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:26:27.095690: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:26:27.463398: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:26:27.464905: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:26:27.466265: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:26:27.467635: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:45, 22.54s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:45<00:22, 22.55s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.40s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.52s/it]
+/usr/local/lib/python3.8/dist-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/textfooler/retrieval_icl-seed-1-shot-8_sbert/textfooler_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.032 MB uploadedwandb: | 0.032 MB of 0.032 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+2024-03-14 21:29:10.207590: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:29:11.068708: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:29:18.557773: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:29:18.567150: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:29:18.571236: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:29:18.586513: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:29:18.588874: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:29:18.591196: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:29:18.802026: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:29:18.803552: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:29:18.804917: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:29:18.806325: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:44, 22.36s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:45<00:22, 22.54s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.44s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.53s/it]
+/usr/local/lib/python3.8/dist-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/textfooler/retrieval_icl-seed-1-shot-8_instructor/textfooler_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.021 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+1+8+meta-llama/Llama-2-13b-hf+mvp
+./checkpoints/rte/meta-llama/Llama-2-13b-hf/textbugger/retrieval_icl-seed-1-shot-8
+2024-03-14 21:32:22.457649: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:32:23.322130: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:32:30.721804: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:32:30.731942: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:32:30.735529: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:32:30.751901: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:32:30.755151: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:32:30.758570: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:32:31.306078: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:32:31.307606: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:32:31.308981: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:32:31.310349: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:45, 22.66s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:45<00:22, 22.56s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.46s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.57s/it]
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/textbugger/retrieval_icl-seed-1-shot-8_bm25/textbugger_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.020 MB uploadedwandb: | 0.031 MB of 0.031 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+2024-03-14 21:35:05.642381: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:35:06.459123: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:35:13.940651: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:35:13.950459: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:35:13.952850: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:35:13.967528: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:35:13.969915: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:35:13.972252: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:35:14.392071: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:35:14.393591: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:35:14.394959: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:35:14.396335: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:44, 22.45s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:45<00:22, 22.69s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.54s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.64s/it]
+/usr/local/lib/python3.8/dist-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/textbugger/retrieval_icl-seed-1-shot-8_sbert/textbugger_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.027 MB uploadedwandb: | 0.031 MB of 0.031 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+2024-03-14 21:37:57.723128: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:37:58.524981: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:38:06.037262: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:38:06.047608: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:38:06.050009: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:38:06.065585: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:38:06.068021: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:38:06.070376: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:38:06.256633: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:38:06.258151: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:38:06.259514: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:38:06.260889: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:45, 22.58s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:44<00:22, 22.36s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.34s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.45s/it]
+/usr/local/lib/python3.8/dist-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/textbugger/retrieval_icl-seed-1-shot-8_instructor/textbugger_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.031 MB uploadedwandb: | 0.031 MB of 0.031 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+1+8+meta-llama/Llama-2-13b-hf+mvp
+./checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/retrieval_icl-seed-1-shot-8
+2024-03-14 21:41:09.069742: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:41:09.846764: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:41:17.832482: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:41:17.845791: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:41:17.848158: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:41:17.866321: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:41:17.868666: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:41:17.870985: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:41:18.064315: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:41:18.065876: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:41:18.067239: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:41:18.068606: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:44, 22.26s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:44<00:22, 22.42s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.31s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.40s/it]
+Map:   0%|          | 0/277 [00:00<?, ? examples/s]Map: 100%|██████████| 277/277 [00:00<00:00, 5572.48 examples/s]
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/retrieval_icl-seed-1-shot-8_bm25/swap_labels_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.031 MB uploadedwandb: | 0.031 MB of 0.031 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+2024-03-14 21:43:52.591314: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:43:53.350908: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:44:00.964058: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:44:00.973387: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:44:00.975770: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:44:00.991377: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:44:00.993724: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:44:00.996056: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:44:01.182971: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:44:01.184570: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:44:01.185945: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:44:01.187324: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:45, 22.77s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:45<00:22, 22.67s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:59<00:00, 18.55s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:59<00:00, 19.67s/it]
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/retrieval_icl-seed-1-shot-8_bm25_fix_dist/swap_labels_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.031 MB uploadedwandb: | 0.031 MB of 0.031 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+2024-03-14 21:46:39.475167: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:46:40.248115: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:46:47.763740: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:46:47.772903: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:46:47.775318: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:46:47.791599: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:46:47.793953: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:46:47.796274: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:46:47.980357: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:46:47.981894: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:46:47.983251: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:46:47.984620: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:44, 22.06s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:44<00:22, 22.20s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:57<00:00, 18.19s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:57<00:00, 19.26s/it]
+/usr/local/lib/python3.8/dist-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Map:   0%|          | 0/277 [00:00<?, ? examples/s]Map: 100%|██████████| 277/277 [00:00<00:00, 5166.69 examples/s]
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert/swap_labels_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.027 MB uploadedwandb: | 0.031 MB of 0.031 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+2024-03-14 21:49:30.924520: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:49:31.739700: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:49:39.522885: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:49:39.532965: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:49:39.535353: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:49:39.553140: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:49:39.555493: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:49:39.557809: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:49:39.748915: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:49:39.750437: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:49:39.751793: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:49:39.753164: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:45, 22.53s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:45<00:22, 22.58s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.43s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.54s/it]
+/usr/local/lib/python3.8/dist-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert_fix_dist/swap_labels_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.027 MB uploadedwandb: | 0.031 MB of 0.031 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+2024-03-14 21:52:23.498711: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:52:24.279627: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:52:31.528810: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:52:31.538097: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:52:31.540466: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:52:31.558107: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:52:31.560574: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:52:31.562901: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:52:31.756648: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:52:31.758157: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:52:31.759513: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:52:31.760877: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:45, 22.55s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:44<00:22, 22.39s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.29s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.41s/it]
+/usr/local/lib/python3.8/dist-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Map:   0%|          | 0/277 [00:00<?, ? examples/s]Map: 100%|██████████| 277/277 [00:00<00:00, 5908.19 examples/s]
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/retrieval_icl-seed-1-shot-8_instructor/swap_labels_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.020 MB of 0.020 MB uploadedwandb: \ 0.020 MB of 0.031 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range
+2024-03-14 21:55:34.851563: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 21:55:35.648787: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-03-14 21:55:43.211110: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:55:43.225424: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:55:43.227804: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:55:43.246875: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:55:43.249278: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:55:43.251618: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:55:43.795701: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:55:43.799117: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:55:43.802039: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2024-03-14 21:55:43.804750: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 79087 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:12:00.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:44, 22.33s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:44<00:22, 22.31s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 18.26s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:58<00:00, 19.36s/it]
+/usr/local/lib/python3.8/dist-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-13b-hf/swap_labels/retrieval_icl-seed-1-shot-8_instructor_fix_dist/swap_labels_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.021 MB of 0.021 MB uploadedwandb: \ 0.021 MB of 0.031 MB uploadedwandb: | 0.031 MB of 0.031 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 308, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/TextAttack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/TextAttack/textattack/attack.py", line 444, in attack
+    goal_function_result, _ = self.goal_function.init_attack_example(
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 68, in init_attack_example
+    result, _ = self.get_result(attacked_text, check_skip=True)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 79, in get_result
+    results, search_over = self.get_results([attacked_text], **kwargs)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/TextAttack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 209, in forward
+    input_ids, attention_mask, _  = self.get_updated_input_ids(input_ids, attention_mask, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 184, in get_updated_input_ids
+    input_ids, attention_mask, input_indices = insert_icl_prompts(self, self.tokenizer, self.args.model_type, text_input_list, self.template, self.len_templates, use_all = (self.args.num_template != -2) or self.mode!="train", icl_examples = self.icl_examples, model_name = self.args.model)
+  File "/mnt/data/mvp/src/utils/model_utils.py", line 337, in insert_icl_prompts
+    inputs = tokenizer.batch_encode_plus(prompts, padding=True, truncation=True, return_tensors="pt")
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_base.py", line 3106, in batch_encode_plus
+    return self._batch_encode_plus(
+  File "/usr/local/lib/python3.8/dist-packages/transformers/tokenization_utils_fast.py", line 537, in _batch_encode_plus
+    for key in tokens_and_encodings[0][0].keys():
+IndexError: list index out of range

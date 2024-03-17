@@ -1,0 +1,588 @@
+nohup: ignoring input
+1+8+meta-llama/Llama-2-7b-hf+mvp
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl_attack-seed-1-shot-8
+2023-11-10 17:09:09.703744: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-11-10 17:09:10.421583: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-11-10 17:09:17.796593: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-10 17:09:17.808041: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-10 17:09:17.810662: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-10 17:09:17.834028: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-10 17:09:17.836550: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-10 17:09:17.839014: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-10 17:09:18.066321: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-10 17:09:18.068115: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-10 17:09:18.069666: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-10 17:09:18.071214: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38376 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:07:00.0, compute capability: 8.0
+/mnt/ceph_rbd/mvp/src/utils/funcs.py:239: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.59s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.51s/it]
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-7b-hf/textbugger/retrieval_icl_attack-seed-1-shot-8_bm25/textbugger_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.84it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.84it/s]
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+  0%|          | 1/277 [00:01<04:54,  1.07s/it][Succeeded / Failed / Skipped / Total] 0 / 0 / 1 / 1:   0%|          | 1/277 [00:01<05:57,  1.30s/it]
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it][ARetrieving anchor data: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it]
+[Succeeded / Failed / Skipped / Total] 0 / 0 / 1 / 1:   1%|          | 2/277 [00:02<06:09,  1.34s/it][Succeeded / Failed / Skipped / Total] 0 / 0 / 2 / 2:   1%|          | 2/277 [00:02<06:11,  1.35s/it]
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.57it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.57it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.67it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.60it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.60it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.67it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.67it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.57it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.57it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.67it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.67it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.67it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.67it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.57it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.57it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.62it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.62it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.55it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.55it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.62it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.54it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.54it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.53it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.72it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.47it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.47it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.54it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.54it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.72it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.69it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.67it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.67it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.47it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.47it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.56it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.55it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.47it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.47it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Retrieving anchor data:   0%|          | 0/1 [00:00<?, ?it/s][A
+Retrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.60it/s][ARetrieving anchor data: 100%|██████████| 1/1 [00:00<00:00,  1.60it/s]2023-11-10 17:12:09.167091: I tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:736] failed to allocate 512.00MiB (536870912 bytes) from device: CUDA_ERROR_OUT_OF_MEMORY: out of memory
+2023-11-10 17:12:09.258901: I tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:736] failed to allocate 1.00GiB (1073741824 bytes) from device: CUDA_ERROR_OUT_OF_MEMORY: out of memory
+2023-11-10 17:12:09.259963: I tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:736] failed to allocate 1.00GiB (1073741824 bytes) from device: CUDA_ERROR_OUT_OF_MEMORY: out of memory
+2023-11-10 17:12:19.261829: I tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:736] failed to allocate 1.00GiB (1073741824 bytes) from device: CUDA_ERROR_OUT_OF_MEMORY: out of memory
+2023-11-10 17:12:19.262983: I tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:736] failed to allocate 1.00GiB (1073741824 bytes) from device: CUDA_ERROR_OUT_OF_MEMORY: out of memory
+2023-11-10 17:12:19.263029: W tensorflow/tsl/framework/bfc_allocator.cc:485] Allocator (GPU_0_bfc) ran out of memory trying to allocate 12.5KiB (rounded to 12800)requested by op Identity
+If the cause is memory fragmentation maybe the environment variable 'TF_GPU_ALLOCATOR=cuda_malloc_async' will improve the situation. 
+Current allocation summary follows.
+Current allocation summary follows.
+2023-11-10 17:12:19.263044: I tensorflow/tsl/framework/bfc_allocator.cc:1039] BFCAllocator dump for GPU_0_bfc
+2023-11-10 17:12:19.263055: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (256): 	Total Chunks: 1, Chunks in use: 1. 256B allocated for chunks. 256B in use in bin. 8B client-requested in use in bin.
+2023-11-10 17:12:19.263063: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (512): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263098: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (1024): 	Total Chunks: 1, Chunks in use: 1. 1.2KiB allocated for chunks. 1.2KiB in use in bin. 1.0KiB client-requested in use in bin.
+2023-11-10 17:12:19.263124: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (2048): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263131: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (4096): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263139: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (8192): 	Total Chunks: 20, Chunks in use: 20. 275.0KiB allocated for chunks. 275.0KiB in use in bin. 275.0KiB client-requested in use in bin.
+2023-11-10 17:12:19.263145: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (16384): 	Total Chunks: 50, Chunks in use: 50. 1.04MiB allocated for chunks. 1.04MiB in use in bin. 1.04MiB client-requested in use in bin.
+2023-11-10 17:12:19.263208: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (32768): 	Total Chunks: 30, Chunks in use: 30. 1.00MiB allocated for chunks. 1.00MiB in use in bin. 1.00MiB client-requested in use in bin.
+2023-11-10 17:12:19.263217: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (65536): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263223: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (131072): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263231: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (262144): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263238: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (524288): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263270: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (1048576): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263276: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (2097152): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263283: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (4194304): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263290: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (8388608): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263295: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (16777216): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263305: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (33554432): 	Total Chunks: 24, Chunks in use: 24. 844.49MiB allocated for chunks. 844.49MiB in use in bin. 781.26MiB client-requested in use in bin.
+2023-11-10 17:12:19.263339: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (67108864): 	Total Chunks: 2, Chunks in use: 2. 128.00MiB allocated for chunks. 128.00MiB in use in bin. 65.10MiB client-requested in use in bin.
+2023-11-10 17:12:19.263346: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (134217728): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263353: I tensorflow/tsl/framework/bfc_allocator.cc:1046] Bin (268435456): 	Total Chunks: 0, Chunks in use: 0. 0B allocated for chunks. 0B in use in bin. 0B client-requested in use in bin.
+2023-11-10 17:12:19.263360: I tensorflow/tsl/framework/bfc_allocator.cc:1062] Bin for 12.5KiB was 8.0KiB, Chunk State: 
+2023-11-10 17:12:19.263366: I tensorflow/tsl/framework/bfc_allocator.cc:1075] Next region of size 483183872
+2023-11-10 17:12:19.263381: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f156c000000 of size 34133760 next 95
+2023-11-10 17:12:19.263389: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f156e08d700 of size 34133760 next 96
+2023-11-10 17:12:19.263426: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f157011ae00 of size 34133760 next 97
+2023-11-10 17:12:19.263434: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15721a8500 of size 34133760 next 98
+2023-11-10 17:12:19.263441: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1574235c00 of size 34133760 next 99
+2023-11-10 17:12:19.263446: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15762c3300 of size 34133760 next 100
+2023-11-10 17:12:19.263501: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1578350a00 of size 34133760 next 101
+2023-11-10 17:12:19.263509: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f157a3de100 of size 34133760 next 102
+2023-11-10 17:12:19.263514: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f157c46b800 of size 34133760 next 103
+2023-11-10 17:12:19.263519: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f157e4f8f00 of size 34133760 next 104
+2023-11-10 17:12:19.263524: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1580586600 of size 34133760 next 105
+2023-11-10 17:12:19.263529: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1582613d00 of size 34133760 next 106
+2023-11-10 17:12:19.263534: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846a1400 of size 14080 next 107
+2023-11-10 17:12:19.263539: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846a4b00 of size 14080 next 108
+2023-11-10 17:12:19.263544: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846a8200 of size 14080 next 109
+2023-11-10 17:12:19.263549: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846ab900 of size 14080 next 110
+2023-11-10 17:12:19.263557: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846af000 of size 14080 next 111
+2023-11-10 17:12:19.263563: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846b2700 of size 14080 next 112
+2023-11-10 17:12:19.263568: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846b5e00 of size 14080 next 113
+2023-11-10 17:12:19.263572: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846b9500 of size 14080 next 114
+2023-11-10 17:12:19.263578: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846bcc00 of size 14080 next 115
+2023-11-10 17:12:19.263584: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846c0300 of size 14080 next 116
+2023-11-10 17:12:19.263590: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15846c3a00 of size 34133760 next 117
+2023-11-10 17:12:19.263595: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1586751100 of size 14080 next 118
+2023-11-10 17:12:19.263601: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1586754800 of size 14080 next 119
+2023-11-10 17:12:19.263608: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1586757f00 of size 14080 next 120
+2023-11-10 17:12:19.263615: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f158675b600 of size 14080 next 121
+2023-11-10 17:12:19.263624: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f158675ed00 of size 14080 next 122
+2023-11-10 17:12:19.263629: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1586762400 of size 14080 next 123
+2023-11-10 17:12:19.263636: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1586765b00 of size 14080 next 124
+2023-11-10 17:12:19.263642: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1586769200 of size 14080 next 125
+2023-11-10 17:12:19.263647: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f158676c900 of size 14080 next 126
+2023-11-10 17:12:19.263652: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1586770000 of size 14080 next 127
+2023-11-10 17:12:19.263657: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1586773700 of size 39163392 next 18446744073709551615
+2023-11-10 17:12:19.263662: I tensorflow/tsl/framework/bfc_allocator.cc:1075] Next region of size 268435456
+2023-11-10 17:12:19.263667: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f158a000000 of size 34133760 next 39
+2023-11-10 17:12:19.263672: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f158c08d700 of size 34133760 next 50
+2023-11-10 17:12:19.263679: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f158e11ae00 of size 34133760 next 61
+2023-11-10 17:12:19.263685: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15901a8500 of size 34133760 next 72
+2023-11-10 17:12:19.263695: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f1592235c00 of size 34133760 next 83
+2023-11-10 17:12:19.263700: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15942c3300 of size 20480 next 91
+2023-11-10 17:12:19.263707: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15942c8300 of size 20480 next 92
+2023-11-10 17:12:19.263712: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15942cd300 of size 34133760 next 93
+2023-11-10 17:12:19.263717: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f159635aa00 of size 63591936 next 18446744073709551615
+2023-11-10 17:12:19.263721: I tensorflow/tsl/framework/bfc_allocator.cc:1075] Next region of size 134217728
+2023-11-10 17:12:19.263728: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f159a000000 of size 34133760 next 6
+2023-11-10 17:12:19.263734: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f159c08d700 of size 34133760 next 17
+2023-11-10 17:12:19.263740: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f159e11ae00 of size 65950208 next 18446744073709551615
+2023-11-10 17:12:19.263752: I tensorflow/tsl/framework/bfc_allocator.cc:1075] Next region of size 67108864
+2023-11-10 17:12:19.263757: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15a2000000 of size 67108864 next 18446744073709551615
+2023-11-10 17:12:19.263763: I tensorflow/tsl/framework/bfc_allocator.cc:1075] Next region of size 67108864
+2023-11-10 17:12:19.263769: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15aa000000 of size 67108864 next 18446744073709551615
+2023-11-10 17:12:19.263773: I tensorflow/tsl/framework/bfc_allocator.cc:1075] Next region of size 2097152
+2023-11-10 17:12:19.263778: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7000000 of size 1280 next 1
+2023-11-10 17:12:19.263784: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7000500 of size 256 next 2
+2023-11-10 17:12:19.263789: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7000600 of size 22528 next 7
+2023-11-10 17:12:19.263795: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7005e00 of size 22528 next 8
+2023-11-10 17:12:19.263800: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c700b600 of size 22528 next 9
+2023-11-10 17:12:19.263808: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7010e00 of size 22528 next 10
+2023-11-10 17:12:19.263813: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7016600 of size 22528 next 11
+2023-11-10 17:12:19.263818: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c701be00 of size 22528 next 12
+2023-11-10 17:12:19.263823: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7021600 of size 22528 next 13
+2023-11-10 17:12:19.263828: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7026e00 of size 22528 next 14
+2023-11-10 17:12:19.263833: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c702c600 of size 22528 next 15
+2023-11-10 17:12:19.263839: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7031e00 of size 22528 next 16
+2023-11-10 17:12:19.263844: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7037600 of size 20480 next 18
+2023-11-10 17:12:19.263849: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c703c600 of size 20480 next 19
+2023-11-10 17:12:19.263854: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7041600 of size 20480 next 20
+2023-11-10 17:12:19.263858: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7046600 of size 20480 next 21
+2023-11-10 17:12:19.263865: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c704b600 of size 20480 next 22
+2023-11-10 17:12:19.263872: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7050600 of size 20480 next 23
+2023-11-10 17:12:19.263882: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7055600 of size 20480 next 24
+2023-11-10 17:12:19.263891: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c705a600 of size 20480 next 25
+2023-11-10 17:12:19.263898: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c705f600 of size 20480 next 26
+2023-11-10 17:12:19.263909: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7064600 of size 20480 next 27
+2023-11-10 17:12:19.263914: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7069600 of size 36864 next 28
+2023-11-10 17:12:19.263921: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7072600 of size 36864 next 29
+2023-11-10 17:12:19.263926: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c707b600 of size 34816 next 30
+2023-11-10 17:12:19.263933: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7083e00 of size 34816 next 31
+2023-11-10 17:12:19.263941: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c708c600 of size 34816 next 32
+2023-11-10 17:12:19.263949: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7094e00 of size 34816 next 33
+2023-11-10 17:12:19.263954: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c709d600 of size 34816 next 34
+2023-11-10 17:12:19.263960: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70a5e00 of size 34816 next 35
+2023-11-10 17:12:19.263966: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70ae600 of size 34816 next 36
+2023-11-10 17:12:19.263972: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70b6e00 of size 34816 next 37
+2023-11-10 17:12:19.263980: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70bf600 of size 34816 next 40
+2023-11-10 17:12:19.263985: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70c7e00 of size 34816 next 41
+2023-11-10 17:12:19.263994: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70d0600 of size 34816 next 42
+2023-11-10 17:12:19.264001: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70d8e00 of size 34816 next 43
+2023-11-10 17:12:19.264015: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70e1600 of size 34816 next 44
+2023-11-10 17:12:19.264021: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70e9e00 of size 34816 next 45
+2023-11-10 17:12:19.264025: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70f2600 of size 34816 next 46
+2023-11-10 17:12:19.264032: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c70fae00 of size 34816 next 47
+2023-11-10 17:12:19.264038: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7103600 of size 34816 next 48
+2023-11-10 17:12:19.264043: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c710be00 of size 34816 next 49
+2023-11-10 17:12:19.264050: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7114600 of size 34816 next 51
+2023-11-10 17:12:19.264062: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c711ce00 of size 34816 next 52
+2023-11-10 17:12:19.264068: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7125600 of size 34816 next 53
+2023-11-10 17:12:19.264074: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c712de00 of size 34816 next 54
+2023-11-10 17:12:19.264080: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7136600 of size 34816 next 55
+2023-11-10 17:12:19.264086: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c713ee00 of size 34816 next 56
+2023-11-10 17:12:19.264095: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7147600 of size 34816 next 57
+2023-11-10 17:12:19.264100: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c714fe00 of size 34816 next 58
+2023-11-10 17:12:19.264118: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7158600 of size 34816 next 59
+2023-11-10 17:12:19.264126: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7160e00 of size 34816 next 60
+2023-11-10 17:12:19.264137: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7169600 of size 22528 next 62
+2023-11-10 17:12:19.264148: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c716ee00 of size 22528 next 63
+2023-11-10 17:12:19.264154: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7174600 of size 22528 next 64
+2023-11-10 17:12:19.264160: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7179e00 of size 22528 next 65
+2023-11-10 17:12:19.264168: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c717f600 of size 22528 next 66
+2023-11-10 17:12:19.264173: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7184e00 of size 22528 next 67
+2023-11-10 17:12:19.264183: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c718a600 of size 22528 next 68
+2023-11-10 17:12:19.264190: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c718fe00 of size 22528 next 69
+2023-11-10 17:12:19.264198: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c7195600 of size 22528 next 70
+2023-11-10 17:12:19.264203: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c719ae00 of size 22528 next 71
+2023-11-10 17:12:19.264209: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71a0600 of size 22528 next 73
+2023-11-10 17:12:19.264215: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71a5e00 of size 22528 next 74
+2023-11-10 17:12:19.264222: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71ab600 of size 22528 next 75
+2023-11-10 17:12:19.264228: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71b0e00 of size 22528 next 76
+2023-11-10 17:12:19.264234: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71b6600 of size 22528 next 77
+2023-11-10 17:12:19.264241: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71bbe00 of size 22528 next 78
+2023-11-10 17:12:19.264247: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71c1600 of size 22528 next 79
+2023-11-10 17:12:19.264253: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71c6e00 of size 22528 next 80
+2023-11-10 17:12:19.264260: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71cc600 of size 22528 next 81
+2023-11-10 17:12:19.264266: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71d1e00 of size 22528 next 82
+2023-11-10 17:12:19.264272: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71d7600 of size 20480 next 84
+2023-11-10 17:12:19.264278: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71dc600 of size 20480 next 85
+2023-11-10 17:12:19.264283: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71e1600 of size 20480 next 86
+2023-11-10 17:12:19.264289: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71e6600 of size 20480 next 87
+2023-11-10 17:12:19.264299: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71eb600 of size 20480 next 88
+2023-11-10 17:12:19.264304: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71f0600 of size 20480 next 89
+2023-11-10 17:12:19.264310: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71f5600 of size 20480 next 90
+2023-11-10 17:12:19.264316: I tensorflow/tsl/framework/bfc_allocator.cc:1095] InUse at 7f15c71fa600 of size 23040 next 18446744073709551615
+2023-11-10 17:12:19.264322: I tensorflow/tsl/framework/bfc_allocator.cc:1100]      Summary of in-use Chunks by size: 
+2023-11-10 17:12:19.264332: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 1 Chunks of size 256 totalling 256B
+2023-11-10 17:12:19.264339: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 1 Chunks of size 1280 totalling 1.2KiB
+2023-11-10 17:12:19.264346: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 20 Chunks of size 14080 totalling 275.0KiB
+2023-11-10 17:12:19.264357: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 19 Chunks of size 20480 totalling 380.0KiB
+2023-11-10 17:12:19.264364: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 30 Chunks of size 22528 totalling 660.0KiB
+2023-11-10 17:12:19.264370: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 1 Chunks of size 23040 totalling 22.5KiB
+2023-11-10 17:12:19.264386: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 28 Chunks of size 34816 totalling 952.0KiB
+2023-11-10 17:12:19.264391: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 2 Chunks of size 36864 totalling 72.0KiB
+2023-11-10 17:12:19.264398: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 21 Chunks of size 34133760 totalling 683.60MiB
+2023-11-10 17:12:19.264405: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 1 Chunks of size 39163392 totalling 37.35MiB
+2023-11-10 17:12:19.264419: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 1 Chunks of size 63591936 totalling 60.65MiB
+2023-11-10 17:12:19.264426: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 1 Chunks of size 65950208 totalling 62.89MiB
+2023-11-10 17:12:19.264434: I tensorflow/tsl/framework/bfc_allocator.cc:1103] 2 Chunks of size 67108864 totalling 128.00MiB
+2023-11-10 17:12:19.264440: I tensorflow/tsl/framework/bfc_allocator.cc:1107] Sum Total of in-use chunks: 974.80MiB
+2023-11-10 17:12:19.264447: I tensorflow/tsl/framework/bfc_allocator.cc:1109] Total bytes in pool: 1022151936 memory_limit_: 40240152576 available bytes: 39218000640 curr_region_allocation_bytes_: 1073741824
+2023-11-10 17:12:19.264457: I tensorflow/tsl/framework/bfc_allocator.cc:1114] Stats: 
+Limit:                     40240152576
+InUse:                      1022151936
+MaxInUse:                   1022151936
+NumAllocs:                         128
+MaxAllocSize:                 67108864
+Reserved:                            0
+PeakReserved:                        0
+LargestFreeBlock:                    0
+
+2023-11-10 17:12:19.264467: W tensorflow/tsl/framework/bfc_allocator.cc:497] ***********************************************************************xx***********xx*****xx****xx*
+
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/ceph_rbd/mvp/src/test.py", line 260, in attacker
+    attacker.attack_dataset()
+  File "/src/textattack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/src/textattack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/src/textattack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/src/textattack/textattack/attack.py", line 450, in attack
+    result = self._attack(goal_function_result)
+  File "/src/textattack/textattack/attack.py", line 398, in _attack
+    final_result = self.search_method(initial_result)
+  File "/src/textattack/textattack/search_methods/search_method.py", line 36, in __call__
+    result = self.perform_search(initial_result)
+  File "/src/textattack/textattack/search_methods/greedy_word_swap_wir.py", line 141, in perform_search
+    transformed_text_candidates = self.get_transformations(
+  File "/src/textattack/textattack/attack.py", line 315, in get_transformations
+    return self.filter_transformations(
+  File "/src/textattack/textattack/attack.py", line 380, in filter_transformations
+    filtered_texts += self._filter_transformations_uncached(
+  File "/src/textattack/textattack/attack.py", line 342, in _filter_transformations_uncached
+    filtered_texts = C.call_many(filtered_texts, current_text)
+  File "/src/textattack/textattack/constraints/constraint.py", line 50, in call_many
+    filtered_texts = self._check_constraint_many(
+  File "/src/textattack/textattack/constraints/semantics/sentence_encoders/sentence_encoder.py", line 179, in _check_constraint_many
+    scores = self._score_list(reference_text, transformed_texts)
+  File "/src/textattack/textattack/constraints/semantics/sentence_encoders/sentence_encoder.py", line 152, in _score_list
+    embeddings = self.encode(starting_text_windows + transformed_text_windows)
+  File "/src/textattack/textattack/constraints/semantics/sentence_encoders/universal_sentence_encoder/universal_sentence_encoder.py", line 30, in encode
+    self.model = hub.load(self._tfhub_url)
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow_hub/module_v2.py", line 120, in load
+    obj = tf.compat.v1.saved_model.load_v2(module_path, tags=tags)
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/saved_model/load.py", line 836, in load
+    result = load_partial(export_dir, None, tags, options)["root"]
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/saved_model/load.py", line 966, in load_partial
+    loader = Loader(object_graph_proto, saved_model_proto, export_dir,
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/saved_model/load.py", line 195, in __init__
+    self._restore_checkpoint()
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/saved_model/load.py", line 530, in _restore_checkpoint
+    load_status = saver.restore(variables_path, self._checkpoint_options)
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/checkpoint/checkpoint.py", line 1451, in restore
+    restore_lib.CheckpointPosition(
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/checkpoint/restore.py", line 61, in restore
+    restore_ops = self._restore_descendants(reader)
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/checkpoint/restore.py", line 468, in _restore_descendants
+    current_position.checkpoint.restore_saveables(
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/checkpoint/checkpoint.py", line 357, in restore_saveables
+    new_restore_ops = functional_saver.MultiDeviceSaver.from_saveables(
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/checkpoint/functional_saver.py", line 499, in restore
+    restore_ops = restore_fn()
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/checkpoint/functional_saver.py", line 467, in restore_fn
+    ret = restore_fn(restored_tensors)
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/training/saving/saveable_object_util.py", line 821, in _restore_from_tensors
+    return saveable_object_to_restore_fn(self.saveables)(restored_tensors)
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/training/saving/saveable_object_util.py", line 858, in _restore_from_tensors
+    restore_ops[saveable.name] = saveable.restore(
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/training/saving/saveable_object_util.py", line 688, in restore
+    ret = restore_fn(restored_tensor_dict)
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/ops/resource_variable_ops.py", line 714, in _restore_from_tensors
+    restored_tensor = array_ops.identity(
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/util/traceback_utils.py", line 153, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/framework/ops.py", line 7262, in raise_from_not_ok_status
+    raise core._status_to_exception(e) from None  # pylint: disable=protected-access
+tensorflow.python.framework.errors_impl.InternalError: Failed copying input tensor from /job:localhost/replica:0/task:0/device:CPU:0 to /job:localhost/replica:0/task:0/device:GPU:0 in order to run Identity: Dst tensor is not initialized. [Op:Identity]
+Exception in thread NetStatThr:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_run.py", line 267, in check_network_status
+    self._loop_check_status(
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_run.py", line 223, in _loop_check_status
+    local_handle = request()
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface.py", line 735, in deliver_network_status
+    return self._deliver_network_status(status)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_shared.py", line 475, in _deliver_network_status
+    return self._deliver_record(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_shared.py", line 428, in _deliver_record
+    handle = mailbox._deliver_record(record, interface=self)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/mailbox.py", line 455, in _deliver_record
+Exception in thread IntMsgThr:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    interface._publish(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_sock.py", line 51, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 221, in send_record_publish
+    self.send_server_request(server_req)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 155, in send_server_request
+    self._send_message(msg)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 152, in _send_message
+    self.run()
+  File "/usr/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_run.py", line 299, in check_internal_messages
+    self._sendall_with_error_handle(header + data)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    self._loop_check_status(
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_run.py", line 223, in _loop_check_status
+    local_handle = request()
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface.py", line 743, in deliver_internal_messages
+    return self._deliver_internal_messages(internal_message)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_shared.py", line 481, in _deliver_internal_messages
+    return self._deliver_record(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_shared.py", line 428, in _deliver_record
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+    handle = mailbox._deliver_record(record, interface=self)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/mailbox.py", line 455, in _deliver_record
+    interface._publish(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/interface/interface_sock.py", line 51, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 221, in send_record_publish
+    self.send_server_request(server_req)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 155, in send_server_request
+    self._send_message(msg)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 152, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2023-11-10 17:12:29.607696: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-11-10 17:12:30.391254: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
