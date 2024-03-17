@@ -1,0 +1,6 @@
+nohup: ignoring input
+1+8+google/gemma-7b+mvp
+./checkpoints/rte/google/gemma-7b/textbugger/icl-seed-1-shot-8
+2024-03-14 23:47:05.332063: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 23:47:12.425520: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
