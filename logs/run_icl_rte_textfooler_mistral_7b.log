@@ -1,0 +1,22 @@
+nohup: ignoring input
+1+8+mistralai/Mistral-7B-v0.1+mvp
+./checkpoints/rte/mistralai/Mistral-7B-v0.1/textfooler/icl-seed-1-shot-8
+2024-03-14 20:38:57.242161: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-03-14 20:38:57.322934: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-14 20:39:09.940144: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1639] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 37631 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:00:04.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:261: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+/mnt/data/robust/lib/python3.8/site-packages/datasets/load.py:756: FutureWarning: The repository for accuracy contains custom code which must be executed to correctly load the metric. You can inspect the repository content at https://raw.githubusercontent.com/huggingface/datasets/2.18.0/metrics/accuracy/accuracy.py
+You can avoid this message in future by passing the argument `trust_remote_code=True`.
+Passing `trust_remote_code=True` will be mandatory to load this metric from the next major release of `datasets`.
+  warnings.warn(
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.09s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.25it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.18it/s]
+textattack: Unknown if model of class <class 'transformers.models.mistral.modeling_mistral.MistralForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/mistralai/Mistral-7B-v0.1/textfooler/icl-seed-1-shot-8/textfooler_log.csv
+  0% 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+  0% 1/277 [00:01<06:10,  1.34s/it][Succeeded / Failed / Skipped / Total] 0 / 0 / 1 / 1:   0% 1/277 [00:01<07:33,  1.64s/it][Succeeded / Failed / Skipped / Total] 0 / 0 / 1 / 1:   1% 2/277 [00:01<04:06,  1.11it/s][Succeeded / Failed / Skipped / Total] 0 / 0 / 2 / 2:   1% 2/277 [00:01<04:09,  1.10it/s]2024-03-14 20:39:59.609754: I tensorflow/compiler/xla/stream_executor/cuda/cuda_blas.cc:606] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
+[Succeeded / Failed / Skipped / Total] 0 / 0 / 2 / 2:   1% 3/277 [00:23<35:04,  7.68s/it][Succeeded / Failed / Skipped / Total] 0 / 1 / 2 / 3:   1% 3/277 [00:23<35:07,  7.69s/it][Succeeded / Failed / Skipped / Total] 0 / 1 / 2 / 3:   1% 4/277 [00:30<34:36,  7.61s/it][Succeeded / Failed / Skipped / Total] 1 / 1 / 2 / 4:   1% 4/277 [00:30<34:38,  7.61s/it][Succeeded / Failed / Skipped / Total] 1 / 1 / 2 / 4:   2% 5/277 [00:32<29:32,  6.52s/it][Succeeded / Failed / Skipped / Total] 2 / 1 / 2 / 5:   2% 5/277 [00:32<29:33,  6.52s/it]/mnt/data/robust/lib/python3.8/multiprocessing/resource_tracker.py:203: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

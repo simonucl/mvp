@@ -1,0 +1,80 @@
+nohup: ignoring input
+1+8+meta-llama/Llama-2-7b-hf+mvp
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/icl_attack/retrieval_icl-seed-1-shot-8
+2024-01-26 01:47:02.229988: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-01-26 01:47:02.297428: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-01-26 01:47:13.434993: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 37735 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:00:05.0, compute capability: 8.0
+/mnt/data/mvp/src/utils/funcs.py:253: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+/mnt/data/robustness/lib/python3.8/site-packages/datasets/load.py:752: FutureWarning: The repository for accuracy contains custom code which must be executed to correctly load the metric. You can inspect the repository content at https://raw.githubusercontent.com/huggingface/datasets/2.16.1/metrics/accuracy/accuracy.py
+You can avoid this message in future by passing the argument `trust_remote_code=True`.
+Passing `trust_remote_code=True` will be mandatory to load this metric from the next major release of `datasets`.
+  warnings.warn(
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.62s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.09s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.17s/it]
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-7b-hf/icl_attack/retrieval_icl-seed-1-shot-8_bm25/icl_attack_log.csv
+  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+wandb: - 0.004 MB of 0.004 MB uploadedwandb: \ 0.004 MB of 0.004 MB uploadedwandb: | 0.004 MB of 0.010 MB uploadedTraceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/data/mvp/src/test.py", line 298, in attacker
+    attacker.attack_dataset()
+  File "/mnt/data/src/textattack/textattack/attacker.py", line 441, in attack_dataset
+    self._attack()
+  File "/mnt/data/src/textattack/textattack/attacker.py", line 170, in _attack
+    raise e
+  File "/mnt/data/src/textattack/textattack/attacker.py", line 168, in _attack
+    result = self.attack.attack(example, ground_truth_output)
+  File "/mnt/data/src/textattack/textattack/attack.py", line 450, in attack
+    result = self._attack(goal_function_result)
+  File "/mnt/data/src/textattack/textattack/attack.py", line 398, in _attack
+    final_result = self.search_method(initial_result)
+  File "/mnt/data/src/textattack/textattack/search_methods/search_method.py", line 36, in __call__
+    result = self.perform_search(initial_result)
+  File "/mnt/data/src/textattack/textattack/search_methods/greedy_word_swap_wir.py", line 136, in perform_search
+    index_order, search_over = self._get_index_order(attacked_text)
+  File "/mnt/data/src/textattack/textattack/search_methods/greedy_word_swap_wir.py", line 101, in _get_index_order
+    leave_one_results, search_over = self.get_goal_results(leave_one_texts)
+  File "/mnt/data/src/textattack/textattack/goal_functions/goal_function.py", line 96, in get_results
+    model_outputs = self._call_model(attacked_text_list)
+  File "/mnt/data/src/textattack/textattack/goal_functions/goal_function.py", line 219, in _call_model
+    outputs = self._call_model_uncached(uncached_list)
+  File "/mnt/data/src/textattack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
+    batch_preds = self.model(batch)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/mvp/src/models/model_wrapper.py", line 228, in forward
+    outputs = self.model(input_ids=input_ids, attention_mask = attention_mask, output_hidden_states = True, output_attentions = True)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/transformers/models/llama/modeling_llama.py", line 1183, in forward
+    outputs = self.model(
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/transformers/models/llama/modeling_llama.py", line 1070, in forward
+    layer_outputs = decoder_layer(
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/transformers/models/llama/modeling_llama.py", line 795, in forward
+    hidden_states = self.input_layernorm(hidden_states)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/data/robustness/lib/python3.8/site-packages/transformers/models/llama/modeling_llama.py", line 115, in forward
+    variance = hidden_states.pow(2).mean(-1, keepdim=True)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 402.00 MiB. GPU 0 has a total capacty of 39.39 GiB of which 321.06 MiB is free. Including non-PyTorch memory, this process has 39.08 GiB memory in use. Of the allocated memory 37.26 GiB is allocated by PyTorch, and 421.73 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2024-01-26 01:48:08.480759: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-01-26 01:48:08.558029: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
