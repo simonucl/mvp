@@ -1,0 +1,53 @@
+nohup: ignoring input
+13+8+meta-llama/Llama-2-7b-hf+mvp
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textfooler/knn_icl-seed-13-shot-8
+2023-11-19 22:44:30.403015: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-11-19 22:44:31.137236: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-11-19 22:44:37.697262: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-19 22:44:37.705985: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-19 22:44:37.708502: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-19 22:44:37.721689: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-19 22:44:37.724150: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-19 22:44:37.726658: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-19 22:44:37.908713: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-19 22:44:37.910964: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-19 22:44:37.912511: I tensorflow/compiler/xla/stream_executor/cuda/cuda_gpu_executor.cc:996] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero. See more at https://github.com/torvalds/linux/blob/v6.0/Documentation/ABI/testing/sysfs-bus-pci#L344-L355
+2023-11-19 22:44:37.914046: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38376 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:07:00.0, compute capability: 8.0
+/mnt/ceph_rbd/mvp/src/utils/funcs.py:239: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric('accuracy')
+You are attempting to use Flash Attention 2.0 with a model initialized on CPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.78s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.47s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.66s/it]
+  0%|          | 0/21 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+  5%|▍         | 1/21 [00:00<00:03,  6.05it/s] 24%|██▍       | 5/21 [00:00<00:00, 20.12it/s] 43%|████▎     | 9/21 [00:00<00:00, 26.58it/s] 62%|██████▏   | 13/21 [00:00<00:00, 29.55it/s] 81%|████████  | 17/21 [00:00<00:00, 31.90it/s]100%|██████████| 21/21 [00:00<00:00, 33.32it/s]100%|██████████| 21/21 [00:00<00:00, 28.77it/s]
+textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
+textattack: Logging to CSV at path ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textfooler/knn_icl-seed-13-shot-8/textfooler_log.csv
+Traceback (most recent call last):
+  File "main.py", line 85, in <module>
+    attacker(args)
+  File "/mnt/ceph_rbd/mvp/src/test.py", line 260, in attacker
+    attacker.attack_dataset()
+  File "/src/textattack/textattack/attacker.py", line 418, in attack_dataset
+    self.attack_log_manager = AttackArgs.create_loggers_from_args(
+  File "/src/textattack/textattack/attack_args.py", line 455, in create_loggers_from_args
+    attack_log_manager.enable_wandb(**args.log_to_wandb)
+  File "/src/textattack/textattack/loggers/attack_log_manager.py", line 47, in enable_wandb
+    self.loggers.append(WeightsAndBiasesLogger(**kwargs))
+  File "/src/textattack/textattack/loggers/weights_and_biases_logger.py", line 19, in __init__
+    wandb.init(**kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_init.py", line 1185, in init
+    raise e
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_init.py", line 1162, in init
+    wi.setup(kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_init.py", line 306, in setup
+    wandb_login._login(
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_login.py", line 298, in _login
+    wlogin.prompt_api_key()
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_login.py", line 228, in prompt_api_key
+    raise UsageError("api_key not configured (no-tty). call " + directive)
+wandb.errors.UsageError: api_key not configured (no-tty). call wandb.login(key=[your_api_key])
+42+8+meta-llama/Llama-2-7b-hf+mvp
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/textfooler/knn_icl-seed-42-shot-8
+2023-11-19 22:47:22.225085: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-11-19 22:47:22.967084: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
