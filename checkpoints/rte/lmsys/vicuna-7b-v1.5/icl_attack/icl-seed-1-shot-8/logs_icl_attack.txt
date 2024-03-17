@@ -13,7 +13,7 @@ ICL examples
 ['{}\n The question is: {}. True or False?\nThe Answer is: {}']
 {0: ['true'], 1: ['false']}
 ./checkpoints/rte/lmsys/vicuna-7b-v1.5/icl_attack/icl-seed-1-shot-8/icl_attack_log.csv
-<textattack.attacker.Attacker object at 0x7f69489cea30>
+<textattack.attacker.Attacker object at 0x7f778b5aad60>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -51,3 +51,23 @@ Attack(
   (is_black_box):  True
 ) 
 
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 112    |
+| Number of failed attacks:     | 72     |
+| Number of skipped attacks:    | 93     |
+| Original accuracy:            | 66.43  |
+| Accuracy under attack:        | 25.99  |
+| Attack success rate:          | 60.87  |
+| Average perturbed word %:     | 11.17  |
+| Average num. words per input: | 928.02 |
+| Avg num queries:              | 454.29 |
+| Adv confidence:               | 0.52   |
+| Average Original Perplexity:  | 39.56  |
+| Average Attack Perplexity:    | 43.32  |
+| Average Attack USE Score:     | 0.99   |
++-------------------------------+--------+
+Attack time: 15269.821671962738
+Attack time: 15269.821671962738
