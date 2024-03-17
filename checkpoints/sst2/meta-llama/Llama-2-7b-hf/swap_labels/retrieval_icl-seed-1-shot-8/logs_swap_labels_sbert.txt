@@ -1,10 +1,62 @@
 1
-Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
 meta-llama/Llama-2-7b-hf
 Model Directory: ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert
 1 Physical GPUs, 1 Logical GPUs
-Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, cache_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/sst2_sbert.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, cache_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, ralm_save_path='./data/ralm/sst2_sbert.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
 Length of anchor subsample 16
 Length of icl examples 2
 Finished loading model
-Loading retrieved examples from ./data/ralm/sst2_sbert.pkl
+Finished encoding anchor data
+anchor_data_embeddings shape: torch.Size([63975, 384])
+query_embedding shape: torch.Size([872, 384])
+cos_scores shape: torch.Size([872, 63975])
+top_results shape: torch.Size([872, 32]), torch.Size([872, 32])
+Saving retrieved examples to ./data/ralm/sst2_sbert.pkl
+ICL examples
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'makes the journey feel like a party ', 'Label_0': 'positive', 'Example_1': 'sometimes charming , sometimes infuriating ', 'Label_1': 'positive', 'Example_2': 'charming , sometimes infuriating ', 'Label_2': 'positive', 'Example_3': "a journey that is as difficult for the audience to take as it is for the protagonist -- yet it 's potentially just as rewarding . ", 'Label_3': 'positive', 'Example_4': 'that the journey is such a mesmerizing one ', 'Label_4': 'positive', 'Example_5': 'it has considerable charm . ', 'Label_5': 'positive', 'Example_6': ', an interesting and at times captivating take on loss and loneliness . ', 'Label_6': 'positive', 'Example_7': 'nasty journey ', 'Label_7': 'negative', 'Example_8': 'that it comes off as annoying rather than charming ', 'Label_8': 'negative', 'Example_9': ', nasty journey ', 'Label_9': 'negative', 'Example_10': 'that tells stories that work -- is charming , is moving ', 'Label_10': 'positive', 'Example_11': "'s affecting , amusing , sad and reflective . ", 'Label_11': 'positive', 'Example_12': "a journey that is as difficult for the audience to take as it is for the protagonist -- yet it 's potentially just as rewarding ", 'Label_12': 'positive', 'Example_13': 'the journey is such a mesmerizing one ', 'Label_13': 'positive', 'Example_14': ', it has considerable charm . ', 'Label_14': 'positive', 'Example_15': 'so exaggerated and broad that it comes off as annoying rather than charming . ', 'Label_15': 'negative'}
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'makes the journey feel like a party ', 'Label_0': 'positive', 'Example_1': 'sometimes charming , sometimes infuriating ', 'Label_1': 'positive', 'Example_2': 'charming , sometimes infuriating ', 'Label_2': 'positive', 'Example_3': "a journey that is as difficult for the audience to take as it is for the protagonist -- yet it 's potentially just as rewarding . ", 'Label_3': 'positive', 'Example_4': 'that the journey is such a mesmerizing one ', 'Label_4': 'positive', 'Example_5': 'it has considerable charm . ', 'Label_5': 'positive', 'Example_6': ', an interesting and at times captivating take on loss and loneliness . ', 'Label_6': 'positive', 'Example_7': 'nasty journey ', 'Label_7': 'negative', 'Example_8': 'that it comes off as annoying rather than charming ', 'Label_8': 'negative', 'Example_9': ', nasty journey ', 'Label_9': 'negative', 'Example_10': 'that tells stories that work -- is charming , is moving ', 'Label_10': 'positive', 'Example_11': "'s affecting , amusing , sad and reflective . ", 'Label_11': 'positive', 'Example_12': "a journey that is as difficult for the audience to take as it is for the protagonist -- yet it 's potentially just as rewarding ", 'Label_12': 'positive', 'Example_13': 'the journey is such a mesmerizing one ', 'Label_13': 'positive', 'Example_14': ', it has considerable charm . ', 'Label_14': 'positive', 'Example_15': 'so exaggerated and broad that it comes off as annoying rather than charming . ', 'Label_15': 'negative'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_sbert/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f907abc56d0>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapLabel(
+        (label_map):  ['negative', 'positive']
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (2): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 813    |
+| Number of failed attacks:     | 4      |
+| Number of skipped attacks:    | 55     |
+| Original accuracy:            | 93.69  |
+| Accuracy under attack:        | 0.46   |
+| Attack success rate:          | 99.51  |
+| Average perturbed word %:     | 1.65   |
+| Average num. words per input: | 215.55 |
+| Avg num queries:              | 47.0   |
+| Adv confidence:               | 0.63   |
+| Average Original Perplexity:  | 11.64  |
+| Average Attack Perplexity:    | 11.68  |
+| Average Attack USE Score:     | 0.98   |
++-------------------------------+--------+
+Attack time: 8530.677464723587
+Attack time: 8530.677464723587

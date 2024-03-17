@@ -1,12 +1,59 @@
 1
-Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=1, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=16, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=1, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=16, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
 meta-llama/Llama-2-7b-hf
 Model Directory: ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor
 1 Physical GPUs, 1 Logical GPUs
-Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=1, beta=1.0, cache_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/sst2_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=16, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=1, beta=1.0, cache_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, ralm_save_path='./data/ralm/sst2_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=16, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
 load INSTRUCTOR_Transformer
 max_seq_length  512
 Length of anchor subsample 32
 Length of icl examples 2
 Finished loading model
 Loading retrieved examples from ./data/ralm/sst2_instructor.pkl
+ICL examples
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'is charming ', 'Label_0': 'positive', 'Example_1': 'that work -- is charming , is moving ', 'Label_1': 'positive', 'Example_2': 'its charm ', 'Label_2': 'positive', 'Example_3': 'that the journey is such a mesmerizing one ', 'Label_3': 'positive', 'Example_4': 'the journey is such a mesmerizing one ', 'Label_4': 'positive', 'Example_5': 'its charms and ', 'Label_5': 'positive', 'Example_6': 'its own languorous charm ', 'Label_6': 'positive', 'Example_7': ', it has considerable charm . ', 'Label_7': 'positive', 'Example_8': 'charming and evoking ', 'Label_8': 'positive', 'Example_9': 'charming , ', 'Label_9': 'positive', 'Example_10': 'it has considerable charm . ', 'Label_10': 'positive', 'Example_11': 'is full of charm . ', 'Label_11': 'positive', 'Example_12': ', charming ', 'Label_12': 'positive', 'Example_13': 'its charms ', 'Label_13': 'positive', 'Example_14': 'delightfully charming -- and ', 'Label_14': 'positive', 'Example_15': "'s both charming and ", 'Label_15': 'positive', 'Example_16': 'charming and ', 'Label_16': 'positive', 'Example_17': 'surprisingly charming and ', 'Label_17': 'positive', 'Example_18': 'a journey ', 'Label_18': 'positive', 'Example_19': 'work -- is charming , ', 'Label_19': 'positive', 'Example_20': 'that tells stories that work -- is charming , is moving ', 'Label_20': 'positive', 'Example_21': 'delightfully charming ', 'Label_21': 'positive', 'Example_22': 'charming result ', 'Label_22': 'positive', 'Example_23': 'the charming result ', 'Label_23': 'positive', 'Example_24': 'work -- is charming , is moving ', 'Label_24': 'positive', 'Example_25': 'is full of charm ', 'Label_25': 'positive', 'Example_26': 'has considerable charm . ', 'Label_26': 'positive', 'Example_27': 'delightfully charming -- ', 'Label_27': 'positive', 'Example_28': 'has a lot of charm . ', 'Label_28': 'positive', 'Example_29': 'has a lot of charm ', 'Label_29': 'positive', 'Example_30': 'yet the act is still charming here . ', 'Label_30': 'positive', 'Example_31': 'has considerable charm ', 'Label_31': 'positive'}
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'is charming ', 'Label_0': 'positive', 'Example_1': 'that work -- is charming , is moving ', 'Label_1': 'positive', 'Example_2': 'its charm ', 'Label_2': 'positive', 'Example_3': 'that the journey is such a mesmerizing one ', 'Label_3': 'positive', 'Example_4': 'the journey is such a mesmerizing one ', 'Label_4': 'positive', 'Example_5': 'its charms and ', 'Label_5': 'positive', 'Example_6': 'its own languorous charm ', 'Label_6': 'positive', 'Example_7': ', it has considerable charm . ', 'Label_7': 'positive', 'Example_8': 'charming and evoking ', 'Label_8': 'positive', 'Example_9': 'charming , ', 'Label_9': 'positive', 'Example_10': 'it has considerable charm . ', 'Label_10': 'positive', 'Example_11': 'is full of charm . ', 'Label_11': 'positive', 'Example_12': ', charming ', 'Label_12': 'positive', 'Example_13': 'its charms ', 'Label_13': 'positive', 'Example_14': 'delightfully charming -- and ', 'Label_14': 'positive', 'Example_15': "'s both charming and ", 'Label_15': 'positive', 'Example_16': 'charming and ', 'Label_16': 'positive', 'Example_17': 'surprisingly charming and ', 'Label_17': 'positive', 'Example_18': 'a journey ', 'Label_18': 'positive', 'Example_19': 'work -- is charming , ', 'Label_19': 'positive', 'Example_20': 'that tells stories that work -- is charming , is moving ', 'Label_20': 'positive', 'Example_21': 'delightfully charming ', 'Label_21': 'positive', 'Example_22': 'charming result ', 'Label_22': 'positive', 'Example_23': 'the charming result ', 'Label_23': 'positive', 'Example_24': 'work -- is charming , is moving ', 'Label_24': 'positive', 'Example_25': 'is full of charm ', 'Label_25': 'positive', 'Example_26': 'has considerable charm . ', 'Label_26': 'positive', 'Example_27': 'delightfully charming -- ', 'Label_27': 'positive', 'Example_28': 'has a lot of charm . ', 'Label_28': 'positive', 'Example_29': 'has a lot of charm ', 'Label_29': 'positive', 'Example_30': 'yet the act is still charming here . ', 'Label_30': 'positive', 'Example_31': 'has considerable charm ', 'Label_31': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/sst2/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f9b9b4aae20>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapLabel(
+        (label_map):  ['negative', 'positive']
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (2): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 814    |
+| Number of failed attacks:     | 13     |
+| Number of skipped attacks:    | 45     |
+| Original accuracy:            | 94.84  |
+| Accuracy under attack:        | 1.49   |
+| Attack success rate:          | 98.43  |
+| Average perturbed word %:     | 0.86   |
+| Average num. words per input: | 375.07 |
+| Avg num queries:              | 92.6   |
+| Adv confidence:               | 0.66   |
+| Average Original Perplexity:  | 10.13  |
+| Average Attack Perplexity:    | 10.16  |
+| Average Attack USE Score:     | 0.99   |
++-------------------------------+--------+
+Attack time: 31605.718279600143
+Attack time: 31605.718279600143
