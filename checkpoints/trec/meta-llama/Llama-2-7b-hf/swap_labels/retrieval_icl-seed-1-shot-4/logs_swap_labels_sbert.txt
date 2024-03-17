@@ -1,0 +1,57 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=4, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='trec', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.2, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/trec/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=6, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=4, split='test', template_file='configs/templates_trec.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_trec.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/trec/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_sbert
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=4, beta=1.0, cache_dir='./checkpoints/trec/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_sbert/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='trec', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.2, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/trec/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=6, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, ralm_save_path='./data/ralm/trec_sbert.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=4, split='test', template_file='configs/templates_trec.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_trec.yaml', weight_decay=0.01)
+Length of anchor subsample 24
+Length of icl examples 6
+Finished loading model
+Loading retrieved examples from ./data/ralm/trec_sbert.pkl
+ICL examples
+{'sentence': 'how far is it from denver to aspen ?', 'label': 5, 'idx': 0, 'Example_0': 'how high is the city of denver ?', 'Label_0': 'number', 'Example_1': 'how many miles is it to ohio from north carolina ?', 'Label_1': 'number', 'Example_2': 'how many miles is it from ny to austria ?', 'Label_2': 'number', 'Example_3': 'how far is it from phoenix to blythe ?', 'Label_3': 'number', 'Example_4': 'what colorado city owns its own glacier ?', 'Label_4': 'location', 'Example_5': 'what river runs through colorado , kansas , and oklahoma ?', 'Label_5': 'location', 'Example_6': 'what is the fare cost for the round trip between new york and london on concorde ?', 'Label_6': 'number', 'Example_7': 'on average , how many miles are there to the moon ?', 'Label_7': 'number', 'Example_8': 'how many miles is it from frankfurt , germany to salzburg , austria ?', 'Label_8': 'number', 'Example_9': 'how long is the coney island boardwalk ?', 'Label_9': 'number', 'Example_10': 'how far away is the moon ?', 'Label_10': 'number', 'Example_11': 'what city is logan airport in ?', 'Label_11': 'location', 'Example_12': 'where in the americas is it only 47 miles from the atlantic to the pacific ?', 'Label_12': 'location', 'Example_13': 'what new england state covers 5.9 square miles ?', 'Label_13': 'location', 'Example_14': 'how far is yaroslavl from moscow ?', 'Label_14': 'number', 'Example_15': 'how far is london uk from california ?', 'Label_15': 'number', 'Example_16': 'how many miles is it from london , england to plymouth , england ?', 'Label_16': 'number', 'Example_17': 'how long is the border between canada and the 48 conterminous states ?', 'Label_17': 'number', 'Example_18': 'where is logan airport ?', 'Label_18': 'location', 'Example_19': 'who lives at 39 stone canyon way ?', 'Label_19': 'person', 'Example_20': 'what is the snowiest city in the u.s. ?', 'Label_20': 'location', 'Example_21': 'why is the mile 528 feet ?', 'Label_21': 'description', 'Example_22': "what rocky mountain ridge separates north america 's eastward and westward-flowing rivers ?", 'Label_22': 'location', 'Example_23': "what is new england 's highest mountain ?", 'Label_23': 'location'}
+{'sentence': 'how far is it from denver to aspen ?', 'label': 5, 'idx': 0, 'Example_0': 'how high is the city of denver ?', 'Label_0': 'number', 'Example_1': 'how many miles is it to ohio from north carolina ?', 'Label_1': 'number', 'Example_2': 'how many miles is it from ny to austria ?', 'Label_2': 'number', 'Example_3': 'how far is it from phoenix to blythe ?', 'Label_3': 'number', 'Example_4': 'what colorado city owns its own glacier ?', 'Label_4': 'location', 'Example_5': 'what river runs through colorado , kansas , and oklahoma ?', 'Label_5': 'location', 'Example_6': 'what is the fare cost for the round trip between new york and london on concorde ?', 'Label_6': 'number', 'Example_7': 'on average , how many miles are there to the moon ?', 'Label_7': 'number', 'Example_8': 'how many miles is it from frankfurt , germany to salzburg , austria ?', 'Label_8': 'number', 'Example_9': 'how long is the coney island boardwalk ?', 'Label_9': 'number', 'Example_10': 'how far away is the moon ?', 'Label_10': 'number', 'Example_11': 'what city is logan airport in ?', 'Label_11': 'location', 'Example_12': 'where in the americas is it only 47 miles from the atlantic to the pacific ?', 'Label_12': 'location', 'Example_13': 'what new england state covers 5.9 square miles ?', 'Label_13': 'location', 'Example_14': 'how far is yaroslavl from moscow ?', 'Label_14': 'number', 'Example_15': 'how far is london uk from california ?', 'Label_15': 'number', 'Example_16': 'how many miles is it from london , england to plymouth , england ?', 'Label_16': 'number', 'Example_17': 'how long is the border between canada and the 48 conterminous states ?', 'Label_17': 'number', 'Example_18': 'where is logan airport ?', 'Label_18': 'location', 'Example_19': 'who lives at 39 stone canyon way ?', 'Label_19': 'person', 'Example_20': 'what is the snowiest city in the u.s. ?', 'Label_20': 'location', 'Example_21': 'why is the mile 528 feet ?', 'Label_21': 'description', 'Example_22': "what rocky mountain ridge separates north america 's eastward and westward-flowing rivers ?", 'Label_22': 'location', 'Example_23': "what is new england 's highest mountain ?", 'Label_23': 'location'}
+['Question: {}\nType: {}']
+{0: ['expression'], 1: ['entity'], 2: ['description'], 3: ['person'], 4: ['location'], 5: ['number']}
+./checkpoints/trec/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_sbert/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f52be3b73a0>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapLabel(
+        (label_map):  ['expression', 'entity', 'description', 'person', 'location', 'number']
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.2
+        (compare_against_original):  True
+      )
+    (1): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (2): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 273    |
+| Number of failed attacks:     | 189    |
+| Number of skipped attacks:    | 38     |
+| Original accuracy:            | 92.4   |
+| Accuracy under attack:        | 37.8   |
+| Attack success rate:          | 59.09  |
+| Average perturbed word %:     | 0.89   |
+| Average num. words per input: | 222.43 |
+| Avg num queries:              | 222.58 |
+| Adv confidence:               | 0.67   |
+| Average Original Perplexity:  | 14.96  |
+| Average Attack Perplexity:    | 15.12  |
+| Average Attack USE Score:     | 0.99   |
++-------------------------------+--------+
+Attack time: 4475.741394519806
+Attack time: 4475.741394519806
