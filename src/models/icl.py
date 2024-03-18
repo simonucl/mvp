@@ -92,6 +92,14 @@ class ICL(ModelWrapper):
         else:
             anchor_subsample, icl_examples = subsamplebyshot(anchor_data, args.seed, self.label_set, self.verbalizer, args.shot, examples_per_label)
         
+            if args.save_icl_examples_path:
+                concat_icl_examples = []
+                for k, v in icl_examples.items():
+                    concat_icl_examples += v
+                with open(args.save_icl_examples_path, 'wb') as f:
+                    pickle.dump(concat_icl_examples, f)
+                import sys
+                sys.exit(1)
         # print('Anchor subsample', anchor_data)
 
         # print('ICL examples', icl_examples)

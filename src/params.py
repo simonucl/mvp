@@ -30,7 +30,7 @@ def parse_args():
     parser.add_argument("--verbalizer_file", help = "Path for verbalizer file", type = str, default = None)
     parser.add_argument("--template_file", help = "Path for template file", type = str, default = None)
     parser.add_argument("--num_template", help = "which template to use in the file (-1 for all templates)", type = int, default = -1)
-
+    parser.add_argument("--save_icl_examples_path", help = "Path to save icl examples", type = str, default = None)
     #HPARAMS
     parser.add_argument("--num_epochs", help = "Number of Epochs", type = int, default = 20)
     parser.add_argument("--patience", help = "Number of Epochs", type = int, default = 10)

@@ -8,6 +8,7 @@ from tqdm import tqdm
 # from tqdm.auto import tqdm  # for notebooks
 import os
 from functools import partial
+import pickle as pkl
 
 tqdm.pandas()
 
@@ -18,25 +19,32 @@ def get_demo_and_question(text):
     question = (demons[0], demons[1], "")
     icl_examples = []
     demons = demons[2:]
-    for i in range(len(demons) // 3):
+    for i in range(len(demons) // 3): # Limited to NLI results for now
         icl_examples.append((demons[i * 3], demons[i * 3 + 1], demons[i * 3 + 2]))
     return question, icl_examples
     
 
-def get_prompt(text):
-    question, icl_examples = get_demo_and_question(text)
+def get_prompt(row, text_col='original_text', verbalizer={0: "true", 1: "false"}):
+    question, icl_examples = get_demo_and_question(row[text_col])
+    if len(icl_examples) == 0:
+        icl_examples = row['icl_examples']
+
     template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
     verbalizer = {0: "true", 1: "false"}
 
     demos = []
     for demo in icl_examples:
-        demos.append(template.format(demo[0], demo[1], demo[2]))
+        if isinstance(demo, tuple):
+            demos.append(template.format(demo[0], demo[1], demo[2]))
+        elif isinstance(demo, dict):
+            demos.append(template.format(demo['premise'], demo['hypothesis'], verbalizer[demo['label']]))
     q = template.format(question[0], question[1], "").strip()
 
     prompt = "\n\n".join(demos) + "\n\n" + q
 
     return prompt
 
+# Making sure the perturbed text is not changing the question and the demonstrations
 def compare_non_modifable(row):
     original = row['original_text']
     modified = row['perturbed_text']
@@ -45,48 +53,58 @@ def compare_non_modifable(row):
 
     return (all([(e[0] == ae[0]) and (e[1] == ae[1]) for e, ae in zip(ori_icl_examples, mod_icl_examples)])) and (ori_q == mod_q)
 
-def compute_distributions(question, icl_examples, tokenizer, model):
+def compute_distributions(question, icl_examples, tokenizer, model, prompt=None):
     model.eval()
-    template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
     verbalizer = {0: "true", 1: "false"}
     if isinstance(model, FalconForCausalLM):
         label_id = [tokenizer.encode(' ' + verbalizer[0])[0], tokenizer.encode(' ' + verbalizer[1])[0]]
     else:
         label_id = [tokenizer.encode(verbalizer[0])[1], tokenizer.encode(verbalizer[1])[1]]
+        
+    if prompt is None:
+        template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
 
-    demos = []
-    for demo in icl_examples:
-        demos.append(template.format(demo[0], demo[1], demo[2]))
-    q = template.format(question[0], question[1], "").strip()
+        demos = []
+        for demo in icl_examples:
+            demos.append(template.format(demo[0], demo[1], demo[2]))
+        q = template.format(question[0], question[1], "").strip()
 
-    prompt = "\n\n".join(demos) + "\n\n" + q
+        prompt = "\n\n".join(demos) + "\n\n" + q
 
     # print(prompt)
-    tokenized = tokenizer(prompt, return_tensors="pt", padding=False, truncation=True, max_length=1536)
+    tokenized = tokenizer(prompt, return_tensors="pt", padding=False, truncation=True, max_length=1536).to(model.device)
     # print(f'Tokenied length: {len(tokenized["input_ids"][0])}')
 
     logits = model(**tokenized).logits
     output = logits[:, -1, :].detach().cpu()
 
-    print('decoded:' + tokenizer.decode(output.argmax(dim=-1).item()))
+    # print('decoded:' + tokenizer.decode(output.argmax(dim=-1).item()))
     output_label = output[:, label_id].softmax(dim=-1)
     return output_label.argmax(dim=-1).item()
 
 def compute_the_attacked_answer(row, tokenizer, model):
-    original = row['original_text']
-    modified = row['perturbed_text']
-    # ori_q, ori_icl_examples = get_demo_and_question(original)
-    mod_q, mod_icl_examples = get_demo_and_question(modified)
+    if 'perturbed_prompt' in row:
+        prompt = row['perturbed_prompt']
+        return compute_distributions(None, None, tokenizer=tokenizer, model=model, prompt=prompt)
+    else:
+        original = row['original_text']
+        modified = row['perturbed_text']
+        # ori_q, ori_icl_examples = get_demo_and_question(original)
+        mod_q, mod_icl_examples = get_demo_and_question(modified)
 
-    return compute_distributions(mod_q, mod_icl_examples, tokenizer=tokenizer, model=model)
+        return compute_distributions(mod_q, mod_icl_examples, tokenizer=tokenizer, model=model)
 
 def compute_original_answer(row, tokenizer, model):
-    original = row['original_text']
-    modified = row['perturbed_text']
-    ori_q, ori_icl_examples = get_demo_and_question(original)
-    # mod_q, mod_icl_examples = get_demo_and_question(modified)
+    if 'original_prompt' in row:
+        prompt = row['original_prompt']
+        return compute_distributions(None, None, tokenizer=tokenizer, model=model, prompt=prompt)
+    else:
+        original = row['original_text']
+        modified = row['perturbed_text']
+        ori_q, ori_icl_examples = get_demo_and_question(original)
+        # mod_q, mod_icl_examples = get_demo_and_question(modified)
 
-    return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model)
+        return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model)
 
 def random_flip(icl_examples, percentage):
     np.random.seed(1)
@@ -112,46 +130,15 @@ def compute_random_flip_original_answer(row, tokenizer, model):
 
     return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model)
 
-# import os
-# os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-def main(args):
-    tokenizer = AutoTokenizer.from_pretrained(args.model)
-    print('Loading model')
-    if args.precision == 'bf16':
-        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, torch_dtype=torch.bfloat16, device_map='auto')
-        model = model.to('cuda')
-    elif args.precision == 'int8':
-        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, load_in_8bit=True, device_map='auto')
-    elif args.precision == 'int4':
-        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, load_in_4bit=True, device_map='auto')
-
-    model.eval()
-    # tokenizer.padding_side = "left"
-    tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.truncation_side = "left"
-
-    print('Loading data')
-    df = pd.read_csv(args.csv_path)
-    out_path = '/'.join(args.csv_path.split('/')[:-1])
-    model_name = args.model.split('/')[-1]
-
-    df['non_modifiable'] = df.progress_apply(compare_non_modifable, axis=1)
-    df['attacked_answer'] = df.progress_apply(lambda x : compute_the_attacked_answer(x, tokenizer=tokenizer, model=model), axis=1)
-    df['original_answer'] = df.progress_apply(lambda x : compute_original_answer(x, tokenizer=tokenizer, model=model), axis=1)
+def compute_swap_labels_details(df, tokenizer, model, out_path, model_name):
     df['random_flip_original_answer'] = df.progress_apply(lambda x : compute_random_flip_original_answer(x, tokenizer=tokenizer, model=model), axis=1)
     # df['full_flip_true_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label='true'), axis=1)
     # df['full_flip_false_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label='false'), axis=1)
 
-    df['correct'] = df['original_answer'] == df['ground_truth_output']
-    df['attack_correct'] = df['attacked_answer'] == df['ground_truth_output']
     df['random_flip_correct'] = df['random_flip_original_answer'] == df['ground_truth_output']
     # df['full_flip_true_correct'] = df['full_flip_true_original_answer'] == df['ground_truth_output']
     # df['full_flip_false_correct'] = df['full_flip_false_original_answer'] == df['ground_truth_output']
 
-    print('Original Accuracy')
-    print(round(df['correct'].value_counts()[True] / df['correct'].value_counts().sum(), 4))
-    print('\nAttack Accuracy')
-    print(round(df['attack_correct'].value_counts()[True] / df['attack_correct'].value_counts().sum(), 4))
     print('\nRandom Flip Accuracy')
     print(round(df['random_flip_correct'].value_counts()[True] / df['random_flip_correct'].value_counts().sum(), 4))
 
@@ -159,9 +146,6 @@ def main(args):
     # print(round(df['full_flip_true_correct'].value_counts()[True] / df['full_flip_true_correct'].value_counts().sum(), 4))
     # print('\nAll False Accuracy')
     # print(round(df['full_flip_false_correct'].value_counts()[True] / df['full_flip_false_correct'].value_counts().sum(), 4))
-
-    import sys
-    sys.exit(1)
     
     from collections import Counter
 
@@ -199,7 +183,7 @@ def main(args):
     buckets = {'true': [], 'false': []}
     for i, row in successful_attack.iterrows():
         for k, v in row['correct_label_dist'].items():
-            buckets[k].append(v-8)
+            buckets[k].append(v-args.shot)
 
     # draw them on a 2d bar chart
 
@@ -225,11 +209,72 @@ def main(args):
     plot_histogram(buckets)
     df.to_csv(os.path.join(out_path, f'{model_name}_attack_results.csv'), index=False)
 
+# import os
+# os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+def main(args):
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
+    print('Loading model')
+    if args.precision == 'bf16':
+        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, torch_dtype=torch.bfloat16, device_map='auto')
+        model = model.to('cuda')
+    elif args.precision == 'int8':
+        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, load_in_8bit=True, device_map='auto')
+    elif args.precision == 'int4':
+        model = AutoModelForCausalLM.from_pretrained(args.model, use_flash_attention_2=True, load_in_4bit=True, device_map='auto')
+
+    model.eval()
+    # tokenizer.padding_side = "left"
+    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.truncation_side = "left"
+
+    print('Loading data')
+    df = pd.read_csv(args.csv_path)
+    out_path = '/'.join(args.csv_path.split('/')[:-1])
+    model_name = args.model.split('/')[-1]
+
+    if args.demonstration_path:
+        icl_examples = pkl.load(open(args.demonstration_path, 'rb'))
+        # check if icl_examples is a list of list of dictionaries
+        if isinstance(icl_examples[0], list):
+            df['icl_examples'] = icl_examples
+        else:
+            icl_examples = [icl_examples] * len(df)
+            df['icl_examples'] = icl_examples
+    
+    df['original_prompt'] = df.progress_apply(partial(get_prompt, text_col='original_text'), axis=1)
+    df['perturbed_prompt'] = df.progress_apply(partial(get_prompt, text_col='perturbed_text'), axis=1)
+
+    # df['non_modifiable'] = df.progress_apply(compare_non_modifable, axis=1)
+    df['attacked_answer'] = df.progress_apply(lambda x : compute_the_attacked_answer(x, tokenizer=tokenizer, model=model), axis=1)
+    df['original_answer'] = df.progress_apply(lambda x : compute_original_answer(x, tokenizer=tokenizer, model=model), axis=1)
+
+    df['correct'] = df['original_answer'] == df['ground_truth_output']
+    df['attack_correct'] = df['attacked_answer'] == df['ground_truth_output']
+
+    clean_acc = df['correct'].value_counts()[True] / df['correct'].value_counts().sum()
+    attack_acc = df['attack_correct'].value_counts()[True] / df['attack_correct'].value_counts().sum()
+    asr = (clean_acc - attack_acc) / clean_acc
+
+    print('Original Accuracy')
+    print(round(clean_acc, 4))
+    print('\nAttack Accuracy')
+    print(round(attack_acc, 4))
+    print('\nASR')
+    print(round(asr, 4))
+    
+    df.to_csv(os.path.join(out_path, f'{model_name}_attack_results.csv'), index=False)
+
+    if args.attack == 'swap_labels' or args.attack == 'swap_labels_fix':
+        compute_swap_labels_details(df, tokenizer, model, out_path, model_name)
+
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
     args.add_argument('--model', type=str, default='lmsys/vicuna-7b-v1.5')
     args.add_argument('--csv_path', type=str, required=True)
     args.add_argument('--precision', type=str, default='bf16')
+    args.add_argument('--demonstration_path', type=str, default=None)
+    args.add_argument('--attack', type=str, default='swap_labels')
+    args.add_argument('--shot', type=int, default=8)
 
     args = args.parse_args()
 
