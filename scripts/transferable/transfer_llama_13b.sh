@@ -8,7 +8,7 @@ BASE_MODEL=meta-llama/Llama-2-13b-hf
 for MODEL in ${MODELS[@]};
 do
     if [[ $MODEL == "meta-llama/Llama-2-70b-hf" ]] || [[ $MODEL == "mistralai/Mixtral-8x7B-v0.1" ]]; then
-        PRECISION=int8
+        PRECISION=int4
     else
         PRECISION=bf16
     fi
