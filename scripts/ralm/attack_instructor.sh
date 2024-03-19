@@ -65,7 +65,7 @@ do
         mkdir -p ${MODELPATH}
         echo ${MODELPATH}
 
-        for RETRIEVAL_METHOD in instructor;
+        for RETRIEVAL_METHOD in bm25 instructor;
         do
             nohup python3 main.py \
                     --mode attack \
