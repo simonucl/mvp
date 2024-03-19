@@ -10,6 +10,8 @@ SHOTS=(16)
 # SEEDS=(1 13 42)
 SEEDS=(42)
 
+MODELS=(meta-llama/Llama-2-7b-hf meta-llama/Llama-2-13b-hf)
+
 if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]]; then
     ATTACK_PRECENT=0.15
 else
