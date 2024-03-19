@@ -246,7 +246,10 @@ def attacker(args):
                             }
                             
         attack_class = attack_name_mapper[attack_name]
-        log_to_csv=f"{args.model_dir}/{attack_name}_log.csv"
+        if args.fix_dist:
+            log_to_csv=f"{args.model_dir}/{attack_name}_fix_dist_log.csv"
+        else:
+            log_to_csv=f"{args.model_dir}/{attack_name}_log.csv"
 
         print(templates)
         print(verbalizer)

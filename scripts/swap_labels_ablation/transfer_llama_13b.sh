@@ -18,16 +18,16 @@ do
     do
         for ATTACK in ${ATTACKS[@]};
         do
-            for SEED in ${SEEDS[@]};
-            do
-                echo model: $MODEL
-                echo csv_path: checkpoints/rte/${BASE_MODEL}/${ATTACK}/icl-seed-${SEED}-shot-8/${ATTACK}_log.csv
-                CUDA_VISIBLE_DEVICES=0 python3 src/transfer_attack.py \
-                    --model $MODEL \
-                    --csv_path checkpoints/rte/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_log.csv \
-                    --attack $ATTACK \
-                    --precision $PRECISION
-            done
+            # for SEED in ${SEEDS[@]};
+            # do
+            #     echo model: $MODEL
+            #     echo csv_path: checkpoints/rte/${BASE_MODEL}/${ATTACK}/icl-seed-${SEED}-shot-8/${ATTACK}_log.csv
+            #     CUDA_VISIBLE_DEVICES=0 python3 src/transfer_attack.py \
+            #         --model $MODEL \
+            #         --csv_path checkpoints/rte/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_log.csv \
+            #         --attack $ATTACK \
+            #         --precision $PRECISION
+            # done
 
             for RETRIEVER in ${RETRIEVERS[@]};
             do
