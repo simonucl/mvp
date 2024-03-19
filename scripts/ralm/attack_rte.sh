@@ -7,7 +7,7 @@ TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 SHOTS=(8)
 
-TOTAL_BATCH=24
+TOTAL_BATCH=16
 
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2 4)
