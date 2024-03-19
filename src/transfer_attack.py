@@ -307,8 +307,8 @@ def main(args):
     df.to_csv(os.path.join(out_path, f'{model_name}_attack_results.csv'), index=False)
     # save the metrics as json
 
-    if args.attack == 'swap_labels' or args.attack == 'swap_labels_fix_dist':
-        metrics = compute_swap_labels_details(df, tokenizer, model, out_path, model_name, metrics)
+    # if args.attack == 'swap_labels' or args.attack == 'swap_labels_fix_dist':
+    #     metrics = compute_swap_labels_details(df, tokenizer, model, out_path, model_name, metrics)
 
     with open(os.path.join(out_path, f'{model_name}_attack_metrics.json'), 'w') as f:
         json.dump(metrics, f)
