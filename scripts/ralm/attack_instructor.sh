@@ -44,7 +44,7 @@ fi
 for MODEL in ${MODELS[@]};
 do
     if [[ $MODEL == "meta-llama/Llama-2-7b-hf" ]]; then
-        TOTAL_BATCH=32
+        TOTAL_BATCH=24
     else
         TOTAL_BATCH=16
     fi
