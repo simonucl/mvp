@@ -5,7 +5,9 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-SHOTS=(16)
+SHOTS=(8)
+
+TOTAL_BATCH=24
 
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2 4)
@@ -59,7 +61,7 @@ do
         mkdir -p ${MODELPATH}
         echo ${MODELPATH}
 
-        for RETRIEVAL_METHOD in sbert instructor;
+        for RETRIEVAL_METHOD in bm25 sbert instructor;
         do
             nohup python3 main.py \
                     --mode attack \
