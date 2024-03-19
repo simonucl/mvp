@@ -10,6 +10,7 @@ SHOTS=(8 2 4 16)
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2 4)
 # fi
+TOTAL_BATCH=16
 
 if [[ $ATTACK == "swap_labels" ]]; then
     QUERY_BUDGET=250

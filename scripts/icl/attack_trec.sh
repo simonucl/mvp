@@ -7,6 +7,7 @@ TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 SHOTS=(8 2 4 16)
 
+TOTAL_BATCH=16
 SEEDS=(1 13 42)
 
 if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
