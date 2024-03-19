@@ -257,6 +257,7 @@ def insert_icl_prompts(model, tokenizer, model_type, text_input_list, templates,
     input_length = []
     new_input_id_indices = []
     prompts = []
+    print('ICL Examples', icl_examples)
     for i in range(len(text_input_list)):
         if use_all:
             templates_new = templates
@@ -294,6 +295,7 @@ def insert_icl_prompts(model, tokenizer, model_type, text_input_list, templates,
                                 example = format_template(e, template, model.args.dataset, verbalizer=model.verbalizer)
                                 examples.append(example)
                                 # examples.append(template.format(e['sentence'], label))
+            print('Examples', examples)
             prompt = "\n\n".join(examples)
 
             # if model_type in ["knn_icl", "retrieval_icl", "retrieval_icl_attack"]:
