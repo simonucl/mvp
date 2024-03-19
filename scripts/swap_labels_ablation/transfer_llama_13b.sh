@@ -2,7 +2,7 @@ MODELS=(meta-llama/Llama-2-7b-hf meta-llama/Llama-2-13b-hf mistralai/Mistral-7B-
 SEEDS=(1 13 42)
 RETRIEVERS=(bm25 sbert instructor)
 ATTACKS=(swap_labels swap_labels_fix_dist)
-DATASETS=(rte)
+DATASETS=(trec)
 
 BASE_MODEL=meta-llama/Llama-2-13b-hf
 

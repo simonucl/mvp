@@ -10,36 +10,55 @@ import os
 from functools import partial
 import pickle as pkl
 import json
+import yaml
 
 tqdm.pandas()
 
-def get_demo_and_question(text):
+def get_demo_and_question(text, dataset="rte"):
     demons = text.split("<SPLIT>")
     demons = [demon.split(":")[1].strip('\n ').strip('[]') for demon in demons]
 
-    question = (demons[0], demons[1], "")
-    icl_examples = []
-    demons = demons[2:]
-    for i in range(len(demons) // 3): # Limited to NLI results for now
-        icl_examples.append((demons[i * 3], demons[i * 3 + 1], demons[i * 3 + 2]))
+    if dataset == "rte":
+        question = (demons[0], demons[1], "")
+        icl_examples = []
+        demons = demons[2:]
+        for i in range(len(demons) // 3): # Limited to NLI results for now
+            icl_examples.append((demons[i * 3], demons[i * 3 + 1], demons[i * 3 + 2]))
+    elif dataset == "trec":
+        question = (demons[0], "")
+        icl_examples = []
+        demons = demons[1:]
+        for i in range(len(demons) // 2):
+            icl_examples.append((demons[i * 2], demons[i * 2 + 1]))
     return question, icl_examples
     
 
-def get_prompt(row, text_col='original_text', verbalizer={0: "true", 1: "false"}, icl_examples_col='icl_examples'):
-    question, icl_examples = get_demo_and_question(row[text_col])
+def get_prompt(row, text_col='original_text', verbalizer={0: "true", 1: "false"}, icl_examples_col='icl_examples', template=None, dataset="rte"):
+    question, icl_examples = get_demo_and_question(row[text_col], dataset=dataset)
     if len(icl_examples) == 0:
         icl_examples = row[icl_examples_col]
 
-    template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
-    verbalizer = {0: "true", 1: "false"}
+    # if template is None:
+    #     template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
+    # verbalizer = {0: "true", 1: "false"}
 
     demos = []
     for demo in icl_examples:
-        if isinstance(demo, tuple):
-            demos.append(template.format(demo[0], demo[1], demo[2]))
-        elif isinstance(demo, dict):
-            demos.append(template.format(demo['premise'], demo['hypothesis'], verbalizer[demo['label']]))
-    q = template.format(question[0], question[1], "").strip()
+        if dataset == "rte":
+            if isinstance(demo, tuple):
+                demos.append(template.format(demo[0], demo[1], demo[2]))
+            elif isinstance(demo, dict):
+                demos.append(template.format(demo['premise'], demo['hypothesis'], verbalizer[demo['label']]))
+        elif dataset == "trec":
+            if isinstance(demo, tuple):
+                demos.append(template.format(demo[0], demo[1]))
+            elif isinstance(demo, dict):
+                demos.append(template.format(demo['example'], verbalizer[demo['label']]))
+
+    if dataset == "rte":
+        q = template.format(question[0], question[1], "").strip()
+    elif dataset == "trec":
+        q = template.format(question[0], "").strip()
 
     prompt = "\n\n".join(demos) + "\n\n" + q
 
@@ -54,13 +73,14 @@ def compare_non_modifable(row):
 
     return (all([(e[0] == ae[0]) and (e[1] == ae[1]) for e, ae in zip(ori_icl_examples, mod_icl_examples)])) and (ori_q == mod_q)
 
-def compute_distributions(question, icl_examples, tokenizer, model, prompt=None):
+def compute_distributions(question, icl_examples, tokenizer, model, verbalizer, prompt=None):
     model.eval()
-    verbalizer = {0: "true", 1: "false"}
-    if isinstance(model, FalconForCausalLM):
-        label_id = [tokenizer.encode(' ' + verbalizer[0])[0], tokenizer.encode(' ' + verbalizer[1])[0]]
-    else:
-        label_id = [tokenizer.encode(verbalizer[0])[1], tokenizer.encode(verbalizer[1])[1]]
+    label_id = [tokenizer.encode(v)[1] for k, v in verbalizer.items()]
+
+    # if isinstance(model, FalconForCausalLM):
+    #     label_id = [tokenizer.encode(' ' + verbalizer[0])[0], tokenizer.encode(' ' + verbalizer[1])[0]]
+    # else:
+    #     label_id = [tokenizer.encode(verbalizer[0])[1], tokenizer.encode(verbalizer[1])[1]]
         
     if prompt is None:
         template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
@@ -83,29 +103,29 @@ def compute_distributions(question, icl_examples, tokenizer, model, prompt=None)
     output_label = output[:, label_id].softmax(dim=-1)
     return output_label.argmax(dim=-1).item()
 
-def compute_the_attacked_answer(row, tokenizer, model):
+def compute_the_attacked_answer(row, tokenizer, model, verbalizer):
     if 'perturbed_prompt' in row:
         prompt = row['perturbed_prompt']
-        return compute_distributions(None, None, tokenizer=tokenizer, model=model, prompt=prompt)
+        return compute_distributions(None, None, tokenizer=tokenizer, model=model, prompt=prompt, verbalizer=verbalizer)
     else:
         original = row['original_text']
         modified = row['perturbed_text']
         # ori_q, ori_icl_examples = get_demo_and_question(original)
         mod_q, mod_icl_examples = get_demo_and_question(modified)
 
-        return compute_distributions(mod_q, mod_icl_examples, tokenizer=tokenizer, model=model)
+        return compute_distributions(mod_q, mod_icl_examples, tokenizer=tokenizer, model=model, verbalizer=verbalizer)
 
-def compute_original_answer(row, tokenizer, model):
+def compute_original_answer(row, tokenizer, model, verbalizer):
     if 'original_prompt' in row:
         prompt = row['original_prompt']
-        return compute_distributions(None, None, tokenizer=tokenizer, model=model, prompt=prompt)
+        return compute_distributions(None, None, tokenizer=tokenizer, model=model, prompt=prompt, verbalizer=verbalizer)
     else:
         original = row['original_text']
         modified = row['perturbed_text']
         ori_q, ori_icl_examples = get_demo_and_question(original)
         # mod_q, mod_icl_examples = get_demo_and_question(modified)
 
-        return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model)
+        return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model, verbalizer=verbalizer)
 
 def random_flip(icl_examples, percentage):
     np.random.seed(1)
@@ -215,9 +235,19 @@ def compute_swap_labels_details(df, tokenizer, model, out_path, model_name, metr
     # plot_histogram(buckets)
     df.to_csv(os.path.join(out_path, f'{model_name}_attack_results.csv'), index=False)
 
+def get_verbalizer_and_template(dataset):
+    verbalizer = yaml.safe_load(open(f'./configs/verbalizer_{dataset}.yaml', 'r'))
+    template = list(yaml.safe_load(open(f'./configs/templates_{dataset}.yaml', 'r')).values())[0]
+    verbalizer = {
+        int(k): v[0] if isinstance(v, list) else v for k, v in verbalizer.items()
+    }
+    return verbalizer, template
+
 # import os
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 def main(args):
+    verbalizer, template = get_verbalizer_and_template(args.dataset)
+    
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     print('Loading model')
     if args.precision == 'bf16':
@@ -247,12 +277,12 @@ def main(args):
             icl_examples = [icl_examples] * len(df)
             df['icl_examples'] = icl_examples
     
-    df['original_prompt'] = df.progress_apply(partial(get_prompt, text_col='original_text'), axis=1)
-    df['perturbed_prompt'] = df.progress_apply(partial(get_prompt, text_col='perturbed_text'), axis=1)
+    df['original_prompt'] = df.progress_apply(partial(get_prompt, text_col='original_text', template=template, dataset=args.dataset, verbalizer=verbalizer), axis=1)
+    df['perturbed_prompt'] = df.progress_apply(partial(get_prompt, text_col='perturbed_text', template=template, dataset=args.dataset, verbalizer=verbalizer), axis=1)
 
     # df['non_modifiable'] = df.progress_apply(compare_non_modifable, axis=1)
-    df['attacked_answer'] = df.progress_apply(lambda x : compute_the_attacked_answer(x, tokenizer=tokenizer, model=model), axis=1)
-    df['original_answer'] = df.progress_apply(lambda x : compute_original_answer(x, tokenizer=tokenizer, model=model), axis=1)
+    df['attacked_answer'] = df.progress_apply(lambda x : compute_the_attacked_answer(x, tokenizer=tokenizer, model=model, verbalizer=verbalizer), axis=1)
+    df['original_answer'] = df.progress_apply(lambda x : compute_original_answer(x, tokenizer=tokenizer, model=model, verbalizer=verbalizer), axis=1)
 
     df['correct'] = df['original_answer'] == df['ground_truth_output']
     df['attack_correct'] = df['attacked_answer'] == df['ground_truth_output']
@@ -291,6 +321,7 @@ if __name__ == '__main__':
     args.add_argument('--demonstration_path', type=str, default=None)
     args.add_argument('--attack', type=str, default='swap_labels')
     args.add_argument('--shot', type=int, default=8)
+    args.add_argument('--dataset', type=str, default='rte')
 
     args = args.parse_args()
 
