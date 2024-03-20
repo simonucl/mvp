@@ -1,0 +1,1 @@
+{"clean_acc": 0.7220216606498195, "attack_acc": 0.5740072202166066, "asr": 0.205, "random_flip_acc": 0.6787003610108303, "full_flip_true_acc": 0.5595667870036101, "full_flip_false_acc": 0.47653429602888087}
