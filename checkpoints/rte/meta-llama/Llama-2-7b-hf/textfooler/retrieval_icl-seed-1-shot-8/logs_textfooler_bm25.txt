@@ -1,24 +1,9 @@
-2024-01-26 01:50:21.546629: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2024-01-26 01:50:21.628127: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2024-01-26 01:50:32.794987: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 37735 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:00:05.0, compute capability: 8.0
-/mnt/data/mvp/src/utils/funcs.py:253: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
-  metric = load_metric('accuracy')
-/mnt/data/robustness/lib/python3.8/site-packages/datasets/load.py:752: FutureWarning: The repository for accuracy contains custom code which must be executed to correctly load the metric. You can inspect the repository content at https://raw.githubusercontent.com/huggingface/datasets/2.16.1/metrics/accuracy/accuracy.py
-You can avoid this message in future by passing the argument `trust_remote_code=True`.
-Passing `trust_remote_code=True` will be mandatory to load this metric from the next major release of `datasets`.
-  warnings.warn(
-The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
 1
-Namespace(adv_augment=0, alpha=None, attack_name='textfooler', batch_size=11, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='textfooler', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
 meta-llama/Llama-2-7b-hf
 Model Directory: ./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25
 1 Physical GPUs, 1 Logical GPUs
-Namespace(adv_augment=0, alpha=None, attack_name='textfooler', batch_size=11, beta=1.0, cache_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/rte_bm25.pkl', replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.44s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.01s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.08s/it]
-textattack: Unknown if model of class <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'> compatible with goal function <class 'textattack.goal_functions.classification.untargeted_classification.UntargetedClassification'>.
-textattack: Logging to CSV at path ./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25/textfooler_log.csv
+Namespace(adv_augment=0, alpha=None, attack_name='textfooler', batch_size=2, beta=1.0, cache_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/rte_bm25.pkl', replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
 Loading retrieved examples from ./data/ralm/rte_bm25.pkl
 Length of anchor subsample 0
 Length of icl examples 277
@@ -27,7 +12,7 @@ Finished loading model
 ['{}\n The question is: {}. True or False?\nThe Answer is: {}']
 {0: ['true'], 1: ['false']}
 ./checkpoints/rte/meta-llama/Llama-2-7b-hf/textfooler/retrieval_icl-seed-1-shot-8_bm25/textfooler_log.csv
-<textattack.attacker.Attacker object at 0x7f02568b46a0>
+<textattack.attacker.Attacker object at 0x7f115624ca00>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -78,68 +63,23 @@ Attack(
   (is_black_box):  True
 ) 
 
-  0%|          | 0/277 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-wandb: - 0.004 MB of 0.004 MB uploadedwandb: \ 0.004 MB of 0.004 MB uploadedwandb: | 0.004 MB of 0.011 MB uploadedwandb: / 0.019 MB of 0.019 MB uploadedTraceback (most recent call last):
-  File "main.py", line 85, in <module>
-    attacker(args)
-  File "/mnt/data/mvp/src/test.py", line 298, in attacker
-    attacker.attack_dataset()
-  File "/mnt/data/src/textattack/textattack/attacker.py", line 441, in attack_dataset
-    self._attack()
-  File "/mnt/data/src/textattack/textattack/attacker.py", line 170, in _attack
-    raise e
-  File "/mnt/data/src/textattack/textattack/attacker.py", line 168, in _attack
-    result = self.attack.attack(example, ground_truth_output)
-  File "/mnt/data/src/textattack/textattack/attack.py", line 450, in attack
-    result = self._attack(goal_function_result)
-  File "/mnt/data/src/textattack/textattack/attack.py", line 398, in _attack
-    final_result = self.search_method(initial_result)
-  File "/mnt/data/src/textattack/textattack/search_methods/search_method.py", line 36, in __call__
-    result = self.perform_search(initial_result)
-  File "/mnt/data/src/textattack/textattack/search_methods/greedy_word_swap_wir.py", line 136, in perform_search
-    index_order, search_over = self._get_index_order(attacked_text)
-  File "/mnt/data/src/textattack/textattack/search_methods/greedy_word_swap_wir.py", line 101, in _get_index_order
-    leave_one_results, search_over = self.get_goal_results(leave_one_texts)
-  File "/mnt/data/src/textattack/textattack/goal_functions/goal_function.py", line 96, in get_results
-    model_outputs = self._call_model(attacked_text_list)
-  File "/mnt/data/src/textattack/textattack/goal_functions/goal_function.py", line 219, in _call_model
-    outputs = self._call_model_uncached(uncached_list)
-  File "/mnt/data/src/textattack/textattack/goal_functions/goal_function.py", line 165, in _call_model_uncached
-    batch_preds = self.model(batch)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/mnt/data/mvp/src/models/model_wrapper.py", line 228, in forward
-    outputs = self.model(input_ids=input_ids, attention_mask = attention_mask, output_hidden_states = True, output_attentions = True)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/transformers/models/llama/modeling_llama.py", line 1183, in forward
-    outputs = self.model(
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/transformers/models/llama/modeling_llama.py", line 1070, in forward
-    layer_outputs = decoder_layer(
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/transformers/models/llama/modeling_llama.py", line 798, in forward
-    hidden_states, self_attn_weights, present_key_value = self.self_attn(
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/transformers/models/llama/modeling_llama.py", line 496, in forward
-    value_states = self.v_proj(hidden_states)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/mnt/data/robustness/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 114, in forward
-    return F.linear(input, self.weight, self.bias)
-torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 102.00 MiB. GPU 0 has a total capacty of 39.39 GiB of which 55.06 MiB is free. Including non-PyTorch memory, this process has 39.34 GiB memory in use. Of the allocated memory 37.11 GiB is allocated by PyTorch, and 841.26 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
++-------------------------------+-------+
+| Attack Results                |       |
++-------------------------------+-------+
+| Number of successful attacks: | 124   |
+| Number of failed attacks:     | 73    |
+| Number of skipped attacks:    | 80    |
+| Original accuracy:            | 71.12 |
+| Accuracy under attack:        | 26.35 |
+| Attack success rate:          | 62.94 |
+| Average perturbed word %:     | 2.92  |
+| Average num. words per input: | 51.02 |
+| Avg num queries:              | 49.26 |
+| Adv confidence:               | 0.59  |
+| Average Original Perplexity:  | 37.33 |
+| Average Attack Perplexity:    | 43.39 |
+| Average Attack USE Score:     | 0.95  |
++-------------------------------+-------+
+Attack time: 1986.0465207099915
+Attack time: 1986.0465207099915
