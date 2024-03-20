@@ -5,28 +5,20 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-if [[ $DATASET == "rte" ]]; then
-    SHOTS=(8 2 4)
-    TOTAL_BATCH=8
-elif [[ $DATASET == "mnli" ]]; then
-    SHOTS=(2 4)
-    TOTAL_BATCH=8
-else
-    SHOTS=(8 2 4 16)
-    TOTAL_BATCH=16
-fi
+# SHOTS=(8 2 4 16)
+# SHOTS=(8)
+SHOT=8
 
+MODELS=(meta-llama/Llama-2-7b-hf meta-llama/Llama-2-13b-hf)
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2 4)
 # fi
 
-# if [[ $ATTACK == "bert_attack" ]]; then
-#     QUERY_BUDGET=100
-# else
-#     QUERY_BUDGET=-1
-# fi
-
-QUERY_BUDGET=-1
+if [[ $ATTACK == "swap_labels" ]]; then
+    QUERY_BUDGET=250
+else
+    QUERY_BUDGET=-1
+fi
 
 SEEDS=(1)
 RETRIEVAL_METHOD=sbert
@@ -34,7 +26,13 @@ RETRIEVAL_METHOD=sbert
 if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
     ATTACK_PRECENT=0.15
 else
-    ATTACK_PRECENT=0.5
+    if [[ $DATASET == "sst2" ]] || [[ $DATASET == "rte" ]] || [[ $DATASET == "mr" ]] || [[ $DATASET == "cr" ]]; then
+        ATTACK_PRECENT=0.5
+    elif [[ $DATASET == "mnli" ]]; then
+        ATTACK_PRECENT=0.33
+    else
+        ATTACK_PRECENT=0.2
+    fi
 fi
 
 # source ~/.bashrc
@@ -43,8 +41,14 @@ fi
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for SHOT in ${SHOTS[@]};
+for MODEL in ${MODELS[@]};
 do
+    if [[ $MODEL == "meta-llama/Llama-2-7b-hf" ]]; then
+        TOTAL_BATCH=24
+    else
+        TOTAL_BATCH=16
+    fi
+    
     for SEED in ${SEEDS[@]};
     do 
         BATCH_SIZE=$((TOTAL_BATCH / SHOT))
@@ -61,7 +65,7 @@ do
         mkdir -p ${MODELPATH}
         echo ${MODELPATH}
 
-        for RETRIEVAL_METHOD in instructor;
+        for RETRIEVAL_METHOD in bm25 instructor;
         do
             nohup python3 main.py \
                     --mode attack \
@@ -82,6 +86,7 @@ do
                     > ${MODELPATH}/logs_${ATTACK}_${RETRIEVAL_METHOD}.txt
                     
 	    if [[ $ATTACK == "swap_labels" ]]; then
+                FIX_ATTACK_PERCENT=0.5
                 nohup python3 main.py \
                     --mode attack \
                     --attack_name ${ATTACK} \
@@ -95,7 +100,7 @@ do
                     --template_file ${TEMPLATE_FILE} \
                     --seed $SEED \
                     --shot ${SHOT} \
-                    --max_percent_words ${ATTACK_PRECENT} \
+                    --max_percent_words 0.5 \
                     --model_dir ${MODELPATH}_${RETRIEVAL_METHOD}_fix_dist \
                     --retrieve_method ${RETRIEVAL_METHOD} \
                     --fix_dist \
