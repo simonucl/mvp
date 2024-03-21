@@ -1,9 +1,9 @@
 1
-Namespace(adv_augment=0, alpha=None, attack_name='icl_attack', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='mistralai/Mistral-7B-v0.1', model_dir='./checkpoints/rte/mistralai/Mistral-7B-v0.1/icl_attack/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='icl_attack', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='mistralai/Mistral-7B-v0.1', model_dir='./checkpoints/rte/mistralai/Mistral-7B-v0.1/icl_attack/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
 mistralai/Mistral-7B-v0.1
 Model Directory: ./checkpoints/rte/mistralai/Mistral-7B-v0.1/icl_attack/retrieval_icl-seed-1-shot-8_sbert
 1 Physical GPUs, 1 Logical GPUs
-Namespace(adv_augment=0, alpha=None, attack_name='icl_attack', batch_size=2, beta=1.0, cache_dir='./checkpoints/rte/mistralai/Mistral-7B-v0.1/icl_attack/retrieval_icl-seed-1-shot-8_sbert/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='mistralai/Mistral-7B-v0.1', model_dir='./checkpoints/rte/mistralai/Mistral-7B-v0.1/icl_attack/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/rte_sbert.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='icl_attack', batch_size=2, beta=1.0, cache_dir='./checkpoints/rte/mistralai/Mistral-7B-v0.1/icl_attack/retrieval_icl-seed-1-shot-8_sbert/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.15, mode='attack', model='mistralai/Mistral-7B-v0.1', model_dir='./checkpoints/rte/mistralai/Mistral-7B-v0.1/icl_attack/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/rte_sbert.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
 Length of anchor subsample 16
 Length of icl examples 2
 Finished loading model
@@ -14,7 +14,7 @@ ICL examples
 ['{}\n The question is: {}. True or False?\nThe Answer is: {}']
 {0: ['true'], 1: ['false']}
 ./checkpoints/rte/mistralai/Mistral-7B-v0.1/icl_attack/retrieval_icl-seed-1-shot-8_sbert/icl_attack_log.csv
-<textattack.attacker.Attacker object at 0x7f41dc3969d0>
+<textattack.attacker.Attacker object at 0x7f409a9d1a60>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -56,19 +56,19 @@ Attack(
 +-------------------------------+--------+
 | Attack Results                |        |
 +-------------------------------+--------+
-| Number of successful attacks: | 60     |
-| Number of failed attacks:     | 161    |
-| Number of skipped attacks:    | 56     |
-| Original accuracy:            | 79.78  |
-| Accuracy under attack:        | 58.12  |
-| Attack success rate:          | 27.15  |
-| Average perturbed word %:     | 4.33   |
+| Number of successful attacks: | 57     |
+| Number of failed attacks:     | 165    |
+| Number of skipped attacks:    | 55     |
+| Original accuracy:            | 80.14  |
+| Accuracy under attack:        | 59.57  |
+| Attack success rate:          | 25.68  |
+| Average perturbed word %:     | 1.57   |
 | Average num. words per input: | 876.69 |
-| Avg num queries:              | 856.75 |
+| Avg num queries:              | 843.07 |
 | Adv confidence:               | 0.52   |
-| Average Original Perplexity:  | 24.18  |
-| Average Attack Perplexity:    | 25.41  |
+| Average Original Perplexity:  | 24.23  |
+| Average Attack Perplexity:    | 25.36  |
 | Average Attack USE Score:     | 0.99   |
 +-------------------------------+--------+
-Attack time: 31360.989126205444
-Attack time: 31360.989126205444
+Attack time: 32694.92459011078
+Attack time: 32694.92459011078
