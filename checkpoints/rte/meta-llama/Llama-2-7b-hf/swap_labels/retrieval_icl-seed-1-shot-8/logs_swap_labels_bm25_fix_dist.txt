@@ -14,7 +14,7 @@ ICL examples
 ['{}\n The question is: {}. True or False?\nThe Answer is: {}']
 {0: ['true'], 1: ['false']}
 ./checkpoints/rte/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-8_bm25_fix_dist/swap_labels_fix_dist_log.csv
-<textattack.attacker.Attacker object at 0x7f7c20d5b640>
+<textattack.attacker.Attacker object at 0x7f25ef2d0be0>
 Attack(
   (search_method): GreedySearch
   (goal_function):  UntargetedClassification
@@ -38,3 +38,19 @@ Attack(
 ) 
 
 
++-------------------------------+---------+
+| Attack Results                |         |
++-------------------------------+---------+
+| Number of successful attacks: | 123     |
+| Number of failed attacks:     | 78      |
+| Number of skipped attacks:    | 76      |
+| Original accuracy:            | 72.56   |
+| Accuracy under attack:        | 28.16   |
+| Attack success rate:          | 61.19   |
+| Average perturbed word %:     | 0.29    |
+| Average num. words per input: | 1455.91 |
+| Avg num queries:              | 126.14  |
+| Adv confidence:               | 0.54    |
++-------------------------------+---------+
+Attack time: 2781.084049463272
+Attack time: 2781.084049463272
