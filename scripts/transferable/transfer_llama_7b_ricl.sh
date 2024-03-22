@@ -29,10 +29,10 @@ do
                         --precision $PRECISION \
                         --dataset $DATASET
                 else
-                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/icl_attack/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK_NAME}_log.csv
+                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/icl_attack/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK}_log.csv
                     python3 src/transfer_attack.py \
                         --model $MODEL \
-                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK_NAME}/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK_NAME}_log.csv \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK}_log.csv \
                         --attack $ATTACK \
                         --precision $PRECISION \
                         --dataset $DATASET
