@@ -1,0 +1,71 @@
+MODELS=(meta-llama/Llama-2-70b-hf)
+
+SEEDS=(1 13 42)
+ATTACKS=(textfooler textbugger bert_attack swap_labels_fix_dist icl_attack)
+DATASETS=(rte)
+
+BASE_MODEL=meta-llama/Llama-2-7b-hf
+
+for MODEL in ${MODELS[@]};
+do
+    if [[ $MODEL == "meta-llama/Llama-2-70b-hf" ]] || [[ $MODEL == "mistralai/Mixtral-8x7B-v0.1" ]]; then
+        PRECISION=int4
+    else
+        PRECISION=bf16
+    fi
+    for DATASET in ${DATASETS[@]};
+    do
+        for ATTACK in ${ATTACKS[@]};
+        do
+            for SEED in ${SEEDS[@]};
+            do
+                if [[ $ATTACK == 'textfooler' ]] || [[ $MODEL == 'textbugger' ]] || [[ $MODEL == 'bert_attack' ]]; then
+                    ATTACK_NAME='icl'
+                else
+                    ATTACK_NAME='icl_attack'
+                fi
+
+                if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
+                echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv
+                    python3 src/transfer_attack.py \
+                        --model $MODEL \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv \
+                        --attack $ATTACK \
+                        --precision $PRECISION \
+                        --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl
+                else
+                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/${ATTACK_NAME}-seed-${SEED}-shot-8/${ATTACK}_log.csv
+                    python3 src/transfer_attack.py \
+                        --model $MODEL \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/${ATTACK_NAME}-seed-${SEED}-shot-8/${ATTACK}_log.csv \
+                        --attack $ATTACK \
+                        --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
+                        --precision $PRECISION
+                fi
+            done
+
+            for RETRIEVER in ${RETRIEVERS[@]};
+            do
+                echo model: $MODEL
+                if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
+                echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv
+                    python3 src/transfer_attack.py \
+                        --model $MODEL \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv \
+                        --attack $ATTACK \
+                        --precision $PRECISION \
+                        --dataset $DATASET
+                else
+                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/icl_attack/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK}_log.csv
+                    python3 src/transfer_attack.py \
+                        --model $MODEL \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK}_log.csv \
+                        --attack $ATTACK \
+                        --precision $PRECISION \
+                        --dataset $DATASET
+                fi
+            done
+            
+        done
+    done
+done
