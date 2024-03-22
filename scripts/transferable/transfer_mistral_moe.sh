@@ -1,10 +1,9 @@
-MODELS=(meta-llama/Llama-2-13b-hf mistralai/Mistral-7B-v0.1 lmsys/vicuna-7b-v1.5 google/gemma-7b meta-llama/Llama-2-70b-hf mistralai/Mixtral-8x7B-v0.1)
+MODELS=(mistralai/Mixtral-8x7B-v0.1)
 SEEDS=(1 13 42)
-RETRIEVERS=(bm25 sbert instructor)
-ATTACKS=(textfooler textbugger bert_attack icl_attack)
+ATTACKS=(textfooler textbugger swap_labels swap_labels_fix_dist bert_attack icl_attack)
 DATASETS=(rte)
 
-BASE_MODEL=meta-llama/Llama-2-7b-hf
+BASE_MODEL=mistralai/Mistral-7B-v0.1
 
 for MODEL in ${MODELS[@]};
 do
@@ -17,6 +16,22 @@ do
     do
         for ATTACK in ${ATTACKS[@]};
         do
+            for SEED in ${SEEDS[@]};
+            do
+                if [[ $ATTACK == 'textfooler' ]] || [[ $MODEL == 'textbugger' ]] || [[ $MODEL == 'bert_attack' ]]; then
+                    ATTACK_NAME='icl'
+                else
+                    ATTACK_NAME='icl_attack'
+                fi
+
+                CUDA_VISIBLE_DEVICES=0 python3 src/transfer_attack.py \
+                    --model $MODEL \
+                    --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/${ATTACK_NAME}-seed-${SEED}-shot-8/${ATTACK}_log.csv \
+                    --attack $ATTACK \
+                    --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
+                    --precision $PRECISION
+            done
+
             for RETRIEVER in ${RETRIEVERS[@]};
             do
                 echo model: $MODEL

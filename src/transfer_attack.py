@@ -246,6 +246,28 @@ def get_verbalizer_and_template(dataset):
 # import os
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 def main(args):
+
+    print('Loading data')
+    df = pd.read_csv(args.csv_path)
+    out_path = '/'.join(args.csv_path.split('/')[:-1])
+    model_name = args.model.split('/')[-1]
+
+    if args.demonstration_path:
+        icl_examples = pkl.load(open(args.demonstration_path, 'rb'))
+        # check if icl_examples is a list of list of dictionaries
+        if isinstance(icl_examples[0], list):
+            df['icl_examples'] = icl_examples
+        else:
+            icl_examples = [icl_examples] * len(df)
+            df['icl_examples'] = icl_examples
+        if args.add_icl_examples_only:
+            out_path_split = out_path.split('/')
+            output_path = '/'.join(out_path_split[:4]) + '/analysis/' + '/'.join(out_path_split[4:])
+            if not os.path.exists(output_path):
+                os.makedirs(output_path)
+            df.to_csv(os.path.join(output_path, f'{model_name}_analysis.csv'), index=False)
+            return
+        
     verbalizer, template = get_verbalizer_and_template(args.dataset)
     
     tokenizer = AutoTokenizer.from_pretrained(args.model)
@@ -262,20 +284,6 @@ def main(args):
     # tokenizer.padding_side = "left"
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.truncation_side = "left"
-
-    print('Loading data')
-    df = pd.read_csv(args.csv_path)
-    out_path = '/'.join(args.csv_path.split('/')[:-1])
-    model_name = args.model.split('/')[-1]
-
-    if args.demonstration_path:
-        icl_examples = pkl.load(open(args.demonstration_path, 'rb'))
-        # check if icl_examples is a list of list of dictionaries
-        if isinstance(icl_examples[0], list):
-            df['icl_examples'] = icl_examples
-        else:
-            icl_examples = [icl_examples] * len(df)
-            df['icl_examples'] = icl_examples
     
     df['original_prompt'] = df.progress_apply(partial(get_prompt, text_col='original_text', template=template, dataset=args.dataset, verbalizer=verbalizer), axis=1)
     df['perturbed_prompt'] = df.progress_apply(partial(get_prompt, text_col='perturbed_text', template=template, dataset=args.dataset, verbalizer=verbalizer), axis=1)
@@ -322,6 +330,7 @@ if __name__ == '__main__':
     args.add_argument('--attack', type=str, default='swap_labels')
     args.add_argument('--shot', type=int, default=8)
     args.add_argument('--dataset', type=str, default='rte')
+    args.add_argument('--add_icl_examples_only', action='store_true')
 
     args = args.parse_args()
 
