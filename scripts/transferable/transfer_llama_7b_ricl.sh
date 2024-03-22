@@ -20,8 +20,8 @@ do
             for RETRIEVER in ${RETRIEVERS[@]};
             do
                 echo model: $MODEL
-                echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl-seed-${SEED}-shot-8/${ATTACK}_log.csv
                 if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
+                echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv
                     python3 src/transfer_attack.py \
                         --model $MODEL \
                         --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv \
@@ -29,6 +29,7 @@ do
                         --precision $PRECISION \
                         --dataset $DATASET
                 else
+                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/icl_attack/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK_NAME}_log.csv
                     python3 src/transfer_attack.py \
                         --model $MODEL \
                         --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK_NAME}/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK_NAME}_log.csv \

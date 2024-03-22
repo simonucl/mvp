@@ -19,6 +19,7 @@ do
             for SEED in ${SEEDS[@]};
             do
                 if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
+                echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv
                     python3 src/transfer_attack.py \
                         --model $MODEL \
                         --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv \
@@ -26,6 +27,7 @@ do
                         --precision $PRECISION \
                         --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl
                 else
+                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl_attack-seed-${SEED}-shot-8/${ATTACK}_log.csv
                     python3 src/transfer_attack.py \
                         --model $MODEL \
                         --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl_attack-seed-${SEED}-shot-8/${ATTACK}_log.csv \
