@@ -27,6 +27,7 @@ do
                         --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv \
                         --attack $ATTACK \
                         --precision $PRECISION \
+                        --demonstration_path data/ralm/${DATASET}_${RETRIEVER}.pkl \
                         --dataset $DATASET
                 else
                     echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/icl_attack/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK}_log.csv
@@ -35,6 +36,7 @@ do
                         --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK}_log.csv \
                         --attack $ATTACK \
                         --precision $PRECISION \
+                        --demonstration_path data/ralm/${DATASET}_${RETRIEVER}.pkl \
                         --dataset $DATASET
                 fi
             done
