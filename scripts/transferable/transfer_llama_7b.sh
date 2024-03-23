@@ -1,6 +1,6 @@
-MODELS=(meta-llama/Llama-2-7b-hf meta-llama/Llama-2-13b-hf mistralai/Mistral-7B-v0.1 lmsys/vicuna-7b-v1.5 google/gemma-7b meta-llama/Llama-2-70b-hf mistralai/Mixtral-8x7B-v0.1)
+MODELS=(meta-llama/Llama-2-7b-hf meta-llama/Llama-2-13b-hf mistralai/Mistral-7B-v0.1 lmsys/vicuna-7b-v1.5 google/gemma-7b mistralai/Mixtral-8x7B-v0.1)
 SEEDS=(1 13 42)
-ATTACKS=(swap_labels_fix_dist icl_attack)
+ATTACKS=(swap_labels_fix_dist swap_labels)
 DATASETS=(rte)
 
 BASE_MODEL=meta-llama/Llama-2-7b-hf

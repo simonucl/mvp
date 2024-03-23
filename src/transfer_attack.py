@@ -250,6 +250,8 @@ def main(args):
     print('Loading data')
     df = pd.read_csv(args.csv_path)
     out_path = '/'.join(args.csv_path.split('/')[:-1])
+    is_fix_dist = 'fix_dist' in args.csv_path
+
     model_name = args.model.split('/')[-1]
 
     if args.demonstration_path:
@@ -312,6 +314,9 @@ def main(args):
     metrics['attack_acc'] = attack_acc
     metrics['asr'] = asr
 
+    if is_fix_dist:
+        model_name = model_name + '_fix_dist'
+        
     df.to_csv(os.path.join(out_path, f'{model_name}_attack_results.csv'), index=False)
     # save the metrics as json
 

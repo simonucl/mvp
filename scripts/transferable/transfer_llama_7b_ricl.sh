@@ -1,4 +1,4 @@
-MODELS=(meta-llama/Llama-2-13b-hf mistralai/Mistral-7B-v0.1 lmsys/vicuna-7b-v1.5 google/gemma-7b meta-llama/Llama-2-70b-hf mistralai/Mixtral-8x7B-v0.1)
+MODELS=(google/gemma-7b mistralai/Mixtral-8x7B-v0.1)
 SEEDS=(1 13 42)
 RETRIEVERS=(bm25 sbert instructor)
 ATTACKS=(textfooler textbugger bert_attack icl_attack)
