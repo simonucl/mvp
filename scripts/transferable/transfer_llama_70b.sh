@@ -3,6 +3,7 @@ MODELS=(meta-llama/Llama-2-70b-hf)
 SEEDS=(1 13 42)
 ATTACKS=(swap_labels swap_labels_fix_dist)
 DATASETS=(rte)
+RETRIEVERS=(bm25 sbert instructor)
 
 BASE_MODEL=meta-llama/Llama-2-7b-hf
 
@@ -43,7 +44,18 @@ do
                         --precision $PRECISION
                 fi
             done
+        done
+    done
+done
 
+ATTACKS=(textfooler textbugger bert_attack icl_attack swap_labels swap_labels_fix_dist)
+
+for MODEL in ${MODELS[@]};
+do
+    for DATASET in ${DATASETS[@]};
+    do
+        for ATTACK in ${ATTACKS[@]};
+        do
             for RETRIEVER in ${RETRIEVERS[@]};
             do
                 echo model: $MODEL
@@ -67,7 +79,6 @@ do
                         --dataset $DATASET
                 fi
             done
-
         done
     done
 done

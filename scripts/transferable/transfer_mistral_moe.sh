@@ -1,7 +1,10 @@
 MODELS=(mistralai/Mixtral-8x7B-v0.1)
 SEEDS=(1 13 42)
 ATTACKS=(textfooler textbugger swap_labels swap_labels_fix_dist bert_attack icl_attack)
+
 DATASETS=(rte)
+
+RETRIEVERS=(bm25 sbert instructor)
 
 BASE_MODEL=mistralai/Mistral-7B-v0.1
 
