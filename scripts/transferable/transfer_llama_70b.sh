@@ -19,7 +19,7 @@ do
         do
             for SEED in ${SEEDS[@]};
             do
-                if [[ $ATTACK == 'textfooler' ]] || [[ $MODEL == 'textbugger' ]] || [[ $MODEL == 'bert_attack' ]]; then
+                if [[ $ATTACK == 'textfooler' ]] || [[ $ATTACK == 'textbugger' ]] || [[ $ATTACK == 'bert_attack' ]]; then
                     ATTACK_NAME='icl'
                 else
                     ATTACK_NAME='icl_attack'
