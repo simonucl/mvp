@@ -1,8 +1,9 @@
 MODELS=(meta-llama/Llama-2-70b-hf)
 
 SEEDS=(1 13 42)
-ATTACKS=(textfooler textbugger bert_attack swap_labels_fix_dist icl_attack)
+ATTACKS=(swap_labels swap_labels_fix_dist)
 DATASETS=(rte)
+RETRIEVERS=(bm25 sbert instructor)
 
 BASE_MODEL=meta-llama/Llama-2-7b-hf
 
@@ -43,7 +44,18 @@ do
                         --precision $PRECISION
                 fi
             done
+        done
+    done
+done
 
+ATTACKS=(textfooler textbugger bert_attack icl_attack swap_labels swap_labels_fix_dist)
+
+for MODEL in ${MODELS[@]};
+do
+    for DATASET in ${DATASETS[@]};
+    do
+        for ATTACK in ${ATTACKS[@]};
+        do
             for RETRIEVER in ${RETRIEVERS[@]};
             do
                 echo model: $MODEL
@@ -51,7 +63,7 @@ do
                 echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv
                     python3 src/transfer_attack.py \
                         --model $MODEL \
-                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_fix_dist_log.csv \
                         --attack $ATTACK \
                         --precision $PRECISION \
                         --demonstration_path data/ralm/${DATASET}_${RETRIEVER}.pkl \
@@ -67,7 +79,6 @@ do
                         --dataset $DATASET
                 fi
             done
-
         done
     done
 done
