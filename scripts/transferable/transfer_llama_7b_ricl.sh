@@ -1,7 +1,7 @@
-MODELS=(google/gemma-7b mistralai/Mixtral-8x7B-v0.1)
+MODELS=(google/gemma-7b)
 SEEDS=(1 13 42)
 RETRIEVERS=(bm25 sbert instructor)
-ATTACKS=(textfooler textbugger bert_attack icl_attack)
+ATTACKS=(textfooler textbugger bert_attack icl_attack swap_labels swap_labels_fix_dist)
 DATASETS=(rte)
 
 BASE_MODEL=meta-llama/Llama-2-7b-hf
@@ -24,7 +24,7 @@ do
                 echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv
                     python3 src/transfer_attack.py \
                         --model $MODEL \
-                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_fix_dist_log.csv \
                         --attack $ATTACK \
                         --precision $PRECISION \
                         --demonstration_path data/ralm/${DATASET}_${RETRIEVER}.pkl \
