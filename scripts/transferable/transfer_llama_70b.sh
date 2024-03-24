@@ -14,8 +14,10 @@ do
     else
         PRECISION=bf16
     fi
+
     for DATASET in ${DATASETS[@]};
     do
+        ATTACKS=(swap_labels_fix_dist icl_attack)
         for ATTACK in ${ATTACKS[@]};
         do
             for SEED in ${SEEDS[@]};
