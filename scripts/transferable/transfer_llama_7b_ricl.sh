@@ -1,7 +1,8 @@
-MODELS=(google/gemma-7b)
+MODELS=(meta-llama/Llama-2-13b-hf)
+
 SEEDS=(1 13 42)
 RETRIEVERS=(bm25 sbert instructor)
-ATTACKS=(textfooler textbugger bert_attack icl_attack swap_labels swap_labels_fix_dist)
+ATTACKS=(swap_labels swap_labels_fix_dist)
 DATASETS=(rte)
 
 BASE_MODEL=meta-llama/Llama-2-7b-hf
