@@ -18,49 +18,49 @@ do
     do
         for ATTACK in ${ATTACKS[@]};
         do
-            # for SEED in ${SEEDS[@]};
-            # do
-            #     if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
-            #         echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv
-            #         python3 src/transfer_attack.py \
-            #             --model $MODEL \
-            #             --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv \
-            #             --attack $ATTACK \
-            #             --precision $PRECISION \
-            #             --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl
-            #     else
-            #         echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl_attack-seed-${SEED}-shot-8/${ATTACK}_log.csv
-            #         python3 src/transfer_attack.py \
-            #             --model $MODEL \
-            #             --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl_attack-seed-${SEED}-shot-8/${ATTACK}_log.csv \
-            #             --attack $ATTACK \
-            #             --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
-            #             --precision $PRECISION
-            #     fi
-            # done
-
-            for RETRIEVER in ${RETRIEVERS[@]};
+            for SEED in ${SEEDS[@]};
             do
-                echo model: $MODEL
-                echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl-seed-${SEED}-shot-8/${ATTACK}_log.csv
                 if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
+                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv
                     python3 src/transfer_attack.py \
                         --model $MODEL \
-                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv \
                         --attack $ATTACK \
                         --precision $PRECISION \
-                        --demonstration_path data/ralm/${DATASET}_${RETRIEVER}.pkl \
-                        --dataset $DATASET
+                        --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl
                 else
+                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl_attack-seed-${SEED}-shot-8/${ATTACK}_log.csv
                     python3 src/transfer_attack.py \
                         --model $MODEL \
-                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK}_log.csv \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl_attack-seed-${SEED}-shot-8/${ATTACK}_log.csv \
                         --attack $ATTACK \
-                        --precision $PRECISION \
-                        --demonstration_path data/ralm/${DATASET}_${RETRIEVER}.pkl \
-                        --dataset $DATASET
+                        --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
+                        --precision $PRECISION
                 fi
             done
+
+            # for RETRIEVER in ${RETRIEVERS[@]};
+            # do
+            #     echo model: $MODEL
+            #     echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl-seed-${SEED}-shot-8/${ATTACK}_log.csv
+            #     if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
+            #         python3 src/transfer_attack.py \
+            #             --model $MODEL \
+            #             --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/retrieval_icl-seed-1-shot-8_${RETRIEVER}_fix_dist/swap_labels_log.csv \
+            #             --attack $ATTACK \
+            #             --precision $PRECISION \
+            #             --demonstration_path data/ralm/${DATASET}_${RETRIEVER}.pkl \
+            #             --dataset $DATASET
+            #     else
+            #         python3 src/transfer_attack.py \
+            #             --model $MODEL \
+            #             --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/retrieval_icl-seed-1-shot-8_${RETRIEVER}/${ATTACK}_log.csv \
+            #             --attack $ATTACK \
+            #             --precision $PRECISION \
+            #             --demonstration_path data/ralm/${DATASET}_${RETRIEVER}.pkl \
+            #             --dataset $DATASET
+            #     fi
+            # done
         done
     done
 done
