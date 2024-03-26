@@ -1,4 +1,4 @@
-MODELS=(mistralai/Mixtral-8x7B-v0.1)
+MODELS=(mistralai/Mixtral-8x7B-Instruct-v0.1)
 SEEDS=(1 13 42)
 ATTACKS=(textfooler textbugger swap_labels swap_labels_fix_dist bert_attack icl_attack)
 
@@ -10,7 +10,7 @@ BASE_MODEL=mistralai/Mistral-7B-v0.1
 
 for MODEL in ${MODELS[@]};
 do
-    if [[ $MODEL == "meta-llama/Llama-2-70b-hf" ]] || [[ $MODEL == "mistralai/Mixtral-8x7B-v0.1" ]]; then
+    if [[ $MODEL == "meta-llama/Llama-2-70b-hf" ]] || [[ $MODEL == "mistralai/Mixtral-8x7B-v0.1" ]] || [[ $MODEL == "mistralai/Mixtral-8x7B-Instruct-v0.1" ]]; then
         PRECISION=int4
     else
         PRECISION=bf16
