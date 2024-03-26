@@ -6,15 +6,14 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
 if [[ $DATASET == "rte" ]]; then
-    SHOTS=(8 2 4)
-    TOTAL_BATCH=8
+    TOTAL_BATCH=32
 elif [[ $DATASET == "mnli" ]]; then
-    SHOTS=(2 4)
-    TOTAL_BATCH=8
+    TOTAL_BATCH=32
 else
-    SHOTS=(8)
     TOTAL_BATCH=64
 fi
+
+SHOTS=(4 2 16)
 
 # if [[ $DATASET == "rte" ]]; then
 # 	SHOTS=(8 2 4)
