@@ -20,23 +20,18 @@ do
         do
             for SEED in ${SEEDS[@]};
             do
-                if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
-                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv
-                    python3 src/transfer_attack.py \
-                        --model $MODEL \
-                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv \
-                        --attack $ATTACK \
-                        --precision $PRECISION \
-                        --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl
+                if [[ $ATTACK == 'textfooler' ]] || [[ $ATTACK == 'textbugger' ]] || [[ $ATTACK == 'bert_attack' ]]; then
+                    ATTACK_NAME='icl'
                 else
-                    echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl_attack-seed-${SEED}-shot-8/${ATTACK}_log.csv
-                    python3 src/transfer_attack.py \
-                        --model $MODEL \
-                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/icl_attack-seed-${SEED}-shot-8/${ATTACK}_log.csv \
-                        --attack $ATTACK \
-                        --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
-                        --precision $PRECISION
+                    ATTACK_NAME='icl_attack'
                 fi
+
+                python3 src/transfer_attack.py \
+                    --model $MODEL \
+                    --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/${ATTACK_NAME}-seed-${SEED}-shot-8/${ATTACK}_log.csv \
+                    --attack $ATTACK \
+                    --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
+                    --precision $PRECISION
             done
 
             # for RETRIEVER in ${RETRIEVERS[@]};
