@@ -1,0 +1,56 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=8, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-8', model_id='0', model_type='icl_attack', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-8
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=8, beta=1.0, cache_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-8/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-8', model_id='0', model_type='icl_attack', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Length of anchor subsample 0
+Length of icl examples 2
+Finished loading model
+ICL examples
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': 'often lingers just as long on the irrelevant as on the engaging , which gradually turns what time is it there ? into how long is this movie ?', 'Label_0': 'negative', 'Example_1': "yeah , these flicks are just that damn good . isn't it great ?", 'Label_1': 'positive', 'Example_2': "the character is too forced and overwritten to be funny or believable much of the time , and clayburgh doesn't always improve the over-the-top mix .", 'Label_2': 'negative', 'Example_3': "what makes this film special is serry's ability to take what is essentially a contained family conflict and put it into a much larger historical context .", 'Label_3': 'positive', 'Example_4': 'it takes a strange kind of laziness to waste the talents of robert forster , anne meara , eugene levy , and reginald veljohnson all in the same movie .', 'Label_4': 'negative', 'Example_5': "[taymor] utilizes the idea of making kahlo's art a living , breathing part of the movie , often catapulting the artist into her own work . this isn't a new idea . it's been done before but never so vividly or with so much passion .", 'Label_5': 'positive', 'Example_6': 'pumpkin means to be an outrageous dark satire on fraternity life , but its ambitions far exceed the abilities of writer adam larson broder and his co-director , tony r . abrams , in their feature debut .', 'Label_6': 'negative', 'Example_7': 'claire is a terrific role for someone like judd , who really ought to be playing villains .', 'Label_7': 'positive', 'Example_8': 'a movie just for friday fans , critics be damned . if you already like this sort of thing , this is that sort of thing all over again .', 'Label_8': 'negative', 'Example_9': "evelyn's strong cast and surehanded direction make for a winning , heartwarming yarn .", 'Label_9': 'positive', 'Example_10': "instead of panoramic sweep , kapur gives us episodic choppiness , undermining the story's emotional thrust .", 'Label_10': 'negative', 'Example_11': 'sensual , funny and , in the end , very touching .', 'Label_11': 'positive', 'Example_12': "this sort of cute and cloying material is far from zhang's forte and it shows .", 'Label_12': 'negative', 'Example_13': 'another entertaining romp from robert rodriguez .', 'Label_13': 'positive', 'Example_14': "everybody loves a david and goliath story , and this one is told almost entirely from david's point of view .", 'Label_14': 'negative', 'Example_15': 'what makes the film special is the refreshingly unhibited enthusiasm that the people , in spite of clearly evident poverty and hardship , bring to their music .', 'Label_15': 'positive'}
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': 'often lingers just as long on the irrelevant as on the engaging , which gradually turns what time is it there ? into how long is this movie ?', 'Label_0': 'negative', 'Example_1': "yeah , these flicks are just that damn good . isn't it great ?", 'Label_1': 'positive', 'Example_2': "the character is too forced and overwritten to be funny or believable much of the time , and clayburgh doesn't always improve the over-the-top mix .", 'Label_2': 'negative', 'Example_3': "what makes this film special is serry's ability to take what is essentially a contained family conflict and put it into a much larger historical context .", 'Label_3': 'positive', 'Example_4': 'it takes a strange kind of laziness to waste the talents of robert forster , anne meara , eugene levy , and reginald veljohnson all in the same movie .', 'Label_4': 'negative', 'Example_5': "[taymor] utilizes the idea of making kahlo's art a living , breathing part of the movie , often catapulting the artist into her own work . this isn't a new idea . it's been done before but never so vividly or with so much passion .", 'Label_5': 'positive', 'Example_6': 'pumpkin means to be an outrageous dark satire on fraternity life , but its ambitions far exceed the abilities of writer adam larson broder and his co-director , tony r . abrams , in their feature debut .', 'Label_6': 'negative', 'Example_7': 'claire is a terrific role for someone like judd , who really ought to be playing villains .', 'Label_7': 'positive', 'Example_8': 'a movie just for friday fans , critics be damned . if you already like this sort of thing , this is that sort of thing all over again .', 'Label_8': 'negative', 'Example_9': "evelyn's strong cast and surehanded direction make for a winning , heartwarming yarn .", 'Label_9': 'positive', 'Example_10': "instead of panoramic sweep , kapur gives us episodic choppiness , undermining the story's emotional thrust .", 'Label_10': 'negative', 'Example_11': 'sensual , funny and , in the end , very touching .', 'Label_11': 'positive', 'Example_12': "this sort of cute and cloying material is far from zhang's forte and it shows .", 'Label_12': 'negative', 'Example_13': 'another entertaining romp from robert rodriguez .', 'Label_13': 'positive', 'Example_14': "everybody loves a david and goliath story , and this one is told almost entirely from david's point of view .", 'Label_14': 'negative', 'Example_15': 'what makes the film special is the refreshingly unhibited enthusiasm that the people , in spite of clearly evident poverty and hardship , bring to their music .', 'Label_15': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-8/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7fd985924910>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapLabel(
+        (label_map):  ['negative', 'positive']
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (2): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 927    |
+| Number of failed attacks:     | 0      |
+| Number of skipped attacks:    | 73     |
+| Original accuracy:            | 92.7   |
+| Accuracy under attack:        | 0.0    |
+| Attack success rate:          | 100.0  |
+| Average perturbed word %:     | 1.1    |
+| Average num. words per input: | 362.64 |
+| Avg num queries:              | 57.96  |
+| Adv confidence:               | 0.55   |
+| Average Original Perplexity:  | 1.52   |
+| Average Attack Perplexity:    | 1.54   |
+| Average Attack USE Score:     | 0.98   |
++-------------------------------+--------+
+Attack time: 1559.890718460083
+Attack time: 1559.890718460083
