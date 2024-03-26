@@ -1,0 +1,34 @@
+\begin{table*}[]
+    \centering
+    \tiny
+    \begin{tabular}{ccl@{\hspace{-0.5\tabcolsep}}c|ccccccc}
+    \toprule
+    \multirow{2}{*}{\textbf{Shots}} & \multirow{2}{*}{\textbf{Sample}} & \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Clean}} & \multicolumn{3}{c}{\textbf{\textit{Test Sample Attack}}} & \multicolumn{3}{c}{\textbf{\textit{Demonstration Attack}}} & \textbf{\textit{Datastore Attack}} \\
+    Shots & Sample & Method & Clean & TextBugger & TextFooler & Bert-Attack & Demonstration & Swap-Labels & Swap-Labels (Fix)  & Irrelevant \\
+     \multirow{6}{*}{{$m=2$}} & \rowcolor{lightgray} {} & ICL &\textbf{94.65 ± 0.85} & 57.57 ± 2.14 & 49.81 ± 0.96 & \textbf{69.2 ± 4.92} & 8.33 ± 6.72 & \textbf{83.03 ± 8.15}	& 52.33 ± 4.14 \\
+         &  \rowcolor{lightgray} \multirow{-2}{*}{Random} & $k$NN-ICL & 88.3_{\pm 7.85} & 49.08 ± 2.88 & 47.17 ± 1.15 & 38.29 ± 6.29	& 34.15 ± 2.17 & 60.18 ± 3.98 & 55.28 ± 1.89 \\ 
+         & \multirow{4}{*}{Full} & $k$NN-ICL & 90.12 & 51.82 & 47.20 & - & 36.18 & 61.93 & {59.43} \\
+         & & $\text{R}_{\text{BM25}}$-ICL & 51.83 & 43.12 & 44.04 & 56.21 & \textbf{50.23} & 52.47 & 56.29 \\ 
+         & & $\text{R}_{\text{SBERT}}$-ICL & 92.43 & 56.42 & 51.61 & 55.29 & 7.82 & 67.38 & \textbf{77.28} \\ 
+         & & $\text{R}_{\text{Instructor}}$-ICL & 94.95 & \textbf{58.49} & \textbf{53.56} & 52.98 & 8.29 & 63.28 & 72.19 \\
+        \multirow{6}{*}{{$m=4$}} & \rowcolor{lightgray} {} & ICL  & \textbf{94.49 ± 1.1} & 58.53 ± 1.89 & 51.34 ± 1.27 & \textbf{67.4 ± 2.98} & 12.42 ± 10.85 & \textbf{80.47 ± 6.12} & 47.7 ± 1.79 \\
+         & \rowcolor{lightgray} \multirow{-2}{*}{Random} & $k$NN-ICL & 90.25 ± 5.47	& 52.03 ± 4.04 & 50.3 ± 1.95 & 32.48 ± 2.99 & \textbf{35.28 ± 4.18} & 55.28 ± 2.93 & 47.28 ± 2.90 \\ 
+     & \multirow{4}{*}{Full} & $k$NN-ICL & 91.25 & 53.20 & 48.20 & - & {31.68} & 31.20 & {56.43} \\
+         & & $\text{R}_{\text{BM25}}$-ICL & 92.89 & 53.67 & 49.66 & 57.38 & 9.12 & 67.28 & 83.28 \\ 
+         & & $\text{R}_{\text{SBERT}}$-ICL & 87.84 & 52.64 & 46.67 & 53.28 & 10.29 & 70.16 & 84.22 \\ 
+         & & $\text{R}_{\text{Instructor}}$-ICL & 92.78 & \textbf{59.86} & \textbf{53.56} & 51.82 & 12.17 & 73.28 & \textbf{86.45}\\
+         \multirow{6}{*}{{$m=8$}} & \rowcolor{lightgray} {} & ICL & 92.66 ± 3.18 & 58.11 ± 5.01	 &	52.18 ± 2.29 & \textbf{66.2 ± 2.17} & 7.95 ± 9.11 & 50.96 ± 22.91 & 34.17 ± 8.54 \\
+         & \rowcolor{lightgray} \multirow{-2}{*}{Random} & $k$NN-ICL & 92.01 ± 2.13	& 54.28 ± 2.57 & 50.19 ± 1.26	& 31.28 ± 2.38 & \textbf{35.28 ± 4.28} & 52.19 ± 3.98 & 50.28 ± 3.92 \\ 
+     & \multirow{4}{*}{Full} & $k$NN-ICL & 92.04 & 55.29 & 50.24 & - & {34.29} & 55.23 & {51.66} \\
+         & & $\text{R}_{\text{BM25}}$-ICL & 94.61 & 53.56 & 51.15 & 28.10 & 54.28 & 8.27 & 68.28 & 86.28 \\ 
+         & & $\text{R}_{\text{SBERT}}$-ICL & \textbf{95.18} & \textbf{63.76} & 63.76 & {} & 53.29 & 11.33 & \textbf{70.73} & \textbf{88.65} \\ 
+         & & $\text{R}_{\text{Instructor}}$-ICL & 94.84 & 58.49 & \textbf{63.90} & {} & 52.38 & 13.37 & 69.65 & 87.29 \\
+        \multirow{6}{*}{{$m=16$}} & \rowcolor{lightgray} {} & ICL & 92.12 ± 1.06	& 56.69 ± 5.07 & 49.39 ± 4.7 & \textbf{64.2 ± 1.28} & 6.38 ± 9.87 & 66.38 ± 7.89 & 30.39 ± 7.36 \\
+         & \rowcolor{lightgray} \multirow{-2}{*}{Random} & $k$NN-ICL & 93.65 ± 1.49 & 53.97 ± 1.79 &	52.37 ± 1.74 & 39.57 ± 1.28 & \textbf{36.79 ± 6.22} & 68.29 ± 5.39 & 51.99 ± 3.20 \\ 
+     & \multirow{4}{*}{Full} & $k$NN-ICL & 91.78 & 54.29 & 51.93 & - & {31.68} & 57.28 & {49.31} \\
+         & & $\text{R}_{\text{BM25}}$-ICL & 94.61 & 56.77 & 50.25 & 55.28 & 5.28 & 70.28 & 87.26 \\ 
+         & & $\text{R}_{\text{SBERT}}$-ICL & 95.07 & \textbf{60.32} & \textbf{53.29} & 52.83 & 10.23 & \textbf{73.78} & 86.29 \\ 
+         & & $\text{R}_{\text{Instructor}}$-ICL & \textbf{94.38} & 59.06 & 53.18 & 49.28 & 9.20 & {71.28} & \textbf{89.74} \\
+    \end{tabular}
+    \caption{SST-2}
+\end{table*}

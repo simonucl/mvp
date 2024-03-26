@@ -201,7 +201,11 @@ def prepare_huggingface_dataset(args):
             return example
         my_dataset = my_dataset.map(map_labels)
         my_dataset = my_dataset.remove_columns(['text', 'label_text'])
-        
+        if "idx" not in my_dataset['train'].column_names:
+            my_dataset['train'] = my_dataset['train'].add_column('idx', list(range(len(my_dataset['train']))))
+        if "idx" not in my_dataset['test'].column_names:
+            my_dataset['test'] = my_dataset['test'].add_column('idx', list(range(len(my_dataset['test']))))
+            
     if args.dataset in ["subj", "mr"]:
         def map_labels(example):
             key_map_dict = {'label':'label', "text":"sentence"}
