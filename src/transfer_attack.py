@@ -158,7 +158,7 @@ def random_flip(icl_examples, percentage, verbalizer={0: "true", 1: "false"}):
 
     return icl_examples
 
-def fully_flip(row, tokenizer, model, label='false', dataset='rte', template=None):
+def fully_flip(row, tokenizer, model, verbalizer, label='false', dataset='rte', template=None):
     original = row['original_text']
     ori_q, ori_icl_examples = get_demo_and_question(original, dataset=dataset)
     for i in range(len(ori_icl_examples)):
@@ -167,7 +167,7 @@ def fully_flip(row, tokenizer, model, label='false', dataset='rte', template=Non
         elif dataset in ['trec', 'sst2']:
             ori_icl_examples[i] = (ori_icl_examples[i][0], label)
 
-    return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model, template=template)
+    return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model, template=template, verbalizer=verbalizer, dataset=dataset)
 
 def compute_random_flip_original_answer(row, tokenizer, model, template, dataset, verbalizer):
     original = row['original_text']
@@ -175,12 +175,12 @@ def compute_random_flip_original_answer(row, tokenizer, model, template, dataset
     ori_icl_examples = random_flip(ori_icl_examples, 0.5, verbalizer=verbalizer)
     # mod_q, mod_icl_examples = get_demo_and_question(modified)
 
-    return compute_distributions(ori_q, ori_icl_examples, template=template, tokenizer=tokenizer, model=model, dataset=dataset)
+    return compute_distributions(ori_q, ori_icl_examples, template=template, tokenizer=tokenizer, model=model, dataset=dataset, verbalizer=verbalizer)
 
 def compute_swap_labels_details(df, tokenizer, model, out_path, model_name, metrics, template, dataset, verbalizer):
     df['random_flip_original_answer'] = df.progress_apply(lambda x : compute_random_flip_original_answer(x, tokenizer=tokenizer, model=model, template=template, dataset=dataset, verbalizer=verbalizer), axis=1)
-    df['full_flip_true_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label=verbalizer[1], dataset=dataset), axis=1)
-    df['full_flip_false_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label=verbalizer[0], dataset=dataset), axis=1)
+    df['full_flip_true_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label=verbalizer[1], dataset=dataset, verbalizer=verbalizer, template=template), axis=1)
+    df['full_flip_false_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label=verbalizer[0], dataset=dataset, verbalizer=verbalizer, template=template), axis=1)
 
     df['random_flip_correct'] = df['random_flip_original_answer'] == df['ground_truth_output']
     df['full_flip_true_correct'] = df['full_flip_true_original_answer'] == df['ground_truth_output']
