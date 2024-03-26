@@ -5,7 +5,7 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-SHOTS=(8 16)
+SHOTS=(8 16 2 4)
 SEEDS=(1 13 42)
 
 if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
