@@ -27,12 +27,21 @@ do
                     ATTACK_NAME='icl_attack'
                 fi
 
-                python3 src/transfer_attack.py \
-                    --model $MODEL \
-                    --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/${ATTACK_NAME}-seed-${SEED}-shot-8/${ATTACK}_log.csv \
-                    --attack $ATTACK \
-                    --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
-                    --precision $PRECISION
+                if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
+                    python3 src/transfer_attack.py \
+                        --model $MODEL \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/${ATTACK_NAME}-seed-${SEED}-shot-8/${ATTACK}_log.csv \
+                        --attack $ATTACK \
+                        --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
+                        --precision $PRECISION
+                else
+                    python3 src/transfer_attack.py \
+                        --model $MODEL \
+                        --csv_path checkpoints/${DATASET}/${BASE_MODEL}/${ATTACK}/${ATTACK_NAME}-seed-${SEED}-shot-8/${ATTACK}_log.csv \
+                        --attack $ATTACK \
+                        --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
+                        --precision $PRECISION
+                fi
             done
 
             # for RETRIEVER in ${RETRIEVERS[@]};

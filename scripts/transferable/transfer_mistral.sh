@@ -33,7 +33,6 @@ do
                         --attack $ATTACK \
                         --demonstration_path data/icl/${DATASET}-icl-seed-${SEED}-shot-8.pkl \
                         --precision $PRECISION
-                    continue
                 else
                     python3 src/transfer_attack.py \
                         --model $MODEL \
