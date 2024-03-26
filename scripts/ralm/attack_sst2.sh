@@ -12,11 +12,22 @@ elif [[ $DATASET == "mnli" ]]; then
     SHOTS=(2 4)
     TOTAL_BATCH=8
 else
-    SHOTS=(8 2 4 16)
+    SHOTS=(8)
     TOTAL_BATCH=32
 fi
 
-SEEDS=(1 13 42)
+# if [[ $DATASET == "rte" ]]; then
+# 	SHOTS=(8 2 4)
+# fi
+
+if [[ $ATTACK == "swap_labels" ]]; then
+    QUERY_BUDGET=250
+else
+    QUERY_BUDGET=-1
+fi
+
+SEEDS=(1)
+RETRIEVAL_METHOD=sbert
 
 if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
     ATTACK_PRECENT=0.15
@@ -28,12 +39,6 @@ else
     else
         ATTACK_PRECENT=0.2
     fi
-fi
-
-if [[ $ATTACK == "swap_labels" ]]; then
-    QUERY_BUDGET=250
-else
-    QUERY_BUDGET=-1
 fi
 
 # source ~/.bashrc
@@ -60,24 +65,28 @@ do
         mkdir -p ${MODELPATH}
         echo ${MODELPATH}
 
-        nohup python3 main.py \
-            --mode attack \
-            --attack_name ${ATTACK} \
-            --num_examples 1000 \
-            --dataset ${DATASET} \
-            --query_budget ${QUERY_BUDGET} \
-            --batch_size ${BATCH_SIZE} \
-            --model_type ${MODEL_TYPE} \
-            --model ${MODEL} \
-            --verbalizer_file ${VERBALIZER_FILE} \
-            --template_file ${TEMPLATE_FILE} \
-            --seed $SEED \
-            --shot ${SHOT} \
-            --max_percent_words ${ATTACK_PRECENT} \
-            --model_dir ${MODELPATH} \
-                > ${MODELPATH}/logs_${ATTACK}.txt
-
+        for RETRIEVAL_METHOD in bm25 sbert instructor;
+        do
+            nohup python3 main.py \
+                    --mode attack \
+                    --attack_name ${ATTACK} \
+                    --num_examples 1000 \
+                    --dataset ${DATASET} \
+                    --query_budget ${QUERY_BUDGET} \
+                    --batch_size ${BATCH_SIZE} \
+                    --model_type ${MODEL_TYPE} \
+                    --model ${MODEL} \
+                    --verbalizer_file ${VERBALIZER_FILE} \
+                    --template_file ${TEMPLATE_FILE} \
+                    --seed $SEED \
+                    --shot ${SHOT} \
+                    --max_percent_words ${ATTACK_PRECENT} \
+                    --model_dir ${MODELPATH}_${RETRIEVAL_METHOD} \
+                    --retrieve_method ${RETRIEVAL_METHOD} \
+                    > ${MODELPATH}/logs_${ATTACK}_${RETRIEVAL_METHOD}.txt
+                    
 	    if [[ $ATTACK == "swap_labels" ]]; then
+                FIX_ATTACK_PERCENT=0.5
                 nohup python3 main.py \
                     --mode attack \
                     --attack_name ${ATTACK} \
@@ -92,9 +101,11 @@ do
                     --seed $SEED \
                     --shot ${SHOT} \
                     --max_percent_words 0.5 \
-                    --model_dir ${MODELPATH} \
+                    --model_dir ${MODELPATH}_${RETRIEVAL_METHOD}_fix_dist \
+                    --retrieve_method ${RETRIEVAL_METHOD} \
                     --fix_dist \
-                    > ${MODELPATH}/logs_${ATTACK}_fix_dist.txt
+                    > ${MODELPATH}/logs_${ATTACK}_${RETRIEVAL_METHOD}_fix_dist.txt
             fi
+	    done
     done
 done

@@ -13,7 +13,7 @@ elif [[ $DATASET == "mnli" ]]; then
     TOTAL_BATCH=8
 else
     SHOTS=(8 2 4 16)
-    TOTAL_BATCH=16
+    TOTAL_BATCH=32
 fi
 
 # if [[ $DATASET == "rte" ]]; then

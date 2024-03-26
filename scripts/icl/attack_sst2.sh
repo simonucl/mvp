@@ -5,17 +5,35 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-# SHOTS=(8 2 4 16)
-SHOTS=(16)
-# SEEDS=(1 13 42)
-SEEDS=(42)
+if [[ $DATASET == "rte" ]]; then
+    SHOTS=(8 2 4)
+    TOTAL_BATCH=8
+elif [[ $DATASET == "mnli" ]]; then
+    SHOTS=(2 4)
+    TOTAL_BATCH=8
+else
+    SHOTS=(8)
+    TOTAL_BATCH=32
+fi
 
-MODELS=(meta-llama/Llama-2-7b-hf meta-llama/Llama-2-13b-hf)
+SEEDS=(1 13 42)
 
-if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]]; then
+if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
     ATTACK_PRECENT=0.15
 else
-    ATTACK_PRECENT=0.5
+    if [[ $DATASET == "sst2" ]] || [[ $DATASET == "rte" ]] || [[ $DATASET == "mr" ]] || [[ $DATASET == "cr" ]]; then
+        ATTACK_PRECENT=0.5
+    elif [[ $DATASET == "mnli" ]]; then
+        ATTACK_PRECENT=0.33
+    else
+        ATTACK_PRECENT=0.2
+    fi
+fi
+
+if [[ $ATTACK == "swap_labels" ]]; then
+    QUERY_BUDGET=250
+else
+    QUERY_BUDGET=-1
 fi
 
 # source ~/.bashrc
@@ -27,28 +45,45 @@ fi
 for SHOT in ${SHOTS[@]};
 do
     for SEED in ${SEEDS[@]};
-    do
-        for MODEL in meta-llama/Llama-2-7b-chat-hf meta-llama/Llama-2-13b-chat-hf
-        do
-            for DATASET in sst2
-            do
-                BATCH_SIZE=$((32 / SHOT))
+    do 
+        BATCH_SIZE=$((TOTAL_BATCH / SHOT))
+        if [[ $SHOT -eq 2 ]]; then
+            BATCH_SIZE=$((BATCH_SIZE / 2))
+        fi
+        
+        echo $SEED+${SHOT}+${MODEL}+"mvp"
+        MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
+        MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
 
-                echo $SEED+${SHOT}+${MODEL}+"mvp"
-                MODEL_ID=${MODEL_TYPE}-seed-${SEED}-shot-${SHOT}
-                MODELPATH=./checkpoints/${DATASET}/${MODEL}/${ATTACK}/${MODEL_ID}
+        DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
 
-                DATASET_PATH=./data/${DATASET}/${SHOT}-$SEED
+        mkdir -p ${MODELPATH}
+        echo ${MODELPATH}
 
-                mkdir -p ${MODELPATH}
-                echo ${MODELPATH}
+        nohup python3 main.py \
+            --mode attack \
+            --attack_name ${ATTACK} \
+            --num_examples 1000 \
+            --dataset ${DATASET} \
+            --query_budget ${QUERY_BUDGET} \
+            --batch_size ${BATCH_SIZE} \
+            --model_type ${MODEL_TYPE} \
+            --model ${MODEL} \
+            --verbalizer_file ${VERBALIZER_FILE} \
+            --template_file ${TEMPLATE_FILE} \
+            --seed $SEED \
+            --shot ${SHOT} \
+            --max_percent_words ${ATTACK_PRECENT} \
+            --model_dir ${MODELPATH} \
+                > ${MODELPATH}/logs_${ATTACK}.txt
 
+	    if [[ $ATTACK == "swap_labels" ]]; then
                 nohup python3 main.py \
                     --mode attack \
                     --attack_name ${ATTACK} \
                     --num_examples 1000 \
                     --dataset ${DATASET} \
-                    --query_budget -1 \
+                    --query_budget ${QUERY_BUDGET} \
                     --batch_size ${BATCH_SIZE} \
                     --model_type ${MODEL_TYPE} \
                     --model ${MODEL} \
@@ -56,10 +91,10 @@ do
                     --template_file ${TEMPLATE_FILE} \
                     --seed $SEED \
                     --shot ${SHOT} \
-                    --max_percent_words ${ATTACK_PRECENT} \
+                    --max_percent_words 0.5 \
                     --model_dir ${MODELPATH} \
-                        > ${MODELPATH}/logs_${ATTACK}.txt
-            done
-        done
+                    --fix_dist \
+                    > ${MODELPATH}/logs_${ATTACK}_fix_dist.txt
+            fi
     done
 done
