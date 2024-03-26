@@ -13,7 +13,7 @@ elif [[ $DATASET == "mnli" ]]; then
     TOTAL_BATCH=8
 else
     SHOTS=(8)
-    TOTAL_BATCH=32
+    TOTAL_BATCH=64
 fi
 
 SEEDS=(1 13 42)
