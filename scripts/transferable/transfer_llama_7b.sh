@@ -20,7 +20,7 @@ do
             do
                 if [[ $ATTACK == "swap_labels_fix_dist" ]]; then
                 echo csv_path: checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv
-                    python3 src/transfer_attack.py \
+                /mnt/data/mvp/wandb    python3 src/transfer_attack.py \
                         --model $MODEL \
                         --csv_path checkpoints/${DATASET}/${BASE_MODEL}/swap_labels/icl_attack-seed-${SEED}-shot-8/swap_labels_fix_dist_log.csv \
                         --attack $ATTACK \
