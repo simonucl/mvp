@@ -1,0 +1,58 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=8, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-42-shot-8', model_id='0', model_type='icl_attack', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=42, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-42-shot-8
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=8, beta=1.0, cache_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-42-shot-8/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-42-shot-8', model_id='0', model_type='icl_attack', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=42, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Length of anchor subsample 0
+Length of icl examples 2
+Finished loading model
+ICL examples
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': "in the end , there isn't much to it .", 'Label_0': 'negative', 'Example_1': 'an interesting look behind the scenes of chicago-based rock group wilco . . .', 'Label_1': 'positive', 'Example_2': 'the unceasing sadism is so graphically excessive , the director just ends up exposing his own obsession .', 'Label_2': 'negative', 'Example_3': 'it is quite a vision .', 'Label_3': 'positive', 'Example_4': "lucky break is perfectly inoffensive and harmless , but it's also drab and inert .", 'Label_4': 'negative', 'Example_5': 'the way coppola professes his love for movies -- both colorful pop junk and the classics that unequivocally qualify as art -- is giddily entertaining .', 'Label_5': 'positive', 'Example_6': 'returning aggressively to his formula of dimwitted comedy and even dimmer characters , sandler , who also executive produces , has made a film that makes previous vehicles look smart and sassy .', 'Label_6': 'negative', 'Example_7': 'chilling in its objective portrait of dreary , lost twenty-first century america .', 'Label_7': 'positive', 'Example_8': 'full frontal had no effect and elicited no sympathies for any of the characters . by that measure , it is a failure .', 'Label_8': 'negative', 'Example_9': ". . . while dark water isn't a complete wash ( no pun intended ) , watched side-by-side with ringu , it ultimately comes off as a pale successor .", 'Label_9': 'positive', 'Example_10': 'tries to work in the same vein as the brilliance of animal house but instead comes closer to the failure of the third revenge of the nerds sequel .', 'Label_10': 'negative', 'Example_11': 'the hard-to-predict and absolutely essential chemistry between the down-to-earth bullock and the nonchalant grant proves to be sensational , and everything meshes in this elegant entertainment .', 'Label_11': 'positive', 'Example_12': 'long time dead ? not nearly long enough .', 'Label_12': 'negative', 'Example_13': 'i had more fun watching spy than i had with most of the big summer movies .', 'Label_13': 'positive', 'Example_14': "van wilder brings a whole new meaning to the phrase 'comedy gag . ' at least one scene is so disgusting that viewers may be hard pressed to retain their lunch .", 'Label_14': 'negative', 'Example_15': "while undercover brother is definitely one for the masses , it's also full of sharp , smart satire .", 'Label_15': 'positive'}
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': "in the end , there isn't much to it .", 'Label_0': 'negative', 'Example_1': 'an interesting look behind the scenes of chicago-based rock group wilco . . .', 'Label_1': 'positive', 'Example_2': 'the unceasing sadism is so graphically excessive , the director just ends up exposing his own obsession .', 'Label_2': 'negative', 'Example_3': 'it is quite a vision .', 'Label_3': 'positive', 'Example_4': "lucky break is perfectly inoffensive and harmless , but it's also drab and inert .", 'Label_4': 'negative', 'Example_5': 'the way coppola professes his love for movies -- both colorful pop junk and the classics that unequivocally qualify as art -- is giddily entertaining .', 'Label_5': 'positive', 'Example_6': 'returning aggressively to his formula of dimwitted comedy and even dimmer characters , sandler , who also executive produces , has made a film that makes previous vehicles look smart and sassy .', 'Label_6': 'negative', 'Example_7': 'chilling in its objective portrait of dreary , lost twenty-first century america .', 'Label_7': 'positive', 'Example_8': 'full frontal had no effect and elicited no sympathies for any of the characters . by that measure , it is a failure .', 'Label_8': 'negative', 'Example_9': ". . . while dark water isn't a complete wash ( no pun intended ) , watched side-by-side with ringu , it ultimately comes off as a pale successor .", 'Label_9': 'positive', 'Example_10': 'tries to work in the same vein as the brilliance of animal house but instead comes closer to the failure of the third revenge of the nerds sequel .', 'Label_10': 'negative', 'Example_11': 'the hard-to-predict and absolutely essential chemistry between the down-to-earth bullock and the nonchalant grant proves to be sensational , and everything meshes in this elegant entertainment .', 'Label_11': 'positive', 'Example_12': 'long time dead ? not nearly long enough .', 'Label_12': 'negative', 'Example_13': 'i had more fun watching spy than i had with most of the big summer movies .', 'Label_13': 'positive', 'Example_14': "van wilder brings a whole new meaning to the phrase 'comedy gag . ' at least one scene is so disgusting that viewers may be hard pressed to retain their lunch .", 'Label_14': 'negative', 'Example_15': "while undercover brother is definitely one for the masses , it's also full of sharp , smart satire .", 'Label_15': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-42-shot-8/swap_labels_fix_dist_log.csv
+<textattack.attacker.Attacker object at 0x7f5f8dd4e850>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapDuo
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): UniformSwap(
+        (threshold):  1
+        (compare_against_original):  True
+      )
+    (2): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (3): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 561    |
+| Number of failed attacks:     | 363    |
+| Number of skipped attacks:    | 76     |
+| Original accuracy:            | 92.4   |
+| Accuracy under attack:        | 36.3   |
+| Attack success rate:          | 60.71  |
+| Average perturbed word %:     | 2.48   |
+| Average num. words per input: | 314.64 |
+| Avg num queries:              | 178.81 |
+| Adv confidence:               | 0.57   |
+| Average Original Perplexity:  | 1.43   |
+| Average Attack Perplexity:    | 1.46   |
+| Average Attack USE Score:     | 0.97   |
++-------------------------------+--------+
+Attack time: 4214.985721349716
+Attack time: 4214.985721349716
