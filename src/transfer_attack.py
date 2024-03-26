@@ -135,7 +135,7 @@ def compute_the_attacked_answer(row, tokenizer, model, verbalizer, dataset):
 
         return compute_distributions(mod_q, mod_icl_examples, tokenizer=tokenizer, model=model, verbalizer=verbalizer)
 
-def compute_original_answer(row, tokenizer, model, verbalizer):
+def compute_original_answer(row, tokenizer, model, verbalizer, dataset):
     if 'original_prompt' in row:
         prompt = row['original_prompt']
         return compute_distributions(None, None, tokenizer=tokenizer, model=model, prompt=prompt, verbalizer=verbalizer)
@@ -317,8 +317,8 @@ def main(args):
     df['perturbed_prompt'] = df.progress_apply(partial(get_prompt, text_col='perturbed_text', template=template, dataset=args.dataset, verbalizer=verbalizer), axis=1)
 
     # df['non_modifiable'] = df.progress_apply(compare_non_modifable, axis=1)
-    df['attacked_answer'] = df.progress_apply(lambda x : compute_the_attacked_answer(x, tokenizer=tokenizer, model=model, verbalizer=verbalizer), axis=1)
-    df['original_answer'] = df.progress_apply(lambda x : compute_original_answer(x, tokenizer=tokenizer, model=model, verbalizer=verbalizer), axis=1)
+    df['attacked_answer'] = df.progress_apply(lambda x : compute_the_attacked_answer(x, tokenizer=tokenizer, model=model, verbalizer=verbalizer, dataset=args.dataset), axis=1)
+    df['original_answer'] = df.progress_apply(lambda x : compute_original_answer(x, tokenizer=tokenizer, model=model, verbalizer=verbalizer, dataset=args.dataset), axis=1)
 
     df['correct'] = df['original_answer'] == df['ground_truth_output']
     df['attack_correct'] = df['attacked_answer'] == df['ground_truth_output']
