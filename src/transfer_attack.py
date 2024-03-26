@@ -64,7 +64,7 @@ def get_prompt(row, text_col='original_text', verbalizer={0: "true", 1: "false"}
 
     if dataset == "rte":
         q = template.format(question[0], question[1], "").strip()
-    elif dataset == "trec":
+    elif dataset in ["trec", "sst2"]:
         q = template.format(question[0], "").strip()
 
     prompt = "\n\n".join(demos) + "\n\n" + q
