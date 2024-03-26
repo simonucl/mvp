@@ -30,6 +30,13 @@ def get_demo_and_question(text, dataset="rte"):
         demons = demons[1:]
         for i in range(len(demons) // 2):
             icl_examples.append((demons[i * 2], demons[i * 2 + 1]))
+    elif dataset == "sst2":
+        question = (demons[0], "")
+        icl_examples = []
+        demons = demons[1:]
+        for i in range(len(demons) // 2):
+            icl_examples.append((demons[i * 2], demons[i * 2 + 1]))
+            
     return question, icl_examples
     
 
@@ -73,7 +80,7 @@ def compare_non_modifable(row):
 
     return (all([(e[0] == ae[0]) and (e[1] == ae[1]) for e, ae in zip(ori_icl_examples, mod_icl_examples)])) and (ori_q == mod_q)
 
-def compute_distributions(question, icl_examples, tokenizer, model, verbalizer, prompt=None):
+def compute_distributions(question, icl_examples, tokenizer, model, verbalizer, template=None, prompt=None, dataset="rte"):
     model.eval()
     label_id = [tokenizer.encode(v)[1] for k, v in verbalizer.items()]
 
@@ -83,12 +90,20 @@ def compute_distributions(question, icl_examples, tokenizer, model, verbalizer, 
     #     label_id = [tokenizer.encode(verbalizer[0])[1], tokenizer.encode(verbalizer[1])[1]]
         
     if prompt is None:
-        template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
+        if template is None:
+            template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
+        # template = "{}\n The question is: {}. True or False?\nThe Answer is: {}"
 
         demos = []
         for demo in icl_examples:
-            demos.append(template.format(demo[0], demo[1], demo[2]))
-        q = template.format(question[0], question[1], "").strip()
+            if len(demo) == 2:
+                demos.append(template.format(demo[0], demo[1]))
+            else:
+                demos.append(template.format(demo[0], demo[1], demo[2]))
+        if len(question) == 1:
+            q = template.format(question[0], "").strip()
+        else:
+            q = template.format(question[0], question[1], "").strip()
 
         prompt = "\n\n".join(demos) + "\n\n" + q
 
@@ -103,7 +118,7 @@ def compute_distributions(question, icl_examples, tokenizer, model, verbalizer, 
     output_label = output[:, label_id].softmax(dim=-1)
     return output_label.argmax(dim=-1).item()
 
-def compute_the_attacked_answer(row, tokenizer, model, verbalizer):
+def compute_the_attacked_answer(row, tokenizer, model, verbalizer, dataset):
     if 'perturbed_prompt' in row:
         prompt = row['perturbed_prompt']
         return compute_distributions(None, None, tokenizer=tokenizer, model=model, prompt=prompt, verbalizer=verbalizer)
@@ -111,7 +126,7 @@ def compute_the_attacked_answer(row, tokenizer, model, verbalizer):
         original = row['original_text']
         modified = row['perturbed_text']
         # ori_q, ori_icl_examples = get_demo_and_question(original)
-        mod_q, mod_icl_examples = get_demo_and_question(modified)
+        mod_q, mod_icl_examples = get_demo_and_question(modified, dataset=dataset)
 
         return compute_distributions(mod_q, mod_icl_examples, tokenizer=tokenizer, model=model, verbalizer=verbalizer)
 
@@ -127,34 +142,40 @@ def compute_original_answer(row, tokenizer, model, verbalizer):
 
         return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model, verbalizer=verbalizer)
 
-def random_flip(icl_examples, percentage):
+def random_flip(icl_examples, percentage, verbalizer={0: "true", 1: "false"}):
     np.random.seed(1)
     idx = np.random.choice(len(icl_examples), int(len(icl_examples) * percentage), replace=False)
     for i in idx:
-        icl_examples[i] = (icl_examples[i][0], icl_examples[i][1], 'false' if icl_examples[i][2] == 'true' else 'true')
+        if len(icl_examples[i]) == 2:
+            icl_examples[i] = (icl_examples[i][0], icl_examples[i][1], verbalizer[0] if icl_examples[i][1] == verbalizer[1] else verbalizer[1])
+        else:
+            icl_examples[i] = (icl_examples[i][0], icl_examples[i][1], 'false' if icl_examples[i][2] == 'true' else 'true')
 
     return icl_examples
 
-def fully_flip(row, tokenizer, model, label='false'):
+def fully_flip(row, tokenizer, model, label='false', dataset='rte', template=None):
     original = row['original_text']
-    ori_q, ori_icl_examples = get_demo_and_question(original)
+    ori_q, ori_icl_examples = get_demo_and_question(original, dataset=dataset)
     for i in range(len(ori_icl_examples)):
-        ori_icl_examples[i] = (ori_icl_examples[i][0], ori_icl_examples[i][1], label)
+        if dataset == 'rte':
+            ori_icl_examples[i] = (ori_icl_examples[i][0], ori_icl_examples[i][1], label)
+        elif dataset in ['trec', 'sst2']:
+            ori_icl_examples[i] = (ori_icl_examples[i][0], label)
 
-    return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model)
+    return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model, template=template)
 
-def compute_random_flip_original_answer(row, tokenizer, model):
+def compute_random_flip_original_answer(row, tokenizer, model, template, dataset, verbalizer):
     original = row['original_text']
-    ori_q, ori_icl_examples = get_demo_and_question(original)
-    ori_icl_examples = random_flip(ori_icl_examples, 1.0)
+    ori_q, ori_icl_examples = get_demo_and_question(original, dataset=dataset)
+    ori_icl_examples = random_flip(ori_icl_examples, 0.5, verbalizer=verbalizer)
     # mod_q, mod_icl_examples = get_demo_and_question(modified)
 
-    return compute_distributions(ori_q, ori_icl_examples, tokenizer=tokenizer, model=model)
+    return compute_distributions(ori_q, ori_icl_examples, template=template, tokenizer=tokenizer, model=model, dataset=dataset)
 
-def compute_swap_labels_details(df, tokenizer, model, out_path, model_name, metrics):
-    df['random_flip_original_answer'] = df.progress_apply(lambda x : compute_random_flip_original_answer(x, tokenizer=tokenizer, model=model), axis=1)
-    df['full_flip_true_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label='true'), axis=1)
-    df['full_flip_false_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label='false'), axis=1)
+def compute_swap_labels_details(df, tokenizer, model, out_path, model_name, metrics, template, dataset, verbalizer):
+    df['random_flip_original_answer'] = df.progress_apply(lambda x : compute_random_flip_original_answer(x, tokenizer=tokenizer, model=model, template=template, dataset=dataset, verbalizer=verbalizer), axis=1)
+    df['full_flip_true_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label=verbalizer[1], dataset=dataset), axis=1)
+    df['full_flip_false_original_answer'] = df.progress_apply(lambda row: fully_flip(row, tokenizer=tokenizer, model=model, label=verbalizer[0], dataset=dataset), axis=1)
 
     df['random_flip_correct'] = df['random_flip_original_answer'] == df['ground_truth_output']
     df['full_flip_true_correct'] = df['full_flip_true_original_answer'] == df['ground_truth_output']
@@ -320,8 +341,8 @@ def main(args):
     df.to_csv(os.path.join(out_path, f'{model_name}_attack_results.csv'), index=False)
     # save the metrics as json
 
-    # if args.attack == 'swap_labels' or args.attack == 'swap_labels_fix_dist':
-    #     metrics = compute_swap_labels_details(df, tokenizer, model, out_path, model_name, metrics)
+    if args.attack == 'swap_labels' or args.attack == 'swap_labels_fix_dist':
+        metrics = compute_swap_labels_details(df, tokenizer, model, out_path, model_name, metrics, template, args.dataset, verbalizer)
 
     with open(os.path.join(out_path, f'{model_name}_attack_metrics.json'), 'w') as f:
         json.dump(metrics, f)
