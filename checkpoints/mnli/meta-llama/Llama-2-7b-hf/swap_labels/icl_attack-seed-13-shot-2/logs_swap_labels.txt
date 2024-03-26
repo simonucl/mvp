@@ -1,0 +1,56 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-2', model_id='0', model_type='icl_attack', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-2
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-2/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-2', model_id='0', model_type='icl_attack', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Length of anchor subsample 0
+Length of icl examples 3
+Finished loading model
+ICL examples
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'jon had never bothered to learn their names.', 'Hypothesis_0': 'jon did not know any of their names. ', 'Label_0': 'yes', 'Premise_1': "it's difficult to believe that this little spot was once a major junction for traffic in the lakes before motorized vehicles were invented.", 'Hypothesis_1': 'motorized vehicles were introduced in 1965.', 'Label_1': 'maybe', 'Premise_2': 'from the dock from shore', 'Hypothesis_2': 'it stops at the dock.', 'Label_2': 'no', 'Premise_3': "yeah and and the question is is does the government make a difference if they'll mostly leave him alone uh and i think that's the difficulty they that that we have that uh it it it reality doesn't make uh doesn't make a difference if he has no income and apparently even some of our alleged uh central american leaders that uh are are that are mostly democratic have done some pretty terrible things so it's uh", 'Hypothesis_3': "the question is, will the government make a difference if they leave him alone? the reality is, it doesn't make a difference if he has no income.  apparently, some of our democratic central american leaders have done some terrible things.", 'Label_3': 'yes', 'Premise_4': 'exactly, said poirot dryly. ', 'Hypothesis_4': 'poirot was not happy.', 'Label_4': 'maybe', 'Premise_5': 'in about 2000 b.c.', 'Hypothesis_5': 'it was about 2000 a.d.', 'Label_5': 'no'}
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'jon had never bothered to learn their names.', 'Hypothesis_0': 'jon did not know any of their names. ', 'Label_0': 'yes', 'Premise_1': "it's difficult to believe that this little spot was once a major junction for traffic in the lakes before motorized vehicles were invented.", 'Hypothesis_1': 'motorized vehicles were introduced in 1965.', 'Label_1': 'maybe', 'Premise_2': 'from the dock from shore', 'Hypothesis_2': 'it stops at the dock.', 'Label_2': 'no', 'Premise_3': "yeah and and the question is is does the government make a difference if they'll mostly leave him alone uh and i think that's the difficulty they that that we have that uh it it it reality doesn't make uh doesn't make a difference if he has no income and apparently even some of our alleged uh central american leaders that uh are are that are mostly democratic have done some pretty terrible things so it's uh", 'Hypothesis_3': "the question is, will the government make a difference if they leave him alone? the reality is, it doesn't make a difference if he has no income.  apparently, some of our democratic central american leaders have done some terrible things.", 'Label_3': 'yes', 'Premise_4': 'exactly, said poirot dryly. ', 'Hypothesis_4': 'poirot was not happy.', 'Label_4': 'maybe', 'Premise_5': 'in about 2000 b.c.', 'Hypothesis_5': 'it was about 2000 a.d.', 'Label_5': 'no'}
+['Premise: {}\nHypothesis: {}\nPrediction: {}']
+{0: ['yes'], 1: ['maybe'], 2: ['no']}
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-2/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f245e719f40>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapLabel(
+        (label_map):  ['yes', 'maybe', 'no']
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.33
+        (compare_against_original):  True
+      )
+    (1): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (2): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 534    |
+| Number of failed attacks:     | 3      |
+| Number of skipped attacks:    | 463    |
+| Original accuracy:            | 53.7   |
+| Accuracy under attack:        | 0.3    |
+| Attack success rate:          | 99.44  |
+| Average perturbed word %:     | 0.7    |
+| Average num. words per input: | 225.54 |
+| Avg num queries:              | 18.61  |
+| Adv confidence:               | 0.71   |
+| Average Original Perplexity:  | 1.74   |
+| Average Attack Perplexity:    | 1.81   |
+| Average Attack USE Score:     | 0.98   |
++-------------------------------+--------+
+Attack time: 538.3972957134247
+Attack time: 538.3972957134247

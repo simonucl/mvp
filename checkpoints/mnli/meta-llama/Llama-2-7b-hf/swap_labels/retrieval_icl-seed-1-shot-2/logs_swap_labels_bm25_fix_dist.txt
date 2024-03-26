@@ -1,9 +1,9 @@
 1
-Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_bm25_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, seed=1, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_bm25_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
 meta-llama/Llama-2-7b-hf
 Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_bm25_fix_dist
 1 Physical GPUs, 1 Logical GPUs
-Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_bm25_fix_dist/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_bm25_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/mnli_bm25.pkl', replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, seed=1, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=2, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_bm25_fix_dist/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_bm25_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, ralm_save_path='./data/ralm/mnli_bm25.pkl', replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
 Length of anchor subsample 6
 Length of icl examples 3
 Finished loading model
@@ -13,8 +13,8 @@ ICL examples
 {'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'but he never asks whether lawsuits and rights are the only way to prevent these bad things.', 'Hypothesis_0': 'he never asks if they are the only way to not make bad things happen, said the news.', 'Label_0': 'maybe', 'Premise_1': 'but he never asks whether lawsuits and rights are the only way to prevent these bad things.', 'Hypothesis_1': 'he always asks if they are the only way to not make bad things happen.', 'Label_1': 'no', 'Premise_2': 'but he never asks whether lawsuits and rights are the only way to prevent these bad things.', 'Hypothesis_2': 'he never asks if they are the only way to not make bad things happen.', 'Label_2': 'yes', 'Premise_3': 'for the poor and vulnerable, the justice system represents the place of last resort - the place where essential rights are enforced and defended.', 'Hypothesis_3': 'the justice system is a last resort for the poor.', 'Label_3': 'yes', 'Premise_4': 'for the poor and vulnerable, the justice system represents the place of last resort - the place where essential rights are enforced and defended.', 'Hypothesis_4': 'for the non-poor, the justice system is the first place they go to.', 'Label_4': 'maybe', 'Premise_5': 'with its new look and new aim, the prospects are good despite the warnings.', 'Hypothesis_5': 'the prospects seem dire as warnings suggest, and the new look is wasted.', 'Label_5': 'no'}
 ['Premise: {}\nHypothesis: {}\nPrediction: {}']
 {0: ['yes'], 1: ['maybe'], 2: ['no']}
-./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_bm25_fix_dist/swap_labels_log.csv
-<textattack.attacker.Attacker object at 0x7fa359ea0490>
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-2_bm25_fix_dist/swap_labels_fix_dist_log.csv
+<textattack.attacker.Attacker object at 0x7fc5590bce80>
 Attack(
   (search_method): GreedySearch
   (goal_function):  UntargetedClassification
@@ -41,19 +41,19 @@ Attack(
 +-------------------------------+-------+
 | Attack Results                |       |
 +-------------------------------+-------+
-| Number of successful attacks: | 342   |
-| Number of failed attacks:     | 210   |
-| Number of skipped attacks:    | 448   |
-| Original accuracy:            | 55.2  |
-| Accuracy under attack:        | 21.0  |
-| Attack success rate:          | 61.96 |
-| Average perturbed word %:     | 1.4   |
+| Number of successful attacks: | 331   |
+| Number of failed attacks:     | 220   |
+| Number of skipped attacks:    | 449   |
+| Original accuracy:            | 55.1  |
+| Accuracy under attack:        | 22.0  |
+| Attack success rate:          | 60.07 |
+| Average perturbed word %:     | 1.36  |
 | Average num. words per input: | 218.4 |
 | Avg num queries:              | 15.34 |
 | Adv confidence:               | 0.67  |
-| Average Original Perplexity:  | 10.68 |
-| Average Attack Perplexity:    | 10.68 |
+| Average Original Perplexity:  | 10.73 |
+| Average Attack Perplexity:    | 10.74 |
 | Average Attack USE Score:     | 0.98  |
 +-------------------------------+-------+
-Attack time: 490.182471036911
-Attack time: 490.182471036911
+Attack time: 565.4594933986664
+Attack time: 565.4594933986664
