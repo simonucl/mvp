@@ -27,6 +27,12 @@ do
         SHOTS=(8 4 2 16)
     fi
 
+    if [[ $ATTACK == "bert_attack" ]]; then
+        MODEL_TYPE="icl"
+    else
+        MODEL_TYPE="icl_attack"
+    fi
+
     if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
         ATTACK_PRECENT=0.15
     else
