@@ -61,6 +61,11 @@ def get_prompt(row, text_col='original_text', verbalizer={0: "true", 1: "false"}
                 demos.append(template.format(demo[0], demo[1]))
             elif isinstance(demo, dict):
                 demos.append(template.format(demo['example'], verbalizer[demo['label']]))
+        elif dataset == "sst2":
+            if isinstance(demo, tuple):
+                demos.append(template.format(demo[0], demo[1]))
+            elif isinstance(demo, dict):
+                demos.append(template.format(demo['example'], verbalizer[demo['label']]))
 
     if dataset == "rte":
         q = template.format(question[0], question[1], "").strip()
