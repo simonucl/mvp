@@ -258,17 +258,17 @@ def attacker(args):
         
         if attack_name in ["swap_labels"]:
             attack = attack_class.build(model, verbalizer=verbalizer, fix_dist=args.fix_dist)
-        elif attack_name in ['irrelevant_sample']:
-            with open('./src/ood/ood_cc_news.txt' , 'r') as f:
-                ood_dataset = f.readlines()
-            print("Finished loading ood dataset")
-            if type(icl_examples) == dict:
-                max_keys_perturbed = sum([len(v) for v in icl_examples.values()]) * 0.5
-            elif type(icl_examples) == list:
-                max_keys_perturbed = sum([len(v) for v in icl_examples]) * 0.5
-            else:
-                raise NotImplementedError(f"icl_examples type {type(icl_examples)} not supported")
-            attack = attack_class.build(model, ood_dataset=ood_dataset, max_keys_perturbed=max_keys_perturbed)
+        # elif attack_name in ['irrelevant_sample']:
+        #     with open('./src/ood/ood_cc_news.txt' , 'r') as f:
+        #         ood_dataset = f.readlines()
+        #     print("Finished loading ood dataset")
+        #     if type(icl_examples) == dict:
+        #         max_keys_perturbed = sum([len(v) for v in icl_examples.values()]) * 0.5
+        #     elif type(icl_examples) == list:
+        #         max_keys_perturbed = sum([len(v) for v in icl_examples]) * 0.5
+        #     else:
+        #         raise NotImplementedError(f"icl_examples type {type(icl_examples)} not supported")
+        #     attack = attack_class.build(model, ood_dataset=ood_dataset, max_keys_perturbed=max_keys_perturbed)
         else:
             attack = attack_class.build(model)
         
