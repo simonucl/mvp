@@ -126,7 +126,7 @@ def attacker(args):
 
         # replace 50% of the sentence from my_dataset with ood_dataset
         def replace_ood_dataset(x):                
-            if random.random() <= 1.0:
+            if random.random() <= 0.5:
                 if 'sentence' in x.keys():
                     x['sentence'] = ood_dataset[random.randint(0, len(ood_dataset)-1)]
                 elif 'premise' in x.keys():
