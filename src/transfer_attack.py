@@ -172,7 +172,7 @@ def fully_flip(row, tokenizer, model, verbalizer, label='false', dataset='rte', 
 def compute_random_flip_original_answer(row, tokenizer, model, template, dataset, verbalizer):
     original = row['original_text']
     ori_q, ori_icl_examples = get_demo_and_question(original, dataset=dataset)
-    ori_icl_examples = random_flip(ori_icl_examples, 0.5, verbalizer=verbalizer)
+    ori_icl_examples = random_flip(ori_icl_examples, 1.0, verbalizer=verbalizer)
     # mod_q, mod_icl_examples = get_demo_and_question(modified)
 
     return compute_distributions(ori_q, ori_icl_examples, template=template, tokenizer=tokenizer, model=model, dataset=dataset, verbalizer=verbalizer)
@@ -198,67 +198,67 @@ def compute_swap_labels_details(df, tokenizer, model, out_path, model_name, metr
     metrics['full_flip_true_acc'] = df['full_flip_true_correct'].value_counts()[True] / df['full_flip_true_correct'].value_counts().sum()
     metrics['full_flip_false_acc'] = df['full_flip_false_correct'].value_counts()[True] / df['full_flip_false_correct'].value_counts().sum()
 
-    return metrics
-    # from collections import Counter
+    # return metrics
+    from collections import Counter
 
-    # def compute_label_icl_example_dist(row):
-    #     # if row['result_type'] == 'Skipped':
-    #     #     return {}
+    def compute_label_icl_example_dist(row):
+        # if row['result_type'] == 'Skipped':
+        #     return {}
         
-    #     modified = row['perturbed_text']
-    #     mod_q, mod_icl_examples = get_demo_and_question(modified)
+        modified = row['perturbed_text']
+        mod_q, mod_icl_examples = get_demo_and_question(modified)
 
-    #     return dict(Counter([e[2] for e in mod_icl_examples]))
+        return dict(Counter([e[2] for e in mod_icl_examples]))
 
-    # df['attack_demonstrations_dist'] = df.apply(compute_label_icl_example_dist, axis=1)
-    # df['perturbed_examples'] = df.progress_apply(lambda x : get_demo_and_question(x['perturbed_text'])[1], axis=1)
+    df['attack_demonstrations_dist'] = df.apply(compute_label_icl_example_dist, axis=1)
+    df['perturbed_examples'] = df.progress_apply(lambda x : get_demo_and_question(x['perturbed_text'])[1], axis=1)
 
-    # successful_attack = df[df['result_type'] == 'Successful']
+    successful_attack = df[df['result_type'] == 'Successful']
 
-    # def get_the_label_dist(row):
-    #     demo_dist = row['attack_demonstrations_dist']
-    #     # print(demo_dist)
-    #     if demo_dist == {}:
-    #         return {}
-    #     correct_answer = 'false' if row['ground_truth_output'] == 0 else 'true'
+    def get_the_label_dist(row):
+        demo_dist = row['attack_demonstrations_dist']
+        # print(demo_dist)
+        if demo_dist == {}:
+            return {}
+        correct_answer = 'false' if row['ground_truth_output'] == 0 else 'true'
 
-    #     return {correct_answer: demo_dist[correct_answer]}
+        return {correct_answer: demo_dist[correct_answer]}
 
-    # successful_attack['correct_label_dist'] = successful_attack.apply(get_the_label_dist, axis=1)
+    successful_attack['correct_label_dist'] = successful_attack.apply(get_the_label_dist, axis=1)
 
-    # mapping = {0: 'false', 1: 'true'}
+    mapping = {0: 'false', 1: 'true'}
 
-    # # measure the correct_label_dist based on ground_truth_output and plot them on a line chart
-    # # successful_attack = successful_attack['correct_label_dist'].apply(lambda x: {mapping[k]: v for k, v in x.items()})
+    # measure the correct_label_dist based on ground_truth_output and plot them on a line chart
+    # successful_attack = successful_attack['correct_label_dist'].apply(lambda x: {mapping[k]: v for k, v in x.items()})
 
 
-    # buckets = {'true': [], 'false': []}
-    # for i, row in successful_attack.iterrows():
-    #     for k, v in row['correct_label_dist'].items():
-    #         buckets[k].append(v-args.shot)
+    buckets = {'true': [], 'false': []}
+    for i, row in successful_attack.iterrows():
+        for k, v in row['correct_label_dist'].items():
+            buckets[k].append(v-args.shot)
 
-    # # draw them on a 2d bar chart
+    # draw them on a 2d bar chart
 
-    # # final_bucket = buckets['true'] + [-1 * v for v in buckets['false']]
+    # final_bucket = buckets['true'] + [-1 * v for v in buckets['false']]
 
-    # # plot the histogram with larger than zero as green and smaller than zero as red
-    # import matplotlib.pyplot as plt
-    # import numpy as np
+    # plot the histogram with larger than zero as green and smaller than zero as red
+    import matplotlib.pyplot as plt
+    import numpy as np
 
-    # def plot_histogram(buckets):
-    #     fig, ax = plt.subplots(figsize=(15, 7))
-    #     plt.bar([ x +0.25 for x in Counter(buckets['true']).keys()], [x / len(buckets['true']) for x in Counter(buckets['true']).values()], color='green', alpha=0.5, label='True', width=0.5)
-    #     plt.bar([ -1 * (x + 0.25) for x in Counter(buckets['false']).keys()], [x / len(buckets['false']) for x in Counter(buckets['false']).values()], color='red', alpha=0.5, label='False', width=0.5)
-    #     # plt.hist([-1 * b for b in buckets['false']], bins=25, color='red', alpha=0.5, label='False')
-    #     plt.title("Histogram of Successful Attacks")
-    #     plt.xlabel("Number of Positive Demonstrations")
-    #     # make x axis as discrete values
-    #     plt.xticks(np.arange(-8, 9, 1))
-    #     plt.ylabel("Count")
-    #     plt.legend(loc='upper right')
-    #     plt.savefig(os.path.join(out_path, 'successful_attack_histogram.png'))
+    def plot_histogram(buckets):
+        fig, ax = plt.subplots(figsize=(15, 7))
+        plt.bar([ x +0.25 for x in Counter(buckets['true']).keys()], [x / len(buckets['true']) for x in Counter(buckets['true']).values()], color='green', alpha=0.5, label='True', width=0.5)
+        plt.bar([ -1 * (x + 0.25) for x in Counter(buckets['false']).keys()], [x / len(buckets['false']) for x in Counter(buckets['false']).values()], color='red', alpha=0.5, label='False', width=0.5)
+        # plt.hist([-1 * b for b in buckets['false']], bins=25, color='red', alpha=0.5, label='False')
+        plt.title("Histogram of Successful Attacks")
+        plt.xlabel("Number of Positive Demonstrations")
+        # make x axis as discrete values
+        plt.xticks(np.arange(-8, 9, 1))
+        plt.ylabel("Count")
+        plt.legend(loc='upper right')
+        plt.savefig(os.path.join(out_path, 'successful_attack_histogram.png'))
 
-    # plot_histogram(buckets)
+    plot_histogram(buckets)
     df.to_csv(os.path.join(out_path, f'{model_name}_attack_results.csv'), index=False)
 
 def get_verbalizer_and_template(dataset):

@@ -141,6 +141,7 @@ def attacker(args):
         print(my_dataset['train'][0])
 
         args.attack_name = 'textfooler'
+        args.query_budget = 1
 
         # import sys; sys.exit(1)
     model = get_model(args, my_dataset, tokenizer, data_collator, verbalizer = verbalizer, template = templates)
