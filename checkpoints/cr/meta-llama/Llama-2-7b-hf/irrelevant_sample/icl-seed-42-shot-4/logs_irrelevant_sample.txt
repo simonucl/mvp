@@ -1,0 +1,87 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-42-shot-4', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=42, shot=4, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-42-shot-4
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, cache_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-42-shot-4/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-42-shot-4', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=42, shot=4, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'label': 1, 'sentence': 'mine installed no problem ( but i did uninstall my norton anti virus 2002 personal firewall 2002 first )', 'idx': 0}
+Finished replacing ood dataset
+{'label': 1, 'sentence': 'It wasn’t immediately known whether Lane has an attorney.\n', 'idx': 0}
+Length of anchor subsample 0
+Length of icl examples 2
+Finished loading model
+ICL examples
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'while i was trying to play half life 2 it started popping up with alerts every twenty seconds ( literally ) , warning me my antivirus protection was off', 'Label_0': 'negative', 'Example_1': "ooh , and i dropped it and it still works fine this little camera has so many features i have n ' t even gotten to all of them yet", 'Label_1': 'positive', 'Example_2': 'after reading reviews of lcd problems , cracked , black blobs etc , i figured that it was probably a very limited problem', 'Label_2': 'negative', 'Example_3': "99% of folks should stay dry today! There is a SLIGHT chance for a sprinkle east of Fort Smith. Can't quite rule it out completely. The showers will be extremely isolated but may sprinkle on a windshield here and there.\n", 'Label_3': 'positive', 'Example_4': 'the controls are somewhat harder to use than the ipod , but i have gotten use to them , and even at the beginning did not think would justify the huge difference in price', 'Label_4': 'negative', 'Example_5': 'An age-grade representative for France, he chose to play for Algeria and scored their first World Cup goal in 28 years with a penalty against Belgium in 2014.\n', 'Label_5': 'positive', 'Example_6': '* Suen cho hung, paul has been appointed chairman Source text for Eikon: Further company coverage:\n', 'Label_6': 'negative', 'Example_7': 'i think the interface is great', 'Label_7': 'positive'}
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'while i was trying to play half life 2 it started popping up with alerts every twenty seconds ( literally ) , warning me my antivirus protection was off', 'Label_0': 'negative', 'Example_1': "ooh , and i dropped it and it still works fine this little camera has so many features i have n ' t even gotten to all of them yet", 'Label_1': 'positive', 'Example_2': 'after reading reviews of lcd problems , cracked , black blobs etc , i figured that it was probably a very limited problem', 'Label_2': 'negative', 'Example_3': "99% of folks should stay dry today! There is a SLIGHT chance for a sprinkle east of Fort Smith. Can't quite rule it out completely. The showers will be extremely isolated but may sprinkle on a windshield here and there.\n", 'Label_3': 'positive', 'Example_4': 'the controls are somewhat harder to use than the ipod , but i have gotten use to them , and even at the beginning did not think would justify the huge difference in price', 'Label_4': 'negative', 'Example_5': 'An age-grade representative for France, he chose to play for Algeria and scored their first World Cup goal in 28 years with a penalty against Belgium in 2014.\n', 'Label_5': 'positive', 'Example_6': '* Suen cho hung, paul has been appointed chairman Source text for Eikon: Further company coverage:\n', 'Label_6': 'negative', 'Example_7': 'i think the interface is great', 'Label_7': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-42-shot-4/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7f5f806e5d90>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 351    |
+| Number of skipped attacks:    | 25     |
+| Original accuracy:            | 93.35  |
+| Accuracy under attack:        | 93.35  |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 219.47 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 29.37356996536255
+Attack time: 29.37356996536255

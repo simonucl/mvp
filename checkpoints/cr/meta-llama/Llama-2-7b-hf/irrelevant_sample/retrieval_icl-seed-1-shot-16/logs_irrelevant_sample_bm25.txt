@@ -1,0 +1,88 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, cache_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/cr_bm25_ood.pkl', replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'label': 1, 'sentence': 'mine installed no problem ( but i did uninstall my norton anti virus 2002 personal firewall 2002 first )', 'idx': 0}
+Finished replacing ood dataset
+{'label': 1, 'sentence': 'mine installed no problem ( but i did uninstall my norton anti virus 2002 personal firewall 2002 first )', 'idx': 0}
+Length of anchor subsample 32
+Length of icl examples 2
+Finished loading model
+Loading retrieved examples from ./data/ralm/cr_bm25_ood.pkl
+ICL examples
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'software is easy to use ( although red hat software is better , but costs money )', 'Label_0': 'positive', 'Example_1': "also , you have to use it with itunes or they ' ll sue , dammit ! but itunes is about as good as anything", 'Label_1': 'positive', 'Example_2': "i really dislike holding a phone to my ear , and i ' ve found the free speak to be very comfortable and easy to use with this phone", 'Label_2': 'positive', 'Example_3': "i only wanted something to play dvds on but this machine has all these other features that i probably will never use but it ' s nice to know that there ' re there", 'Label_3': 'positive', 'Example_4': 'the menus are easy to scroll through they are laid out naturally , and make sense', 'Label_4': 'positive', 'Example_5': "it ' s a great looking , easy to use device but it ' s the sound quality which is truly amazing far better than my sony mini disc player", 'Label_5': 'positive', 'Example_6': 'both are very easy to learn use , and intuitive enough for even a novice', 'Label_6': 'positive', 'Example_7': 'the file ripping transfering software that comes with the player is easy to use', 'Label_7': 'positive', 'Example_8': 'great phone , easy to use , excellent network , no regrets ! ! !', 'Label_8': 'positive', 'Example_9': 'it is easy to install and change the ordinary trash bags , easy to clean , and most important , easy to use one handed just insert folded dirty diaper and flip the handle', 'Label_9': 'positive', 'Example_10': "it ' s easy for beginners to use , but has features that more serious photographers will love , so it ' s an excellent camera to grow into", 'Label_10': 'positive', 'Example_11': 'mine is as easy to use as the mini without any firmware download', 'Label_11': 'positive', 'Example_12': '"There are exciting moments coming for me. Let\'s see what they\'re going to be," he told Fox Sports.\n', 'Label_12': 'positive', 'Example_13': "you can disable some of the individual components , but don ' t be fooled they ' re still there and running", 'Label_13': 'negative', 'Example_14': "very easy to use for someone like me who ' s just hopping on the digital camera bandwagon", 'Label_14': 'positive', 'Example_15': "and if you ' re a mac user like me , they ' ve naturally made sure you have no viable alternative", 'Label_15': 'negative', 'Example_16': 'in general it is easy to use and well laid out', 'Label_16': 'positive', 'Example_17': 'i am impressed with how easy this camera is to use', 'Label_17': 'positive', 'Example_18': 'there is no odor and it is very easy to use', 'Label_18': 'positive', 'Example_19': "ease of use design the ipod is a very easy to use mp3 player , and if you can ' t figure this out , you shouldn ' t even own one", 'Label_19': 'positive', 'Example_20': "first of all , i ' ve never been big on earbuds they ' re just not that comfortable", 'Label_20': 'negative', 'Example_21': "many have complained about the software included but in my opinion it ' s easy to use and effective", 'Label_21': 'positive', 'Example_22': 'all in all suprisingly easy to use', 'Label_22': 'positive', 'Example_23': 'have a great and easy to use bundled software', 'Label_23': 'positive', 'Example_24': 'the buttons and interface are very easy to use', 'Label_24': 'positive', 'Example_25': 'the other controls are all very easy to use', 'Label_25': 'positive', 'Example_26': "they ' re pretty comfortable , stay in place and deliver a decent audio quality", 'Label_26': 'positive', 'Example_27': 'second , it is incredibly easy to use', 'Label_27': 'positive', 'Example_28': 'the unit is easy to use and intuitive', 'Label_28': 'positive', 'Example_29': 'this camera is so easy to use !', 'Label_29': 'positive', 'Example_30': "the player ' s software is very easy to use and very good", 'Label_30': 'positive', 'Example_31': 'the controls are easy to understand and big enough that they are easy to see and use', 'Label_31': 'positive'}
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'software is easy to use ( although red hat software is better , but costs money )', 'Label_0': 'positive', 'Example_1': "also , you have to use it with itunes or they ' ll sue , dammit ! but itunes is about as good as anything", 'Label_1': 'positive', 'Example_2': "i really dislike holding a phone to my ear , and i ' ve found the free speak to be very comfortable and easy to use with this phone", 'Label_2': 'positive', 'Example_3': "i only wanted something to play dvds on but this machine has all these other features that i probably will never use but it ' s nice to know that there ' re there", 'Label_3': 'positive', 'Example_4': 'the menus are easy to scroll through they are laid out naturally , and make sense', 'Label_4': 'positive', 'Example_5': "it ' s a great looking , easy to use device but it ' s the sound quality which is truly amazing far better than my sony mini disc player", 'Label_5': 'positive', 'Example_6': 'both are very easy to learn use , and intuitive enough for even a novice', 'Label_6': 'positive', 'Example_7': 'the file ripping transfering software that comes with the player is easy to use', 'Label_7': 'positive', 'Example_8': 'great phone , easy to use , excellent network , no regrets ! ! !', 'Label_8': 'positive', 'Example_9': 'it is easy to install and change the ordinary trash bags , easy to clean , and most important , easy to use one handed just insert folded dirty diaper and flip the handle', 'Label_9': 'positive', 'Example_10': "it ' s easy for beginners to use , but has features that more serious photographers will love , so it ' s an excellent camera to grow into", 'Label_10': 'positive', 'Example_11': 'mine is as easy to use as the mini without any firmware download', 'Label_11': 'positive', 'Example_12': '"There are exciting moments coming for me. Let\'s see what they\'re going to be," he told Fox Sports.\n', 'Label_12': 'positive', 'Example_13': "you can disable some of the individual components , but don ' t be fooled they ' re still there and running", 'Label_13': 'negative', 'Example_14': "very easy to use for someone like me who ' s just hopping on the digital camera bandwagon", 'Label_14': 'positive', 'Example_15': "and if you ' re a mac user like me , they ' ve naturally made sure you have no viable alternative", 'Label_15': 'negative', 'Example_16': 'in general it is easy to use and well laid out', 'Label_16': 'positive', 'Example_17': 'i am impressed with how easy this camera is to use', 'Label_17': 'positive', 'Example_18': 'there is no odor and it is very easy to use', 'Label_18': 'positive', 'Example_19': "ease of use design the ipod is a very easy to use mp3 player , and if you can ' t figure this out , you shouldn ' t even own one", 'Label_19': 'positive', 'Example_20': "first of all , i ' ve never been big on earbuds they ' re just not that comfortable", 'Label_20': 'negative', 'Example_21': "many have complained about the software included but in my opinion it ' s easy to use and effective", 'Label_21': 'positive', 'Example_22': 'all in all suprisingly easy to use', 'Label_22': 'positive', 'Example_23': 'have a great and easy to use bundled software', 'Label_23': 'positive', 'Example_24': 'the buttons and interface are very easy to use', 'Label_24': 'positive', 'Example_25': 'the other controls are all very easy to use', 'Label_25': 'positive', 'Example_26': "they ' re pretty comfortable , stay in place and deliver a decent audio quality", 'Label_26': 'positive', 'Example_27': 'second , it is incredibly easy to use', 'Label_27': 'positive', 'Example_28': 'the unit is easy to use and intuitive', 'Label_28': 'positive', 'Example_29': 'this camera is so easy to use !', 'Label_29': 'positive', 'Example_30': "the player ' s software is very easy to use and very good", 'Label_30': 'positive', 'Example_31': 'the controls are easy to understand and big enough that they are easy to see and use', 'Label_31': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7f152aa08040>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 355    |
+| Number of skipped attacks:    | 21     |
+| Original accuracy:            | 94.41  |
+| Accuracy under attack:        | 94.41  |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 710.15 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 64.88202810287476
+Attack time: 64.88202810287476

@@ -1,0 +1,87 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, cache_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'label': 1, 'sentence': 'mine installed no problem ( but i did uninstall my norton anti virus 2002 personal firewall 2002 first )', 'idx': 0}
+Finished replacing ood dataset
+{'label': 1, 'sentence': 'mine installed no problem ( but i did uninstall my norton anti virus 2002 personal firewall 2002 first )', 'idx': 0}
+Length of anchor subsample 0
+Length of icl examples 2
+Finished loading model
+ICL examples
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'He was taken by medics to Einstein Medical Center. Police reported no arrest or motive.\n', 'Label_0': 'negative', 'Example_1': 'im able to keep my phone on for about a week ( mostly stand by ) to three days ( regular use )', 'Label_1': 'positive', 'Example_2': 'no way to contact their customer service', 'Label_2': 'negative', 'Example_3': 'as any digital camera owner knows is that when you go to take a picture of a moving object to expect some blurring but with some preliminary testing we had simone move there hands back and forth under the lense and another person take the picture and suprisingly a crystal clear image appeared on the decently sized screen', 'Label_3': 'positive', 'Example_4': 'Avery maintains police framed him. The case gained national attention in 2015 after it was featured in the Netflix documentary.\n', 'Label_4': 'negative', 'Example_5': 'The S&P 500 is up 39.31 points, or 1.5 percent.\n', 'Label_5': 'positive', 'Example_6': 'after several years of torture in the hands of at t customer service i am delighted to drop them , and look forward to august 2004 when i will convert our other 3 family phones from at t to t mobile !', 'Label_6': 'negative', 'Example_7': 'whether you are a novice or an expert , its ease of use and functionality goes together', 'Label_7': 'positive', 'Example_8': 'Also announced was a limited buy three, get one free promotion presented as a Friends and Family package. Tickets range from $29.50 to $149.50 plus fees through Ticketmaster or cavalier.com, at 1-866-999-8111 or at the one-site box office.\n', 'Label_8': 'negative', 'Example_9': 'the interface works great', 'Label_9': 'positive', 'Example_10': "if it weren ' t so big i would probably by another since no shop is complete without a handful of routers", 'Label_10': 'negative', 'Example_11': 'i love this camera', 'Label_11': 'positive', 'Example_12': 'i loved it until it broke , but less than a month is not an acceptable period of time for something to work', 'Label_12': 'negative', 'Example_13': 'all the good reviews for the sd500 are true', 'Label_13': 'positive', 'Example_14': "in noisy environment , it ' s hard to hear from the earpiece", 'Label_14': 'negative', 'Example_15': 'It is alleged he was armed with a hatchet and a replica firearm and stole property from a store before entering another store where he attempted to steal money from the till.\n', 'Label_15': 'positive', 'Example_16': 'Dr. Rene Josef Bullecer, country director of Human Life International, said it is important for every Filipino to have an informed choice on proposals to legalize divorce, gay union, and medical marijuana in the Philippines.\n', 'Label_16': 'negative', 'Example_17': 'The Eagle Eye Contract Vault is controlled via a Web interface or mobile application. Video can be recorded from multiple satellite locations and is stored securely encrypted in the Eagle Eye Cloud Data Centers. Retrieval can be performed by remote or centralized personnel which is ideal for internal or external compliance applications. Pricing starts at $99 per month.\n', 'Label_17': 'positive', 'Example_18': "the zooming lever is shaky , i hope it does not operate mechanically , otherwise you ' ll feel uneasy", 'Label_18': 'negative', 'Example_19': 'Wednesday: A 50 percent chance of showers. Cloudy, with a high at 56.\n', 'Label_19': 'positive', 'Example_20': 'this unit was working fine for the 1st month and a half and then the color signal disappeared', 'Label_20': 'negative', 'Example_21': 'Guzman is a foodservice company supplying hotels, restaurants, industrial caterers and other institutions throughout Spain, Bidcorp said in a statement.\n', 'Label_21': 'positive', 'Example_22': 'software is absolutely terrible', 'Label_22': 'negative', 'Example_23': 'JACKSON, Miss. (AP) — The state auditor is demanding that a Mississippi Delta city clerk pay $106,000 to state government.\n', 'Label_23': 'positive', 'Example_24': "Bags of non-perishable food items were handed out the vehicle window and for those who didn't have cans or boxes they dipped into their wallet.\n", 'Label_24': 'negative', 'Example_25': 'i bought this slick phone and i am very happy with it', 'Label_25': 'positive', 'Example_26': 'Parliament member Alireza Rahimi posted on messaging service Telegram Friday that only 492 of those arrested are still in jail and the rest have been released.\n', 'Label_26': 'negative', 'Example_27': 'but that is good for me because symantec soft wares are a bit hard to master for me who are not savvy on computers', 'Label_27': 'positive', 'Example_28': "doesn ' t have alot of good games on it", 'Label_28': 'negative', 'Example_29': 'Police say no one else is believed to be inside the property with them.\n', 'Label_29': 'positive', 'Example_30': 'Representatives from James Fryett Architect Inc. and LeisurePlan International Inc. will be in attendance to describe the process, answer questions, and receive comments from the public.\n', 'Label_30': 'negative', 'Example_31': 'it really is the perfect travel camera , plus it offers the convenience of digital photography', 'Label_31': 'positive'}
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'He was taken by medics to Einstein Medical Center. Police reported no arrest or motive.\n', 'Label_0': 'negative', 'Example_1': 'im able to keep my phone on for about a week ( mostly stand by ) to three days ( regular use )', 'Label_1': 'positive', 'Example_2': 'no way to contact their customer service', 'Label_2': 'negative', 'Example_3': 'as any digital camera owner knows is that when you go to take a picture of a moving object to expect some blurring but with some preliminary testing we had simone move there hands back and forth under the lense and another person take the picture and suprisingly a crystal clear image appeared on the decently sized screen', 'Label_3': 'positive', 'Example_4': 'Avery maintains police framed him. The case gained national attention in 2015 after it was featured in the Netflix documentary.\n', 'Label_4': 'negative', 'Example_5': 'The S&P 500 is up 39.31 points, or 1.5 percent.\n', 'Label_5': 'positive', 'Example_6': 'after several years of torture in the hands of at t customer service i am delighted to drop them , and look forward to august 2004 when i will convert our other 3 family phones from at t to t mobile !', 'Label_6': 'negative', 'Example_7': 'whether you are a novice or an expert , its ease of use and functionality goes together', 'Label_7': 'positive', 'Example_8': 'Also announced was a limited buy three, get one free promotion presented as a Friends and Family package. Tickets range from $29.50 to $149.50 plus fees through Ticketmaster or cavalier.com, at 1-866-999-8111 or at the one-site box office.\n', 'Label_8': 'negative', 'Example_9': 'the interface works great', 'Label_9': 'positive', 'Example_10': "if it weren ' t so big i would probably by another since no shop is complete without a handful of routers", 'Label_10': 'negative', 'Example_11': 'i love this camera', 'Label_11': 'positive', 'Example_12': 'i loved it until it broke , but less than a month is not an acceptable period of time for something to work', 'Label_12': 'negative', 'Example_13': 'all the good reviews for the sd500 are true', 'Label_13': 'positive', 'Example_14': "in noisy environment , it ' s hard to hear from the earpiece", 'Label_14': 'negative', 'Example_15': 'It is alleged he was armed with a hatchet and a replica firearm and stole property from a store before entering another store where he attempted to steal money from the till.\n', 'Label_15': 'positive', 'Example_16': 'Dr. Rene Josef Bullecer, country director of Human Life International, said it is important for every Filipino to have an informed choice on proposals to legalize divorce, gay union, and medical marijuana in the Philippines.\n', 'Label_16': 'negative', 'Example_17': 'The Eagle Eye Contract Vault is controlled via a Web interface or mobile application. Video can be recorded from multiple satellite locations and is stored securely encrypted in the Eagle Eye Cloud Data Centers. Retrieval can be performed by remote or centralized personnel which is ideal for internal or external compliance applications. Pricing starts at $99 per month.\n', 'Label_17': 'positive', 'Example_18': "the zooming lever is shaky , i hope it does not operate mechanically , otherwise you ' ll feel uneasy", 'Label_18': 'negative', 'Example_19': 'Wednesday: A 50 percent chance of showers. Cloudy, with a high at 56.\n', 'Label_19': 'positive', 'Example_20': 'this unit was working fine for the 1st month and a half and then the color signal disappeared', 'Label_20': 'negative', 'Example_21': 'Guzman is a foodservice company supplying hotels, restaurants, industrial caterers and other institutions throughout Spain, Bidcorp said in a statement.\n', 'Label_21': 'positive', 'Example_22': 'software is absolutely terrible', 'Label_22': 'negative', 'Example_23': 'JACKSON, Miss. (AP) — The state auditor is demanding that a Mississippi Delta city clerk pay $106,000 to state government.\n', 'Label_23': 'positive', 'Example_24': "Bags of non-perishable food items were handed out the vehicle window and for those who didn't have cans or boxes they dipped into their wallet.\n", 'Label_24': 'negative', 'Example_25': 'i bought this slick phone and i am very happy with it', 'Label_25': 'positive', 'Example_26': 'Parliament member Alireza Rahimi posted on messaging service Telegram Friday that only 492 of those arrested are still in jail and the rest have been released.\n', 'Label_26': 'negative', 'Example_27': 'but that is good for me because symantec soft wares are a bit hard to master for me who are not savvy on computers', 'Label_27': 'positive', 'Example_28': "doesn ' t have alot of good games on it", 'Label_28': 'negative', 'Example_29': 'Police say no one else is believed to be inside the property with them.\n', 'Label_29': 'positive', 'Example_30': 'Representatives from James Fryett Architect Inc. and LeisurePlan International Inc. will be in attendance to describe the process, answer questions, and receive comments from the public.\n', 'Label_30': 'negative', 'Example_31': 'it really is the perfect travel camera , plus it offers the convenience of digital photography', 'Label_31': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7f6b8611fe80>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 316    |
+| Number of skipped attacks:    | 60     |
+| Original accuracy:            | 84.04  |
+| Accuracy under attack:        | 84.04  |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 716.47 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 117.90306663513184
+Attack time: 117.90306663513184

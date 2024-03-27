@@ -1,0 +1,90 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_instructor
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, cache_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/cr_instructor_ood.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'label': 1, 'sentence': 'mine installed no problem ( but i did uninstall my norton anti virus 2002 personal firewall 2002 first )', 'idx': 0}
+Finished replacing ood dataset
+{'label': 1, 'sentence': 'mine installed no problem ( but i did uninstall my norton anti virus 2002 personal firewall 2002 first )', 'idx': 0}
+load INSTRUCTOR_Transformer
+max_seq_length  512
+Length of anchor subsample 32
+Length of icl examples 2
+Finished loading model
+Loading retrieved examples from ./data/ralm/cr_instructor_ood.pkl
+ICL examples
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'the buttons and interface are very easy to use', 'Label_0': 'positive', 'Example_1': 'the interface is simple to use', 'Label_1': 'positive', 'Example_2': 'very simple to use', 'Label_2': 'positive', 'Example_3': 'the unit is easy to use and intuitive', 'Label_3': 'positive', 'Example_4': 'in general it is easy to use and well laid out', 'Label_4': 'positive', 'Example_5': 'both are very easy to learn use , and intuitive enough for even a novice', 'Label_5': 'positive', 'Example_6': 'the other controls are all very easy to use', 'Label_6': 'positive', 'Example_7': 'the controls are easy to understand and big enough that they are easy to see and use', 'Label_7': 'positive', 'Example_8': 'second , it is incredibly easy to use', 'Label_8': 'positive', 'Example_9': 'user interface the software is simple and straight forward', 'Label_9': 'positive', 'Example_10': 'all in all suprisingly easy to use', 'Label_10': 'positive', 'Example_11': "the player ' s software is very easy to use and very good", 'Label_11': 'positive', 'Example_12': 'oh and file transfers are fast easy', 'Label_12': 'positive', 'Example_13': 'navigation is easy and i found that syncing files from the player to the computer ( and vice verse ) was easy too', 'Label_13': 'positive', 'Example_14': 'the manual is easy to understand , and it is mostly idiot proof', 'Label_14': 'positive', 'Example_15': 'the setup was very easy', 'Label_15': 'positive', 'Example_16': 'i found using the supplied mediasource software very easy', 'Label_16': 'positive', 'Example_17': 'very simple and painless', 'Label_17': 'positive', 'Example_18': 'i find it pretty easy to use and unlike the remote interface for the audigy 2 nx ( on the pc )', 'Label_18': 'positive', 'Example_19': 'the menus are easy to scroll through they are laid out naturally , and make sense', 'Label_19': 'positive', 'Example_20': "very easy to use for someone like me who ' s just hopping on the digital camera bandwagon", 'Label_20': 'positive', 'Example_21': "ease of use design the ipod is a very easy to use mp3 player , and if you can ' t figure this out , you shouldn ' t even own one", 'Label_21': 'positive', 'Example_22': "the software runs smooth , it ' s nice to look at , it ' s very organized , easy to follow and makes things very simple", 'Label_22': 'positive', 'Example_23': 'whether you are a novice or an expert , its ease of use and functionality goes together', 'Label_23': 'positive', 'Example_24': "setup is totally breeze and linksys ' s web site is pretty easy to navigate", 'Label_24': 'positive', 'Example_25': 'this camera is so easy to use !', 'Label_25': 'positive', 'Example_26': 'this is easy to work and easy to dispose of the dirty diapers', 'Label_26': 'positive', 'Example_27': 'navigating through the menus is super easy , especially if you have owned a previous model nokia phone', 'Label_27': 'positive', 'Example_28': 'have a great and easy to use bundled software', 'Label_28': 'positive', 'Example_29': 'the controls on the player are very simple , no need for a manual', 'Label_29': 'positive', 'Example_30': "many have complained about the software included but in my opinion it ' s easy to use and effective", 'Label_30': 'positive', 'Example_31': 'getting files onto it is quick and painless', 'Label_31': 'positive'}
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'the buttons and interface are very easy to use', 'Label_0': 'positive', 'Example_1': 'the interface is simple to use', 'Label_1': 'positive', 'Example_2': 'very simple to use', 'Label_2': 'positive', 'Example_3': 'the unit is easy to use and intuitive', 'Label_3': 'positive', 'Example_4': 'in general it is easy to use and well laid out', 'Label_4': 'positive', 'Example_5': 'both are very easy to learn use , and intuitive enough for even a novice', 'Label_5': 'positive', 'Example_6': 'the other controls are all very easy to use', 'Label_6': 'positive', 'Example_7': 'the controls are easy to understand and big enough that they are easy to see and use', 'Label_7': 'positive', 'Example_8': 'second , it is incredibly easy to use', 'Label_8': 'positive', 'Example_9': 'user interface the software is simple and straight forward', 'Label_9': 'positive', 'Example_10': 'all in all suprisingly easy to use', 'Label_10': 'positive', 'Example_11': "the player ' s software is very easy to use and very good", 'Label_11': 'positive', 'Example_12': 'oh and file transfers are fast easy', 'Label_12': 'positive', 'Example_13': 'navigation is easy and i found that syncing files from the player to the computer ( and vice verse ) was easy too', 'Label_13': 'positive', 'Example_14': 'the manual is easy to understand , and it is mostly idiot proof', 'Label_14': 'positive', 'Example_15': 'the setup was very easy', 'Label_15': 'positive', 'Example_16': 'i found using the supplied mediasource software very easy', 'Label_16': 'positive', 'Example_17': 'very simple and painless', 'Label_17': 'positive', 'Example_18': 'i find it pretty easy to use and unlike the remote interface for the audigy 2 nx ( on the pc )', 'Label_18': 'positive', 'Example_19': 'the menus are easy to scroll through they are laid out naturally , and make sense', 'Label_19': 'positive', 'Example_20': "very easy to use for someone like me who ' s just hopping on the digital camera bandwagon", 'Label_20': 'positive', 'Example_21': "ease of use design the ipod is a very easy to use mp3 player , and if you can ' t figure this out , you shouldn ' t even own one", 'Label_21': 'positive', 'Example_22': "the software runs smooth , it ' s nice to look at , it ' s very organized , easy to follow and makes things very simple", 'Label_22': 'positive', 'Example_23': 'whether you are a novice or an expert , its ease of use and functionality goes together', 'Label_23': 'positive', 'Example_24': "setup is totally breeze and linksys ' s web site is pretty easy to navigate", 'Label_24': 'positive', 'Example_25': 'this camera is so easy to use !', 'Label_25': 'positive', 'Example_26': 'this is easy to work and easy to dispose of the dirty diapers', 'Label_26': 'positive', 'Example_27': 'navigating through the menus is super easy , especially if you have owned a previous model nokia phone', 'Label_27': 'positive', 'Example_28': 'have a great and easy to use bundled software', 'Label_28': 'positive', 'Example_29': 'the controls on the player are very simple , no need for a manual', 'Label_29': 'positive', 'Example_30': "many have complained about the software included but in my opinion it ' s easy to use and effective", 'Label_30': 'positive', 'Example_31': 'getting files onto it is quick and painless', 'Label_31': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_instructor/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7fad5d4e04c0>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 356    |
+| Number of skipped attacks:    | 20     |
+| Original accuracy:            | 94.68  |
+| Accuracy under attack:        | 94.68  |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 646.42 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 55.32028770446777
+Attack time: 55.32028770446777
