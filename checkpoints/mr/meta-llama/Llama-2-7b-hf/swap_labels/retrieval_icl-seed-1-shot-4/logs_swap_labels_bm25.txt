@@ -1,0 +1,57 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=16, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=4, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_bm25
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=16, beta=1.0, cache_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_bm25/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, ralm_save_path='./data/ralm/mr_bm25.pkl', replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=4, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Length of anchor subsample 8
+Length of icl examples 2
+Finished loading model
+Loading retrieved examples from ./data/ralm/mr_bm25.pkl
+ICL examples
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': 'the film is predictable in the reassuring manner of a beautifully sung holiday carol .', 'Label_0': 'positive', 'Example_1': 'i found the ring moderately absorbing , largely for its elegantly colorful look and sound .', 'Label_1': 'positive', 'Example_2': 'one feels the dimming of a certain ambition , but in its place a sweetness , clarity and emotional openness that recalls the classics of early italian neorealism .', 'Label_2': 'positive', 'Example_3': "'possession , ' based on the book by a . s . byatt , demands that labute deal with the subject of love head-on ; trading in his cynicism for reverence and a little wit", 'Label_3': 'positive', 'Example_4': 'in the telling of a story largely untold , bui chooses to produce something that is ultimately suspiciously familiar .', 'Label_4': 'negative', 'Example_5': 'the performances of the four main actresses bring their characters to life . a little melodramatic , but with enough hope to keep you engaged .', 'Label_5': 'positive', 'Example_6': 'had the film boasted a clearer , more memorable , the creepiness would have gotten under the skin .', 'Label_6': 'negative', 'Example_7': "this rush to profits has created a predictably efficient piece of business notable largely for its overwhelming creepiness , for an eagerness to create images you wish you hadn't seen , which , in this day and age , is of course the point .", 'Label_7': 'positive'}
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': 'the film is predictable in the reassuring manner of a beautifully sung holiday carol .', 'Label_0': 'positive', 'Example_1': 'i found the ring moderately absorbing , largely for its elegantly colorful look and sound .', 'Label_1': 'positive', 'Example_2': 'one feels the dimming of a certain ambition , but in its place a sweetness , clarity and emotional openness that recalls the classics of early italian neorealism .', 'Label_2': 'positive', 'Example_3': "'possession , ' based on the book by a . s . byatt , demands that labute deal with the subject of love head-on ; trading in his cynicism for reverence and a little wit", 'Label_3': 'positive', 'Example_4': 'in the telling of a story largely untold , bui chooses to produce something that is ultimately suspiciously familiar .', 'Label_4': 'negative', 'Example_5': 'the performances of the four main actresses bring their characters to life . a little melodramatic , but with enough hope to keep you engaged .', 'Label_5': 'positive', 'Example_6': 'had the film boasted a clearer , more memorable , the creepiness would have gotten under the skin .', 'Label_6': 'negative', 'Example_7': "this rush to profits has created a predictably efficient piece of business notable largely for its overwhelming creepiness , for an eagerness to create images you wish you hadn't seen , which , in this day and age , is of course the point .", 'Label_7': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_bm25/swap_labels_log.csv
+<textattack.attacker.Attacker object at 0x7f52d4a7f760>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapLabel(
+        (label_map):  ['negative', 'positive']
+      )
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (2): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 887    |
+| Number of failed attacks:     | 33     |
+| Number of skipped attacks:    | 80     |
+| Original accuracy:            | 92.0   |
+| Accuracy under attack:        | 3.3    |
+| Attack success rate:          | 96.41  |
+| Average perturbed word %:     | 1.55   |
+| Average num. words per input: | 187.72 |
+| Avg num queries:              | 20.49  |
+| Adv confidence:               | 0.65   |
+| Average Original Perplexity:  | 42.28  |
+| Average Attack Perplexity:    | 42.09  |
+| Average Attack USE Score:     | 0.97   |
++-------------------------------+--------+
+Attack time: 368.0464015007019
+Attack time: 368.0464015007019
