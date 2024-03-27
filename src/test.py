@@ -140,7 +140,7 @@ def attacker(args):
         print("Finished replacing ood dataset")
         print(my_dataset['train'][0])
 
-        args.attack_name = 'textfooler'
+        # args.attack_name = 'textfooler'
         args.query_budget = 1
 
         # import sys; sys.exit(1)
@@ -242,7 +242,7 @@ def attacker(args):
                             "icl_attack_word": ICLTextAttackWord,
                             "swap_labels": SwapLabel2023,
                             "swap_orders": SwapOrderAttack,
-                            'irrelevant_sample': IrrelevantSampleAttack,
+                            'irrelevant_sample': TextFoolerCustom,
                             "bert_attack": BERTAttackLi2020
                             }
                             

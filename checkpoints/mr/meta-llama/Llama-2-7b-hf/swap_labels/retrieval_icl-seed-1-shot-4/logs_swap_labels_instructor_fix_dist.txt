@@ -1,0 +1,61 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=16, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_instructor_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=4, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_instructor_fix_dist
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=16, beta=1.0, cache_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_instructor_fix_dist/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_instructor_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=250, ralm_save_path='./data/ralm/mr_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=4, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+load INSTRUCTOR_Transformer
+max_seq_length  512
+Length of anchor subsample 8
+Length of icl examples 2
+Finished loading model
+Loading retrieved examples from ./data/ralm/mr_instructor.pkl
+ICL examples
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': 'there is a refreshing absence of cynicism in stuart little 2--quite a rarity , even in the family film market . eventually , it wins you over .', 'Label_0': 'positive', 'Example_1': 'the best thing that can be said of the picture is that it does have a few cute moments .', 'Label_1': 'negative', 'Example_2': 'a quaint , romanticized rendering .', 'Label_2': 'negative', 'Example_3': "the film is saved from aren't-kids-cute sentimentality by a warmth that isn't faked and a stately sense of composition .", 'Label_3': 'positive', 'Example_4': "it's mildly sentimental , unabashedly consumerist . . . studiously inoffensive and completely disposable .", 'Label_4': 'negative', 'Example_5': 'a slight but sweet film .', 'Label_5': 'positive', 'Example_6': 'there are some wonderfully fresh moments that smooth the moral stiffness with human kindness and hopefulness .', 'Label_6': 'positive', 'Example_7': 'delightfully rendered', 'Label_7': 'positive'}
+{'label': 1, 'sentence': 'lovingly photographed in the manner of a golden book sprung to life , stuart little 2 manages sweetness largely without stickiness .', 'idx': 0, 'Example_0': 'there is a refreshing absence of cynicism in stuart little 2--quite a rarity , even in the family film market . eventually , it wins you over .', 'Label_0': 'positive', 'Example_1': 'the best thing that can be said of the picture is that it does have a few cute moments .', 'Label_1': 'negative', 'Example_2': 'a quaint , romanticized rendering .', 'Label_2': 'negative', 'Example_3': "the film is saved from aren't-kids-cute sentimentality by a warmth that isn't faked and a stately sense of composition .", 'Label_3': 'positive', 'Example_4': "it's mildly sentimental , unabashedly consumerist . . . studiously inoffensive and completely disposable .", 'Label_4': 'negative', 'Example_5': 'a slight but sweet film .', 'Label_5': 'positive', 'Example_6': 'there are some wonderfully fresh moments that smooth the moral stiffness with human kindness and hopefulness .', 'Label_6': 'positive', 'Example_7': 'delightfully rendered', 'Label_7': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/mr/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-4_instructor_fix_dist/swap_labels_fix_dist_log.csv
+<textattack.attacker.Attacker object at 0x7f8aab263490>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapDuo
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): UniformSwap(
+        (threshold):  1
+        (compare_against_original):  True
+      )
+    (2): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (3): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 132    |
+| Number of failed attacks:     | 784    |
+| Number of skipped attacks:    | 84     |
+| Original accuracy:            | 91.6   |
+| Accuracy under attack:        | 78.4   |
+| Attack success rate:          | 14.41  |
+| Average perturbed word %:     | 1.87   |
+| Average num. words per input: | 170.36 |
+| Avg num queries:              | 9.34   |
+| Adv confidence:               | 0.58   |
+| Average Original Perplexity:  | 40.38  |
+| Average Attack Perplexity:    | 40.35  |
+| Average Attack USE Score:     | 0.97   |
++-------------------------------+--------+
+Attack time: 200.70356369018555
+Attack time: 200.70356369018555
