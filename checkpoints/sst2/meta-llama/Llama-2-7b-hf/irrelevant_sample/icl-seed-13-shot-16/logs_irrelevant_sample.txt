@@ -1,0 +1,70 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-16', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=16, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-16
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, cache_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-16/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-16', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=16, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'sentence': 'is in bad need of major acting lessons and maybe a little coffee ', 'label': 0, 'idx': 17493}
+Finished replacing ood dataset
+{'sentence': 'is in bad need of major acting lessons and maybe a little coffee ', 'label': 0, 'idx': 17493}
+Length of anchor subsample 0
+Length of icl examples 2
+Finished loading model
+ICL examples
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'sets animation back 30 years , musicals back 40 years and judaism back at least 50 . ', 'Label_0': 'true', 'Example_1': 'his future wife ', 'Label_1': 'false', 'Example_2': 'More AP NFL: http://www.pro32.ap.org and http://www.twitter.com/AP_NFL\n', 'Label_2': 'true', 'Example_3': 'IDAHO FALLS — A local man who went missing over a week ago has still not been found.\n', 'Label_3': 'false', 'Example_4': 'Bognor Barracudas set the pace, moving 3-1 ahead in the first quarter. But Owen Halligan and Tristan Roderick scored three goals each for Barracudas, who led 6-4 heading into the final quarter.\n', 'Label_4': 'true', 'Example_5': 'enjoy themselves ', 'Label_5': 'false', 'Example_6': "it 's a movie that ends with truckzilla , for cryin ' out loud . ", 'Label_6': 'true', 'Example_7': "DECATUR -- After WAND posted its story on Eisenhower baseball coach Kevin Hale and his unique approach to his team's 1-25 season despite his failing kidneys, the community rallied to support him. The video was shared hundreds of times and was viewed for more than 8,000 combined minutes on Facebook alone.\n", 'Label_7': 'false', 'Example_8': "in ( the characters ' ) misery ", 'Label_8': 'true', 'Example_9': 'made the original men in black such a pleasure ', 'Label_9': 'false', 'Example_10': 'genial is the conceit , ', 'Label_10': 'true', 'Example_11': 'a fantastically vital movie that manages to invest real humor , ', 'Label_11': 'false', 'Example_12': 'Here it is! The #Jetwerx Press Conference featuring the unveiling of the 2018 #RockstarEnergyTripleCrown! Rockstar Energy Drink.\n', 'Label_12': 'true', 'Example_13': 'He has scored some wonder tries that even the far less athletic Ryan Hall would have no chance with...the combination of Brisbane and Daryl Powell has unlocked all the potential everyone could see. The task for Powell is to get him to carry it on.\n', 'Label_13': 'false', 'Example_14': 'is predictable ', 'Label_14': 'true', 'Example_15': 'providing comic relief ', 'Label_15': 'false', 'Example_16': 'Start Week 2: 7.9 percent ownership\n', 'Label_16': 'true', 'Example_17': 'sex ', 'Label_17': 'false', 'Example_18': "The largest U.S. drugmaker's net profit rose to $3.12 billion, or 51 cents per share, in the first quarter, from $3.04 billion, or 49 cents per share, a year earlier.\n", 'Label_18': 'true', 'Example_19': '0:43 Jacob Elijah Miller jailed in Brooklyn Rouse shooting\n', 'Label_19': 'false', 'Example_20': 'and choppy recycling ', 'Label_20': 'true', 'Example_21': "it 's worth seeing ", 'Label_21': 'false', 'Example_22': 'Bailey will be taken out of the starting rotation and used strictly out of the bullpen, Mark Sheldon of MLB.com reports.\n', 'Label_22': 'true', 'Example_23': 'time of favor presents us with an action movie that actually has a brain . ', 'Label_23': 'false', 'Example_24': 'Authorities said the 19-year-old male driver was unable to make the curve near Olbert Drive and left the roadway before striking a tree.\n', 'Label_24': 'true', 'Example_25': 'The Daily Press reported Tuesday that attorneys for William A. "Bootsie" Cooper have filed one last appeal. They want to argue that a trial judge was wrong to bar evidence and dismiss the $10 million suit in 2016.\n', 'Label_25': 'false', 'Example_26': "in this junk that 's tv sitcom material at best ", 'Label_26': 'true', 'Example_27': 'an old-fashioned drama of substance about a teacher ', 'Label_27': 'false', 'Example_28': "plods along methodically , somehow under the assumption that its `` dead wife communicating from beyond the grave '' framework is even remotely new or interesting ", 'Label_28': 'true', 'Example_29': 'City police report officers were called to the Bell Boulevard business just after 6:20 p.m. Staff informed officers the woman had fled the store but she was located nearby and arrested.\n', 'Label_29': 'false', 'Example_30': 'filmed directly from a television monitor ', 'Label_30': 'true', 'Example_31': '“I am not at all relaxed with regard to the diesel issue,” Witter said. The figure is below the up to 17 billion euros in outflows expected this year.\n', 'Label_31': 'false'}
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'sets animation back 30 years , musicals back 40 years and judaism back at least 50 . ', 'Label_0': 'true', 'Example_1': 'his future wife ', 'Label_1': 'false', 'Example_2': 'More AP NFL: http://www.pro32.ap.org and http://www.twitter.com/AP_NFL\n', 'Label_2': 'true', 'Example_3': 'IDAHO FALLS — A local man who went missing over a week ago has still not been found.\n', 'Label_3': 'false', 'Example_4': 'Bognor Barracudas set the pace, moving 3-1 ahead in the first quarter. But Owen Halligan and Tristan Roderick scored three goals each for Barracudas, who led 6-4 heading into the final quarter.\n', 'Label_4': 'true', 'Example_5': 'enjoy themselves ', 'Label_5': 'false', 'Example_6': "it 's a movie that ends with truckzilla , for cryin ' out loud . ", 'Label_6': 'true', 'Example_7': "DECATUR -- After WAND posted its story on Eisenhower baseball coach Kevin Hale and his unique approach to his team's 1-25 season despite his failing kidneys, the community rallied to support him. The video was shared hundreds of times and was viewed for more than 8,000 combined minutes on Facebook alone.\n", 'Label_7': 'false', 'Example_8': "in ( the characters ' ) misery ", 'Label_8': 'true', 'Example_9': 'made the original men in black such a pleasure ', 'Label_9': 'false', 'Example_10': 'genial is the conceit , ', 'Label_10': 'true', 'Example_11': 'a fantastically vital movie that manages to invest real humor , ', 'Label_11': 'false', 'Example_12': 'Here it is! The #Jetwerx Press Conference featuring the unveiling of the 2018 #RockstarEnergyTripleCrown! Rockstar Energy Drink.\n', 'Label_12': 'true', 'Example_13': 'He has scored some wonder tries that even the far less athletic Ryan Hall would have no chance with...the combination of Brisbane and Daryl Powell has unlocked all the potential everyone could see. The task for Powell is to get him to carry it on.\n', 'Label_13': 'false', 'Example_14': 'is predictable ', 'Label_14': 'true', 'Example_15': 'providing comic relief ', 'Label_15': 'false', 'Example_16': 'Start Week 2: 7.9 percent ownership\n', 'Label_16': 'true', 'Example_17': 'sex ', 'Label_17': 'false', 'Example_18': "The largest U.S. drugmaker's net profit rose to $3.12 billion, or 51 cents per share, in the first quarter, from $3.04 billion, or 49 cents per share, a year earlier.\n", 'Label_18': 'true', 'Example_19': '0:43 Jacob Elijah Miller jailed in Brooklyn Rouse shooting\n', 'Label_19': 'false', 'Example_20': 'and choppy recycling ', 'Label_20': 'true', 'Example_21': "it 's worth seeing ", 'Label_21': 'false', 'Example_22': 'Bailey will be taken out of the starting rotation and used strictly out of the bullpen, Mark Sheldon of MLB.com reports.\n', 'Label_22': 'true', 'Example_23': 'time of favor presents us with an action movie that actually has a brain . ', 'Label_23': 'false', 'Example_24': 'Authorities said the 19-year-old male driver was unable to make the curve near Olbert Drive and left the roadway before striking a tree.\n', 'Label_24': 'true', 'Example_25': 'The Daily Press reported Tuesday that attorneys for William A. "Bootsie" Cooper have filed one last appeal. They want to argue that a trial judge was wrong to bar evidence and dismiss the $10 million suit in 2016.\n', 'Label_25': 'false', 'Example_26': "in this junk that 's tv sitcom material at best ", 'Label_26': 'true', 'Example_27': 'an old-fashioned drama of substance about a teacher ', 'Label_27': 'false', 'Example_28': "plods along methodically , somehow under the assumption that its `` dead wife communicating from beyond the grave '' framework is even remotely new or interesting ", 'Label_28': 'true', 'Example_29': 'City police report officers were called to the Bell Boulevard business just after 6:20 p.m. Staff informed officers the woman had fled the store but she was located nearby and arrested.\n', 'Label_29': 'false', 'Example_30': 'filmed directly from a television monitor ', 'Label_30': 'true', 'Example_31': '“I am not at all relaxed with regard to the diesel issue,” Witter said. The figure is below the up to 17 billion euros in outflows expected this year.\n', 'Label_31': 'false'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-16/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7f610816a820>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+

@@ -1,0 +1,71 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, cache_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/sst2_bm25_ood.pkl', replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'sentence': 'is in bad need of major acting lessons and maybe a little coffee ', 'label': 0, 'idx': 17493}
+Finished replacing ood dataset
+{'sentence': 'is in bad need of major acting lessons and maybe a little coffee ', 'label': 0, 'idx': 17493}
+Length of anchor subsample 32
+Length of icl examples 2
+Finished loading model
+Loading retrieved examples from ./data/ralm/sst2_bm25_ood.pkl
+ICL examples
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'To honor graduating seniors, the Modern Languages and Literature department hosted a graduation party and annual Journey’s Competition. Teams competed in eight different languages for the Journey’s trophy.\n', 'Label_0': 'false', 'Example_1': 'as naturally charming as it needs to be ', 'Label_1': 'false', 'Example_2': 'charming and ', 'Label_2': 'false', 'Example_3': 'as funny nor as charming as it thinks it is ', 'Label_3': 'true', 'Example_4': "viewers are asked so often to suspend belief that were it not for holm 's performance ", 'Label_4': 'true', 'Example_5': ", amari 's film falls short in building the drama of lilia 's journey . ", 'Label_5': 'true', 'Example_6': 'this deeply affecting film ', 'Label_6': 'false', 'Example_7': 'quietly affecting cop drama ', 'Label_7': 'false', 'Example_8': 'affecting , amusing , sad and reflective ', 'Label_8': 'false', 'Example_9': "is a satisfying well-made romantic comedy that 's both charming and well acted . ", 'Label_9': 'false', 'Example_10': "works more often than it does n't . ", 'Label_10': 'false', 'Example_11': "falls short in building the drama of lilia 's journey ", 'Label_11': 'true', 'Example_12': 'piercingly affecting ', 'Label_12': 'false', 'Example_13': "works more often than it does n't ", 'Label_13': 'false', 'Example_14': "a satisfying well-made romantic comedy that 's both charming and well acted ", 'Label_14': 'false', 'Example_15': "'s sweet , funny , charming , and completely delightful . ", 'Label_15': 'false', 'Example_16': 'surprisingly affecting ', 'Label_16': 'false', 'Example_17': "like most of jaglom 's films , some of it is honestly affecting , but more of it seems contrived and secondhand . ", 'Label_17': 'true', 'Example_18': "'s sweet , funny , charming , and completely delightful ", 'Label_18': 'false', 'Example_19': "'s often overwritten ", 'Label_19': 'true', 'Example_20': 'thoughtful and surprisingly affecting ', 'Label_20': 'false', 'Example_21': "Travel day 😊long journey and i'm fucking miss it so much 😍\n", 'Label_21': 'false', 'Example_22': "the journey to the secret 's eventual discovery ", 'Label_22': 'false', 'Example_23': 'a thoughtful and surprisingly affecting portrait ', 'Label_23': 'false', 'Example_24': ', some of it is honestly affecting ', 'Label_24': 'false', 'Example_25': "like most of jaglom 's films , some of it is honestly affecting ", 'Label_25': 'false', 'Example_26': ', kissing jessica steinis quirky , charming and often hilarious . ', 'Label_26': 'false', 'Example_27': "'s both charming and well ", 'Label_27': 'false', 'Example_28': "it 's sweet , funny , charming , and completely delightful . ", 'Label_28': 'false', 'Example_29': 'steinis quirky , charming and often hilarious . ', 'Label_29': 'false', 'Example_30': 'steinis quirky , charming and often hilarious ', 'Label_30': 'false', 'Example_31': 'quirky , charming and often hilarious ', 'Label_31': 'false'}
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'To honor graduating seniors, the Modern Languages and Literature department hosted a graduation party and annual Journey’s Competition. Teams competed in eight different languages for the Journey’s trophy.\n', 'Label_0': 'false', 'Example_1': 'as naturally charming as it needs to be ', 'Label_1': 'false', 'Example_2': 'charming and ', 'Label_2': 'false', 'Example_3': 'as funny nor as charming as it thinks it is ', 'Label_3': 'true', 'Example_4': "viewers are asked so often to suspend belief that were it not for holm 's performance ", 'Label_4': 'true', 'Example_5': ", amari 's film falls short in building the drama of lilia 's journey . ", 'Label_5': 'true', 'Example_6': 'this deeply affecting film ', 'Label_6': 'false', 'Example_7': 'quietly affecting cop drama ', 'Label_7': 'false', 'Example_8': 'affecting , amusing , sad and reflective ', 'Label_8': 'false', 'Example_9': "is a satisfying well-made romantic comedy that 's both charming and well acted . ", 'Label_9': 'false', 'Example_10': "works more often than it does n't . ", 'Label_10': 'false', 'Example_11': "falls short in building the drama of lilia 's journey ", 'Label_11': 'true', 'Example_12': 'piercingly affecting ', 'Label_12': 'false', 'Example_13': "works more often than it does n't ", 'Label_13': 'false', 'Example_14': "a satisfying well-made romantic comedy that 's both charming and well acted ", 'Label_14': 'false', 'Example_15': "'s sweet , funny , charming , and completely delightful . ", 'Label_15': 'false', 'Example_16': 'surprisingly affecting ', 'Label_16': 'false', 'Example_17': "like most of jaglom 's films , some of it is honestly affecting , but more of it seems contrived and secondhand . ", 'Label_17': 'true', 'Example_18': "'s sweet , funny , charming , and completely delightful ", 'Label_18': 'false', 'Example_19': "'s often overwritten ", 'Label_19': 'true', 'Example_20': 'thoughtful and surprisingly affecting ', 'Label_20': 'false', 'Example_21': "Travel day 😊long journey and i'm fucking miss it so much 😍\n", 'Label_21': 'false', 'Example_22': "the journey to the secret 's eventual discovery ", 'Label_22': 'false', 'Example_23': 'a thoughtful and surprisingly affecting portrait ', 'Label_23': 'false', 'Example_24': ', some of it is honestly affecting ', 'Label_24': 'false', 'Example_25': "like most of jaglom 's films , some of it is honestly affecting ", 'Label_25': 'false', 'Example_26': ', kissing jessica steinis quirky , charming and often hilarious . ', 'Label_26': 'false', 'Example_27': "'s both charming and well ", 'Label_27': 'false', 'Example_28': "it 's sweet , funny , charming , and completely delightful . ", 'Label_28': 'false', 'Example_29': 'steinis quirky , charming and often hilarious . ', 'Label_29': 'false', 'Example_30': 'steinis quirky , charming and often hilarious ', 'Label_30': 'false', 'Example_31': 'quirky , charming and often hilarious ', 'Label_31': 'false'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-16_bm25/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7f77d2084be0>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
