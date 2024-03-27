@@ -1,0 +1,87 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=4, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-8', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-8
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=4, beta=1.0, cache_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-8/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-8', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'label': 0, 'idx': 1876, 'premise': "the commission's order on the proposed hydroelectric development shall describe the energy facility siting council's recommendations on the need for the power.", 'hypothesis': 'a hydroelectric project is proposed or is under construction.'}
+Finished replacing ood dataset
+{'label': 0, 'idx': 1876, 'premise': "the commission's order on the proposed hydroelectric development shall describe the energy facility siting council's recommendations on the need for the power.", 'hypothesis': 'a hydroelectric project is proposed or is under construction.'}
+Length of anchor subsample 0
+Length of icl examples 2
+Finished loading model
+ICL examples
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'the pentagon is rejecting demands by kyrgyzstan to pay for the past use of manas air base, a key military facility for us aircraft flying missions to afghanistan.', 'Hypothesis_0': 'manas air base is located in kyrgyzstan.', 'Label_0': 'true', 'Premise_1': 'e) Last try (any team, player not time):\n', 'Hypothesis_1': 'Amy Polston\n', 'Label_1': 'false', 'Premise_2': "the united iraqi alliance, endorsed by iraq's top shiite clerics, captured more than two-thirds of the 3.3 million votes counted so far, the election commission said.", 'Hypothesis_2': 'the united iraqi alliance won more than two-thirds of the 3.3 million votes counted so far, the election commission said.', 'Label_2': 'true', 'Premise_3': 'the osaka world trade center is the tallest building in western japan.', 'Hypothesis_3': 'the osaka world trade center is the tallest building in japan.', 'Label_3': 'false', 'Premise_4': 'argentina was still obsessed with the falkland islands even in 1994, 12 years after its defeat in the 74-day war with britain.', 'Hypothesis_4': 'the falklands war took place in 1982.', 'Label_4': 'true', 'Premise_5': 'journalists of the concealed bbc, that was made happen through advisers of london industralists, asked slavkov.', 'Hypothesis_5': 'bbc undercover reporters, posing as consultants acting for london businessmen, ask slavkov.', 'Label_5': 'false', 'Premise_6': 'http://www.thestokesnews.com/wp-content/uploads/2018/02/web1_20170924-CodyNowak-Newborn-114.jpg\n', 'Hypothesis_6': 'The armed police siege which led to a West Sussex road being evacuated is now over.\n', 'Label_6': 'true', 'Premise_7': 'most of the mines are in arid areas and animals searching for water are attracted to the cyanide-laced holding ponds that are an integral part of the mining operations.', 'Hypothesis_7': 'animals have died by the thousands from drinking at cyanide-laced holding ponds.', 'Label_7': 'false', 'Premise_8': 'Since then, Narcotics Anonymous has also been established to help drug addicts\n', 'Hypothesis_8': 'According to the Saudi General Organisation of Social Insurance, there were 10.26 million employees working in the private sector by the end of September, of which 1.68 million members of staff were Saudis.\n', 'Label_8': 'true', 'Premise_9': 'in 1955, the aurora borealis, a coating applied to crystal stones to produce a "rainbow of colors" effect was introduced.', 'Hypothesis_9': 'the aurora borealis was discovered in 1995.', 'Label_9': 'false', 'Premise_10': 'british newsreader natasha kaplinsky gave birth to a baby boy earlier this morning at around 08:30 bst. she had been on maternity leave since august 21. kaplinsky had only been working with five news just over a month when she announced she was pregnant. her husband of three years, investment banker justin bower announced "we\'re absolutely thrilled." kaplinsky first started to work for the bbc in 2002 after a two year tenure with sky news. she started on the bbc breakfast show but later moved onto the bbc six o\'clock news and later became only the third woman to present the bbc ten o\'clock news. she left the bbc in october 2007. she also spent a short time with itv news. five news released a statement saying "her colleagues here at five news are delighted too - and we\'ve sent our best wishes." they also said both kaplinsky and the baby are doing fine.', 'Hypothesis_10': 'natasha kaplinsky and justin bower  got married three years ago.', 'Label_10': 'true', 'Premise_11': 'North Yorkshire Police said the motorcyclist was Alex Boorman, 27, from Thirsk.\n', 'Hypothesis_11': 'Heaggan-Brown, who’s no longer on the force, is charged with first-degree reckless homicide. Prosecutors say Smith was unarmed on the ground when Heaggan-Brown shot him in the chest. Heaggan-Brown, who is also black, says he thought Smith may have been reaching for a firearm.\n', 'Label_11': 'false', 'Premise_12': 'I should have done this sooner, but I had to mourn the loss of my friend before I could.\n', 'Hypothesis_12': "CONWAY -- A judge has postponed a Conway physician's trial on rape and sexual assault charges until next year.\n", 'Label_12': 'true', 'Premise_13': 'the introduction of the euro has dismantled barriers to cross-border trading and enhanced risk sharing and opportunities for diversification.', 'Hypothesis_13': 'the introduction of the euro has been opposed.', 'Label_13': 'false', 'Premise_14': '...\n', 'Hypothesis_14': 'Next on the list: The ISM Raceway Scoring Tower. 🎥 Cue the dramatic music + enjoy! pic.twitter.com/h7mUVn7ROH — ISM Raceway (@ISMRaceway) April 23, 2018\n', 'Label_14': 'true', 'Premise_15': 'scientists have made two major discoveries in the search for other earth-like planets. british astronomers say they have discovered the smallest known earth-like exoplanet orbiting a living star called gliese 581 e and also discovered that a nearby planet called gliese 581 d, discovered in 2007, is in the much sought after \'habitable zone\'. astronomers also believe there is a possibility that 581 d could have liquid oceans on its surface, calling the find "extraordinary."  "the holy grail of current exoplanet research is the detection of a rocky, earth-like planet in the \'habitable zone\'," said astrophysicist at switzerland\'s geneva university, michel mayor.  astronomers say 581 e is 20.5 light years away from earth and that it\'s roughly 1.9 times larger than earth, making it the smallest exoplanet discovered to date. it was found using the high accuracy radial velocity planet searcher (harps).', 'Hypothesis_15': 'michel mayor is the discoverer of the high accuracy radial velocity planet searcher.', 'Label_15': 'false'}
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'the pentagon is rejecting demands by kyrgyzstan to pay for the past use of manas air base, a key military facility for us aircraft flying missions to afghanistan.', 'Hypothesis_0': 'manas air base is located in kyrgyzstan.', 'Label_0': 'true', 'Premise_1': 'e) Last try (any team, player not time):\n', 'Hypothesis_1': 'Amy Polston\n', 'Label_1': 'false', 'Premise_2': "the united iraqi alliance, endorsed by iraq's top shiite clerics, captured more than two-thirds of the 3.3 million votes counted so far, the election commission said.", 'Hypothesis_2': 'the united iraqi alliance won more than two-thirds of the 3.3 million votes counted so far, the election commission said.', 'Label_2': 'true', 'Premise_3': 'the osaka world trade center is the tallest building in western japan.', 'Hypothesis_3': 'the osaka world trade center is the tallest building in japan.', 'Label_3': 'false', 'Premise_4': 'argentina was still obsessed with the falkland islands even in 1994, 12 years after its defeat in the 74-day war with britain.', 'Hypothesis_4': 'the falklands war took place in 1982.', 'Label_4': 'true', 'Premise_5': 'journalists of the concealed bbc, that was made happen through advisers of london industralists, asked slavkov.', 'Hypothesis_5': 'bbc undercover reporters, posing as consultants acting for london businessmen, ask slavkov.', 'Label_5': 'false', 'Premise_6': 'http://www.thestokesnews.com/wp-content/uploads/2018/02/web1_20170924-CodyNowak-Newborn-114.jpg\n', 'Hypothesis_6': 'The armed police siege which led to a West Sussex road being evacuated is now over.\n', 'Label_6': 'true', 'Premise_7': 'most of the mines are in arid areas and animals searching for water are attracted to the cyanide-laced holding ponds that are an integral part of the mining operations.', 'Hypothesis_7': 'animals have died by the thousands from drinking at cyanide-laced holding ponds.', 'Label_7': 'false', 'Premise_8': 'Since then, Narcotics Anonymous has also been established to help drug addicts\n', 'Hypothesis_8': 'According to the Saudi General Organisation of Social Insurance, there were 10.26 million employees working in the private sector by the end of September, of which 1.68 million members of staff were Saudis.\n', 'Label_8': 'true', 'Premise_9': 'in 1955, the aurora borealis, a coating applied to crystal stones to produce a "rainbow of colors" effect was introduced.', 'Hypothesis_9': 'the aurora borealis was discovered in 1995.', 'Label_9': 'false', 'Premise_10': 'british newsreader natasha kaplinsky gave birth to a baby boy earlier this morning at around 08:30 bst. she had been on maternity leave since august 21. kaplinsky had only been working with five news just over a month when she announced she was pregnant. her husband of three years, investment banker justin bower announced "we\'re absolutely thrilled." kaplinsky first started to work for the bbc in 2002 after a two year tenure with sky news. she started on the bbc breakfast show but later moved onto the bbc six o\'clock news and later became only the third woman to present the bbc ten o\'clock news. she left the bbc in october 2007. she also spent a short time with itv news. five news released a statement saying "her colleagues here at five news are delighted too - and we\'ve sent our best wishes." they also said both kaplinsky and the baby are doing fine.', 'Hypothesis_10': 'natasha kaplinsky and justin bower  got married three years ago.', 'Label_10': 'true', 'Premise_11': 'North Yorkshire Police said the motorcyclist was Alex Boorman, 27, from Thirsk.\n', 'Hypothesis_11': 'Heaggan-Brown, who’s no longer on the force, is charged with first-degree reckless homicide. Prosecutors say Smith was unarmed on the ground when Heaggan-Brown shot him in the chest. Heaggan-Brown, who is also black, says he thought Smith may have been reaching for a firearm.\n', 'Label_11': 'false', 'Premise_12': 'I should have done this sooner, but I had to mourn the loss of my friend before I could.\n', 'Hypothesis_12': "CONWAY -- A judge has postponed a Conway physician's trial on rape and sexual assault charges until next year.\n", 'Label_12': 'true', 'Premise_13': 'the introduction of the euro has dismantled barriers to cross-border trading and enhanced risk sharing and opportunities for diversification.', 'Hypothesis_13': 'the introduction of the euro has been opposed.', 'Label_13': 'false', 'Premise_14': '...\n', 'Hypothesis_14': 'Next on the list: The ISM Raceway Scoring Tower. 🎥 Cue the dramatic music + enjoy! pic.twitter.com/h7mUVn7ROH — ISM Raceway (@ISMRaceway) April 23, 2018\n', 'Label_14': 'true', 'Premise_15': 'scientists have made two major discoveries in the search for other earth-like planets. british astronomers say they have discovered the smallest known earth-like exoplanet orbiting a living star called gliese 581 e and also discovered that a nearby planet called gliese 581 d, discovered in 2007, is in the much sought after \'habitable zone\'. astronomers also believe there is a possibility that 581 d could have liquid oceans on its surface, calling the find "extraordinary."  "the holy grail of current exoplanet research is the detection of a rocky, earth-like planet in the \'habitable zone\'," said astrophysicist at switzerland\'s geneva university, michel mayor.  astronomers say 581 e is 20.5 light years away from earth and that it\'s roughly 1.9 times larger than earth, making it the smallest exoplanet discovered to date. it was found using the high accuracy radial velocity planet searcher (harps).', 'Hypothesis_15': 'michel mayor is the discoverer of the high accuracy radial velocity planet searcher.', 'Label_15': 'false'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-8/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7fa013692c70>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 191    |
+| Number of skipped attacks:    | 86     |
+| Original accuracy:            | 68.95  |
+| Accuracy under attack:        | 68.95  |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 847.02 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 644.6417565345764
+Attack time: 644.6417565345764

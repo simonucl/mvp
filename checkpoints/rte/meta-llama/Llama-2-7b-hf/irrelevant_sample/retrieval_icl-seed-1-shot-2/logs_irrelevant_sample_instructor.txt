@@ -1,0 +1,90 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-2_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=2, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-2_instructor
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, cache_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-2_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-2_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/rte_instructor_ood.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=2, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'label': 0, 'idx': 1876, 'premise': "the commission's order on the proposed hydroelectric development shall describe the energy facility siting council's recommendations on the need for the power.", 'hypothesis': 'a hydroelectric project is proposed or is under construction.'}
+Finished replacing ood dataset
+{'label': 0, 'idx': 1876, 'premise': "the commission's order on the proposed hydroelectric development shall describe the energy facility siting council's recommendations on the need for the power.", 'hypothesis': 'a hydroelectric project is proposed or is under construction.'}
+load INSTRUCTOR_Transformer
+max_seq_length  512
+Length of anchor subsample 4
+Length of icl examples 2
+Finished loading model
+Loading retrieved examples from ./data/ralm/rte_instructor_ood.pkl
+ICL examples
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': "roddenberry was probably most known for her role as the voice of the computers in nearly every star trek television spinoff series from the 1960's to present time. she is also the voice of the computer in the upcoming movie by director j.j. abrams, star trek. majel also played nurse chapel in the original star trek series starring william shatner and later played lwaxana troi in star trek: the next generation and star trek: deep space nine.", 'Hypothesis_0': 'majel roddenberry died of cancer.', 'Label_0': 'false', 'Premise_1': 'in a statement to reporters, parker called the spilt with gap a mutual decision, and walks away $38 million richer and recently signed a 2-year deal with former employer hbo to develop future programming for the network. parker is also scheduled to appear in two upcoming comedy films, a movie adaptation of the comedy central series, strangers with candy, as well as the family stone, costarring diane keaton and claire danes.', 'Hypothesis_1': 'claire danes is an actress who played in "stardust".', 'Label_1': 'false', 'Premise_2': 'the disappearance of york university chef claudia lawrence is now being treated as suspected murder, north yorkshire police said. however detectives said they had not found any proof that the 35-year-old, who went missing on 18 march, was dead. her father peter lawrence made a direct appeal to his daughter to contact him five weeks after she disappeared. his plea came at a news conference held shortly after a £10,000 reward was offered to help find miss lawrence. crimestoppers said the sum they were offering was "significantly higher" than usual because of public interest in the case.', 'Hypothesis_2': 'claudia lawrence is 35 years old.', 'Label_2': 'true', 'Premise_3': 'A federal judge on Tuesday sentenced Lawrence John Ripple to probation.\n', 'Hypothesis_3': '___\n', 'Label_3': 'false'}
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': "roddenberry was probably most known for her role as the voice of the computers in nearly every star trek television spinoff series from the 1960's to present time. she is also the voice of the computer in the upcoming movie by director j.j. abrams, star trek. majel also played nurse chapel in the original star trek series starring william shatner and later played lwaxana troi in star trek: the next generation and star trek: deep space nine.", 'Hypothesis_0': 'majel roddenberry died of cancer.', 'Label_0': 'false', 'Premise_1': 'in a statement to reporters, parker called the spilt with gap a mutual decision, and walks away $38 million richer and recently signed a 2-year deal with former employer hbo to develop future programming for the network. parker is also scheduled to appear in two upcoming comedy films, a movie adaptation of the comedy central series, strangers with candy, as well as the family stone, costarring diane keaton and claire danes.', 'Hypothesis_1': 'claire danes is an actress who played in "stardust".', 'Label_1': 'false', 'Premise_2': 'the disappearance of york university chef claudia lawrence is now being treated as suspected murder, north yorkshire police said. however detectives said they had not found any proof that the 35-year-old, who went missing on 18 march, was dead. her father peter lawrence made a direct appeal to his daughter to contact him five weeks after she disappeared. his plea came at a news conference held shortly after a £10,000 reward was offered to help find miss lawrence. crimestoppers said the sum they were offering was "significantly higher" than usual because of public interest in the case.', 'Hypothesis_2': 'claudia lawrence is 35 years old.', 'Label_2': 'true', 'Premise_3': 'A federal judge on Tuesday sentenced Lawrence John Ripple to probation.\n', 'Hypothesis_3': '___\n', 'Label_3': 'false'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-2_instructor/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7fd5d4242a00>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 190    |
+| Number of skipped attacks:    | 87     |
+| Original accuracy:            | 68.59  |
+| Accuracy under attack:        | 68.59  |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 200.56 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 46.681628942489624
+Attack time: 46.681628942489624
