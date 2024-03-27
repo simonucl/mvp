@@ -1,0 +1,95 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=4, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=4, beta=1.0, cache_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='cr', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/cr_instructor_ood.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_mr.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mr.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'label': 1, 'sentence': 'mine installed no problem ( but i did uninstall my norton anti virus 2002 personal firewall 2002 first )', 'idx': 0}
+Finished replacing ood dataset
+{'label': 1, 'sentence': 'mine installed no problem ( but i did uninstall my norton anti virus 2002 personal firewall 2002 first )', 'idx': 0}
+load INSTRUCTOR_Transformer
+max_seq_length  512
+Length of anchor subsample 16
+Length of icl examples 2
+Finished loading model
+Finished encoding anchor data
+anchor_data_embeddings shape: torch.Size([3224, 768])
+query shape: 376
+query_embedding shape: torch.Size([376, 768])
+cos_scores shape: torch.Size([376, 3224])
+Saving retrieved examples to ./data/ralm/cr_instructor_ood.pkl
+ICL examples
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'the buttons and interface are very easy to use', 'Label_0': 'positive', 'Example_1': 'the interface is simple to use', 'Label_1': 'positive', 'Example_2': 'very simple to use', 'Label_2': 'positive', 'Example_3': 'the unit is easy to use and intuitive', 'Label_3': 'positive', 'Example_4': 'in general it is easy to use and well laid out', 'Label_4': 'positive', 'Example_5': 'both are very easy to learn use , and intuitive enough for even a novice', 'Label_5': 'positive', 'Example_6': 'the other controls are all very easy to use', 'Label_6': 'positive', 'Example_7': 'the controls are easy to understand and big enough that they are easy to see and use', 'Label_7': 'positive', 'Example_8': 'second , it is incredibly easy to use', 'Label_8': 'positive', 'Example_9': 'user interface the software is simple and straight forward', 'Label_9': 'positive', 'Example_10': 'all in all suprisingly easy to use', 'Label_10': 'positive', 'Example_11': "the player ' s software is very easy to use and very good", 'Label_11': 'positive', 'Example_12': 'oh and file transfers are fast easy', 'Label_12': 'positive', 'Example_13': 'navigation is easy and i found that syncing files from the player to the computer ( and vice verse ) was easy too', 'Label_13': 'positive', 'Example_14': 'the manual is easy to understand , and it is mostly idiot proof', 'Label_14': 'positive', 'Example_15': 'the setup was very easy', 'Label_15': 'positive'}
+{'label': 1, 'sentence': "they 're easy to use", 'idx': 0, 'Example_0': 'the buttons and interface are very easy to use', 'Label_0': 'positive', 'Example_1': 'the interface is simple to use', 'Label_1': 'positive', 'Example_2': 'very simple to use', 'Label_2': 'positive', 'Example_3': 'the unit is easy to use and intuitive', 'Label_3': 'positive', 'Example_4': 'in general it is easy to use and well laid out', 'Label_4': 'positive', 'Example_5': 'both are very easy to learn use , and intuitive enough for even a novice', 'Label_5': 'positive', 'Example_6': 'the other controls are all very easy to use', 'Label_6': 'positive', 'Example_7': 'the controls are easy to understand and big enough that they are easy to see and use', 'Label_7': 'positive', 'Example_8': 'second , it is incredibly easy to use', 'Label_8': 'positive', 'Example_9': 'user interface the software is simple and straight forward', 'Label_9': 'positive', 'Example_10': 'all in all suprisingly easy to use', 'Label_10': 'positive', 'Example_11': "the player ' s software is very easy to use and very good", 'Label_11': 'positive', 'Example_12': 'oh and file transfers are fast easy', 'Label_12': 'positive', 'Example_13': 'navigation is easy and i found that syncing files from the player to the computer ( and vice verse ) was easy too', 'Label_13': 'positive', 'Example_14': 'the manual is easy to understand , and it is mostly idiot proof', 'Label_14': 'positive', 'Example_15': 'the setup was very easy', 'Label_15': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/cr/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7f54f8b043a0>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 353    |
+| Number of skipped attacks:    | 23     |
+| Original accuracy:            | 93.88  |
+| Accuracy under attack:        | 93.88  |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 323.34 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 41.278862714767456
+Attack time: 41.278862714767456
