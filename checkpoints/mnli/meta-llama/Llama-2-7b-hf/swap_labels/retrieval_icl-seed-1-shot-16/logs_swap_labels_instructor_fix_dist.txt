@@ -1,12 +1,61 @@
 1
-Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=1, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=16, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=1, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
 meta-llama/Llama-2-7b-hf
 Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor_fix_dist
 1 Physical GPUs, 1 Logical GPUs
-Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=1, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor_fix_dist/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/mnli_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, seed=1, shot=16, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Namespace(adv_augment=0, alpha=None, attack_name='swap_labels', batch_size=1, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor_fix_dist/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=True, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor_fix_dist', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/mnli_instructor.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
 load INSTRUCTOR_Transformer
 max_seq_length  512
 Length of anchor subsample 48
 Length of icl examples 3
 Finished loading model
 Loading retrieved examples from ./data/ralm/mnli_instructor.pkl
+ICL examples
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'perhaps rightfully so.', 'Hypothesis_0': 'perhaps with right.', 'Label_0': 'yes', 'Premise_1': 'well and good. ', 'Hypothesis_1': "that's nice.", 'Label_1': 'yes', 'Premise_2': '15 consequently, the number of new accesses', 'Hypothesis_2': 'there are new accesses now.', 'Label_2': 'yes', 'Premise_3': "it's pretty nice", 'Hypothesis_3': "it's nice. ", 'Label_3': 'yes', 'Premise_4': "it's nice to have", 'Hypothesis_4': 'it is nice to be in possession of.', 'Label_4': 'yes', 'Premise_5': 'unconstitutional?', 'Hypothesis_5': 'there was a new amendment proposed.', 'Label_5': 'maybe', 'Premise_6': "yeah that's right it's kind of nice too to have that fall", 'Hypothesis_6': "it's kind of nice too", 'Label_6': 'yes', 'Premise_7': "well that's nice in a lot of ways", 'Hypothesis_7': "in a lot of ways that's nice.", 'Label_7': 'yes', 'Premise_8': 'how disappointing.', 'Hypothesis_8': 'how nice!', 'Label_8': 'no', 'Premise_9': 'how lovely.', 'Hypothesis_9': 'it is nice.', 'Label_9': 'yes', 'Premise_10': 'however, if i know the new way is inappropriate, i cannot be permitted to cave.', 'Hypothesis_10': 'i should be allowed to give in if the new way is good.', 'Label_10': 'no', 'Premise_11': "oh oh that's nice", 'Hypothesis_11': 'that is nice.', 'Label_11': 'yes'}
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'perhaps rightfully so.', 'Hypothesis_0': 'perhaps with right.', 'Label_0': 'yes', 'Premise_1': 'well and good. ', 'Hypothesis_1': "that's nice.", 'Label_1': 'yes', 'Premise_2': '15 consequently, the number of new accesses', 'Hypothesis_2': 'there are new accesses now.', 'Label_2': 'yes', 'Premise_3': "it's pretty nice", 'Hypothesis_3': "it's nice. ", 'Label_3': 'yes', 'Premise_4': "it's nice to have", 'Hypothesis_4': 'it is nice to be in possession of.', 'Label_4': 'yes', 'Premise_5': 'unconstitutional?', 'Hypothesis_5': 'there was a new amendment proposed.', 'Label_5': 'maybe', 'Premise_6': "yeah that's right it's kind of nice too to have that fall", 'Hypothesis_6': "it's kind of nice too", 'Label_6': 'yes', 'Premise_7': "well that's nice in a lot of ways", 'Hypothesis_7': "in a lot of ways that's nice.", 'Label_7': 'yes', 'Premise_8': 'how disappointing.', 'Hypothesis_8': 'how nice!', 'Label_8': 'no', 'Premise_9': 'how lovely.', 'Hypothesis_9': 'it is nice.', 'Label_9': 'yes', 'Premise_10': 'however, if i know the new way is inappropriate, i cannot be permitted to cave.', 'Hypothesis_10': 'i should be allowed to give in if the new way is good.', 'Label_10': 'no', 'Premise_11': "oh oh that's nice", 'Hypothesis_11': 'that is nice.', 'Label_11': 'yes'}
+['Premise: {}\nHypothesis: {}\nPrediction: {}']
+{0: ['yes'], 1: ['maybe'], 2: ['no']}
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/retrieval_icl-seed-1-shot-16_instructor_fix_dist/swap_labels_fix_dist_log.csv
+<textattack.attacker.Attacker object at 0x7fe9b1f12d60>
+Attack(
+  (search_method): GreedySearch
+  (goal_function):  UntargetedClassification
+  (transformation):  CompositeTransformation(
+    (0): WordSwapDuo
+    )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): UniformSwap(
+        (threshold):  1
+        (compare_against_original):  True
+      )
+    (2): InstructionModification(
+        (columns_to_ignore):  ['sentence', 'example_', 'premise', 'hypothesis']
+      )
+    (3): RepeatModification
+  (is_black_box):  True
+) 
+
+
++-------------------------------+-------+
+| Attack Results                |       |
++-------------------------------+-------+
+| Number of successful attacks: | 425   |
+| Number of failed attacks:     | 118   |
+| Number of skipped attacks:    | 457   |
+| Original accuracy:            | 54.3  |
+| Accuracy under attack:        | 11.8  |
+| Attack success rate:          | 78.27 |
+| Average perturbed word %:     | 1.16  |
+| Average num. words per input: | 349.3 |
+| Avg num queries:              | 62.32 |
+| Adv confidence:               | 0.68  |
+| Average Original Perplexity:  | 22.84 |
+| Average Attack Perplexity:    | 22.82 |
+| Average Attack USE Score:     | 0.98  |
++-------------------------------+-------+
+Attack time: 2677.5553126335144
+Attack time: 2677.5553126335144

@@ -13,7 +13,7 @@ ICL examples
 ['Premise: {}\nHypothesis: {}\nPrediction: {}']
 {0: ['yes'], 1: ['maybe'], 2: ['no']}
 ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/swap_labels/icl_attack-seed-13-shot-4/swap_labels_fix_dist_log.csv
-<textattack.attacker.Attacker object at 0x7f01c0019c10>
+<textattack.attacker.Attacker object at 0x7f75120cc790>
 Attack(
   (search_method): GreedySearch
   (goal_function):  UntargetedClassification
@@ -54,5 +54,5 @@ Attack(
 | Average Attack Perplexity:    | 1.64   |
 | Average Attack USE Score:     | 0.98   |
 +-------------------------------+--------+
-Attack time: 3149.3778026103973
-Attack time: 3149.3778026103973
+Attack time: 2982.8822150230408
+Attack time: 2982.8822150230408

@@ -5,12 +5,14 @@ ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | 
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-# SHOTS=(8 2 4 16)
-SHOT=8
+SHOTS=(2 4 16)
+# SHOT=8
+
+TOTAL_BATCH=48
 
 SEEDS=(1 13 42)
 
-MODELS=(meta-llama/Llama-2-7b-hf meta-llama/Llama-2-13b-hf)
+MODELS=(meta-llama/Llama-2-7b-hf)
 
 if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
     ATTACK_PRECENT=0.15
@@ -36,13 +38,8 @@ fi
 
 # export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-zen2/gcc-9.4.0/cuda-11.4.0-3hnxhjt2jt4ruy75w2q4mnvkw7dty72l
 
-for MODEL in ${MODELS[@]};
+for SHOT in ${SHOTS[@]};
 do
-    if [[ $MODEL == "meta-llama/Llama-2-7b-hf" ]]; then
-        TOTAL_BATCH=32
-    else
-        TOTAL_BATCH=16
-    fi
     
     for SEED in ${SEEDS[@]};
     do 
