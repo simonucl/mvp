@@ -1,0 +1,88 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=4, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_sbert
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=4, beta=1.0, cache_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_sbert/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='rte', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/rte_sbert_ood.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_rte.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_rte.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'label': 0, 'idx': 1876, 'premise': "the commission's order on the proposed hydroelectric development shall describe the energy facility siting council's recommendations on the need for the power.", 'hypothesis': 'a hydroelectric project is proposed or is under construction.'}
+Finished replacing ood dataset
+{'label': 0, 'idx': 1876, 'premise': "the commission's order on the proposed hydroelectric development shall describe the energy facility siting council's recommendations on the need for the power.", 'hypothesis': 'a hydroelectric project is proposed or is under construction.'}
+Length of anchor subsample 16
+Length of icl examples 2
+Finished loading model
+Loading retrieved examples from ./data/ralm/rte_sbert_ood.pkl
+ICL examples
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'Enbridge (ENB -3.8% ) opens sharply lower after a judge in Minnesota ruled late yesterday that it should replace its Line 3 pipeline in the state along the existing right-of-way rather than in its originally planned route.\n', 'Hypothesis_0': 'Survivors include her children, Patricia M. Rogers of Dillon, Raymond H. Morrison of Bridgeton, NJ, Nancy Karol of Henderson, NC, and Donna Caldwell of Helena, GA; 11 grandchildren; 16 great-grandchildren; 19 great-great-grandchildren; many nieces and nephews.\n', 'Label_0': 'true', 'Premise_1': 'Dec 12 (Reuters) - Beiqi Foton Motor Co Ltd :\n', 'Hypothesis_1': '"North West Ambulance Service attended the incident and sadly the man, a 46-year-old from the Wigan area, was pronounced dead at the scene. His next of kin have been informed.\n', 'Label_1': 'true', 'Premise_2': 'The class will cover severe weather hazards including thunderstorms and tornadoes, including the general structure and movement of severe thunderstorms, identification of important storm features and safety concerns.\n', 'Hypothesis_2': 'Chuck Schuldiner passed away on December 13th, 2001 due to a brain tumor.\n', 'Label_2': 'false', 'Premise_3': 'Remittances to Mexico totaled $26.97 billion in 2016, up nearly 9 percent from 2015, and the highest ever according to Mexican central bank figures dating to 1995. (Reporting by Alexandra Alper; Editing by Dan Grebler)\n', 'Hypothesis_3': 'The cause of his death is unknown.\n', 'Label_3': 'true', 'Premise_4': 'A police spokesman said a television was found near the front door, which had been opened from the inside.\n', 'Hypothesis_4': 'WCBI-TV reported Sunday that Monroe County Sheriff Cecil Cantrell says the girl is dead.\n', 'Label_4': 'false', 'Premise_5': 'PITTSBURGH (AP) – Evgeni Malkin scored and picked up an assist in his return from a lower-body injury, Sidney Crosby got his 999th career point with an assist and the Pittsburgh Penguins rolled by the Vancouver Canucks 4-0 on Tuesday night.\n', 'Hypothesis_5': "In an interview on sidelines of the programme in Harare North Constituency, Zanu-PF Harare Province Women's League Chairperson, Ratidzo Mukarati said widows and elderly woman should be looked after as they face many challenges.\n", 'Label_5': 'false', 'Premise_6': 'The MSBU Advisory Committee will meet April 24 at 6 p.m. at the Commission Board Room, 1331 South Blvd., Chipley.\n', 'Hypothesis_6': 'JEFFERSON TOWNSHIP, Ohio (WDTN) — A man riding a motorcycle was killed in a three-vehicle crash in Clinton County.\n', 'Label_6': 'false', 'Premise_7': 'Krejdl says crews will come in and assess the damage which he says is minimal. He did not speculate on a dollar amount.\n', 'Hypothesis_7': 'A man has died after being hit by a vehicle on Thursday evening.\n', 'Label_7': 'false', 'Premise_8': 'UF President Kent Fuchs called this year’s incoming class “among the most competitive ever.” The average grade point average of those admitted is 4.4 and the average score on the SAT exam was 1349.\n', 'Hypothesis_8': 'Jesse Asher Pitts, age 36, of Columbia, Tenn., passed away June 10, 2017.\n', 'Label_8': 'true', 'Premise_9': "Trumbo went 2-for-5 with a pair of doubles and scored a run in Sunday's 11-4 win in Toronto.\n", 'Hypothesis_9': 'Venerable Bellanwila Wimalarathana thero passed away at a private hospital in Colombo following the attack of a temple elephant, our news sources said.\n', 'Label_9': 'false', 'Premise_10': '"Then came a fax from England. For us, however, a sale of Thomas Muller was never discussed.\n', 'Hypothesis_10': "Marizu told The Associated Press on Wednesday that her mother had been diagnosed with colon cancer in 2016 and also suffered from dementia, but a cause of death hadn't been determined.\n", 'Label_10': 'true', 'Premise_11': 'The Tuscola County man, who has chosen to remain anonymous, matched the Fantasy 5 numbers drawn Thursday to win the Fantasy 5 jackpot.\n', 'Hypothesis_11': "A mother and her two young children died over the New Year's weekend of apparent gunshot wounds in Lexington County in what authorities say was a murder-suicide. A fourth person who also died is the father of the children, according to the Lexington County Coroner's Office.\n", 'Label_11': 'false', 'Premise_12': 'Friday: Cloudy with showers and periods of rain. High: 70s.\n', 'Hypothesis_12': 'Three children have died in a house fire in Salford, while a three-year-old is said to be in a critical condition.\n', 'Label_12': 'false', 'Premise_13': 'Dubai is the commercial hub of the United Arab Emirates, an oil-producing nation squeezed in recent months by low crude prices.\n', 'Hypothesis_13': '3:36 Son Rae Carruth once wanted dead is making progress in physical therapy\n', 'Label_13': 'true', 'Premise_14': 'Share this: Facebook\n', 'Hypothesis_14': 'The estranged wife of Constantin Reliu had him declared dead in Romania in 2016 after he moved to Turkey.\n', 'Label_14': 'true', 'Premise_15': 'WhatsApp\n', 'Hypothesis_15': 'There are more than 3.1 million survivors of breast cancer in the U.S today, including those who are being treated and who have completed treatment.\n', 'Label_15': 'false'}
+{'label': 1, 'idx': 0, 'premise': 'dana reeve, the widow of the actor christopher reeve, has died of lung cancer at age 44, according to the christopher reeve foundation.', 'hypothesis': 'christopher reeve had an accident.', 'Premise_0': 'Enbridge (ENB -3.8% ) opens sharply lower after a judge in Minnesota ruled late yesterday that it should replace its Line 3 pipeline in the state along the existing right-of-way rather than in its originally planned route.\n', 'Hypothesis_0': 'Survivors include her children, Patricia M. Rogers of Dillon, Raymond H. Morrison of Bridgeton, NJ, Nancy Karol of Henderson, NC, and Donna Caldwell of Helena, GA; 11 grandchildren; 16 great-grandchildren; 19 great-great-grandchildren; many nieces and nephews.\n', 'Label_0': 'true', 'Premise_1': 'Dec 12 (Reuters) - Beiqi Foton Motor Co Ltd :\n', 'Hypothesis_1': '"North West Ambulance Service attended the incident and sadly the man, a 46-year-old from the Wigan area, was pronounced dead at the scene. His next of kin have been informed.\n', 'Label_1': 'true', 'Premise_2': 'The class will cover severe weather hazards including thunderstorms and tornadoes, including the general structure and movement of severe thunderstorms, identification of important storm features and safety concerns.\n', 'Hypothesis_2': 'Chuck Schuldiner passed away on December 13th, 2001 due to a brain tumor.\n', 'Label_2': 'false', 'Premise_3': 'Remittances to Mexico totaled $26.97 billion in 2016, up nearly 9 percent from 2015, and the highest ever according to Mexican central bank figures dating to 1995. (Reporting by Alexandra Alper; Editing by Dan Grebler)\n', 'Hypothesis_3': 'The cause of his death is unknown.\n', 'Label_3': 'true', 'Premise_4': 'A police spokesman said a television was found near the front door, which had been opened from the inside.\n', 'Hypothesis_4': 'WCBI-TV reported Sunday that Monroe County Sheriff Cecil Cantrell says the girl is dead.\n', 'Label_4': 'false', 'Premise_5': 'PITTSBURGH (AP) – Evgeni Malkin scored and picked up an assist in his return from a lower-body injury, Sidney Crosby got his 999th career point with an assist and the Pittsburgh Penguins rolled by the Vancouver Canucks 4-0 on Tuesday night.\n', 'Hypothesis_5': "In an interview on sidelines of the programme in Harare North Constituency, Zanu-PF Harare Province Women's League Chairperson, Ratidzo Mukarati said widows and elderly woman should be looked after as they face many challenges.\n", 'Label_5': 'false', 'Premise_6': 'The MSBU Advisory Committee will meet April 24 at 6 p.m. at the Commission Board Room, 1331 South Blvd., Chipley.\n', 'Hypothesis_6': 'JEFFERSON TOWNSHIP, Ohio (WDTN) — A man riding a motorcycle was killed in a three-vehicle crash in Clinton County.\n', 'Label_6': 'false', 'Premise_7': 'Krejdl says crews will come in and assess the damage which he says is minimal. He did not speculate on a dollar amount.\n', 'Hypothesis_7': 'A man has died after being hit by a vehicle on Thursday evening.\n', 'Label_7': 'false', 'Premise_8': 'UF President Kent Fuchs called this year’s incoming class “among the most competitive ever.” The average grade point average of those admitted is 4.4 and the average score on the SAT exam was 1349.\n', 'Hypothesis_8': 'Jesse Asher Pitts, age 36, of Columbia, Tenn., passed away June 10, 2017.\n', 'Label_8': 'true', 'Premise_9': "Trumbo went 2-for-5 with a pair of doubles and scored a run in Sunday's 11-4 win in Toronto.\n", 'Hypothesis_9': 'Venerable Bellanwila Wimalarathana thero passed away at a private hospital in Colombo following the attack of a temple elephant, our news sources said.\n', 'Label_9': 'false', 'Premise_10': '"Then came a fax from England. For us, however, a sale of Thomas Muller was never discussed.\n', 'Hypothesis_10': "Marizu told The Associated Press on Wednesday that her mother had been diagnosed with colon cancer in 2016 and also suffered from dementia, but a cause of death hadn't been determined.\n", 'Label_10': 'true', 'Premise_11': 'The Tuscola County man, who has chosen to remain anonymous, matched the Fantasy 5 numbers drawn Thursday to win the Fantasy 5 jackpot.\n', 'Hypothesis_11': "A mother and her two young children died over the New Year's weekend of apparent gunshot wounds in Lexington County in what authorities say was a murder-suicide. A fourth person who also died is the father of the children, according to the Lexington County Coroner's Office.\n", 'Label_11': 'false', 'Premise_12': 'Friday: Cloudy with showers and periods of rain. High: 70s.\n', 'Hypothesis_12': 'Three children have died in a house fire in Salford, while a three-year-old is said to be in a critical condition.\n', 'Label_12': 'false', 'Premise_13': 'Dubai is the commercial hub of the United Arab Emirates, an oil-producing nation squeezed in recent months by low crude prices.\n', 'Hypothesis_13': '3:36 Son Rae Carruth once wanted dead is making progress in physical therapy\n', 'Label_13': 'true', 'Premise_14': 'Share this: Facebook\n', 'Hypothesis_14': 'The estranged wife of Constantin Reliu had him declared dead in Romania in 2016 after he moved to Turkey.\n', 'Label_14': 'true', 'Premise_15': 'WhatsApp\n', 'Hypothesis_15': 'There are more than 3.1 million survivors of breast cancer in the U.S today, including those who are being treated and who have completed treatment.\n', 'Label_15': 'false'}
+['{}\n The question is: {}. True or False?\nThe Answer is: {}']
+{0: ['true'], 1: ['false']}
+./checkpoints/rte/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_sbert/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7fd40d602b50>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 169    |
+| Number of skipped attacks:    | 108    |
+| Original accuracy:            | 61.01  |
+| Accuracy under attack:        | 61.01  |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 856.33 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 566.1604518890381
+Attack time: 566.1604518890381
