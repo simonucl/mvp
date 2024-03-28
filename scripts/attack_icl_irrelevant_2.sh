@@ -3,12 +3,12 @@ MODEL=$2
 MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
 ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | irrelevant_sample]
 
-TEMPLATE_FILE=configs/templates_${DATASET}.yaml
-VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-DATASETS=(mr cr)
+DATASETS=(cr trec)
 
 SHOTS=(8 2 4 16)
 TOTAL_BATCH=32
+BETA=0.2
+KNN_T=100
 # if [[ $DATASET == "rte" ]]; then
 #     SHOTS=(8 2 4)
 #     TOTAL_BATCH=8
@@ -42,6 +42,8 @@ fi
 
 for DATASET in ${DATASETS[@]};
 do
+    TEMPLATE_FILE=configs/templates_${DATASET}.yaml
+    VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
     for SHOT in ${SHOTS[@]};
     do
         for SEED in ${SEEDS[@]};
