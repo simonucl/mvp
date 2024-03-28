@@ -14,5 +14,7 @@ TOTAL_BATCH=32
 # wait until this command is finished then next 
 for MODEL in ${MODELS[@]};
 do
+    MODEL_NAME=${MODEL//\//_}
+
     bash scripts/ralm/attack_all_model.sh $DATASET $MODEL retrieval_icl $TOTAL_BATCH > ./logs/run_ralm_${DATASET}_${MODEL_NAME}_all_model.log 2>&1
 done
