@@ -1,6 +1,6 @@
 MODELS=(mistralai/Mixtral-8x7B-Instruct-v0.1)
 SEEDS=(1 13 42)
-ATTACKS=(textfooler textbugger swap_labels swap_labels_fix_dist bert_attack icl_attack)
+ATTACKS=(swap_labels_fix_dist)
 
 DATASETS=(rte)
 
