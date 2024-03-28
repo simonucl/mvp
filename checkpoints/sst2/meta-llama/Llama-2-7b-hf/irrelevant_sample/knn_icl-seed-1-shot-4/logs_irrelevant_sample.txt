@@ -19,7 +19,7 @@ ICL examples
 ['Review: {}\nSentiment: {}']
 {0: ['negative'], 1: ['positive']}
 ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/knn_icl-seed-1-shot-4/irrelevant_sample_log.csv
-<textattack.attacker.Attacker object at 0x7fa9a1217c70>
+<textattack.attacker.Attacker object at 0x7f17d93f6880>
 Attack(
   (search_method): GreedyWordSwapWIR(
     (wir_method):  delete
@@ -75,15 +75,15 @@ Attack(
 | Attack Results                |       |
 +-------------------------------+-------+
 | Number of successful attacks: | 0     |
-| Number of failed attacks:     | 779   |
-| Number of skipped attacks:    | 93    |
-| Original accuracy:            | 89.33 |
-| Accuracy under attack:        | 89.33 |
+| Number of failed attacks:     | 783   |
+| Number of skipped attacks:    | 89    |
+| Original accuracy:            | 89.79 |
+| Accuracy under attack:        | 89.79 |
 | Attack success rate:          | 0.0   |
 | Average perturbed word %:     | nan   |
 | Average num. words per input: | 39.4  |
 | Avg num queries:              | 1.0   |
 | Adv confidence:               | nan   |
 +-------------------------------+-------+
-Attack time: 70.80457663536072
-Attack time: 70.80457663536072
+Attack time: 53.157098054885864
+Attack time: 53.157098054885864

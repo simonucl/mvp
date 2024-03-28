@@ -1,0 +1,87 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=2, beta=1.0, cache_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='sst2', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.5, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=2, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=16, split='test', template_file='configs/templates_sst2.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_sst2.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'sentence': 'is in bad need of major acting lessons and maybe a little coffee ', 'label': 0, 'idx': 17493}
+Finished replacing ood dataset
+{'sentence': 'is in bad need of major acting lessons and maybe a little coffee ', 'label': 0, 'idx': 17493}
+Length of anchor subsample 0
+Length of icl examples 2
+Finished loading model
+ICL examples
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'COLUMBUS (WCMH) — Super Bowl LII is creating a rivalry in Central Ohio.\n', 'Label_0': 'negative', 'Example_1': 'LAWTON, OK (KSWO)- One person is in the hospital tonight, after rolling their car in Lawton.\n', 'Label_1': 'positive', 'Example_2': "from two fatal ailments -- a dearth of vitality and a story that 's shapeless and uninflected ", 'Label_2': 'negative', 'Example_3': 'results that are sometimes bracing ', 'Label_3': 'positive', 'Example_4': 'Labour’s electoral college gives equal weight to the members, the affiliates (mostly trade unions), and MPs and Assembly members. Just 58 politicians had a third of the vote. Morgan took more than 65 percent of the members’ vote, but her opponent Carolyn Harris won both the MPs and AMs section, and the affiliates section.\n', 'Label_4': 'negative', 'Example_5': 'all-star salute ', 'Label_5': 'positive', 'Example_6': 'fit all of pootie tang in between its punchlines ', 'Label_6': 'negative', 'Example_7': 'He pleaded guilty in September to filing a false tax return.\n', 'Label_7': 'positive', 'Example_8': '* Qtrly average daily net production for q1 of 2017 of 18.9 mboe/d\n', 'Label_8': 'negative', 'Example_9': '1:06\n', 'Label_9': 'positive', 'Example_10': 'of cliches that shoplifts shamelessly from farewell-to-innocence movies like the wanderers and a bronx tale without cribbing any of their intelligence ', 'Label_10': 'negative', 'Example_11': 'real-life basis is , in fact , so interesting that no embellishment is ', 'Label_11': 'positive', 'Example_12': "to insulting the intelligence of anyone who has n't been living under a rock ", 'Label_12': 'negative', 'Example_13': '(Reporting by Arpan Varghese in Bengaluru)\n', 'Label_13': 'positive', 'Example_14': 'into the modern rut of narrative banality ', 'Label_14': 'negative', 'Example_15': 'Manchester United will look to get back to winning ways when they host Huddersfield Town at Old Trafford in one of five Premier League matches kicking off from 3pm.\n', 'Label_15': 'positive', 'Example_16': ', plodding picture ', 'Label_16': 'negative', 'Example_17': 'unlimited access to families and church meetings ', 'Label_17': 'positive', 'Example_18': 'Fashion Parade is Pakistani designer’s annual night out in London.\n', 'Label_18': 'negative', 'Example_19': 'He was located Sunday at a bus station attempting to leave Phoenix and was arrested without incident.\n', 'Label_19': 'positive', 'Example_20': 'menacing ', 'Label_20': 'negative', 'Example_21': 'joy to watch and -- especially -- to listen to ', 'Label_21': 'positive', 'Example_22': 'Sources: Baseball Almanac, MLB, Baseball Reference\n', 'Label_22': 'negative', 'Example_23': '» Continue to this story on Vatican Press Office\n', 'Label_23': 'positive', 'Example_24': 'LinkedIn\n', 'Label_24': 'negative', 'Example_25': 'The Mariners released a statement Tuesday saying Okon and the club accepted an immediate release after failing to agree on the strategic direction and plans for the team.\n', 'Label_25': 'positive', 'Example_26': 'Foreign ministers from China, France, Germany, Britain and Russia will meet with Iranian officials on Friday in Vienna to discuss how to keep a 2015 nuclear accord alive after U.S. President Donald Trump abandoned the pact in May.\n', 'Label_26': 'negative', 'Example_27': '1:28 Richland deputies aim to mend relationships\n', 'Label_27': 'positive', 'Example_28': "* Qtrly 46.9 thousand barrels of oil production per day (mbbls/d) above 4q'16 and ahead of expectations\n", 'Label_28': 'negative', 'Example_29': 'The state says ECOT could owe nearly $20 million more from 2016-17, though ECOT can appeal that finding.\n', 'Label_29': 'positive', 'Example_30': "typical animé , with cheapo animation ( like saturday morning tv in the '60s ) , a complex sword-and-sorcery plot and characters who all have big round eyes and japanese names . ", 'Label_30': 'negative', 'Example_31': 'VERDE VALLEY – Thursday, American Heritage Academy will close its K-12 Cottonwood campus as teachers will walk out of class with the rest of the state’s public school teachers.\n', 'Label_31': 'positive'}
+{'sentence': "it 's a charming and often affecting journey . ", 'label': 1, 'idx': 0, 'Example_0': 'COLUMBUS (WCMH) — Super Bowl LII is creating a rivalry in Central Ohio.\n', 'Label_0': 'negative', 'Example_1': 'LAWTON, OK (KSWO)- One person is in the hospital tonight, after rolling their car in Lawton.\n', 'Label_1': 'positive', 'Example_2': "from two fatal ailments -- a dearth of vitality and a story that 's shapeless and uninflected ", 'Label_2': 'negative', 'Example_3': 'results that are sometimes bracing ', 'Label_3': 'positive', 'Example_4': 'Labour’s electoral college gives equal weight to the members, the affiliates (mostly trade unions), and MPs and Assembly members. Just 58 politicians had a third of the vote. Morgan took more than 65 percent of the members’ vote, but her opponent Carolyn Harris won both the MPs and AMs section, and the affiliates section.\n', 'Label_4': 'negative', 'Example_5': 'all-star salute ', 'Label_5': 'positive', 'Example_6': 'fit all of pootie tang in between its punchlines ', 'Label_6': 'negative', 'Example_7': 'He pleaded guilty in September to filing a false tax return.\n', 'Label_7': 'positive', 'Example_8': '* Qtrly average daily net production for q1 of 2017 of 18.9 mboe/d\n', 'Label_8': 'negative', 'Example_9': '1:06\n', 'Label_9': 'positive', 'Example_10': 'of cliches that shoplifts shamelessly from farewell-to-innocence movies like the wanderers and a bronx tale without cribbing any of their intelligence ', 'Label_10': 'negative', 'Example_11': 'real-life basis is , in fact , so interesting that no embellishment is ', 'Label_11': 'positive', 'Example_12': "to insulting the intelligence of anyone who has n't been living under a rock ", 'Label_12': 'negative', 'Example_13': '(Reporting by Arpan Varghese in Bengaluru)\n', 'Label_13': 'positive', 'Example_14': 'into the modern rut of narrative banality ', 'Label_14': 'negative', 'Example_15': 'Manchester United will look to get back to winning ways when they host Huddersfield Town at Old Trafford in one of five Premier League matches kicking off from 3pm.\n', 'Label_15': 'positive', 'Example_16': ', plodding picture ', 'Label_16': 'negative', 'Example_17': 'unlimited access to families and church meetings ', 'Label_17': 'positive', 'Example_18': 'Fashion Parade is Pakistani designer’s annual night out in London.\n', 'Label_18': 'negative', 'Example_19': 'He was located Sunday at a bus station attempting to leave Phoenix and was arrested without incident.\n', 'Label_19': 'positive', 'Example_20': 'menacing ', 'Label_20': 'negative', 'Example_21': 'joy to watch and -- especially -- to listen to ', 'Label_21': 'positive', 'Example_22': 'Sources: Baseball Almanac, MLB, Baseball Reference\n', 'Label_22': 'negative', 'Example_23': '» Continue to this story on Vatican Press Office\n', 'Label_23': 'positive', 'Example_24': 'LinkedIn\n', 'Label_24': 'negative', 'Example_25': 'The Mariners released a statement Tuesday saying Okon and the club accepted an immediate release after failing to agree on the strategic direction and plans for the team.\n', 'Label_25': 'positive', 'Example_26': 'Foreign ministers from China, France, Germany, Britain and Russia will meet with Iranian officials on Friday in Vienna to discuss how to keep a 2015 nuclear accord alive after U.S. President Donald Trump abandoned the pact in May.\n', 'Label_26': 'negative', 'Example_27': '1:28 Richland deputies aim to mend relationships\n', 'Label_27': 'positive', 'Example_28': "* Qtrly 46.9 thousand barrels of oil production per day (mbbls/d) above 4q'16 and ahead of expectations\n", 'Label_28': 'negative', 'Example_29': 'The state says ECOT could owe nearly $20 million more from 2016-17, though ECOT can appeal that finding.\n', 'Label_29': 'positive', 'Example_30': "typical animé , with cheapo animation ( like saturday morning tv in the '60s ) , a complex sword-and-sorcery plot and characters who all have big round eyes and japanese names . ", 'Label_30': 'negative', 'Example_31': 'VERDE VALLEY – Thursday, American Heritage Academy will close its K-12 Cottonwood campus as teachers will walk out of class with the rest of the state’s public school teachers.\n', 'Label_31': 'positive'}
+['Review: {}\nSentiment: {}']
+{0: ['negative'], 1: ['positive']}
+./checkpoints/sst2/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-1-shot-16/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7f3edb72d2e0>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.5
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+-------+
+| Attack Results                |       |
++-------------------------------+-------+
+| Number of successful attacks: | 0     |
+| Number of failed attacks:     | 467   |
+| Number of skipped attacks:    | 405   |
+| Original accuracy:            | 53.56 |
+| Accuracy under attack:        | 53.56 |
+| Attack success rate:          | 0.0   |
+| Average perturbed word %:     | nan   |
+| Average num. words per input: | 507.4 |
+| Avg num queries:              | 1.0   |
+| Adv confidence:               | nan   |
++-------------------------------+-------+
+Attack time: 133.16463947296143
+Attack time: 133.16463947296143

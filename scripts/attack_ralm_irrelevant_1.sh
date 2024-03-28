@@ -3,9 +3,7 @@ MODEL=$2
 MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
 ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | irrelevant_sample]
 
-TEMPLATE_FILE=configs/templates_${DATASET}.yaml
-VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-DATASETS=(rte sst2)
+DATASETS=(sst2)
 
 SHOTS=(8 2 4 16)
 TOTAL_BATCH=32
@@ -45,6 +43,8 @@ fi
 
 for DATASET in ${DATASETS[@]};
 do
+    TEMPLATE_FILE=configs/templates_${DATASET}.yaml
+    VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
     for SHOT in ${SHOTS[@]};
     do
         for SEED in ${SEEDS[@]};

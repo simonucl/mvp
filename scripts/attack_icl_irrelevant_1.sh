@@ -3,9 +3,8 @@ MODEL=$2
 MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
 ATTACK=$4 # [textfooler | textbugger | icl_attack | swap_labels | swap_orders | irrelevant_sample]
 
-TEMPLATE_FILE=configs/templates_${DATASET}.yaml
-VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
-DATASETS=(rte sst2)
+# DATASETS=(rte sst2)
+DATASETS=(sst2)
 
 SHOTS=(8 2 4 16)
 TOTAL_BATCH=32
@@ -22,17 +21,6 @@ TOTAL_BATCH=32
 
 SEEDS=(1 13 42)
 
-if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
-    ATTACK_PRECENT=0.15
-else
-    if [[ $DATASET == "sst2" ]] || [[ $DATASET == "rte" ]] || [[ $DATASET == "mr" ]] || [[ $DATASET == "cr" ]]; then
-        ATTACK_PRECENT=0.5
-    elif [[ $DATASET == "mnli" ]]; then
-        ATTACK_PRECENT=0.33
-    else
-        ATTACK_PRECENT=0.2
-    fi
-fi
 
 if [[ $ATTACK == "swap_labels" ]]; then
     QUERY_BUDGET=250
@@ -42,6 +30,21 @@ fi
 
 for DATASET in ${DATASETS[@]};
 do
+    if [[ $ATTACK == "textfooler" ]] || [[ $ATTACK == "textbugger" ]] || [[ $ATTACK == "icl_attack" ]] || [[ $ATTACK == "bert_attack" ]]; then
+        ATTACK_PRECENT=0.15
+    else
+        if [[ $DATASET == "sst2" ]] || [[ $DATASET == "rte" ]] || [[ $DATASET == "mr" ]] || [[ $DATASET == "cr" ]]; then
+            ATTACK_PRECENT=0.5
+        elif [[ $DATASET == "mnli" ]]; then
+            ATTACK_PRECENT=0.33
+        else
+            ATTACK_PRECENT=0.2
+        fi
+    fi
+
+    TEMPLATE_FILE=configs/templates_${DATASET}.yaml
+    VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
+
     for SHOT in ${SHOTS[@]};
     do
         for SEED in ${SEEDS[@]};
@@ -80,6 +83,8 @@ do
             
 
             KNN=$(( SHOT / 2 - 1 ))
+            BETA=0.2
+            KNN_T=100
 
             MODEL_TYPE='knn_icl'
             
