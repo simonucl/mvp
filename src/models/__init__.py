@@ -63,13 +63,16 @@ def get_model(args, dataset, tokenizer, data_collator, verbalizer = None, templa
                 model = model_class.from_pretrained(
                     location, 
                     return_dict = True, 
-                    use_flash_attention_2=True, load_in_8bit=True)
+                    use_flash_attention_2=True, 
+                    load_in_8bit=True,
+                    device_map='auto')
                 
             elif args.precision == 'int4':
                 model = model_class.from_pretrained(
                     location, 
                     return_dict = True, 
-                    use_flash_attention_2=True, load_in_4bit=True)
+                    use_flash_attention_2=True, load_in_4bit=True,
+                    device_map='auto')
         else:
             dtype = torch.float16 if args.precision == 'float16' else torch.bfloat16
             model = model_class.from_pretrained(location, return_dict = True, use_flash_attention_2=True, torch_dtype=dtype)
