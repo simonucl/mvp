@@ -3,7 +3,7 @@ MODEL=$2
 MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
 TOTAL_BATCH=$4
 
-ATTACKS=(bert_attack icl_attack)
+ATTACKS=(irrelevant_sample)
 
 TEMPLATE_FILE=configs/templates_${DATASET}.yaml
 VERBALIZER_FILE=configs/verbalizer_${DATASET}.yaml
@@ -65,7 +65,28 @@ do
 
             for RETRIEVAL_METHOD in bm25 sbert instructor;
             do
-                nohup python3 main.py \
+                if [[ $MODEL == "meta-llama/Llama-2-70b-hf" ]] || [[ $MODEL == "mistralai/Mixtral-8x7B-v0.1" ]] || [[ $MODEL == "mistralai/Mistral-7B-Instruct-v0.1" ]]; then
+                    nohup python3 main.py \
+                        --mode attack \
+                        --attack_name ${ATTACK} \
+                        --num_examples 1000 \
+                        --dataset ${DATASET} \
+                        --query_budget ${QUERY_BUDGET} \
+                        --batch_size ${BATCH_SIZE} \
+                        --model_type ${MODEL_TYPE} \
+                        --model ${MODEL} \
+                        --verbalizer_file ${VERBALIZER_FILE} \
+                        --template_file ${TEMPLATE_FILE} \
+                        --seed $SEED \
+                        --shot ${SHOT} \
+                        --max_percent_words ${ATTACK_PRECENT} \
+                        --model_dir ${MODELPATH}_${RETRIEVAL_METHOD} \
+                        --retrieve_method ${RETRIEVAL_METHOD} \
+                        --is_quantized \
+                        --precision int4 \
+                        > ${MODELPATH}/logs_${ATTACK}_${RETRIEVAL_METHOD}.txt
+                else
+                    nohup python3 main.py \
                         --mode attack \
                         --attack_name ${ATTACK} \
                         --num_examples 1000 \
@@ -82,6 +103,7 @@ do
                         --model_dir ${MODELPATH}_${RETRIEVAL_METHOD} \
                         --retrieve_method ${RETRIEVAL_METHOD} \
                         > ${MODELPATH}/logs_${ATTACK}_${RETRIEVAL_METHOD}.txt
+                fi
                         
             if [[ $ATTACK == "swap_labels" ]]; then
                     FIX_ATTACK_PERCENT=0.5
