@@ -1,0 +1,95 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=4, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=4, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/mnli_instructor_ood.pkl', replace_ratio=0.1, retrieve_method='instructor', sampled_num=1, save_icl_examples_path=None, seed=1, shot=8, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'premise': 'how about if it was uh a seventeen and a half year old with a a list and all uh of  what do they call it uh criminal as long as your armed over the history of a violent crime', 'hypothesis': 'i think that they should be tried as adults. ', 'label': 1, 'idx': 362024}
+Finished replacing ood dataset
+{'premise': 'how about if it was uh a seventeen and a half year old with a a list and all uh of  what do they call it uh criminal as long as your armed over the history of a violent crime', 'hypothesis': 'i think that they should be tried as adults. ', 'label': 1, 'idx': 362024}
+load INSTRUCTOR_Transformer
+max_seq_length  512
+Length of anchor subsample 24
+Length of icl examples 3
+Finished loading model
+Finished encoding anchor data
+anchor_data_embeddings shape: torch.Size([373066, 768])
+query shape: 1000
+query_embedding shape: torch.Size([1000, 768])
+cos_scores shape: torch.Size([1000, 373066])
+Saving retrieved examples to ./data/ralm/mnli_instructor_ood.pkl
+ICL examples
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'perhaps rightfully so.', 'Hypothesis_0': 'perhaps with right.', 'Label_0': 'yes', 'Premise_1': '15 consequently, the number of new accesses', 'Hypothesis_1': 'there are new accesses now.', 'Label_1': 'yes', 'Premise_2': "it's pretty nice", 'Hypothesis_2': "it's nice. ", 'Label_2': 'yes', 'Premise_3': 'Twitter\n', 'Hypothesis_3': 'What’s New:\n', 'Label_3': 'no', 'Premise_4': "it's nice to have", 'Hypothesis_4': 'it is nice to be in possession of.', 'Label_4': 'yes', 'Premise_5': 'unconstitutional?', 'Hypothesis_5': 'there was a new amendment proposed.', 'Label_5': 'maybe', 'Premise_6': "yeah that's right it's kind of nice too to have that fall", 'Hypothesis_6': "it's kind of nice too", 'Label_6': 'yes', 'Premise_7': 'how lovely.', 'Hypothesis_7': 'it is nice.', 'Label_7': 'yes', 'Premise_8': "so it's uh yeah it's uh pretty nice", 'Hypothesis_8': "it's pretty nice.", 'Label_8': 'yes', 'Premise_9': 'The Ontario Provincial Police’s Marine Unit of the Georgian Bay Detachment stopped several vessels recently where operators had no life jackets or any other safety equipment aboard.\n', 'Hypothesis_9': 'The Latest:\n', 'Label_9': 'maybe', 'Premise_10': 'Stand-up by Aisha Brown, Nick Beaton, Jackie Pirico, Nitish Sakhuja & more helps launch Hunter Collins’s new sketch comedy album Nincom2oop. 7:30 pm. Pwyc.\n', 'Hypothesis_10': 'The Latest:\n', 'Label_10': 'yes', 'Premise_11': 'Dallam\n', 'Hypothesis_11': 'The Latest:\n', 'Label_11': 'no', 'Premise_12': 'Needless to say, there’s a lot that was wrong with this car:\n', 'Hypothesis_12': 'The Latest:\n', 'Label_12': 'maybe', 'Premise_13': 'A composite image of Bella was shared by millions of people on social media after her body was found on Deer Island in June 2015.\n', 'Hypothesis_13': 'The Latest:\n', 'Label_13': 'no', 'Premise_14': 'In a Facebook post, SCDF said it was alerted to the incident at about 9.20am.\n', 'Hypothesis_14': 'The Latest:\n', 'Label_14': 'maybe', 'Premise_15': "Travelers looking to avoid Tropical Storm Nate may find it's not yet so easy to change plans.\n", 'Hypothesis_15': 'The Latest:\n', 'Label_15': 'yes', 'Premise_16': 'Second Period_3, New Jersey, Palmieri 20 (Zajac, Hall), 10:31 (pp). Penalties_Anaheim bench, served by Perry (too many men on the ice), 9:57; Vatanen, NJ, (hooking), 12:30.\n', 'Hypothesis_16': 'The Latest:\n', 'Label_16': 'maybe', 'Premise_17': 'Copyright © 2018 The Washington Times, LLC.\n', 'Hypothesis_17': 'The Latest:\n', 'Label_17': 'maybe', 'Premise_18': 'Idle Muse Theatre Company announces casting the Chicago premiere of The Scullery Maid written by playwright Joseph Zettelmaier . The cast features Lydia Hiller as MIriam, Dave Skvarla as King Edward III, Anne Marie Lewis as Bess, Leslie Hull as Dulcie, and George Ellison as Pascal.\n', 'Hypothesis_18': 'The Latest:\n', 'Label_18': 'no', 'Premise_19': 'The view of Tathra from a helicopter shows a clear picture of just how chaotic the loss of property was, with embers having travelled well ahead of the fire front to destroy houses throughout the town, seemingly at random.\n', 'Hypothesis_19': 'The Latest:\n', 'Label_19': 'yes', 'Premise_20': 'Dailor also credited Atlanta fans for the band\'s 18 years of success. "Our first show had hundreds of people," he added, "and they came out to support us from the time we were playing the Parasite House to the Fox Theatre."\n', 'Hypothesis_20': 'The Latest:\n', 'Label_20': 'no', 'Premise_21': 'The Cincinnati-based supermarket retailer chain didn’t name specific titles.\n', 'Hypothesis_21': 'The Latest:\n', 'Label_21': 'maybe', 'Premise_22': 'She said every single delay had a real effect on students‚ on their ability to access accommodation and food‚ books and ultimately on their ability to succeed.\n', 'Hypothesis_22': 'The Latest:\n', 'Label_22': 'no', 'Premise_23': 'privacy right', 'Hypothesis_23': 'privacy is a right.', 'Label_23': 'maybe'}
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'perhaps rightfully so.', 'Hypothesis_0': 'perhaps with right.', 'Label_0': 'yes', 'Premise_1': '15 consequently, the number of new accesses', 'Hypothesis_1': 'there are new accesses now.', 'Label_1': 'yes', 'Premise_2': "it's pretty nice", 'Hypothesis_2': "it's nice. ", 'Label_2': 'yes', 'Premise_3': 'Twitter\n', 'Hypothesis_3': 'What’s New:\n', 'Label_3': 'no', 'Premise_4': "it's nice to have", 'Hypothesis_4': 'it is nice to be in possession of.', 'Label_4': 'yes', 'Premise_5': 'unconstitutional?', 'Hypothesis_5': 'there was a new amendment proposed.', 'Label_5': 'maybe', 'Premise_6': "yeah that's right it's kind of nice too to have that fall", 'Hypothesis_6': "it's kind of nice too", 'Label_6': 'yes', 'Premise_7': 'how lovely.', 'Hypothesis_7': 'it is nice.', 'Label_7': 'yes', 'Premise_8': "so it's uh yeah it's uh pretty nice", 'Hypothesis_8': "it's pretty nice.", 'Label_8': 'yes', 'Premise_9': 'The Ontario Provincial Police’s Marine Unit of the Georgian Bay Detachment stopped several vessels recently where operators had no life jackets or any other safety equipment aboard.\n', 'Hypothesis_9': 'The Latest:\n', 'Label_9': 'maybe', 'Premise_10': 'Stand-up by Aisha Brown, Nick Beaton, Jackie Pirico, Nitish Sakhuja & more helps launch Hunter Collins’s new sketch comedy album Nincom2oop. 7:30 pm. Pwyc.\n', 'Hypothesis_10': 'The Latest:\n', 'Label_10': 'yes', 'Premise_11': 'Dallam\n', 'Hypothesis_11': 'The Latest:\n', 'Label_11': 'no', 'Premise_12': 'Needless to say, there’s a lot that was wrong with this car:\n', 'Hypothesis_12': 'The Latest:\n', 'Label_12': 'maybe', 'Premise_13': 'A composite image of Bella was shared by millions of people on social media after her body was found on Deer Island in June 2015.\n', 'Hypothesis_13': 'The Latest:\n', 'Label_13': 'no', 'Premise_14': 'In a Facebook post, SCDF said it was alerted to the incident at about 9.20am.\n', 'Hypothesis_14': 'The Latest:\n', 'Label_14': 'maybe', 'Premise_15': "Travelers looking to avoid Tropical Storm Nate may find it's not yet so easy to change plans.\n", 'Hypothesis_15': 'The Latest:\n', 'Label_15': 'yes', 'Premise_16': 'Second Period_3, New Jersey, Palmieri 20 (Zajac, Hall), 10:31 (pp). Penalties_Anaheim bench, served by Perry (too many men on the ice), 9:57; Vatanen, NJ, (hooking), 12:30.\n', 'Hypothesis_16': 'The Latest:\n', 'Label_16': 'maybe', 'Premise_17': 'Copyright © 2018 The Washington Times, LLC.\n', 'Hypothesis_17': 'The Latest:\n', 'Label_17': 'maybe', 'Premise_18': 'Idle Muse Theatre Company announces casting the Chicago premiere of The Scullery Maid written by playwright Joseph Zettelmaier . The cast features Lydia Hiller as MIriam, Dave Skvarla as King Edward III, Anne Marie Lewis as Bess, Leslie Hull as Dulcie, and George Ellison as Pascal.\n', 'Hypothesis_18': 'The Latest:\n', 'Label_18': 'no', 'Premise_19': 'The view of Tathra from a helicopter shows a clear picture of just how chaotic the loss of property was, with embers having travelled well ahead of the fire front to destroy houses throughout the town, seemingly at random.\n', 'Hypothesis_19': 'The Latest:\n', 'Label_19': 'yes', 'Premise_20': 'Dailor also credited Atlanta fans for the band\'s 18 years of success. "Our first show had hundreds of people," he added, "and they came out to support us from the time we were playing the Parasite House to the Fox Theatre."\n', 'Hypothesis_20': 'The Latest:\n', 'Label_20': 'no', 'Premise_21': 'The Cincinnati-based supermarket retailer chain didn’t name specific titles.\n', 'Hypothesis_21': 'The Latest:\n', 'Label_21': 'maybe', 'Premise_22': 'She said every single delay had a real effect on students‚ on their ability to access accommodation and food‚ books and ultimately on their ability to succeed.\n', 'Hypothesis_22': 'The Latest:\n', 'Label_22': 'no', 'Premise_23': 'privacy right', 'Hypothesis_23': 'privacy is a right.', 'Label_23': 'maybe'}
+['Premise: {}\nHypothesis: {}\nPrediction: {}']
+{0: ['yes'], 1: ['maybe'], 2: ['no']}
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-8_instructor/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7fba7bc9fc70>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.33
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 529    |
+| Number of skipped attacks:    | 471    |
+| Original accuracy:            | 52.9   |
+| Accuracy under attack:        | 52.9   |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 687.97 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 1205.3779683113098
+Attack time: 1205.3779683113098
