@@ -1,7 +1,7 @@
-DATASET=$1
-MODEL=$2
-MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
-TOTAL_BATCH=$4
+# DATASET=$1
+# MODEL=$2
+# MODEL_TYPE=$3 # [icl | knn_icl | retrieval_icl | retrieval_icl_attack ]
+# TOTAL_BATCH=$4
 
 # replace '/' with '_'
 MODEL_NAME=${MODEL//\//_}
