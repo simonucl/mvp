@@ -1,0 +1,88 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=4, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_sbert
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_sbert/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_sbert', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/mnli_sbert_ood.pkl', replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=1, shot=4, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'premise': 'how about if it was uh a seventeen and a half year old with a a list and all uh of  what do they call it uh criminal as long as your armed over the history of a violent crime', 'hypothesis': 'i think that they should be tried as adults. ', 'label': 1, 'idx': 362024}
+Finished replacing ood dataset
+{'premise': 'how about if it was uh a seventeen and a half year old with a a list and all uh of  what do they call it uh criminal as long as your armed over the history of a violent crime', 'hypothesis': 'i think that they should be tried as adults. ', 'label': 1, 'idx': 362024}
+Length of anchor subsample 12
+Length of icl examples 3
+Finished loading model
+Loading retrieved examples from ./data/ralm/mnli_sbert_ood.pkl
+ICL examples
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': "when you sign your ten forty form you're signing a away you're rights i mean your your rights to uh uh protect yourself", 'Hypothesis_0': 'you still have rights, even if you signed.', 'Label_0': 'no', 'Premise_1': "oh okay so it's just another job uh it must be especially frustrating because even your rights in there  are", 'Hypothesis_1': 'your rights are not in there, so that makes it easy. ', 'Label_1': 'no', 'Premise_2': 'special rights for gays.', 'Hypothesis_2': 'special rights for everyone.', 'Label_2': 'maybe', 'Premise_3': "oh sure i think that's that's i feel that you know for certain cases that i that i am willing to give up my rights to secure the rights of others i guess is what i'm saying", 'Hypothesis_3': "i am willing to surrender my rights for others'.", 'Label_3': 'yes', 'Premise_4': "yeah i think you've got to have a good fight you know you have to have a lot of controversy", 'Hypothesis_4': 'i think you have to have a good fight if you want to keep your rights.', 'Label_4': 'maybe', 'Premise_5': 'devolving decisionmaking authority.', 'Hypothesis_5': 'retaining the decision making rights', 'Label_5': 'no', 'Premise_6': '[y]ou can give people all the rights you want, but if they have no way to enforce those rights, those rights are meaningless.', 'Hypothesis_6': 'rights should be given to people along with the means to enforce them.', 'Label_6': 'maybe', 'Premise_7': 'but so many of the cases we handle have to do with basic rights and a decent life.', 'Hypothesis_7': 'many of the cases involve basic rights.', 'Label_7': 'yes', 'Premise_8': 'special rights for gays.', 'Hypothesis_8': 'normal rights for heterosexuals.', 'Label_8': 'no', 'Premise_9': "it's nice to have", 'Hypothesis_9': 'it is nice to be in possession of.', 'Label_9': 'yes', 'Premise_10': 'read him his rights for what crime?', 'Hypothesis_10': 'he needed his rights read.', 'Label_10': 'yes', 'Premise_11': 'those people who might at first be reluctant to confront the omnipresence of death along the river will be impressed by the simple dignity of the funeral rites here.', 'Hypothesis_11': 'the funeral rights here are simple, yet dignified.', 'Label_11': 'yes'}
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': "when you sign your ten forty form you're signing a away you're rights i mean your your rights to uh uh protect yourself", 'Hypothesis_0': 'you still have rights, even if you signed.', 'Label_0': 'no', 'Premise_1': "oh okay so it's just another job uh it must be especially frustrating because even your rights in there  are", 'Hypothesis_1': 'your rights are not in there, so that makes it easy. ', 'Label_1': 'no', 'Premise_2': 'special rights for gays.', 'Hypothesis_2': 'special rights for everyone.', 'Label_2': 'maybe', 'Premise_3': "oh sure i think that's that's i feel that you know for certain cases that i that i am willing to give up my rights to secure the rights of others i guess is what i'm saying", 'Hypothesis_3': "i am willing to surrender my rights for others'.", 'Label_3': 'yes', 'Premise_4': "yeah i think you've got to have a good fight you know you have to have a lot of controversy", 'Hypothesis_4': 'i think you have to have a good fight if you want to keep your rights.', 'Label_4': 'maybe', 'Premise_5': 'devolving decisionmaking authority.', 'Hypothesis_5': 'retaining the decision making rights', 'Label_5': 'no', 'Premise_6': '[y]ou can give people all the rights you want, but if they have no way to enforce those rights, those rights are meaningless.', 'Hypothesis_6': 'rights should be given to people along with the means to enforce them.', 'Label_6': 'maybe', 'Premise_7': 'but so many of the cases we handle have to do with basic rights and a decent life.', 'Hypothesis_7': 'many of the cases involve basic rights.', 'Label_7': 'yes', 'Premise_8': 'special rights for gays.', 'Hypothesis_8': 'normal rights for heterosexuals.', 'Label_8': 'no', 'Premise_9': "it's nice to have", 'Hypothesis_9': 'it is nice to be in possession of.', 'Label_9': 'yes', 'Premise_10': 'read him his rights for what crime?', 'Hypothesis_10': 'he needed his rights read.', 'Label_10': 'yes', 'Premise_11': 'those people who might at first be reluctant to confront the omnipresence of death along the river will be impressed by the simple dignity of the funeral rites here.', 'Hypothesis_11': 'the funeral rights here are simple, yet dignified.', 'Label_11': 'yes'}
+['Premise: {}\nHypothesis: {}\nPrediction: {}']
+{0: ['yes'], 1: ['maybe'], 2: ['no']}
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_sbert/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7f5e16f26430>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.33
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 558    |
+| Number of skipped attacks:    | 442    |
+| Original accuracy:            | 55.8   |
+| Accuracy under attack:        | 55.8   |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 403.37 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 401.1084063053131
+Attack time: 401.1084063053131

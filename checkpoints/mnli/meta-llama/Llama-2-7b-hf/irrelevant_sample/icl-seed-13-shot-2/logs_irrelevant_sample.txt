@@ -1,0 +1,87 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-2', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-2
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-2/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-2', model_id='0', model_type='icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='sbert', sampled_num=1, save_icl_examples_path=None, seed=13, shot=2, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'premise': 'how about if it was uh a seventeen and a half year old with a a list and all uh of  what do they call it uh criminal as long as your armed over the history of a violent crime', 'hypothesis': 'i think that they should be tried as adults. ', 'label': 1, 'idx': 362024}
+Finished replacing ood dataset
+{'premise': 'how about if it was uh a seventeen and a half year old with a a list and all uh of  what do they call it uh criminal as long as your armed over the history of a violent crime', 'hypothesis': 'i think that they should be tried as adults. ', 'label': 1, 'idx': 362024}
+Length of anchor subsample 0
+Length of icl examples 3
+Finished loading model
+ICL examples
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'Chirk Cllr Ian Roberts said: “She was a very nice old lady who had been living on her own for about 20 years.\n', 'Hypothesis_0': 'Photo: DriveBC\n', 'Label_0': 'yes', 'Premise_1': 'It isn’t clear how many people could be covered by the amount of money set aside for the effort.\n', 'Hypothesis_1': 'The German news agency dpa reported the Flensburg main train station had been evacuated and service to Flensburg had been interrupted temporarily.\n', 'Label_1': 'maybe', 'Premise_2': "The health department said in a statement Monday that the victim's family has been contacted and an investigation is underway. It had no details on the victim's condition.\n", 'Hypothesis_2': 'Here’s full audio of the press conference, which was about 26 minutes in duration.\n', 'Label_2': 'no', 'Premise_3': '4. When Life Gives You Lululemons by Lauren Weisberger - 9781476778464 - (Simon & Schuster)\n', 'Hypothesis_3': 'INTERVIEW-Banks could be obliged to set Libor rates\n', 'Label_3': 'yes', 'Premise_4': 'Reddit\n', 'Hypothesis_4': 'sip@postmedia.com\n', 'Label_4': 'maybe', 'Premise_5': 'in about 2000 b.c.', 'Hypothesis_5': 'it was about 2000 a.d.', 'Label_5': 'no'}
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': 'Chirk Cllr Ian Roberts said: “She was a very nice old lady who had been living on her own for about 20 years.\n', 'Hypothesis_0': 'Photo: DriveBC\n', 'Label_0': 'yes', 'Premise_1': 'It isn’t clear how many people could be covered by the amount of money set aside for the effort.\n', 'Hypothesis_1': 'The German news agency dpa reported the Flensburg main train station had been evacuated and service to Flensburg had been interrupted temporarily.\n', 'Label_1': 'maybe', 'Premise_2': "The health department said in a statement Monday that the victim's family has been contacted and an investigation is underway. It had no details on the victim's condition.\n", 'Hypothesis_2': 'Here’s full audio of the press conference, which was about 26 minutes in duration.\n', 'Label_2': 'no', 'Premise_3': '4. When Life Gives You Lululemons by Lauren Weisberger - 9781476778464 - (Simon & Schuster)\n', 'Hypothesis_3': 'INTERVIEW-Banks could be obliged to set Libor rates\n', 'Label_3': 'yes', 'Premise_4': 'Reddit\n', 'Hypothesis_4': 'sip@postmedia.com\n', 'Label_4': 'maybe', 'Premise_5': 'in about 2000 b.c.', 'Hypothesis_5': 'it was about 2000 a.d.', 'Label_5': 'no'}
+['Premise: {}\nHypothesis: {}\nPrediction: {}']
+{0: ['yes'], 1: ['maybe'], 2: ['no']}
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/icl-seed-13-shot-2/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7fa7641a3c70>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.33
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+--------+
+| Attack Results                |        |
++-------------------------------+--------+
+| Number of successful attacks: | 0      |
+| Number of failed attacks:     | 524    |
+| Number of skipped attacks:    | 476    |
+| Original accuracy:            | 52.4   |
+| Accuracy under attack:        | 52.4   |
+| Attack success rate:          | 0.0    |
+| Average perturbed word %:     | nan    |
+| Average num. words per input: | 178.54 |
+| Avg num queries:              | 1.0    |
+| Adv confidence:               | nan    |
++-------------------------------+--------+
+Attack time: 119.73927569389343
+Attack time: 119.73927569389343

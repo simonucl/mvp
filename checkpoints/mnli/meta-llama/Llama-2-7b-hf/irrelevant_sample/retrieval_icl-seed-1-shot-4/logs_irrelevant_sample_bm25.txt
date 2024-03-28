@@ -1,0 +1,88 @@
+1
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=4, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+meta-llama/Llama-2-7b-hf
+Model Directory: ./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_bm25
+1 Physical GPUs, 1 Logical GPUs
+Namespace(adv_augment=0, alpha=None, attack_name='irrelevant_sample', batch_size=8, beta=1.0, cache_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_bm25/cache', checkpoint_interval=1000, config_file=None, data_dir='./data', dataset='mnli', dataset_path=None, ensemble_num=1, epsilon=1.0, examples_per_label=1, fix_dist=False, is_quantized=False, knn_T=None, knn_k=None, knn_model='bert-base-uncased', local_rank=0, local_world_size=1, lr=1e-05, mask_augment=False, mask_prob=0.15, mask_ratio=0.3, max_length=1024, max_percent_words=0.33, mode='attack', model='meta-llama/Llama-2-7b-hf', model_dir='./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_bm25', model_id='0', model_type='retrieval_icl', norm='l2', num_epochs=20, num_examples=1000, num_iter=1, num_labels=3, num_template=-1, path='None', patience=10, pool_label_words='max', pool_templates='mean', precision='bfloat16', prompt_num=2, query_budget=-1, ralm_save_path='./data/ralm/mnli_bm25_ood.pkl', replace_ratio=0.1, retrieve_method='bm25', sampled_num=1, save_icl_examples_path=None, seed=1, shot=4, split='test', template_file='configs/templates_mnli.yaml', tindex=0, train_epoch=30, train_size=0.95, val_size=0.05, verbalizer_file='configs/verbalizer_mnli.yaml', weight_decay=0.01)
+Finished loading ood dataset
+{'premise': 'how about if it was uh a seventeen and a half year old with a a list and all uh of  what do they call it uh criminal as long as your armed over the history of a violent crime', 'hypothesis': 'i think that they should be tried as adults. ', 'label': 1, 'idx': 362024}
+Finished replacing ood dataset
+{'premise': 'how about if it was uh a seventeen and a half year old with a a list and all uh of  what do they call it uh criminal as long as your armed over the history of a violent crime', 'hypothesis': 'i think that they should be tried as adults. ', 'label': 1, 'idx': 362024}
+Length of anchor subsample 12
+Length of icl examples 3
+Finished loading model
+Loading retrieved examples from ./data/ralm/mnli_bm25_ood.pkl
+ICL examples
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': "many of the contract rights that were mandated by congress in irca -- such as reimbursement for return transportation, workers compensation, the 3/4 guarantee, and claims that a grower failed to mail the worker's final paycheck -- often do not arise until after the worker has returned home.", 'Hypothesis_0': "the workers think the rights they're given are too few.", 'Label_0': 'maybe', 'Premise_1': 'the weather had been perfectly fine for some days, and no ordinary boots would have left such a heavy deposit. ', 'Hypothesis_1': 'the weather has been nice.', 'Label_1': 'yes', 'Premise_2': "jeez you can't get any interest rates", 'Hypothesis_2': 'the interest rates are low because we do not invest enough.  ', 'Label_2': 'maybe', 'Premise_3': '3) there is no rate distinction in priority between flats and parcels, even though there could be differences in the equipment used to process them.', 'Hypothesis_3': 'the differences in equipment are not substantial enough to differentiate priority.  ', 'Label_3': 'maybe', 'Premise_4': "the lawyers who work for alabama's programs are not highly paid.", 'Hypothesis_4': 'the lawyers working in alabama programs are not paid high enough.', 'Label_4': 'yes', 'Premise_5': 'in the winter the falls form a spectacular cascade of icicles.', 'Hypothesis_5': 'the temperatures in winter time are not enough to create ice.', 'Label_5': 'no', 'Premise_6': "they're also savvy enough to show up for the road test clean (or with a $19.", 'Hypothesis_6': 'they are smart enough to show up to the test drunk.', 'Label_6': 'no', 'Premise_7': "from here it's just 5 km (3 miles) to sao vicente, at which point the road heads south to ribeira brava, then east back to funchal.", 'Hypothesis_7': 'there is a nice new restaurant in sao vicente.', 'Label_7': 'maybe', 'Premise_8': 'they are very crowded, especially on summer weekends.', 'Hypothesis_8': 'they are crowded because live bands perform there when the weather is nice.', 'Label_8': 'maybe', 'Premise_9': 'Rail services between Melbourne and Bendigo have been suspended.\n', 'Hypothesis_9': '-JC says he’s discovered where the nicest people in the world are from\n', 'Label_9': 'no', 'Premise_10': "West Midlands Police believe the boy's phone was stolen during the attack and are appealing for anyone with information to come forward.\n", 'Hypothesis_10': '-JC says he’s discovered where the nicest people in the world are from\n', 'Label_10': 'maybe', 'Premise_11': "Mall stores like Aeropostale, which filed for bankruptcy in May, American Eagle, Chicos, Finish Line, Men's Wearhouse, and The Children's Place are also in the midst of multi-year plans to close stores.\n", 'Hypothesis_11': '-JC says he’s discovered where the nicest people in the world are from\n', 'Label_11': 'maybe'}
+{'premise': 'the new rights are nice enough', 'hypothesis': 'everyone really likes the newest benefits ', 'label': 1, 'idx': 0, 'Premise_0': "many of the contract rights that were mandated by congress in irca -- such as reimbursement for return transportation, workers compensation, the 3/4 guarantee, and claims that a grower failed to mail the worker's final paycheck -- often do not arise until after the worker has returned home.", 'Hypothesis_0': "the workers think the rights they're given are too few.", 'Label_0': 'maybe', 'Premise_1': 'the weather had been perfectly fine for some days, and no ordinary boots would have left such a heavy deposit. ', 'Hypothesis_1': 'the weather has been nice.', 'Label_1': 'yes', 'Premise_2': "jeez you can't get any interest rates", 'Hypothesis_2': 'the interest rates are low because we do not invest enough.  ', 'Label_2': 'maybe', 'Premise_3': '3) there is no rate distinction in priority between flats and parcels, even though there could be differences in the equipment used to process them.', 'Hypothesis_3': 'the differences in equipment are not substantial enough to differentiate priority.  ', 'Label_3': 'maybe', 'Premise_4': "the lawyers who work for alabama's programs are not highly paid.", 'Hypothesis_4': 'the lawyers working in alabama programs are not paid high enough.', 'Label_4': 'yes', 'Premise_5': 'in the winter the falls form a spectacular cascade of icicles.', 'Hypothesis_5': 'the temperatures in winter time are not enough to create ice.', 'Label_5': 'no', 'Premise_6': "they're also savvy enough to show up for the road test clean (or with a $19.", 'Hypothesis_6': 'they are smart enough to show up to the test drunk.', 'Label_6': 'no', 'Premise_7': "from here it's just 5 km (3 miles) to sao vicente, at which point the road heads south to ribeira brava, then east back to funchal.", 'Hypothesis_7': 'there is a nice new restaurant in sao vicente.', 'Label_7': 'maybe', 'Premise_8': 'they are very crowded, especially on summer weekends.', 'Hypothesis_8': 'they are crowded because live bands perform there when the weather is nice.', 'Label_8': 'maybe', 'Premise_9': 'Rail services between Melbourne and Bendigo have been suspended.\n', 'Hypothesis_9': '-JC says he’s discovered where the nicest people in the world are from\n', 'Label_9': 'no', 'Premise_10': "West Midlands Police believe the boy's phone was stolen during the attack and are appealing for anyone with information to come forward.\n", 'Hypothesis_10': '-JC says he’s discovered where the nicest people in the world are from\n', 'Label_10': 'maybe', 'Premise_11': "Mall stores like Aeropostale, which filed for bankruptcy in May, American Eagle, Chicos, Finish Line, Men's Wearhouse, and The Children's Place are also in the midst of multi-year plans to close stores.\n", 'Hypothesis_11': '-JC says he’s discovered where the nicest people in the world are from\n', 'Label_11': 'maybe'}
+['Premise: {}\nHypothesis: {}\nPrediction: {}']
+{0: ['yes'], 1: ['maybe'], 2: ['no']}
+./checkpoints/mnli/meta-llama/Llama-2-7b-hf/irrelevant_sample/retrieval_icl-seed-1-shot-4_bm25/irrelevant_sample_log.csv
+<textattack.attacker.Attacker object at 0x7f92832464c0>
+Attack(
+  (search_method): GreedyWordSwapWIR(
+    (wir_method):  delete
+  )
+  (goal_function):  UntargetedClassification
+  (transformation):  WordSwapEmbedding(
+    (max_candidates):  50
+    (embedding):  WordEmbedding
+  )
+  (constraints): 
+    (0): MaxWordsPerturbed(
+        (max_percent):  0.33
+        (compare_against_original):  True
+      )
+    (1): WordEmbeddingDistance(
+        (embedding):  WordEmbedding
+        (min_cos_sim):  0.6
+        (cased):  False
+        (include_unknown_words):  True
+        (compare_against_original):  True
+      )
+    (2): PartOfSpeech(
+        (tagger_type):  nltk
+        (tagset):  universal
+        (allow_verb_noun_swap):  True
+        (compare_against_original):  True
+      )
+    (3): UniversalSentenceEncoder(
+        (metric):  angular
+        (threshold):  0.840845057
+        (window_size):  15
+        (skip_text_shorter_than_window):  True
+        (compare_against_original):  False
+      )
+    (4): RepeatModification
+    (5): StopwordModification
+    (6): InstructionModification(
+        (columns_to_ignore):  ['example_', 'label_']
+      )
+    (7): InputColumnModification(
+        (matching_column_labels):  ['premise', 'hypothesis']
+        (columns_to_ignore):  {'premise'}
+      )
+    (8): InputColumnModification(
+        (matching_column_labels):  ['question', 'sentence']
+        (columns_to_ignore):  {'question'}
+      )
+  (is_black_box):  True
+) 
+
+
++-------------------------------+-------+
+| Attack Results                |       |
++-------------------------------+-------+
+| Number of successful attacks: | 0     |
+| Number of failed attacks:     | 554   |
+| Number of skipped attacks:    | 446   |
+| Original accuracy:            | 55.4  |
+| Accuracy under attack:        | 55.4  |
+| Attack success rate:          | 0.0   |
+| Average perturbed word %:     | nan   |
+| Average num. words per input: | 439.3 |
+| Avg num queries:              | 1.0   |
+| Adv confidence:               | nan   |
++-------------------------------+-------+
+Attack time: 463.39357686042786
+Attack time: 463.39357686042786
